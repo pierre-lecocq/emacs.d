@@ -2,19 +2,24 @@
 
 ** .emacs file
 
+#+BEGIN_SRC
    (add-to-list 'load-path "~/.emacs.d")
    (load "my-bootstrap")
+#+END_SRC
 
 ** Files
 
+#+BEGIN_SRC
    my-bootstrap.el      General settings & load specific files
    my-packages.el       ELPA and el-get settings
    my-theme.el          Display and XMode settings
    my-shell.el          Shell-pop settings
    my-keys.el           Shortcuts
+#+END_SRC
 
 ** Shortcuts
 
+#+BEGIN_SRC
    C-c C-c      comment-region
    C-c C-u      uncomment-region
    C-S-s        find-grep
@@ -25,3 +30,4 @@
    f6           recentf-open-files
    f7           add-change-log-entry-other-window
    f12          shell-pop
+#+END_SRC
