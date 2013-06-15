@@ -69,6 +69,5 @@
 (setq recentf-max-menu-items 25)
 
 ;; Mode YAS
-(add-to-list 'load-path "~/.emacs.d/my-snippets")
 (require 'yasnippet)
 (yas-global-mode 1)
