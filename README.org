@@ -1,0 +1,27 @@
+* Emacs configuration
+
+** .emacs file
+
+   (add-to-list 'load-path "~/.emacs.d")
+   (load "my-bootstrap")
+
+** Files
+
+   my-bootstrap.el      General settings & load specific files
+   my-packages.el       ELPA and el-get settings
+   my-theme.el          Display and XMode settings
+   my-shell.el          Shell-pop settings
+   my-keys.el           Shortcuts
+
+** Shortcuts
+
+   C-c C-c      comment-region
+   C-c C-u      uncomment-region
+   C-S-s        find-grep
+
+   C-S-g s      magit-status
+
+   f5           bookmark-bmenu-list
+   f6           recentf-open-files
+   f7           add-change-log-entry-other-window
+   f12          shell-pop

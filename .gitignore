@@ -1,0 +1,8 @@
+# Ignore everything
+*
+
+# But my files...
+!my-*.el
+!snippets
+!README.org
+!.gitignore
