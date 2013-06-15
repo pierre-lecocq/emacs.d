@@ -19,7 +19,7 @@
 #+BEGIN_SRC
    my-bootstrap.el      General settings & load specific files
    my-packages.el       ELPA and el-get settings
-   my-theme.el          Display and XMode settings
+   my-display.el        Display and XMode settings
    my-shell.el          Shell-pop settings
    my-keys.el           Shortcuts
 #+END_SRC
