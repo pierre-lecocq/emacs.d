@@ -14,6 +14,12 @@
 ;; Git
 (global-set-key (kbd "C-S-g s") 'magit-status)
 
+;; Buffer move
+(global-set-key (kbd "<C-S-up>")     'buf-move-up)
+(global-set-key (kbd "<C-S-down>")   'buf-move-down)
+(global-set-key (kbd "<C-S-left>")   'buf-move-left)
+(global-set-key (kbd "<C-S-right>")  'buf-move-right)
+
 ;; F keys
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history

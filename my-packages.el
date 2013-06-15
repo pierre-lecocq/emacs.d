@@ -31,6 +31,7 @@
    color-theme
    powerline
    anything
+   buffer-move
 ))
 
 (el-get 'sync el-get-packages)
