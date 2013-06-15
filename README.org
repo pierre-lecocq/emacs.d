@@ -1,5 +1,12 @@
 * Emacs configuration
 
+** Install
+
+#+BEGIN_SRC
+   git clone https://github.com/pierre-lecocq/emacs.d.git ~/.emacs.d
+   git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get
+#+END_SRC
+
 ** .emacs file
 
 #+BEGIN_SRC
