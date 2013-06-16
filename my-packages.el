@@ -26,6 +26,7 @@
    auto-highlight-symbol
    php-mode-improved
    ruby-mode
+   js2-mode
    magit
    shell-pop
    color-theme

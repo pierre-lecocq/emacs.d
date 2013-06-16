@@ -30,6 +30,12 @@
    C-c C-c      comment-region
    C-c C-u      uncomment-region
    C-S-s        find-grep
+   M-j          join lines below
+
+   C-S-n        move 5 next lines
+   C-S-p        move 5 prev lines
+   C-S-f        move 5 next chars
+   C-S-b        move 5 prev chars
 
    C-S-x C-S-f  ido-find-file-in-tag-files
    C-S-g s      magit-status
