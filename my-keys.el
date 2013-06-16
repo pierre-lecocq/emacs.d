@@ -9,7 +9,7 @@
 
 ;; Ido specific TAB behaviour
 (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))
-(global-set-key (kbd "C-x C-M-f") 'ido-find-file-in-tag-files)
+(global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
 
 ;; Git
 (global-set-key (kbd "C-S-g s") 'magit-status)

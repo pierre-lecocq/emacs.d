@@ -31,6 +31,7 @@
    C-c C-u      uncomment-region
    C-S-s        find-grep
 
+   C-S-x C-S-f  ido-find-file-in-tag-files
    C-S-g s      magit-status
 
    f5           bookmark-bmenu-list
