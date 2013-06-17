@@ -12,7 +12,7 @@
 (line-number-mode t)
 (column-number-mode t)
 (display-time)
-(set-frame-font "Monospace 10")
+(set-frame-font "Monospace 11")
 
 ;;
 ;; X mode
@@ -26,9 +26,11 @@
 (defun xMode ()
   (message "Setting up X mode ...")
 
-  (require 'color-theme)
-  (color-theme-initialize)
-  (color-theme-charcoal-black)
+  ;; (require 'color-theme)
+  ;; (color-theme-initialize)
+  ;; (color-theme-charcoal-black)
+
+  (custom-set-variables '(custom-enabled-themes (quote (deeper-blue))))
 
   (global-linum-mode t)
 

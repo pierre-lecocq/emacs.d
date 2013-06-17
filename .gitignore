@@ -6,3 +6,4 @@
 !snippets
 !README.org
 !.gitignore
+!*-theme.el
