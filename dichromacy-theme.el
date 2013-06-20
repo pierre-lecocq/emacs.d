@@ -44,24 +44,24 @@ Ansi-Color faces are included.")
    `(default ((,class (:foreground "black" :background "white"))))
    `(cursor ((,class (:background "black"))))
    ;; Highlighting faces
-   `(fringe ((,class (:background "#f7f7f7"))))
-   `(highlight ((,class (:foreground ,blue :background "#e5e5e5"))))
-   `(region ((,class (:foreground unspecified :background ,yellow))))
-   `(secondary-selection ((,class (:background "#e5e5e5"))))
-   `(isearch ((,class (:foreground "white" :background ,vermillion))))
-   `(lazy-highlight ((,class (:foreground "white" :background ,redpurple))))
-   `(trailing-whitespace ((,class (:background ,vermillion))))
+   ;; `(fringe ((,class (:background "#f7f7f7"))))
+   ;; `(highlight ((,class (:foreground ,blue :background "#e5e5e5"))))
+   ;; `(region ((,class (:foreground unspecified :background ,yellow))))
+   ;; `(secondary-selection ((,class (:background "#e5e5e5"))))
+   ;; `(isearch ((,class (:foreground "white" :background ,vermillion))))
+   ;; `(lazy-highlight ((,class (:foreground "white" :background ,redpurple))))
+   ;; `(trailing-whitespace ((,class (:background ,vermillion))))
    ;; Mode line faces
    `(mode-line ((,class (:box (:line-width -1 :style released-button)
-			      :background "#e5e5e5" :foreground "black"))))
+                  :background "#e5e5e5" :foreground "black"))))
    `(mode-line-inactive ((,class (:box (:line-width -1 :style released-button)
-				       :background "#b0b0b0"
-				       :foreground "black"))))
+                       :background "#b0b0b0"
+                       :foreground "black"))))
    ;; Escape and prompt faces
    `(minibuffer-prompt ((,class (:weight bold :foreground ,blue))))
    `(escape-glyph ((,class (:foreground ,vermillion))))
    `(error ((,class (:weight bold :slant italic
-			     :foreground ,vermillion))))
+                 :foreground ,vermillion))))
    `(warning ((,class (:foreground ,orange))))
    `(success ((,class (:foreground ,bluegreen))))
    ;; Font lock faces
@@ -110,14 +110,14 @@ Ansi-Color faces are included.")
    `(message-separator ((,class (:weight bold :foreground ,redpurple))))
    ;; Flyspell
    `(flyspell-duplicate ((,class (:weight unspecified :foreground unspecified
-				  :slant unspecified :underline ,orange))))
+                  :slant unspecified :underline ,orange))))
    `(flyspell-incorrect ((,class (:weight unspecified :foreground unspecified
-				  :slant unspecified :underline ,redpurple)))))
+                  :slant unspecified :underline ,redpurple)))))
 
   (custom-theme-set-variables
    'dichromacy
    `(ansi-color-names-vector ["black" ,vermillion ,bluegreen ,yellow
-			      ,blue ,redpurple ,skyblue "white"])))
+                  ,blue ,redpurple ,skyblue "white"])))
 
 (provide-theme 'dichromacy)
 
