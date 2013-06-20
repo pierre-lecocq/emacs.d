@@ -7,6 +7,10 @@
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
 (global-set-key (kbd "C-S-s") 'find-grep)
 
+(setq mac-option-modifier nil
+      mac-command-modifier 'meta
+      x-select-enable-clipboard t)
+
 ;; Join lines below
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 
@@ -36,6 +40,7 @@
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
+(global-set-key [f11] 'my-theme-switch) ;; Switch theme
 (global-set-key [f12] 'shell-pop) ;; Pop shell buffer
 
 ;; Shell specific keys

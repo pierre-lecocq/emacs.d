@@ -12,7 +12,7 @@
 (line-number-mode t)
 (column-number-mode t)
 (display-time)
-(set-frame-font "Monospace 11")
+;;(set-frame-font "Monospace 11")
 
 ;;
 ;; X mode
@@ -23,17 +23,17 @@
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
 
+(defun my-theme-switch ()
+  "Switch between themes"
+  (interactive)
+  (setq my-next-theme (pop my-available-themes))
+  (setq my-available-themes (append my-available-themes (list my-next-theme)))
+  (message "Switch to theme %s" my-next-theme)
+  (load-theme my-next-theme t))
+
 (defun xMode ()
-  (message "Setting up X mode ...")
-
-  ;; (require 'color-theme)
-  ;; (color-theme-initialize)
-  ;; (color-theme-charcoal-black)
-
-  (custom-set-variables '(custom-enabled-themes (quote (deeper-blue))))
-
+  (my-theme-switch)
   (global-linum-mode t)
-
   (transparency 95)
 )
 
