@@ -59,7 +59,7 @@
 ;; Mode AutoPair
 (autopair-global-mode t)
 
-;; Mode AUtoComplete
+;; Mode AutoComplete
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
@@ -71,3 +71,5 @@
 ;; Mode YAS
 (require 'yasnippet)
 (yas-global-mode 1)
+(setq yas/snippet-dirs "~/.emacs.d/snippets")
+(yas/load-directory yas/snippet-dirs)
