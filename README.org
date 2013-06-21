@@ -6,7 +6,7 @@
    git clone https://github.com/pierre-lecocq/emacs.d.git ~/.emacs.d
    git clone https://github.com/dimitri/el-get.git ~/.emacs.d/el-get
 
-   git clone https://myserver:myport/mypath/org.git ~/.emacs.d/org
+   git clone ssh://myserver:myport/mypath/org.git ~/.emacs.d/org
 #+END_SRC
 
 ** .emacs file
