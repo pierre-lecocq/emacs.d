@@ -43,6 +43,11 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
+;; Mode ORG
+(setq org-agenda-files (list "~/.emacs.d/org/work.org"
+                             "~/.emacs.d/org/projects.org"
+                             "~/.emacs.d/org/perso.org"))
+
 ;; Mode Ido
 (require 'ido)
 (ido-mode t)

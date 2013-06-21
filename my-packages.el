@@ -19,6 +19,7 @@
 (setq
  el-get-packages
  '(el-get
+   org-mode
    yasnippet
    autopair
    auto-complete
