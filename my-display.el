@@ -6,8 +6,8 @@
 (setq initial-scratch-message "")
 (global-font-lock-mode t)
 (transient-mark-mode t)
-(set-face-background 'highlight "#333")
-(set-face-foreground 'highlight nil)
+;; (set-face-background 'highlight "#333")
+;; (set-face-foreground 'highlight nil)
 (global-hl-line-mode t)
 (line-number-mode t)
 (column-number-mode t)
@@ -23,23 +23,23 @@
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
 
+(setq my-available-themes '(deeper-blue wombat dichromacy))
 (defun my-theme-switch ()
   "Switch between themes"
   (interactive)
   (setq my-next-theme (pop my-available-themes))
   (setq my-available-themes (append my-available-themes (list my-next-theme)))
   (message "Switch to theme %s" my-next-theme)
-  (load-theme my-next-theme t))
-
-(defun xMode ()
-  (my-theme-switch)
-  (global-linum-mode t)
-  (transparency 95)
+  (load-theme my-next-theme t)
 )
 
-(if window-system
-    (xMode))
+(defun xMode ()
+  (global-linum-mode t)
+  (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+  (my-theme-switch)
+  (transparency 95))
 
+(if window-system (xMode))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))

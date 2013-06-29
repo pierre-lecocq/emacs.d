@@ -31,8 +31,6 @@
    magit
    shell-pop
    color-theme
-   powerline
-   anything
    buffer-move
 ))
 

@@ -2,7 +2,8 @@
 *
 
 # But my files...
-!snippets/*
+!snippets
+!themes
 !my-*.el
 !README.org
 !.gitignore
