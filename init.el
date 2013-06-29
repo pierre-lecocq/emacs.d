@@ -1,10 +1,5 @@
 ;;
-;; Bootstrap
-;;
-;; In .emacs, simply add this:
-;;
-;;     (add-to-list 'load-path "~/.emacs.d")
-;;     (load "my-bootstrap")
+;; Init
 ;;
 
 (add-to-list 'load-path "~/.emacs.d")
