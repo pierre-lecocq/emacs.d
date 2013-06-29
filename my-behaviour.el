@@ -7,7 +7,6 @@
 (setq-default show-trailing-whitespace t)
 (setq-default highlight-tabs t)
 (show-paren-mode t)
-(auto-highlight-symbol-mode t)
 (setq require-final-newline t)
 (setq next-line-add-newlines nil)
 (setq kill-whole-line t)
