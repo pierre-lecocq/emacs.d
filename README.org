@@ -13,7 +13,6 @@
 
 #+BEGIN_SRC
    init.el              General settings & load files
-   my-packages.el       ELPA and el-get settings
    my-display.el        Display and XMode settings
    my-shell.el          Shell-pop settings
    my-keys.el           Shortcuts
