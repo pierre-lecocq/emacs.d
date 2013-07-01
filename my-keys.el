@@ -42,9 +42,3 @@
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
 (global-set-key [f11] 'my-theme-switch) ;; Switch theme
 (global-set-key [f12] 'shell-pop) ;; Pop shell buffer
-
-;; Shell specific keys
-(defun my-shell-keys ()
-  (local-set-key (quote [(return)]) (quote newline))
-  (local-set-key (quote [(tab)])  'indent-or-complete))
-(add-hook 'term-exec-hook 'my-shell-keys)
