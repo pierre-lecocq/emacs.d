@@ -34,6 +34,7 @@
 )
 
 (defun xMode ()
+  (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
   (global-linum-mode t)
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
   (my-theme-switch)

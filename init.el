@@ -49,6 +49,7 @@
    shell-pop
    color-theme
    buffer-move
+   column-marker
 ))
 
 (el-get 'sync el-get-packages)
