@@ -50,6 +50,7 @@
    color-theme
    buffer-move
    column-marker
+   git-gutter-fringe
 ))
 
 (el-get 'sync el-get-packages)
