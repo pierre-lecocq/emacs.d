@@ -6,6 +6,8 @@
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
 (global-set-key (kbd "C-S-s") 'find-grep)
+(global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Find tags
+(global-set-key (kbd "C-S-t l") 'list-tags) ;; List tags
 
 (setq mac-option-modifier nil
       mac-command-modifier 'meta
@@ -16,11 +18,8 @@
 
 ;; Steroide moves (from http://whattheemacsd.com/)
 (global-set-key (kbd "C-S-n") (lambda () (interactive) (ignore-errors (next-line 5))))
-
 (global-set-key (kbd "C-S-p") (lambda () (interactive) (ignore-errors (previous-line 5))))
-
 (global-set-key (kbd "C-S-f") (lambda () (interactive) (ignore-errors (forward-char 5))))
-
 (global-set-key (kbd "C-S-b") (lambda () (interactive) (ignore-errors (backward-char 5))))
 
 ;; Ido specific TAB behaviour
@@ -29,6 +28,8 @@
 
 ;; Git
 (global-set-key (kbd "C-S-g s") 'magit-status)
+
+;; Tags
 
 ;; Buffer move
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)
