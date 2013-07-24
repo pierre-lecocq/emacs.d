@@ -26,6 +26,9 @@
    C-S-s        find-grep
    M-j          join lines below
 
+   C-S-t f	find tags
+   C-S-t l	list tags
+
    C-S-n        move 5 next lines
    C-S-p        move 5 prev lines
    C-S-f        move 5 next chars
