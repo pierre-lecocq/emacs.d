@@ -12,7 +12,10 @@
 (setq kill-whole-line t)
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+
 (setq make-backup-files nil)
+(setq backup-inhibited t)
+(setq auto-save-default nil)
 
 ;; Indentation
 (setq-default tab-width 4
