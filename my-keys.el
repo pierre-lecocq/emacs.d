@@ -6,7 +6,8 @@
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
 (global-set-key (kbd "C-S-s") 'find-grep)
-(global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Find tags
+(global-set-key (kbd "C-S-t g") 'find-tag) ;; Goto tag under point
+(global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Search tags
 (global-set-key (kbd "C-S-t l") 'list-tags) ;; List tags
 
 (setq mac-option-modifier nil
