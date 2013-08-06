@@ -6,7 +6,7 @@
 
 ;; User
 (setq user-full-name "Pierre Lecocq")
-(setq user-mail-address "pierre.lecocq@gmail.com")
+(setq user-mail-address "pierre.lecocq@mymail.com")
 
 ;; Changelog
 (setq change-log-default-name "CHANGELOG")
