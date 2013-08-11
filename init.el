@@ -36,7 +36,6 @@
 (setq
  el-get-packages
  '(el-get
-   org-mode
    yasnippet
    autopair
    auto-complete
@@ -51,7 +50,6 @@
    buffer-move
    column-marker
    git-gutter-fringe
-   gnus
 ))
 
 (el-get 'sync el-get-packages)
