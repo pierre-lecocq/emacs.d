@@ -81,3 +81,7 @@
 (yas-global-mode 1)
 (setq yas/snippet-dirs "~/.emacs.d/snippets")
 (yas/load-directory yas/snippet-dirs)
+
+;; Rainbow mode
+(add-hook 'css-mode-hook 
+	  (lambda () (rainbow-mode 1)))

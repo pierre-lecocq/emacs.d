@@ -50,6 +50,7 @@
    buffer-move
    column-marker
    git-gutter-fringe
+   rainbow-mode
 ))
 
 (el-get 'sync el-get-packages)
