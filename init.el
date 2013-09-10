@@ -59,4 +59,5 @@
 (load "my-behaviour")
 (load "my-display")
 (load "my-shell")
+(load "my-feeds")
 (load "my-keys")

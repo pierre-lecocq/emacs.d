@@ -26,18 +26,27 @@
    C-S-s        find-grep
    M-j          join lines below
 
+   ;; Tags
    C-S-t g	goto tag under point
    C-S-t f	search tag
    C-S-t l	list tags
 
+   ;; Fast moves
    C-S-n        move 5 next lines
    C-S-p        move 5 prev lines
    C-S-f        move 5 next chars
    C-S-b        move 5 prev chars
 
+   ;; Ido
    C-S-x C-S-f  ido-find-file-in-tag-files
+
+   ;; El Feeds
+   C-x w	el-feed
+
+   ;; Git
    C-S-g s      magit-status
 
+   ;; F Keys
    f5           bookmark-bmenu-list
    f6           recentf-open-files
    f7           add-change-log-entry-other-window
