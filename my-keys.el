@@ -30,6 +30,9 @@
 ;; ElFeed (must be installed from MELPA)
 (global-set-key (kbd "C-x w") 'elfeed)
 
+;; Twittering mdoe
+(global-set-key (kbd "C-x q") 'twit)
+
 ;; Tags
 (global-set-key (kbd "C-S-t g") 'find-tag) ;; Goto tag under point
 (global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Search tags

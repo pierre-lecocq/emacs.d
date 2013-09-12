@@ -51,6 +51,7 @@
    column-marker
    git-gutter-fringe
    rainbow-mode
+   twittering-mode
 ))
 
 (el-get 'sync el-get-packages)

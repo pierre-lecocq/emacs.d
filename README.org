@@ -40,8 +40,11 @@
    ;; Ido
    C-S-x C-S-f  ido-find-file-in-tag-files
 
-   ;; El Feeds
+   ;; RSS Reader
    C-x w	el-feed
+
+   ;; Twiiter
+   C-x q	twit
 
    ;; Git
    C-S-g s      magit-status
