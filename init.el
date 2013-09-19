@@ -10,14 +10,15 @@
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 ;; El-get
-(add-to-list 'load-path "~/.emacs.d/el-get")
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil t)
-  (url-retrieve
-   "https://github.com/dimitri/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
 
 (setq
  el-get-packages
@@ -25,7 +26,6 @@
    auto-highlight-symbol
    autopair
    buffer-move
-   color-theme
    column-marker
    js2-mode
    magit
