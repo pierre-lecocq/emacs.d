@@ -2,6 +2,22 @@
 ;; Development behaviour
 ;;
 
+
+;; User
+(setq user-full-name "Pierre Lecocq")
+(setq user-mail-address "pierre.lecocq@mymail.com")
+
+;; Changelog
+(setq change-log-default-name "CHANGELOG")
+
+;; Locale
+(set-language-environment 'UTF-8)
+(set-terminal-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;; Global
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default show-trailing-whitespace t)
@@ -76,12 +92,6 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 
-;; Mode YAS
-(require 'yasnippet)
-(yas-global-mode 1)
-(setq yas/snippet-dirs "~/.emacs.d/snippets")
-(yas/load-directory yas/snippet-dirs)
-
 ;; Rainbow mode
-(add-hook 'css-mode-hook 
-	  (lambda () (rainbow-mode 1)))
+(add-hook 'css-mode-hook
+      (lambda () (rainbow-mode 1)))

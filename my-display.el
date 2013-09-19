@@ -3,7 +3,7 @@
 ;;
 
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "")
+(setq initial-scratch-message "Perkeleen Vittupää")
 (global-font-lock-mode t)
 (transient-mark-mode t)
 ;; (set-face-background 'highlight "#333")
