@@ -43,13 +43,11 @@
    ;; RSS Reader
    C-x w	el-feed
 
-   ;; Twiiter
-   C-x q	twit
-
    ;; Git
    C-S-g s      magit-status
 
    ;; F Keys
+   f4           gnus
    f5           bookmark-bmenu-list
    f6           recentf-open-files
    f7           add-change-log-entry-other-window

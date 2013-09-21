@@ -30,9 +30,6 @@
 ;; ElFeed (must be installed from MELPA)
 (global-set-key (kbd "C-x w") 'elfeed)
 
-;; Twittering mdoe
-(global-set-key (kbd "C-x q") 'twit)
-
 ;; Tags
 (global-set-key (kbd "C-S-t g") 'find-tag) ;; Goto tag under point
 (global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Search tags
@@ -45,6 +42,7 @@
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
 ;; F keys
+(global-set-key [f4] 'gnus) ;; Gnus
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog

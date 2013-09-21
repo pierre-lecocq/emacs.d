@@ -31,15 +31,14 @@ are included.")
   (custom-theme-set-faces
    'wombat
    `(default ((,class (:background "#242424" :foreground "#f6f3e8"))))
-   `(cursor ((,class (:background "#656565"))))
+   `(cursor ((,class (:background "#f6f3e8" :foreground "#242424"))))
    ;; Highlighting faces
-;;    `(fringe ((,class (:background "#303030"))))
-;;    `(highlight ((,class (:background "#454545" :foreground "#ffffff"
-;; 			 :underline t))))
-;;    `(region ((,class (:background "#444444" :foreground "#f6f3e8"))))
-;;    `(secondary-selection ((,class (:background "#333366" :foreground "#f6f3e8"))))
-;;    `(isearch ((,class (:background "#343434" :foreground "#857b6f"))))
-;;    `(lazy-highlight ((,class (:background "#384048" :foreground "#a0a8b0"))))
+   ;;`(fringe ((,class (:background "#303030"))))
+   `(highlight ((,class (:background "#454545" :foreground "#ffffff"))))
+   `(region ((,class (:background "#444444" :foreground "#f6f3e8"))))
+   ;; `(secondary-selection ((,class (:background "#333366" :foreground "#f6f3e8"))))
+   ;; `(isearch ((,class (:background "#343434" :foreground "#857b6f"))))
+   ;; `(lazy-highlight ((,class (:background "#384048" :foreground "#a0a8b0"))))
    ;; Mode line faces
    `(mode-line ((,class (:background "#444444" :foreground "#f6f3e8"))))
    `(mode-line-inactive ((,class (:background "#444444" :foreground "#857b6f"))))
@@ -97,7 +96,7 @@ are included.")
 (custom-theme-set-variables
  'wombat
  '(ansi-color-names-vector ["#242424" "#e5786d" "#95e454" "#cae682"
-			    "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]))
+                "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"]))
 
 (provide-theme 'wombat)
 

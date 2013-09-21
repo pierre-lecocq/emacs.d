@@ -3,7 +3,7 @@
 ;;
 
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "Perkeleen Vittupää")
+(setq initial-scratch-message "* Perkeleen Vittupää")
 (global-font-lock-mode t)
 (transient-mark-mode t)
 ;; (set-face-background 'highlight "#333")
@@ -11,7 +11,7 @@
 (line-number-mode t)
 (column-number-mode t)
 (display-time)
-;;(set-frame-font "Monospace 11")
+(set-frame-font "Monospace 10")
 
 ;;
 ;; X mode

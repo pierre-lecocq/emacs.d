@@ -35,7 +35,6 @@
    rainbow-mode
    ruby-mode
    shell-pop
-   twittering-mode
 ))
 
 (el-get 'sync el-get-packages)
