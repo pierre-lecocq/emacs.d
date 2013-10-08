@@ -41,6 +41,12 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
+;; Highlight
+(global-set-key [f2] 'highlight-symbol-at-point)
+(global-set-key [(control f2)] 'highlight-symbol-next)
+(global-set-key [(shift f2)] 'highlight-symbol-prev)
+(global-set-key [(meta f2)] 'highlight-symbol-query-replace)
+
 ;; F keys
 (global-set-key [f4] 'gnus) ;; Gnus
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list

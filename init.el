@@ -27,6 +27,7 @@
    autopair
    buffer-move
    column-marker
+   highlight-symbol
    js2-mode
    magit
    multiple-cursors

@@ -27,9 +27,9 @@
    M-j          join lines below
 
    ;; Tags
-   C-S-t g	goto tag under point
-   C-S-t f	search tag
-   C-S-t l	list tags
+   C-S-t g      goto tag under point
+   C-S-t f      search tag
+   C-S-t l      list tags
 
    ;; Fast moves
    C-S-n        move 5 next lines
@@ -41,10 +41,16 @@
    C-S-x C-S-f  ido-find-file-in-tag-files
 
    ;; RSS Reader
-   C-x w	el-feed
+   C-x w        el-feed
 
    ;; Git
    C-S-g s      magit-status
+
+   ;; Highlight symbols
+   f2           Highlight symbol at point
+   C-f2         Highlight next symbol
+   S-f2         Highlight prev symbol
+   M-f2         Query replace highlighted symbol
 
    ;; F Keys
    f4           gnus
