@@ -27,18 +27,17 @@
    autopair
    buffer-move
    column-marker
-   flx ;; recommanded for projectile
    highlight-symbol
    js2-mode
    magit
    multiple-cursors
    php-mode
    php-mode-improved
-   projectile
    rainbow-mode
    rhtml-mode
    ruby-mode
    shell-pop
+   textmate
    yaml-mode
 ))
 
