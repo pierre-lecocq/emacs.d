@@ -36,8 +36,10 @@
    php-mode-improved
    projectile
    rainbow-mode
+   rhtml-mode
    ruby-mode
    shell-pop
+   yaml-mode
 ))
 
 (el-get 'sync el-get-packages)
