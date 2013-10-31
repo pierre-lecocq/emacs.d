@@ -3,7 +3,7 @@
 ;;
 
 (setq inhibit-startup-message t)
-(setq initial-scratch-message "* Perkeleen Vittupää")
+(setq initial-scratch-message (animate-string "* Perkeleen Vittupää\n" 1 5))
 (global-font-lock-mode t)
 (transient-mark-mode t)
 ;; (set-face-background 'highlight "#333")
@@ -53,8 +53,8 @@
 (setq org-fontify-done-headline t)
 (custom-set-faces
  '(org-done ((t (:foreground "PaleGreen"
-			     :weight normal
-			     :strike-through t))))
+                 :weight normal
+                 :strike-through t))))
  '(org-headline-done
    ((((class color) (min-colors 16) (background dark))
      (:foreground "Grey55" :strike-through t)))))
