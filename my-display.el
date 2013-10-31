@@ -3,16 +3,20 @@
 ;;
 
 (setq inhibit-startup-message t)
-(setq initial-scratch-message (animate-string (format "* Perkeleen Vittupää  (%s)\n"  (substring (emacs-version) 10 16)) 1 5))
+(defun emacs-into ()
+  (animate-string (format "* Perkeleen Vittupää (%s)"  (substring (emacs-version) 10 16)) 0 0)
+  (newline-and-indent))
+(add-hook 'after-init-hook 'emacs-into)
+
 (global-font-lock-mode t)
 (transient-mark-mode t)
-;; (set-face-background 'highlight "#333")
-;; (set-face-foreground 'highlight nil)
 (line-number-mode t)
 (column-number-mode t)
 (display-time)
 (set-frame-font "Monospace 10")
 (setq frame-title-format "%b - emacs")
+;; (set-face-background 'highlight "#333")
+;; (set-face-foreground 'highlight nil)
 
 ;;
 ;; X mode
