@@ -44,9 +44,9 @@
 
 ;; Indentation
 (setq-default tab-width 4
-          c-basic-offset 4
-          c-hanging-comment-ender-p nil
-          indent-tabs-mode t)
+              c-basic-offset 4
+              c-hanging-comment-ender-p nil
+              indent-tabs-mode t)
 (setq-default indent-tabs-mode nil)
 
 (c-add-style
@@ -79,7 +79,7 @@
 (setq org-agenda-files (list
                         "~/.emacs.d/org/agenda.org"
                         ;; Add other files here ...
-                 ))
+                        ))
 
 ;; Mode Ido
 (require 'ido)
@@ -91,8 +91,8 @@
   (save-excursion
     (let ((enable-recursive-minibuffers t)) (visit-tags-table-buffer))
     (find-file (expand-file-name
-        (ido-completing-read "Project file: "
-                     (tags-table-files) nil t)))))
+                (ido-completing-read "Project file: "
+                                     (tags-table-files) nil t)))))
 
 ;; Mode AutoPair
 (autopair-global-mode t)
@@ -108,7 +108,7 @@
 
 ;; Rainbow mode
 (add-hook 'css-mode-hook
-      (lambda () (rainbow-mode 1)))
+          (lambda () (rainbow-mode 1)))
 
 ;; Projectile
 ;; https://github.com/bbatsov/projectile#interactive-commands

@@ -3,7 +3,7 @@
 ;;
 
 (setq inhibit-startup-message t)
-(setq initial-scratch-message (animate-string "* Perkeleen Vittupää\n" 1 5))
+(setq initial-scratch-message (animate-string (format "* Perkeleen Vittupää  (%s)\n"  (substring (emacs-version) 10 16)) 1 5))
 (global-font-lock-mode t)
 (transient-mark-mode t)
 ;; (set-face-background 'highlight "#333")
@@ -12,6 +12,7 @@
 (column-number-mode t)
 (display-time)
 (set-frame-font "Monospace 10")
+(setq frame-title-format "%b - emacs")
 
 ;;
 ;; X mode
