@@ -40,7 +40,7 @@
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
   ;;(my-theme-switch)
   (color-theme-dark-laptop)
-  (transparency 95))
+  (transparency 85))
 
 (if window-system (xMode))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
