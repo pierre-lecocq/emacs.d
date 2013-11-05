@@ -38,7 +38,8 @@
   (global-linum-mode t)
   (global-hl-line-mode t)
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (my-theme-switch)
+  ;;(my-theme-switch)
+  (color-theme-dark-laptop)
   (transparency 95))
 
 (if window-system (xMode))

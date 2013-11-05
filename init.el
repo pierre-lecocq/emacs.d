@@ -26,6 +26,7 @@
    auto-highlight-symbol
    autopair
    buffer-move
+   color-theme
    column-marker
    highlight-symbol
    js2-mode
