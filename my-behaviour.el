@@ -112,3 +112,14 @@
 (shell-pop-set-internal-mode-shell "/bin/bash")
 (shell-pop-set-window-height 50)
 (shell-pop-set-window-position "bottom")
+
+;; Move text mode
+(require 'move-text)
+(move-text-default-bindings)
+
+;; Flycheck mode
+(require 'flycheck)
+
+;; Ido vertical mode
+(require 'ido-vertical-mode)
+(ido-vertical-mode)

@@ -22,14 +22,16 @@
 (setq
  el-get-packages
  '(auto-complete
-   auto-highlight-symbol
    autopair
    buffer-move
    color-theme
    column-marker
+   flycheck
    highlight-symbol
+   ido-vertical-mode
    js2-mode
    magit
+   move-text
    multiple-cursors
    php-mode
    php-mode-improved
