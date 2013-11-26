@@ -64,10 +64,6 @@
              (set (make-local-variable 'indent-tabs-mode) nil)
              (c-set-style "custom-four-indent")))
 
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (setq ruby-indent-level 4)))
-
 ;; Functions
 (defun indent-all ()
   "indent whole buffer"
