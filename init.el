@@ -162,9 +162,9 @@
 ;; Themes
 
 (setq pl/available-themes '(
-			    color-theme-dark-laptop
-			    color-theme-deep-blue
-			    color-theme-standard))
+                color-theme-dark-laptop
+                color-theme-deep-blue
+                color-theme-standard))
 
 (defun pl/theme-switch()
   "Switch between themes"
@@ -201,8 +201,8 @@
 (setq org-fontify-done-headline t)
 (custom-set-faces
  '(org-done ((t (:foreground "PaleGreen"
-			     :weight normal
-			     :strike-through t))))
+                 :weight normal
+                 :strike-through t))))
  '(org-headline-done
    ((((class color) (min-colors 16) (background dark))
      (:foreground "Grey55" :strike-through t)))))
@@ -318,5 +318,5 @@
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
-;;(global-set-key [f11] 'pl/theme-switch) ;; Swith theme
+(global-set-key [f11] 'pl/theme-switch) ;; Swith theme
 ;;(global-set-key [f12] 'shell-pop) ;; Pop shell buffer
