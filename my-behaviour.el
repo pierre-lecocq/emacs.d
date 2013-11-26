@@ -106,9 +106,3 @@
 ;; Rainbow mode
 (add-hook 'css-mode-hook
           (lambda () (rainbow-mode 1)))
-
-;; Projectile
-;; https://github.com/bbatsov/projectile#interactive-commands
-;; (projectile-global-mode)
-;; (add-hook 'ruby-mode-hook 'projectile-on)
-;; (add-hook 'php-mode-hook 'projectile-on)

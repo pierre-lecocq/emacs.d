@@ -38,7 +38,6 @@
    rhtml-mode
    ruby-mode
    shell-pop
-   textmate
    yaml-mode
 ))
 
