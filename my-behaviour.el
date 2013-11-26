@@ -2,7 +2,6 @@
 ;; Development behaviour
 ;;
 
-
 ;; User
 (setq user-full-name "Pierre Lecocq")
 (setq user-mail-address "pierre.lecocq@mymail.com")
@@ -72,7 +71,7 @@
   (indent-region (point-min) (point-max) nil)
   (untabify (point-min) (point-max)))
 
-;; Mode ORG
+;; Org mode files
 (setq org-agenda-files (list
                         "~/.emacs.d/org/agenda.org"
                         ;; Add other files here ...
@@ -106,3 +105,10 @@
 ;; Rainbow mode
 (add-hook 'css-mode-hook
           (lambda () (rainbow-mode 1)))
+
+;; Shell pop mode
+(require 'shell-pop)
+(shell-pop-set-internal-mode "shell")
+(shell-pop-set-internal-mode-shell "/bin/bash")
+(shell-pop-set-window-height 50)
+(shell-pop-set-window-position "bottom")

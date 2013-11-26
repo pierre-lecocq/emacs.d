@@ -52,5 +52,4 @@
 (global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
-(global-set-key [f11] 'my-theme-switch) ;; Switch theme
 (global-set-key [f12] 'shell-pop) ;; Pop shell buffer

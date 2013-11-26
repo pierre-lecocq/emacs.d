@@ -9,10 +9,8 @@
 (line-number-mode t)
 (column-number-mode t)
 (display-time)
-;;(set-frame-font "Monospace 10")
 (setq frame-title-format "%b - emacs")
-;; (set-face-background 'highlight "#333")
-;; (set-face-foreground 'highlight nil)
+;;(set-frame-font "Monospace 10")
 
 ;;
 ;; X mode

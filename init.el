@@ -4,12 +4,11 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 
-;; ELPA
+;; Packages
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 
-;; El-get
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -38,14 +37,17 @@
    rhtml-mode
    ruby-mode
    shell-pop
-   yaml-mode
-))
+   yaml-mode))
 
 (el-get 'sync el-get-packages)
+
+(defun el-get-update-once-a-week()
+  (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
+      (el-get-update-all)))
+
+(el-get-update-once-a-week)
 
 ;; Load custom scripts
 (load "my-behaviour")
 (load "my-display")
-(load "my-shell")
-(load "my-feeds")
 (load "my-keys")
