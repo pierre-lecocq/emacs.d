@@ -46,7 +46,6 @@
 
 ** Credits
 
-Author:  Pierre Lecocq <pierre.lecocq@gmail.com>
-(with some ashamedly copied parts from here & there)
+Author:  Pierre Lecocq (with some ashamedly copied parts from here & there)
 
 Thanks to Magnars, Sacha Chua, Nic Ferrier, Dimitri Fontaine, and many more.
