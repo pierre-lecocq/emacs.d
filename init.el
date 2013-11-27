@@ -34,14 +34,14 @@
    ido-vertical-mode
    js2-mode
    magit
-;;   move-text
+   move-text
    multiple-cursors
    php-mode
    php-mode-improved
    rainbow-mode
    rhtml-mode
    ruby-mode
-;;   shell-pop
+   shell-pop
    yaml-mode))
 
 (el-get 'sync el-get-packages)
@@ -248,16 +248,16 @@
 
 ;; Shell pop mode
 
-;; (require 'shell-pop)
-;; (shell-pop-set-internal-mode "shell")
-;; (shell-pop-set-internal-mode-shell "/bin/bash")
-;; (shell-pop-set-window-height 50)
-;; (shell-pop-set-window-position "bottom")
+(require 'shell-pop)
+(shell-pop-set-internal-mode "shell")
+(shell-pop-set-internal-mode-shell "/bin/bash")
+(shell-pop-set-window-height 50)
+(shell-pop-set-window-position "bottom")
 
 ;; Move text mode
 
-;;(require 'move-text)
-;;(move-text-default-bindings)
+(require 'move-text)
+(move-text-default-bindings)
 
 ;; Flycheck mode
 
@@ -319,4 +319,4 @@
 (global-set-key [f6] 'recentf-open-files) ;; Recent files history
 (global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
 (global-set-key [f11] 'pl/theme-switch) ;; Swith theme
-;;(global-set-key [f12] 'shell-pop) ;; Pop shell buffer
+(global-set-key [f12] 'shell-pop) ;; Pop shell buffer
