@@ -1,0 +1,52 @@
+* Emacs configuration file
+
+** Install
+
+#+BEGIN_SRC sh
+   git clone https://github.com/pierre-lecocq/emacs.d.git ~/.emacs.d
+#+END_SRC
+
+** Shortcuts
+
+#+BEGIN_SRC
+   C-c C-c      comment-region
+   C-c C-u      uncomment-region
+   C-S-s        find-grep
+   M-j          join lines below
+
+   C-S-t g      goto tag under point
+   C-S-t f      search tag
+   C-S-t l      list tags
+
+   C-S-n        move 5 next lines
+   C-S-p        move 5 prev lines
+   C-S-f        move 5 next chars
+   C-S-b        move 5 prev chars
+
+   C-S-x C-S-f  ido-find-file-in-tag-files
+   C-S-g s      magit-status
+
+   C-S-up       buffer-move-up
+   C-S-down     buffer-move-down
+   C-S-left     buffer-move-left
+   C-S-right    buffer-move-right
+
+   f2           Highlight symbol at point
+   C-f2         Highlight symbol next
+   S-f2         Highlight symbol prev
+   M-f2         Highlight symbol query replace
+
+   f4           gnus
+   f5           bookmark-bmenu-list
+   f6           recentf-open-files
+   f7           add-change-log-entry-other-window
+   f11          switch theme
+   f12          shell-pop
+#+END_SRC
+
+** Credits
+
+Author:  Pierre Lecocq <pierre.lecocq@gmail.com>
+(with some ashamedly copied parts from here & there)
+
+Thanks to Magnars, Sacha Chua, Nic Ferrier, Dimitri Fontaine, and many more.

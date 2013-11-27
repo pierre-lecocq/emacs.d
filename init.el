@@ -1,10 +1,19 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; Emacs configuration file
+;;
+;;   Author:  Pierre Lecocq <pierre.lecocq@gmail.com>
+;;            (with some ashamedly copied parts from here & there)
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (add-to-list 'load-path "~/.emacs.d")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Packages
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Archives
+;; Repositories
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
@@ -23,8 +32,7 @@
 
 (setq
  el-get-packages
- '(
-   auto-complete
+ '(auto-complete
    autopair
    buffer-move
    color-theme
@@ -46,11 +54,11 @@
 
 (el-get 'sync el-get-packages)
 
-(defun el-get-update-once-a-week()
+(defun pl/el-get-update-once-a-week()
   (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
       (el-get-update-all)))
 
-(el-get-update-once-a-week)
+(pl/el-get-update-once-a-week)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Behaviour
@@ -59,7 +67,7 @@
 ;; Init
 
 (setq user-full-name "Pierre Lecocq")
-(setq user-mail-address "pierre.lecocq@mymail.com")
+(setq user-mail-address "pierre.lecocq@gmail.com")
 (setq change-log-default-name "CHANGELOG")
 
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -154,7 +162,7 @@
 
 ;; Transparency
 
-(defun transparency (value)
+(defun pl/transparency (value)
   "Sets the transparency of the frame window. 0=transparent/100=opaque"
   (interactive "nTransparency Value 0 - 100 opaque:")
   (set-frame-parameter (selected-frame) 'alpha value))
@@ -177,15 +185,15 @@
 
 ;; X mode
 
-(defun x-mode()
+(defun pl/x-mode()
   (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
   (global-linum-mode t)
   (global-hl-line-mode t)
   (pl/theme-switch)
   ;;(color-theme-dark-laptop)
-  (transparency 85))
+  (pl/transparency 85))
 
-(if window-system (x-mode))
+(if window-system (pl/x-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modes
@@ -264,7 +272,7 @@
 (require 'flycheck)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keys
+;; Shortcuts
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key [delete] 'delete-char)
