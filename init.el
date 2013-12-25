@@ -36,7 +36,7 @@
    autopair
    buffer-move
    color-theme
-   column-marker
+;;   column-marker
    flycheck
    highlight-symbol
    ido-vertical-mode
@@ -45,7 +45,7 @@
    move-text
    multiple-cursors
    php-mode
-   php-mode-improved
+;;   php-mode-improved
    rainbow-mode
    rhtml-mode
    ruby-mode
@@ -117,6 +117,8 @@
              (set (make-local-variable 'indent-tabs-mode) nil)
              (c-set-style "custom-four-indent")))
 
+(setq ruby-deep-indent-paren nil)
+
 (defun pl/indent-all ()
   "indent whole buffer"
   (interactive)
@@ -186,7 +188,7 @@
 ;; X mode
 
 (defun pl/x-mode()
-  (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
+;;  (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
   (global-linum-mode t)
   (global-hl-line-mode t)
   (pl/theme-switch)
