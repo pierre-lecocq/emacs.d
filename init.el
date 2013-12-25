@@ -49,6 +49,7 @@
    rainbow-mode
    rhtml-mode
    ruby-mode
+   ;; rsense
    shell-pop
    yaml-mode))
 
@@ -272,6 +273,11 @@
 ;; Flycheck mode
 
 (require 'flycheck)
+
+;; RSense
+;; (setq rsense-home "~/.emacs.d/el-get/rsense")
+;; (add-to-list 'load-path (concat rsense-home "/etc"))
+;; (require 'rsense)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shortcuts
