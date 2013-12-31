@@ -36,7 +36,8 @@
    autopair
    buffer-move
    color-theme
-;;   column-marker
+   ;; column-marker
+   emms
    flycheck
    highlight-symbol
    ido-vertical-mode
@@ -45,7 +46,7 @@
    move-text
    multiple-cursors
    php-mode
-;;   php-mode-improved
+   ;; php-mode-improved
    rainbow-mode
    rhtml-mode
    ruby-mode
@@ -278,6 +279,15 @@
 ;; (setq rsense-home "~/.emacs.d/el-get/rsense")
 ;; (add-to-list 'load-path (concat rsense-home "/etc"))
 ;; (require 'rsense)
+
+;; Emms
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
+(add-hook 'emms-player-started-hook 'emms-show)
+(setq emms-show-format "Playing %s")
+(setq emms-source-file-default-directory "~/music/")
+(setq emms-playlist-buffer-name "*Music*")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shortcuts
