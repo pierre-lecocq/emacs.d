@@ -45,6 +45,7 @@
    magit
    move-text
    multiple-cursors
+   org-s5
    php-mode
    ;; php-mode-improved
    rainbow-mode
@@ -218,6 +219,9 @@
  '(org-headline-done
    ((((class color) (min-colors 16) (background dark))
      (:foreground "Grey55" :strike-through t)))))
+
+(require 'org-export-as-s5)
+(setq org-s5-theme "railscast")
 
 ;; Ido mode
 
