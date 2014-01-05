@@ -71,9 +71,9 @@
 
 ;; Init
 
-(setq user-full-name "Pierre Lecocq")
-(setq user-mail-address "pierre.lecocq@gmail.com")
-(setq change-log-default-name "CHANGELOG")
+(setq user-full-name "Pierre Lecocq"
+      user-mail-address "pierre.lecocq@gmail.com"
+      change-log-default-name "CHANGELOG")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq-default show-trailing-whitespace t)
@@ -87,13 +87,13 @@
 
 ;; Backups
 
-(setq make-backup-files nil)
-(setq backup-inhibited t)
-(setq auto-save-default nil)
+(setq make-backup-files nil
+      backup-inhibited t
+      auto-save-default nil)
 
 ;; Locale
 
-(set-language-environment 'UTF-8)
+(set-language-environment 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -105,8 +105,7 @@
 (setq-default tab-width 4
               c-basic-offset 4
               c-hanging-comment-ender-p nil
-              indent-tabs-mode t)
-(setq-default indent-tabs-mode nil)
+              indent-tabs-mode nil)
 
 (c-add-style
  "custom-four-indent"
@@ -148,10 +147,9 @@
 
 ;; Startup
 
-(setq inhibit-startup-message t)
-(setq initial-scratch-message
-      (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16)))
-(setq frame-title-format "%b - emacs")
+(setq inhibit-startup-message t
+      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
+      frame-title-format "%b - emacs")
 
 ;; Modes
 
@@ -177,9 +175,9 @@
 ;; Themes
 
 (setq pl/available-themes '(
-                color-theme-dark-laptop
-                color-theme-deep-blue
-                color-theme-standard))
+                            color-theme-dark-laptop
+                            color-theme-deep-blue
+                            color-theme-standard))
 
 (defun pl/theme-switch()
   "Switch between themes"
@@ -193,11 +191,11 @@
 ;; X mode
 
 (defun pl/x-mode()
-;;  (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
+  ;; (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
   (global-linum-mode t)
   (global-hl-line-mode t)
   (pl/theme-switch)
-  ;;(color-theme-dark-laptop)
+  ;; (color-theme-dark-laptop)
   (pl/transparency 85))
 
 (if window-system (pl/x-mode))
@@ -216,8 +214,8 @@
 (setq org-fontify-done-headline t)
 (custom-set-faces
  '(org-done ((t (:foreground "PaleGreen"
-                 :weight normal
-                 :strike-through t))))
+                             :weight normal
+                             :strike-through t))))
  '(org-headline-done
    ((((class color) (min-colors 16) (background dark))
      (:foreground "Grey55" :strike-through t)))))
@@ -297,9 +295,9 @@
 (emms-standard)
 (emms-default-players)
 (add-hook 'emms-player-started-hook 'emms-show)
-(setq emms-show-format "Playing %s")
-(setq emms-source-file-default-directory "~/music/")
-(setq emms-playlist-buffer-name "*Music*")
+(setq emms-show-format "Playing %s"
+      emms-source-file-default-directory "~/music/"
+      emms-playlist-buffer-name "*Music*")
 
 ;; Projectile
 
@@ -357,9 +355,9 @@
 
 ;; F keys
 
-(global-set-key [f4] 'gnus) ;; Gnus
-(global-set-key [f5] 'bookmark-bmenu-list) ;; Bookmarks list
-(global-set-key [f6] 'recentf-open-files) ;; Recent files history
-(global-set-key [f7] 'add-change-log-entry-other-window) ;; Open changelog
-(global-set-key [f11] 'pl/theme-switch) ;; Swith theme
-(global-set-key [f12] 'shell-pop) ;; Pop shell buffer
+(global-set-key [f4] 'gnus)
+(global-set-key [f5] 'bookmark-bmenu-list)
+(global-set-key [f6] 'recentf-open-files)
+(global-set-key [f7] 'add-change-log-entry-other-window)
+(global-set-key [f11] 'pl/theme-switch)
+(global-set-key [f12] 'shell-pop)
