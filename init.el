@@ -49,6 +49,7 @@
    org-s5
    php-mode
    ;; php-mode-improved
+   projectile
    rainbow-mode
    rhtml-mode
    ruby-mode
@@ -291,6 +292,7 @@
 ;; (require 'rsense)
 
 ;; Emms
+
 (require 'emms-setup)
 (emms-standard)
 (emms-default-players)
@@ -298,6 +300,11 @@
 (setq emms-show-format "Playing %s")
 (setq emms-source-file-default-directory "~/music/")
 (setq emms-playlist-buffer-name "*Music*")
+
+;; Projectile
+
+(require 'projectile)
+(projectile-global-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shortcuts
