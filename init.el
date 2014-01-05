@@ -40,6 +40,7 @@
    emms
    flycheck
    highlight-symbol
+   ido-hacks
    ido-vertical-mode
    js2-mode
    magit
@@ -241,6 +242,11 @@
 
 (require 'ido-vertical-mode)
 (ido-vertical-mode)
+
+;; Ido hacks
+
+(require 'ido-hacks)
+(ido-hacks-mode)
 
 ;; AutoPair mode
 
