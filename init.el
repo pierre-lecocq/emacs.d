@@ -346,6 +346,10 @@
 (global-set-key (kbd "<C-S-left>")   'buf-move-left)
 (global-set-key (kbd "<C-S-right>")  'buf-move-right)
 
+;; Browse url
+
+(global-set-key (kbd "C-x b u") 'w3m-view-url-with-external-browser)
+
 ;; Highlight
 
 (global-set-key [f2] 'highlight-symbol-at-point)
