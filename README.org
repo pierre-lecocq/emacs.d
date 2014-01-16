@@ -31,7 +31,7 @@
    C-S-left     buffer-move-left
    C-S-right    buffer-move-right
 
-   C-x b u      w3m-view-url-with-external-browser
+   C-S-u      w3m-view-url-with-external-browser
 
    f2           Highlight symbol at point
    C-f2         Highlight symbol next
