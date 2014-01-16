@@ -348,7 +348,7 @@
 
 ;; Browse url
 
-(global-set-key (kbd "C-x b u") 'w3m-view-url-with-external-browser)
+(global-set-key (kbd "C-S-u") 'w3m-view-url-with-external-browser)
 
 ;; Highlight
 
