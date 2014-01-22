@@ -39,7 +39,7 @@
    ;; column-marker
    emms
    flycheck
-   gnus-desktop-notification
+   gnus-desktop-notify
    highlight-symbol
    ido-hacks
    ido-vertical-mode
