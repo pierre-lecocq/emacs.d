@@ -39,6 +39,7 @@
    ;; column-marker
    emms
    flycheck
+   gnus-desktop-notification
    highlight-symbol
    ido-hacks
    ido-vertical-mode
@@ -55,6 +56,7 @@
    ruby-mode
    ;; rsense
    shell-pop
+   visual-regexp
    yaml-mode))
 
 (el-get 'sync el-get-packages)
