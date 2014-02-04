@@ -342,6 +342,8 @@
 (global-set-key (kbd "C-S-t f") 'tags-apropos) ;; Search tags
 (global-set-key (kbd "C-S-t l") 'list-tags) ;; List tags
 
+(global-set-key (kbd "C-S-f") 'imenu) ;; iMenu
+
 ;; Buffer move
 
 (global-set-key (kbd "<C-S-up>")     'buf-move-up)

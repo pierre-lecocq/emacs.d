@@ -18,6 +18,8 @@
    C-S-t f      search tag
    C-S-t l      list tags
 
+   C-S-f        imenu
+
    C-S-n        move 5 next lines
    C-S-p        move 5 prev lines
    C-S-f        move 5 next chars
