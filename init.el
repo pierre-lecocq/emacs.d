@@ -56,6 +56,7 @@
    ruby-mode
    ;; rsense
    shell-pop
+   switch-window
    visual-regexp
    yaml-mode))
 
@@ -351,6 +352,10 @@
 ;; Browse url
 
 (global-set-key (kbd "C-S-u") 'w3m-view-url-with-external-browser)
+
+;; Switch window
+
+(global-set-key (kbd "C-x o") 'switch-window)
 
 ;; Highlight
 
