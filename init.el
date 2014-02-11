@@ -38,6 +38,7 @@
    color-theme
    ;; column-marker
    emms
+   erc
    flycheck
    gnus-desktop-notify
    highlight-symbol
@@ -306,6 +307,29 @@
 
 (require 'projectile)
 (projectile-global-mode)
+
+;; Erc
+;; http://www.emacswiki.org/emacs/ErcExampleEmacsFile
+
+(defun pl/erc-connect ()
+  (interactive)
+
+  (setq erc-log-insert-log-on-open nil)
+  (setq erc-log-channels t)
+  (setq erc-log-channels-directory "~/.irclogs/")
+  (setq erc-save-buffer-on-part t)
+  (setq erc-hide-timestamps nil)
+
+  (setq erc-max-buffer-size 20000)
+  (defvar erc-insert-post-hook)
+  (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+  (setq erc-truncate-buffer-on-save t)
+
+  (setq erc-keywords '("pierreL"))
+  (erc-match-mode)
+
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian")))
+  (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shortcuts
