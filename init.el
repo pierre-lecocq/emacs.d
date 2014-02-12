@@ -321,12 +321,11 @@
   (setq erc-save-buffer-on-part t)
   (setq erc-hide-timestamps nil)
   (erc-netsplit-mode 1)
-
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
   (setq erc-max-buffer-size 20000)
   (defvar erc-insert-post-hook)
   (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
   (setq erc-truncate-buffer-on-save t)
-
   (setq erc-keywords '("pierreL"))
   (erc-match-mode 1)
 
