@@ -328,6 +328,7 @@
   (setq erc-truncate-buffer-on-save t)
   (setq erc-keywords '("pierreL"))
   (erc-match-mode 1)
+  (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
 
   (add-hook 'erc-after-connect
             '(lambda (SERVER NICK)
