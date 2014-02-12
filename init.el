@@ -314,11 +314,13 @@
 (defun pl/erc-connect ()
   (interactive)
 
+  (setq erc-nick "pierreL")
   (setq erc-log-insert-log-on-open nil)
   (setq erc-log-channels t)
   (setq erc-log-channels-directory "~/.irclogs/")
   (setq erc-save-buffer-on-part t)
   (setq erc-hide-timestamps nil)
+  (erc-netsplit-mode 1)
 
   (setq erc-max-buffer-size 20000)
   (defvar erc-insert-post-hook)
@@ -326,10 +328,14 @@
   (setq erc-truncate-buffer-on-save t)
 
   (setq erc-keywords '("pierreL"))
-  (erc-match-mode)
+  (erc-match-mode 1)
 
-  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian")))
-  (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre"))
+  (add-hook 'erc-after-connect
+            '(lambda (SERVER NICK)
+               (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
+
+  (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shortcuts
