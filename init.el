@@ -48,7 +48,7 @@
    magit
    move-text
    multiple-cursors
-   org-s5
+   org-reveal
    php-mode
    ;; php-mode-improved
    projectile
