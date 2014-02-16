@@ -208,6 +208,11 @@
 ;; Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; Zone mode - screen saver
+
+(require 'zone)
+(zone-when-idle 120)
+
 ;; Org mode
 
 (setq org-agenda-files (list
@@ -223,9 +228,6 @@
  '(org-headline-done
    ((((class color) (min-colors 16) (background dark))
      (:foreground "Grey55" :strike-through t)))))
-
-(require 'org-export-as-s5)
-(setq org-s5-theme "railscast")
 
 ;; Ido mode
 
