@@ -208,11 +208,6 @@
 ;; Modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; Zone mode - screen saver
-
-(require 'zone)
-(zone-when-idle 120)
-
 ;; Org mode
 
 (setq org-agenda-files (list
