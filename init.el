@@ -200,6 +200,7 @@
   (global-hl-line-mode t)
   (pl/theme-switch)
   ;; (color-theme-dark-laptop)
+  (set-fringe-mode 0)
   (pl/transparency 85))
 
 (if window-system (pl/x-mode))
