@@ -36,7 +36,6 @@
    autopair
    buffer-move
    color-theme
-   ;; column-marker
    emms
    erc
    flycheck
@@ -50,12 +49,9 @@
    multiple-cursors
    org-reveal
    php-mode
-   ;; php-mode-improved
-   projectile
    rainbow-mode
    rhtml-mode
    ruby-mode
-   ;; rsense
    shell-pop
    switch-window
    visual-regexp
@@ -153,7 +149,7 @@
 
 (setq inhibit-startup-message t
       initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
-      frame-title-format "%b - emacs")
+      frame-title-format "%f - emacs")
 
 ;; Modes
 
@@ -195,7 +191,6 @@
 ;; X mode
 
 (defun pl/x-mode()
-  ;; (add-hook 'c-mode-hook (lambda () (interactive) (column-marker-1 80)))
   (global-linum-mode t)
   (global-hl-line-mode t)
   (pl/theme-switch)
@@ -286,11 +281,6 @@
 
 (require 'flycheck)
 
-;; RSense
-;; (setq rsense-home "~/.emacs.d/el-get/rsense")
-;; (add-to-list 'load-path (concat rsense-home "/etc"))
-;; (require 'rsense)
-
 ;; Emms
 
 (require 'emms-setup)
@@ -300,11 +290,6 @@
 (setq emms-show-format "Playing %s"
       emms-source-file-default-directory "~/music/"
       emms-playlist-buffer-name "*Music*")
-
-;; Projectile
-
-(require 'projectile)
-(projectile-global-mode)
 
 ;; Erc
 ;; http://www.emacswiki.org/emacs/ErcExampleEmacsFile
