@@ -44,7 +44,6 @@
    ido-hacks
    ido-vertical-mode
    js2-mode
-   magit
    move-text
    multiple-cursors
    org-reveal
@@ -84,6 +83,10 @@
 (setq kill-whole-line t)
 (add-hook 'before-save-hook 'whitespace-cleanup)
 (add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
+
+ ;; No VC mode
+(eval-after-load "vc"
+  '(remove-hook 'find-file-hooks 'vc-find-file-hook))
 
 ;; Backups
 
@@ -198,7 +201,8 @@
   ;; (pl/transparency 85)
   (set-fringe-mode '(5 . 5)))
 
-(if window-system (pl/x-mode))
+(if window-system
+    (pl/x-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modes
@@ -226,20 +230,8 @@
 (ido-mode t)
 (setq ido-enable-flex-matching t)
 
-(defun ido-find-file-in-tag-files ()
-  (interactive)
-  (save-excursion
-    (let ((enable-recursive-minibuffers t)) (visit-tags-table-buffer))
-    (find-file (expand-file-name
-                (ido-completing-read "Project file: "
-                                     (tags-table-files) nil t)))))
-
-;; Ido vertical mode
-
 (require 'ido-vertical-mode)
 (ido-vertical-mode)
-
-;; Ido hacks
 
 (require 'ido-hacks)
 (ido-hacks-mode)
@@ -321,7 +313,7 @@
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Shortcuts
+;; Key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key [delete] 'delete-char)
