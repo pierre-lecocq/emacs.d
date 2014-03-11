@@ -245,6 +245,20 @@
 (require 'auto-complete)
 (global-auto-complete-mode t)
 
+(require 'auto-complete-config)
+(ac-config-default)
+(setq-default ac-sources
+              '(
+                ac-source-abbrev
+                ac-source-dictionary
+                ac-source-filename
+                ac-source-functions
+                ac-source-variables
+                ac-source-symbols
+                ac-source-features
+                ac-source-words-in-all-buffer
+                ac-source-words-in-same-mode-buffers))
+
 ;; Recentf mode
 
 (require 'recentf)
