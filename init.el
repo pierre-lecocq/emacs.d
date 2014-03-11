@@ -252,6 +252,7 @@
                 ac-source-abbrev
                 ac-source-dictionary
                 ac-source-filename
+                ac-source-files-in-current-dir
                 ac-source-functions
                 ac-source-variables
                 ac-source-symbols
