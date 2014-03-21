@@ -1,0 +1,74 @@
+# Packages config file
+
+* Set up packages
+
+** Add sources to package.el
+
+Not used, but in case el-get does not provide a wanted package
+
+#+begin_src emacs-lisp
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+             ("marmalade" . "http://marmalade-repo.org/packages/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")))
+#+end_src
+
+** Load el-get
+
+Load el-get system and recipes
+
+#+begin_src emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+#+end_src
+
+** List and install packages
+
+List and sync all wanted packages
+
+#+begin_src emacs-lisp
+(setq
+ el-get-packages
+ '(
+   auto-complete
+   autopair
+   buffer-move
+   color-theme
+   erc
+   flycheck
+   gnus-desktop-notify
+   highlight-symbol
+   ido-hacks
+   ido-vertical-mode
+   js2-mode
+   move-text
+   multiple-cursors
+   php-mode
+   rainbow-mode
+   rhtml-mode
+   ruby-mode
+   shell-pop
+   switch-window
+   visual-regexp
+   yaml-mode
+))
+
+(el-get 'sync el-get-packages)
+#+end_src
+
+** Function : update packages once a week
+
+Update all packages every 7 days
+
+#+begin_src emacs-lisp
+;;(defun pl/el-get-update-once-a-week()
+;;  (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
+;;      (el-get-update-all)))
+
+;;(pl/el-get-update-once-a-week)
+#+end_src

@@ -1,7 +1,8 @@
-# Ignore everything
+# Ignore everything ...
 *
-
-# But my files...
+# ... but my files
 !init.el
+!config/*.org
 !README.org
 !.gitignore
+!Makefile

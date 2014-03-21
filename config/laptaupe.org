@@ -1,0 +1,5 @@
+# Config file for laptaupe machine
+
+#+begin_src emacs-lisp
+;;
+#+end_src

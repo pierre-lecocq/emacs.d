@@ -1,55 +1,27 @@
-* Emacs configuration file
+* My emacs config
 
-** Install
+My emacs config is based on Org files taht are parsed and transformed to emacs lisp.
 
-#+BEGIN_SRC sh
-   git clone https://github.com/pierre-lecocq/emacs.d.git ~/.emacs.d
-#+END_SRC
+** Files
 
-** Shortcuts
+- =init.el= does nothing except parsing and converting org files
+- =config/*.org= are the config files themselves. Config is embed in org source code blocks
+- there is a spacial org file in the config directory named after the local machine name. It provides specific config for each machine.
 
-#+BEGIN_SRC
-   C-c C-c      comment-region
-   C-c C-u      uncomment-region
-   C-S-s        find-grep
-   M-j          join lines below
+** Install and run
 
-   C-S-t g      goto tag under point
-   C-S-t f      search tag
-   C-S-t l      list tags
+A Makefile is provided in order to do some operations:
 
-   C-S-f        imenu
+- =make= builds everything
+- =make clean= removes the /config/*.el/ files that were previously generated
+- =make restart= removes /config/*.el/ files and the whole /el-get/ directory
 
-   C-S-n        move 5 next lines
-   C-S-p        move 5 prev lines
-   C-S-f        move 5 next chars
-   C-S-b        move 5 prev chars
+Therefore:
 
-   C-S-x C-S-f  ido-find-file-in-tag-files
-   C-S-g s      magit-status
-
-   C-S-up       buffer-move-up
-   C-S-down     buffer-move-down
-   C-S-left     buffer-move-left
-   C-S-right    buffer-move-right
-
-   C-S-u      w3m-view-url-with-external-browser
-
-   f2           Highlight symbol at point
-   C-f2         Highlight symbol next
-   S-f2         Highlight symbol prev
-   M-f2         Highlight symbol query replace
-
-   f4           gnus
-   f5           bookmark-bmenu-list
-   f6           recentf-open-files
-   f7           add-change-log-entry-other-window
-   f11          switch theme
-   f12          shell-pop
-#+END_SRC
+- to start from the begining, type =make=
+- after any config/*.org modification, type =make clean && make=
+- to restart the deployment from the begining (the hard way), type =make reset && make=
 
 ** Credits
 
-Author:  Pierre Lecocq (with some ashamedly copied parts from here & there)
-
-Thanks to Magnars, Sacha Chua, Nic Ferrier, Dimitri Fontaine, and many more.
+Some parts of this configuration is inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, ... and many more.

@@ -1,0 +1,155 @@
+# Modes config file
+
+* Org mode
+
+** Set up agenda file
+
+#+begin_src emacs-lisp
+(unless (file-accessible-directory-p "~/.emacs.d/org")
+  (make-directory "~/.emacs.d/org"))
+(setq org-agenda-files (list
+                        "~/.emacs.d/org/agenda.org"
+                        ;; Add other files here ...
+                        ))
+#+end_src
+
+** Strike done tasks
+
+#+begin_src emacs-lisp
+(setq org-fontify-done-headline t)
+(custom-set-faces
+ '(org-done ((t (:foreground "PaleGreen"
+                             :weight normal
+                             :strike-through t))))
+ '(org-headline-done
+   ((((class color) (min-colors 16) (background dark))
+     (:foreground "Grey55" :strike-through t)))))
+#+end_src
+
+* Ido mode
+
+** General mode
+
+#+begin_src emacs-lisp
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+#+end_src
+
+** Vertical mode
+
+#+begin_src emacs-lisp
+(require 'ido-vertical-mode)
+(ido-vertical-mode)
+#+end_src
+
+** Hacks
+
+#+begin_src emacs-lisp
+(require 'ido-hacks)
+(ido-hacks-mode)
+#+end_src
+
+* Autopair mode
+
+#+begin_src emacs-lisp
+(autopair-global-mode t)
+#+end_src
+
+* Auto-complete mode
+
+** General mode
+
+#+begin_src emacs-lisp
+(require 'auto-complete)
+(global-auto-complete-mode t)
+#+end_src
+
+** Config
+
+#+begin_src emacs-lisp
+(require 'auto-complete-config)
+(ac-config-default)
+(setq-default ac-sources
+              '(
+                ac-source-abbrev
+                ac-source-dictionary
+                ac-source-filename
+                ac-source-files-in-current-dir
+                ac-source-functions
+                ac-source-variables
+                ac-source-symbols
+                ac-source-features
+                ac-source-words-in-all-buffer
+                ac-source-words-in-same-mode-buffers))
+#+end_src
+
+* Recentf mode
+
+#+begin_src emacs-lisp
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+#+end_src
+
+* Rainbow mode
+
+Only when CSS file is loaded
+
+#+begin_src emacs-lisp
+(add-hook 'css-mode-hook
+          (lambda () (rainbow-mode 1)))
+#+end_src
+
+* Shell-pop mode
+
+#+begin_src emacs-lisp
+(require 'shell-pop)
+(shell-pop-set-internal-mode "shell")
+(shell-pop-set-internal-mode-shell "/bin/bash")
+(shell-pop-set-window-height 50)
+(shell-pop-set-window-position "bottom")
+#+end_src
+
+* Move-text mode
+
+#+begin_src emacs-lisp
+(require 'move-text)
+(move-text-default-bindings)
+#+end_src
+
+* FLycheck mode
+
+#+begin_src emacs-lisp
+(require 'flycheck)
+#+end_src
+
+* Erc mode
+
+#+begin_src emacs-lisp
+(defun pl/erc-connect ()
+  (interactive)
+
+  (setq erc-nick "pierreL")
+  (setq erc-log-insert-log-on-open nil)
+  (setq erc-log-channels t)
+  (setq erc-log-channels-directory "~/.irclogs/")
+  (setq erc-save-buffer-on-part t)
+  (setq erc-hide-timestamps nil)
+  (erc-netsplit-mode 1)
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+  (setq erc-max-buffer-size 20000)
+  (defvar erc-insert-post-hook)
+  (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+  (setq erc-truncate-buffer-on-save t)
+  (setq erc-keywords '("pierreL"))
+  (erc-match-mode 1)
+  (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
+
+  (add-hook 'erc-after-connect
+            '(lambda (SERVER NICK)
+               (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
+
+  (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian"))))
+#+end_src
