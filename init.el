@@ -6,11 +6,6 @@
 (require 'org-install)
 (require 'ob-tangle)
 
-(defvar org-files)
-(defvar org-files-dir)
-(defvar machine-name)
-(defvar el-file)
-
 (setq org-files '())
 (setq org-files-dir (format "%sconfig" user-emacs-directory))
 (setq machine-name (car (split-string system-name "\\.")))
