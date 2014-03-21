@@ -1,6 +1,6 @@
 * My emacs config
 
-My emacs config is based on Org files taht are parsed and transformed to emacs lisp.
+My emacs config is based on Org files that are parsed and transformed into emacs lisp.
 
 ** Files
 

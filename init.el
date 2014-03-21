@@ -28,7 +28,7 @@
               (progn
                 (condition-case nil
                     (org-babel-load-file org-file)
-                  (error (message "Error loading code from %s" org-file))))
+                  (message "Error loading code from %s" org-file)))
             ;; Should be "error" instead of "message"
             (message "Can not load config file %s" org-file))
           )
