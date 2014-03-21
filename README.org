@@ -24,4 +24,4 @@ Therefore:
 
 ** Credits
 
-Some parts of this configuration is inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, ... and many more.
+Some parts of this configuration are inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, ... and many more.
