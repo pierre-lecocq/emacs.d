@@ -6,7 +6,7 @@ My emacs config is based on Org files that are parsed and transformed into emacs
 
 - =init.el= does nothing except parsing and converting org files
 - =config/*.org= are the config files themselves. Config is embed in org source code blocks
-- there is a spacial org file in the config directory named after the local machine name. It provides specific config for each machine.
+- there is a special org file in the config directory named after the local machine name. It provides specific config for each machine.
 
 ** Install and run
 
@@ -24,4 +24,4 @@ Therefore:
 
 ** Credits
 
-Some parts of this configuration are inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, ... and many more.
+Some parts of this configuration are inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, Avdi Grimm ... and many more.
