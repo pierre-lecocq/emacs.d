@@ -1,4 +1,4 @@
-# Config file for laptaupe machine
+# Config file for laptaupe machine (home)
 
 #+begin_src emacs-lisp
 ;;
