@@ -71,6 +71,13 @@ Speed up boot
     (arglist-close . 0)
     (arglist-intro . 4)
     (case-label . 4))))
+
+(add-hook 'find-file-hook '(lambda ()
+  (if (and buffer-file-name
+           (string-match "/gnulib\\>" (buffer-file-name))
+           (not (string-equal mode-name "Change Log"))
+           (not (string-equal mode-name "Makefile")))
+      (setq indent-tabs-mode nil))))
 #+end_src
 
 ** Custom indentation for PHP mode
@@ -83,7 +90,6 @@ Speed up boot
              (set (make-local-variable 'indent-tabs-mode) nil)
              (c-set-style "custom-four-indent")))
 #+end_src
-
 
 ** Custom indentation for Ruby mode
 
