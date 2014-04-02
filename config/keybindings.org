@@ -83,5 +83,4 @@
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f7] 'add-change-log-entry-other-window)
 (global-set-key [f11] 'pl/theme-switch)
-(global-set-key [f12] 'shell-pop)
 #+end_src

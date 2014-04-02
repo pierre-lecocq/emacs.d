@@ -45,6 +45,7 @@ List and sync all wanted packages
    highlight-symbol
    ido-hacks
    ido-vertical-mode
+   inf-ruby
    js2-mode
    move-text
    multiple-cursors
@@ -52,6 +53,7 @@ List and sync all wanted packages
    rainbow-mode
    rhtml-mode
    ruby-mode
+   rvm
    shell-pop
    switch-window
    visual-regexp

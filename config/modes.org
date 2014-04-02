@@ -107,16 +107,6 @@ Only when CSS file is loaded
           (lambda () (rainbow-mode 1)))
 #+end_src
 
-* Shell-pop mode
-
-#+begin_src emacs-lisp
-(require 'shell-pop)
-(shell-pop-set-internal-mode "shell")
-(shell-pop-set-internal-mode-shell "/bin/bash")
-(shell-pop-set-window-height 50)
-(shell-pop-set-window-position "bottom")
-#+end_src
-
 * Move-text mode
 
 #+begin_src emacs-lisp
@@ -124,7 +114,7 @@ Only when CSS file is loaded
 (move-text-default-bindings)
 #+end_src
 
-* FLycheck mode
+* Flycheck mode
 
 #+begin_src emacs-lisp
 (require 'flycheck)
@@ -158,4 +148,11 @@ Only when CSS file is loaded
 ;;
 ;;   (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
 ;;   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian"))))
+#+end_src
+
+* RVM
+
+#+begin_src emacs-lisp
+(add-hook 'ruby-mode-hook
+          (lambda () (rvm-activate-corresponding-ruby)))
 #+end_src
