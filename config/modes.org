@@ -26,6 +26,12 @@
      (:foreground "Grey55" :strike-through t)))))
 #+end_src
 
+** Source code syntax highlighting
+
+#+begin_src emacs-lisp
+(setq org-src-fontify-natively t)
+#+end_src
+
 * Ido mode
 
 ** General mode
@@ -129,7 +135,7 @@ Only when CSS file is loaded
 #+begin_src emacs-lisp
 ;; (defun pl/erc-connect ()
 ;;   (interactive)
-;; 
+;;
 ;;   (setq erc-nick "pierreL")
 ;;   (setq erc-log-insert-log-on-open nil)
 ;;   (setq erc-log-channels t)
@@ -145,11 +151,11 @@ Only when CSS file is loaded
 ;;   (setq erc-keywords '("pierreL"))
 ;;   (erc-match-mode 1)
 ;;   (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
-;; 
+;;
 ;;   (add-hook 'erc-after-connect
 ;;             '(lambda (SERVER NICK)
 ;;                (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
-;; 
+;;
 ;;   (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
 ;;   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs" "#debian"))))
 #+end_src
