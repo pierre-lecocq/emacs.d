@@ -8,7 +8,7 @@
 
 (setq org-files '())
 (setq org-files-dir (format "%sconfig" user-emacs-directory))
-(setq machine-name (car (split-string system-name "\\.")))
+(setq machine-name (downcase (car (split-string system-name "\\."))))
 (add-to-list 'load-path org-files-dir)
 
 ;; Set org config files to load
