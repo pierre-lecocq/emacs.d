@@ -55,6 +55,12 @@ Speed up boot
 (prefer-coding-system 'utf-8)
 #+end_src
 
+** Display function name in mode line
+
+#+begin_src emacs-lisp
+(which-function-mode)
+#+end_src
+
 * Indentation
 
 ** Basics
