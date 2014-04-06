@@ -220,3 +220,15 @@ Only if X is detected
 (if window-system
     (pl/x-mode))
 #+end_src
+
+* Shell
+
+If eshell has not been launched, launch it. If it was, simply switch to its buffer
+
+#+begin_src emacs-lisp
+(defun pl/get-eshell()
+  (interactive)
+  (if (eq nil (get-buffer "*eshell*"))
+      (eshell)
+    (switch-to-buffer "*eshell*")))
+#+end_src
