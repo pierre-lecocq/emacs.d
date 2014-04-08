@@ -13,6 +13,12 @@
       x-select-enable-clipboard t)
 #+end_src
 
+* Find file in TAGS
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
+#+end_src
+
 * Join lines
 
 #+begin_src emacs-lisp

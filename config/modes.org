@@ -62,32 +62,10 @@
 (autopair-global-mode t)
 #+end_src
 
-* Auto-complete mode
-
-** General mode
+* Company-mode
 
 #+begin_src emacs-lisp
-(require 'auto-complete)
-(global-auto-complete-mode t)
-#+end_src
-
-** Config
-
-#+begin_src emacs-lisp
-(require 'auto-complete-config)
-(ac-config-default)
-(setq-default ac-sources
-              '(
-                ac-source-abbrev
-                ac-source-dictionary
-                ac-source-filename
-                ac-source-files-in-current-dir
-                ac-source-functions
-                ac-source-variables
-                ac-source-symbols
-                ac-source-features
-                ac-source-words-in-all-buffer
-                ac-source-words-in-same-mode-buffers))
+(add-hook 'after-init-hook 'global-company-mode)
 #+end_src
 
 * Recentf mode

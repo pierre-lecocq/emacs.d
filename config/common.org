@@ -232,3 +232,17 @@ If eshell has not been launched, launch it. If it was, simply switch to its buff
       (eshell)
     (switch-to-buffer "*eshell*")))
 #+end_src
+
+* Tags
+
+#+begin_src emacs-lisp
+(defun ido-find-file-in-tag-files ()
+  (interactive)
+  (save-excursion
+    (let ((enable-recursive-minibuffers t))
+      (visit-tags-table-buffer))
+    (find-file
+     (expand-file-name
+      (ido-completing-read
+       "Project file: " (tags-table-files) nil t)))))
+#+end_src

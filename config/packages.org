@@ -35,10 +35,10 @@ List and sync all wanted packages
 (setq
  el-get-packages
  '(
-   auto-complete
    autopair
    buffer-move
    color-theme
+   company-mode
    ;; erc
    flycheck
    gnus-desktop-notify
