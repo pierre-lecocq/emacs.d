@@ -134,7 +134,7 @@ Speed up boot
 #+begin_src emacs-lisp
 (setq inhibit-startup-message t
       initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
-      frame-title-format "%f - emacs")
+      frame-title-format "%f @emacs")
 #+end_src
 
 ** Remove menu, toolbar and scrollbar
@@ -235,6 +235,8 @@ If eshell has not been launched, launch it. If it was, simply switch to its buff
 
 * Tags
 
+Find files through TAGs
+
 #+begin_src emacs-lisp
 (defun ido-find-file-in-tag-files ()
   (interactive)
@@ -245,4 +247,17 @@ If eshell has not been launched, launch it. If it was, simply switch to its buff
      (expand-file-name
       (ido-completing-read
        "Project file: " (tags-table-files) nil t)))))
+#+end_src
+
+* Buffers
+
+Kill all buffers but initial ones
+#+begin_src emacs-lisp
+(defun pl/clean-buffers ()
+  (interactive)
+  (setq whitelist '("*scratch*" "*Messages*"))
+  (mapcar (lambda (the-buffer)
+            (unless (member (buffer-name the-buffer) whitelist)
+              (kill-buffer (buffer-name the-buffer)))) (buffer-list))
+  )
 #+end_src
