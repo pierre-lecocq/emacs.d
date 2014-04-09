@@ -13,12 +13,6 @@
       x-select-enable-clipboard t)
 #+end_src
 
-* Find file in TAGS
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
-#+end_src
-
 * Join lines
 
 #+begin_src emacs-lisp
@@ -38,7 +32,6 @@
 
 #+begin_src emacs-lisp
 (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))
-(global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
 #+end_src
 
 * Tags
@@ -49,6 +42,12 @@
 (global-set-key (kbd "C-S-t l") 'list-tags) ;; List tags
 
 (global-set-key (kbd "C-S-f") 'imenu) ;; iMenu
+#+end_src
+
+* Find file in TAGS
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
 #+end_src
 
 * Buffer move
