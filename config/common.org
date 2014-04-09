@@ -255,7 +255,7 @@ Kill all buffers but initial ones
 #+begin_src emacs-lisp
 (defun pl/clean-buffers ()
   (interactive)
-  (setq whitelist '("*scratch*" "*Messages*"))
+  (setq whitelist '("*scratch*" "*Messages*" "*Group*" "*eshell*"))
   (mapcar (lambda (the-buffer)
             (unless (member (buffer-name the-buffer) whitelist)
               (kill-buffer (buffer-name the-buffer)))) (buffer-list))
