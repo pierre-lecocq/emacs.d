@@ -100,13 +100,6 @@ Only when CSS file is loaded
           (lambda () (rainbow-mode 1)))
 #+end_src
 
-* Move-text mode
-
-#+begin_src emacs-lisp
-(require 'move-text)
-(move-text-default-bindings)
-#+end_src
-
 * Flycheck mode
 
 #+begin_src emacs-lisp
