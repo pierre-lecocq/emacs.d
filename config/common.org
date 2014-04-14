@@ -210,7 +210,7 @@ Only if X is detected
 
 #+begin_src emacs-lisp
 (defun pl/x-mode()
-  (global-linum-mode t)
+  ;; (global-linum-mode t)
   (global-hl-line-mode t)
   (pl/theme-switch)
   ;; (color-theme-dark-laptop)
