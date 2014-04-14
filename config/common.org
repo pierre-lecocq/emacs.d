@@ -259,3 +259,16 @@ Kill all buffers but initial ones
             (unless (member (buffer-name the-buffer) whitelist)
               (kill-buffer (buffer-name the-buffer)))) (buffer-list)))
 #+end_src
+
+* Occur at point
+
+Find occurrences of symbol at point
+
+#+begin_src emacs-lisp
+(defun pl/occur-at-point()
+  (interactive)
+  (setq thing (thing-at-point 'symbol))
+  (unless thing
+    (setq thing (read-from-minibuffer "Pattern: ")))
+  (occur thing))
+#+end_src
