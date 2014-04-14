@@ -170,7 +170,7 @@ Load indispensable modes
 (transient-mark-mode t)
 (line-number-mode t)
 (column-number-mode t)
-(display-time)
+;; (display-time)
 #+end_src
 
 ** Function : transparency
@@ -210,15 +210,14 @@ Only if X is detected
 
 #+begin_src emacs-lisp
 (defun pl/x-mode()
-  ;; (global-linum-mode t)
   (global-hl-line-mode t)
-  (pl/theme-switch)
-  ;; (color-theme-dark-laptop)
+  (color-theme-dark-laptop)
+  ;; (pl/theme-switch)
   ;; (pl/transparency 85)
+  ;; (global-linum-mode t)
   (set-fringe-mode '(5 . 5)))
 
-(if window-system
-    (pl/x-mode))
+(if window-system (pl/x-mode))
 #+end_src
 
 * Shell
@@ -258,6 +257,5 @@ Kill all buffers but initial ones
   (setq whitelist '("*scratch*" "*Messages*" "*Group*" "*eshell*"))
   (mapcar (lambda (the-buffer)
             (unless (member (buffer-name the-buffer) whitelist)
-              (kill-buffer (buffer-name the-buffer)))) (buffer-list))
-  )
+              (kill-buffer (buffer-name the-buffer)))) (buffer-list)))
 #+end_src
