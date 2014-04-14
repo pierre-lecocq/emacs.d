@@ -65,21 +65,6 @@
 (global-set-key (kbd "C-S-u") 'w3m-view-url-with-external-browser)
 #+end_src
 
-* Switch window
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-x o") 'switch-window)
-#+end_src
-
-* Highlight
-
-#+begin_src emacs-lisp
-(global-set-key [f2] 'highlight-symbol-at-point)
-(global-set-key [(control f2)] 'highlight-symbol-next)
-(global-set-key [(shift f2)] 'highlight-symbol-prev)
-(global-set-key [(meta f2)] 'highlight-symbol-query-replace)
-#+end_src
-
 * F keys
 
 #+begin_src emacs-lisp

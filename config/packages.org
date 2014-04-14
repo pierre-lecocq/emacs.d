@@ -41,18 +41,16 @@ List and sync all wanted packages
    color-theme
    flycheck
    gnus-desktop-notify
-   highlight-symbol
    ido-hacks
    ido-vertical-mode
    inf-ruby
    js2-mode
-   move-text
+   magit
    multiple-cursors
    php-mode
    rainbow-mode
    rhtml-mode
    ruby-mode
-   switch-window
    visual-regexp
    yaml-mode
 ))
