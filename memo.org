@@ -4,7 +4,7 @@
 
 * Better search
 
-Use *M-x occur* instead of *C-s* (*M-x*)
+Use *M-x occur* instead of *C-s*
 
 * TAGS search and go back
 
