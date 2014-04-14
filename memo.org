@@ -1,0 +1,25 @@
+* Go back after search
+
+*C-s* to search a term. *C-u C-<spc>* to go back to the point I was before searching
+
+* Better search
+
+Use *M-x occur* instead of *C-s* (*M-x*)
+
+* TAGS search and go back
+
+*M-.* to go to a function somewhere in my project and *M-** to go back to where I was
+
+* Jump to begin/end of a function
+
+*C-M-a* Jump to the begining of a function
+*C-M-e* Jump to the end of a function
+
+* Registers
+
+*C-x r SPC* point to register
+*C-x r j* jump to register
+
+*C-x r s <NUM>* save region (selection) into register <NUM>
+*C-x r i <NUM>* insert the contents of register <NUM>
+*C-x r v* view registers
