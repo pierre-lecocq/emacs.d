@@ -222,14 +222,14 @@ Only if X is detected
 
 * Shell
 
-If eshell has not been launched, launch it. If it was, simply switch to its buffer
+If shell has not been launched, launch it. If it was, simply switch to its buffer
 
 #+begin_src emacs-lisp
-(defun pl/get-eshell()
+(defun pl/get-shell()
   (interactive)
-  (if (eq nil (get-buffer "*eshell*"))
-      (eshell)
-    (switch-to-buffer "*eshell*")))
+  (if (eq nil (get-buffer "*shell*"))
+      (shell)
+    (switch-to-buffer "*shell*")))
 #+end_src
 
 * Tags
