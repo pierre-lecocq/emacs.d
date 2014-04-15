@@ -227,9 +227,9 @@ If shell has not been launched, launch it. If it was, simply switch to its buffe
 #+begin_src emacs-lisp
 (defun pl/get-shell()
   (interactive)
-  (if (eq nil (get-buffer "*shell*"))
-      (shell)
-    (switch-to-buffer "*shell*")))
+  (if (eq nil (get-buffer "*ansi-term*"))
+      (ansi-term "/bin/bash")
+    (switch-to-buffer "*ansi-term*")))
 #+end_src
 
 * Tags
