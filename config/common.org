@@ -164,8 +164,6 @@ Load indispensable modes
 (transient-mark-mode t)
 (line-number-mode t)
 (column-number-mode t)
-;; (display-time)
-;; (which-function-mode)
 #+end_src
 
 ** Transparency
@@ -267,9 +265,12 @@ Find occurrences of symbol at point
     (setq thing (read-from-minibuffer "Pattern: ")))
   (occur thing))
 #+end_src
+
 * Modeline
 
 #+begin_src emacs-lisp
+(which-func-mode)
+
 (setq-default
  mode-line-format
  (list
@@ -278,6 +279,7 @@ Find occurrences of symbol at point
     (propertize "  %b" 'face 'bold)))
   " (%l:%c)"
   " %p/%I -"
+  '(which-func-mode (" " which-func-format " -"))
   " %m";; (format " %s" minor-mode-alist)
   ))
 #+end_src
