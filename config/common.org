@@ -55,12 +55,6 @@ Speed up boot
 (prefer-coding-system 'utf-8)
 #+end_src
 
-** Display function name in mode line
-
-#+begin_src emacs-lisp
-(which-function-mode)
-#+end_src
-
 * Indentation
 
 ** Basics
@@ -171,6 +165,7 @@ Load indispensable modes
 (line-number-mode t)
 (column-number-mode t)
 ;; (display-time)
+;; (which-function-mode)
 #+end_src
 
 ** Function : transparency
@@ -271,4 +266,18 @@ Find occurrences of symbol at point
   (unless thing
     (setq thing (read-from-minibuffer "Pattern: ")))
   (occur thing))
+#+end_src
+* Modeline
+
+#+begin_src emacs-lisp
+(setq-default
+ mode-line-format
+ (list
+  '(:eval (if (buffer-modified-p)
+      (propertize "  %b" 'face 'bold-italic)
+    (propertize "  %b" 'face 'bold)))
+  " (%l:%c)"
+  " %p/%I -"
+  " %m";; (format " %s" minor-mode-alist)
+  ))
 #+end_src
