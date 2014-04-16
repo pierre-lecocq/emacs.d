@@ -97,7 +97,7 @@ Speed up boot
 (setq ruby-deep-indent-paren nil)
 #+end_src
 
-** Function : indent the whole file
+** Indent the whole file
 
 #+begin_src emacs-lisp
 (defun pl/indent-all ()
@@ -168,7 +168,7 @@ Load indispensable modes
 ;; (which-function-mode)
 #+end_src
 
-** Function : transparency
+** Transparency
 
 Set up frame transparency
 
@@ -179,7 +179,7 @@ Set up frame transparency
   (set-frame-parameter (selected-frame) 'alpha value))
 #+end_src
 
-** Function : color theme switcher
+** Color theme switcher
 
 Switch between color themes
 
@@ -199,7 +199,7 @@ Switch between color themes
 )
 #+end_src
 
-** Function : X mode
+** X mode
 
 Only if X is detected
 
