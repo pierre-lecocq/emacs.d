@@ -69,6 +69,7 @@
 * F keys
 
 #+begin_src emacs-lisp
+(global-set-key [f1] 'pl/go-to-doc)
 (global-set-key [f4] 'gnus)
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)

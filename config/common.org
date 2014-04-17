@@ -266,6 +266,31 @@ Find occurrences of symbol at point
   (occur thing))
 #+end_src
 
+* Go to documentation
+
+To be continued and must add other documentation urls
+
+#+begin_src emacs-lisp
+(defun pl/go-to-doc()
+  (interactive)
+
+  (setq search-url "")
+  (setq search-term (thing-at-point 'symbol))
+  (setq current-major-mode (format "%s" major-mode))
+
+  (unless search-term
+    (setq search-term (read-from-minibuffer "Term to search in documentation: ")))
+
+  (cond
+   ((equal current-major-mode "php-mode")
+    (setq search-url "http://php.net/manual-lookup.php?pattern="))
+   )
+
+  (if (equal "" search-url)
+      (error "Unknown search-url for major mode %s" current-major-mode)
+    (browse-url (concat search-url search-term))))
+#+end_src
+
 * Modeline
 
 #+begin_src emacs-lisp
