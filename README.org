@@ -1,4 +1,4 @@
-* My emacs config
+* Emacs config
 
 My emacs config is based on Org files that are parsed and transformed into emacs lisp.
 
@@ -26,6 +26,6 @@ Therefore:
 - after any config/*.org modification, type =make clean && make=
 - to restart the deployment from the begining (the hard way), type =make reset && make=
 
-** Credits
+** Emacs for developers tutorial
 
-Some parts of this configuration are inspired by great people such as Bastien Guerry, Dimitri Fontaine, Magnars, Sacha Chua, Nic Ferrier, Thomas K Nilsson, Avdi Grimm ... and many more.
+In order to know how to setup Emacs from the begining and build your development environment, you really should refer to the [[https://github.com/pierre-lecocq/emacs4developers][emacs4developers tutorial]].
