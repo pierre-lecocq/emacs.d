@@ -12,11 +12,11 @@
 ;; Set org config files to load
 
 (setq org-files (list
-         (format "%s/packages.org" org-files-dir)
-         (format "%s/common.org" org-files-dir)
-         (format "%s/modes.org" org-files-dir)
-         (format "%s/keybindings.org" org-files-dir)
-         (format "%s/%s.org" org-files-dir (downcase (car (split-string system-name "\\."))))))
+         (format "%s/01-packages.org" org-files-dir)
+         (format "%s/02-common.org" org-files-dir)
+         (format "%s/03-modes.org" org-files-dir)
+         (format "%s/04-keybindings.org" org-files-dir)
+         (format "%s/09-%s.org" org-files-dir (downcase (car (split-string system-name "\\."))))))
 
 ;; Load org config files
 
