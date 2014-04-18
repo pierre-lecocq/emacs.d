@@ -10,9 +10,15 @@ My emacs config is based on Org files that are parsed and transformed into emacs
     - [[./config/packages.org][config/packages.org]]: list and install wanted packages
     - [[./config/modes.org][config/modes.org]]: configuration for modes that require one
     - [[./config/keybindings.org][config/keybindings.org]]: the keyboard mapping
-- there are special org files in the config directory named after the machine names I use. It provides specific config for each machine.
+    - there are special org files in the config directory named after the machine names I use. It provides specific config for each machine.
 
 ** Install and run
+
+1. Clone this repository
+
+=git clone https://github.com/pierre-lecocq/emacs.d .emacs.d=
+
+2. Build lisp code
 
 A Makefile is provided in order to do some operations:
 
