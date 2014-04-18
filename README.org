@@ -14,11 +14,11 @@ My emacs config is based on Org files that are parsed and transformed into emacs
 
 ** Install and run
 
-1. Clone this repository
+*** Clone this repository
 
 =git clone https://github.com/pierre-lecocq/emacs.d .emacs.d=
 
-2. Build lisp code
+*** Build lisp code
 
 A Makefile is provided in order to do some operations:
 
