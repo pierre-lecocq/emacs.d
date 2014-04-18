@@ -282,6 +282,13 @@ To be continued and must add other documentation urls
     (setq search-term (read-from-minibuffer "Term to search in documentation: ")))
 
   (cond
+   ;; Ruby
+   ((equal current-major-mode "ruby-mode")
+    (setq search-url "http://apidock.com/ruby/search?commit=Search&query="))
+   ;; Python
+   ((equal current-major-mode "python-mode")
+    (setq search-url "https://docs.python.org/3/search.html?q="))
+   ;; PHP
    ((equal current-major-mode "php-mode")
     (setq search-url "http://php.net/manual-lookup.php?pattern="))
    )
