@@ -6,18 +6,18 @@
 (require 'org-install)
 (require 'ob-tangle)
 
-(setq org-files '())
 (setq org-files-dir (format "%sconfig" user-emacs-directory))
 (setq machine-name (downcase (car (split-string system-name "\\."))))
 (add-to-list 'load-path org-files-dir)
 
 ;; Set org config files to load
 
-(push (format "%s/%s.org" org-files-dir machine-name) org-files)
-(push (format "%s/keybindings.org" org-files-dir) org-files)
-(push (format "%s/modes.org" org-files-dir) org-files)
-(push (format "%s/common.org" org-files-dir) org-files)
-(push (format "%s/packages.org" org-files-dir) org-files)
+(setq org-files (list
+		 (format "%s/packages.org" org-files-dir)
+		 (format "%s/common.org" org-files-dir)
+		 (format "%s/modes.org" org-files-dir)
+		 (format "%s/keybindings.org" org-files-dir)
+		 (format "%s/%s.org" org-files-dir machine-name)))
 
 ;; Load org config files
 
