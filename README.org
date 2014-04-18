@@ -6,7 +6,11 @@ My emacs config is based on Org files that are parsed and transformed into emacs
 
 - =init.el= does nothing except parsing and converting org files
 - =config/*.org= are the config files themselves. Config is embed in org source code blocks
-- there is a special org file in the config directory named after the local machine name. It provides specific config for each machine.
+    - [[./config/common.org][config/common.org]]: generic configuration
+    - [[./config/packages.org][config/packages.org]]: list and install wanted packages
+    - [[./config/modes.org][config/modes.org]]: configuration for modes that require one
+    - [[./config/keybindings.org][config/keybindings.org]]: the keyboard mapping
+- there are special org files in the config directory named after the machine names I use. It provides specific config for each machine.
 
 ** Install and run
 
