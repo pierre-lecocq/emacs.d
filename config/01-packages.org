@@ -39,6 +39,7 @@ List and sync all wanted packages
    autopair
    buffer-move
    color-theme
+   emacs-sos
    flycheck
    gnus-desktop-notify
    ido-hacks
@@ -48,6 +49,7 @@ List and sync all wanted packages
    magit
    multiple-cursors
    php-mode
+   prodigy
    rainbow-mode
    rhtml-mode
    ruby-mode
