@@ -32,6 +32,10 @@ Therefore:
 - after any config/*.org modification, type =make clean && make=
 - to restart the deployment from the begining (the hard way), type =make reset && make=
 
+*** Possible troubles
+
+Happens one time: auto-complete complains about lib/ert that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
+
 ** Emacs for developers tutorial
 
 In order to know how to setup Emacs from the begining and build your development environment, you really should refer to the [[https://github.com/pierre-lecocq/emacs4developers][emacs4developers tutorial]].
