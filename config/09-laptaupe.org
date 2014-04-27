@@ -1,5 +1,11 @@
 # Config file for laptaupe machine (home)
 
+* Fonts
+
+#+begin_src emacs-lisp
+(set-default-font "DejaVu Sans Mono-9")
+#+end_src
+
 * Additionnal packages
 
 #+begin_src emacs-lisp
