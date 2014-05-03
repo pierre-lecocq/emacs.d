@@ -16,7 +16,7 @@
    inf-ruby
    rhtml-mode
    rvm
-;;   vagrant
+   vagrant
 ))
 
 (el-get 'sync el-get-packages)
