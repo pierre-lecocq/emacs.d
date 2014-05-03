@@ -44,7 +44,6 @@ List and sync all wanted packages
    gnus-desktop-notify
    ido-hacks
    ido-vertical-mode
-   inf-ruby
    js2-mode
    magit
    multiple-cursors
@@ -52,7 +51,6 @@ List and sync all wanted packages
    php-mode
    prodigy
    rainbow-mode
-   rhtml-mode
    ruby-mode
    visual-regexp
    yaml-mode
@@ -66,8 +64,12 @@ List and sync all wanted packages
 Update all packages every 7 days
 
 #+begin_src emacs-lisp
-;;(defun pl/el-get-update-once-a-week()
-;;  (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
-;;      (el-get-update-all)))
-;;(pl/el-get-update-once-a-week)
+(defun pl/el-get-update-once-a-week()
+  (interactive)
+  (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
+    (progn
+      (el-get-self-update)
+      (el-get-update-all))))
+
+(pl/el-get-update-once-a-week)
 #+end_src

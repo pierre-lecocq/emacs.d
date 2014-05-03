@@ -35,15 +35,6 @@ Fuck you, backup files
 (setq kill-whole-line t)
 #+end_src
 
-** Disable VC mode
-
-Speed up boot
-
-#+begin_src emacs-lisp
-(eval-after-load "vc"
-  '(remove-hook 'find-file-hooks 'vc-find-file-hook))
-#+end_src
-
 ** Set locales
 
 #+begin_src emacs-lisp
@@ -111,6 +102,8 @@ Speed up boot
 * File modes
 
 #+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
+(add-to-list 'auto-mode-alist '(".gnus" . lisp-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake\\'" . ruby-mode))
