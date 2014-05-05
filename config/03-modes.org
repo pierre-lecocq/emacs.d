@@ -2,15 +2,34 @@
 
 * Org mode
 
+** Set org files root
+#+begin_src emacs-lisp
+(setq org-files-root (format "%sorg/" user-emacs-directory))
+(unless (file-accessible-directory-p org-files-root)
+  (make-directory org-files-root))
+#+end_src
+
 ** Set up agenda file
 
 #+begin_src emacs-lisp
-(unless (file-accessible-directory-p "~/.emacs.d/org")
-  (make-directory "~/.emacs.d/org"))
 (setq org-agenda-files (list
-                        "~/.emacs.d/org/agenda.org"
+                        (concat org-files-root "agenda.org")
                         ;; Add other files here ...
                         ))
+#+end_src
+
+** Capture configuration
+
+#+begin_src emacs-lisp
+(setq org-default-notes-file (format "%sorg/notes.org" user-emacs-directory))
+
+(setq org-capture-templates
+  '(
+     ("t" "Todo" entry (file+headline (concat org-files-root "agenda.org") "Tasks")
+        "* TODO %?\n  %U\n  %i\n  %a\n")
+     ("j" "Journal" entry (file+datetree (concat org-files-root "notes.org"))
+        "* %?\nEntered on %U\n  %i\n  %a")
+   ))
 #+end_src
 
 ** Strike done tasks
@@ -31,6 +50,7 @@
 #+begin_src emacs-lisp
 (setq org-src-fontify-natively t)
 #+end_src
+
 
 * Ido mode
 

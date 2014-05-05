@@ -3,7 +3,7 @@
 # ... but my files
 !init.el
 !config/*.org
+!org/*.org
 !README.org
 !.gitignore
 !Makefile
-!memo.org
