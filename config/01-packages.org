@@ -42,6 +42,7 @@ List and sync all wanted packages
    emacs-sos
    flycheck
    gnus-desktop-notify
+   idle-highlight-mode
    ido-hacks
    ido-vertical-mode
    js2-mode
