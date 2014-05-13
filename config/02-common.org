@@ -196,6 +196,7 @@ Only if X is detected
 
 #+begin_src emacs-lisp
 (defun pl/x-mode()
+  (interactive)
   (global-hl-line-mode t)
   (color-theme-dark-laptop)
   ;; (pl/theme-switch)
