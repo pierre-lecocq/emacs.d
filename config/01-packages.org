@@ -72,5 +72,5 @@ Update all packages every 7 days
       (el-get-self-update)
       (el-get-update-all))))
 
-(pl/el-get-update-once-a-week)
+;;(pl/el-get-update-once-a-week)
 #+end_src
