@@ -46,6 +46,12 @@ Fuck you, backup files
 (prefer-coding-system 'utf-8)
 #+end_src
 
+** Bookmarks file location
+
+#+begin_src emacs-lisp
+(setq bookmark-default-file (concat user-emacs-directory "bookmarks"))
+#+end_src
+
 * Indentation
 
 ** Basics
