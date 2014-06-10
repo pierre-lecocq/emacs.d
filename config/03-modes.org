@@ -125,3 +125,17 @@ Only when CSS file is loaded
 #+begin_src emacs-lisp
 (require 'flycheck)
 #+end_src
+
+* Idle Highlight mode
+
+Highlight a word-at-point after a delay
+
+#+begin_src emacs-lisp
+(defun my-coding-hook ()
+  (idle-highlight-mode t))
+
+(add-hook 'emacs-lisp-mode-hook 'my-coding-hook)
+(add-hook 'ruby-mode-hook 'my-coding-hook)
+(add-hook 'js2-mode-hook 'my-coding-hook)
+(add-hook 'php-mode-hook 'my-coding-hook)
+#+end_src

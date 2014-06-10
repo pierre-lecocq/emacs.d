@@ -13,6 +13,7 @@
  el-get-packages
  '(
    erc
+   go-mode
    inf-ruby
    rhtml-mode
    rvm
