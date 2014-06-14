@@ -139,3 +139,15 @@ Highlight a word-at-point after a delay
 (add-hook 'js2-mode-hook 'my-coding-hook)
 (add-hook 'php-mode-hook 'my-coding-hook)
 #+end_src
+
+* ElFeed
+
+Setup feeds
+
+#+begin_src emacs-lisp
+(setq elfeed-feeds
+      '("http://planet.emacsen.org/atom.xml"
+        "http://nullprogram.com/feed/"
+        "http://www.securityfocus.com/rss/vulnerabilities.xml"
+        "http://xkcd.com/rss.xml"))
+#+end_src

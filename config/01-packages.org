@@ -39,6 +39,7 @@ List and sync all wanted packages
    autopair
    buffer-move
    color-theme
+   elfeed
    emacs-sos
    flycheck
    gnus-desktop-notify
