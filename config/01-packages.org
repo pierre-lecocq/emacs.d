@@ -40,7 +40,6 @@ List and sync all wanted packages
    buffer-move
    color-theme
    elfeed
-   emacs-sos
    flycheck
    gnus-desktop-notify
    idle-highlight-mode
@@ -51,7 +50,6 @@ List and sync all wanted packages
    multiple-cursors
    org-present
    php-mode
-   prodigy
    rainbow-mode
    ruby-mode
    visual-regexp
