@@ -127,7 +127,9 @@ Fuck you, backup files
 
 #+begin_src emacs-lisp
 (setq inhibit-startup-message t
-      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
+      inhibit-splash-screen t
+;;      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
+      initial-scratch-message ""
       frame-title-format "%f @emacs")
 #+end_src
 
