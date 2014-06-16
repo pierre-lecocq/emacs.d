@@ -149,5 +149,10 @@ Setup feeds
       '("http://planet.emacsen.org/atom.xml"
         "http://nullprogram.com/feed/"
         "http://www.securityfocus.com/rss/vulnerabilities.xml"
+        "http://www.reddit.com/r/debian.rss"
+        "http://www.reddit.com/r/emacs.rss"
+        "http://www.reddit.com/r/netsec.rss"
+        "http://www.reddit.com/r/linux.rss"
+        "http://www.reddit.com/r/ruby.rss"
         "http://xkcd.com/rss.xml"))
 #+end_src
