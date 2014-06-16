@@ -151,6 +151,7 @@ Setup feeds
         ("http://nullprogram.com/feed/" emacs blog)
         ("http://www.masteringemacs.org/feed/" emacs dev blog)
         ("http://sachachua.com/blog/feed/" emacs blog)
+        ("http://batsov.com/atom.xml" ruby emacs dev blog)
         ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
         ("http://www.reddit.com/r/debian.rss" system linux debian)
         ("http://www.reddit.com/r/emacs.rss" emacs)
