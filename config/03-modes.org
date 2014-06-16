@@ -146,13 +146,14 @@ Setup feeds
 
 #+begin_src emacs-lisp
 (setq elfeed-feeds
-      '("http://planet.emacsen.org/atom.xml"
-        "http://nullprogram.com/feed/"
-        "http://www.securityfocus.com/rss/vulnerabilities.xml"
-        "http://www.reddit.com/r/debian.rss"
-        "http://www.reddit.com/r/emacs.rss"
-        "http://www.reddit.com/r/netsec.rss"
-        "http://www.reddit.com/r/linux.rss"
-        "http://www.reddit.com/r/ruby.rss"
+      '(("http://planet.emacsen.org/atom.xml" emacs)
+        ("http://nullprogram.com/feed/" emacs)
+        ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
+        ("http://www.reddit.com/r/debian.rss" system linux debian)
+        ("http://www.reddit.com/r/emacs.rss" emacs)
+        ("http://www.reddit.com/r/netsec.rss" security)
+        ("http://www.reddit.com/r/linux.rss" system linux)
+        ("http://www.reddit.com/r/ruby.rss" ruby)
+        ("https://www.ruby-lang.org/en/feeds/news.rss" ruby)
         "http://xkcd.com/rss.xml"))
 #+end_src
