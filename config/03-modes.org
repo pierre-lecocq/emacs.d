@@ -153,6 +153,7 @@ Setup feeds
         ("http://sachachua.com/blog/feed/" emacs blog)
         ("http://batsov.com/atom.xml" ruby emacs dev blog)
         ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
+        ("http://planet.debian.org/rss20.xml" system linux debian)
         ("http://www.reddit.com/r/debian.rss" system linux debian)
         ("http://www.reddit.com/r/emacs.rss" emacs)
         ("http://www.reddit.com/r/netsec.rss" security)
