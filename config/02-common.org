@@ -109,6 +109,7 @@ Fuck you, backup files
 
 #+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
+(add-to-list 'auto-mode-alist '(".zshrc" . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".gnus" . lisp-mode))
 (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
