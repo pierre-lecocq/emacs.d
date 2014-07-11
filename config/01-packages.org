@@ -37,7 +37,7 @@ List and sync all wanted packages
  '(
    auto-complete
    autopair
-   buffer-move
+;;   buffer-move
    color-theme
    elfeed
    flycheck
