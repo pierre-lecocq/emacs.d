@@ -34,7 +34,7 @@ Therefore:
 
 *** Possible troubles
 
-Happens one time: auto-complete complains about lib/ert that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
+Happend one time: auto-complete complains about lib/ert that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
 
 ** Emacs for developers tutorial
 
