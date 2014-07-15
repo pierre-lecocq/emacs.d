@@ -1,0 +1,46 @@
+* [[http://overapi.com/ruby/][Ruby cheat sheet]]
+:ruby:cheatsheet:
+* [[http://ck.kennt-wayne.de/2013/may/emacs:-jump-to-matching-paren-beginning-of-block][Jump to matching paren/beginning of block]]
+:emacs:elisp:
+* [[http://www.secdocs.org/docs/ruby-for-pentesters-the-workshop-slides/][Ruby for Pentesters: The Workshop]]
+:ruby:security:
+* [[http://documentation.online.net/fr/serveur-dedie/tutoriel/iptables-netfilter-configuration-firewall][Iptables & Netfilter firewall example]]
+:security:
+* [[http://ruby-metaprogramming.rubylearning.com/][Ruby metaprogramming full course]]
+:ruby:metaprogramming:
+* [[http://viewsourcecode.org/why/hacking/seeingMetaclassesClearly.html][Seeing Metaclasses Clearly]]
+:ruby:metaprogramming:
+* [[http://www.thefanclub.co.za/how-to/how-secure-ubuntu-1204-lts-server-part-1-basics][How to secure a linux server - Part 1 The Basics]]
+:security:linux:
+* [[http://stackoverflow.com/questions/6795203/create-class-dynamically-with-inheritance-and-particular-accessors][Create class dynamically, with inheritance and particular accessors]]
+:ruby:metaprogramming:
+* [[http://rubyweekly.com/issues][Ruby weekly]]
+:ruby:news:
+* [[http://stream.rubydaily.org/][Rubydaily stream]]
+:ruby:news:morning:
+* [[http://www.rubyflow.com/][Rubyflow]]
+:ruby:news:morning:
+* [[http://ruby5.envylabs.com/][Ruby5 casts]]
+:ruby:news:
+* [[http://www.reddit.com/r/debian%2Bemacs%2BHowToHack%2Bnetsec%2Blinux%2Bxss%2Bruby][Reddit mashup]]
+:news:morning:
+* [[http://cxsecurity.com/][CXSecurity]]
+:security:news:morning:
+* [[http://www.depesz.com/][Depesz]]
+:database:
+* [[http://planet.debian.org/][Planet debian]]
+:linux:news:morning:
+* [[http://www.secdocs.org/][Secdocs]]
+:security:morning:
+* [[http://www.exploit-db.com/][Exploit-db]]
+:security:morning:
+* [[http://packetstormsecurity.com/][Packet Storm]]
+:security:news:morning:
+* [[http://www.lemonde.fr/][Le Monde]]
+:news:morning:
+* [[http://www.rugbyrama.fr/][Rugbyrama]]
+:news:morning:
+* [[http://rue89.nouvelobs.com/][Rue89]]
+:news:morning:
+* [[http://www.securityfocus.com/][Security focus]]
+:security:news:morning:
