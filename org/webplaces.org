@@ -44,3 +44,5 @@
 :news:morning:
 * [[http://www.securityfocus.com/][Security focus]]
 :security:news:morning:
+* [[https://github.com/markets/awesome-ruby][Awesome list of ruby resources]]
+:ruby:
