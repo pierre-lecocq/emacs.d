@@ -53,6 +53,27 @@
 (setq org-src-fontify-natively t)
 #+end_src
 
+** Publish webplaces when saving webplaces.org file
+
+#+begin_src emacs-lisp
+(defun pl/org-mode-publish-webplaces()
+  (interactive)
+  (message "Org mode publish webplaces hook")
+  (when (string-match "webplaces\\.org" buffer-file-name)
+    (condition-case nil
+        (progn
+          (let ((buffer-file-name-html (replace-regexp-in-string "\\.org$" ".html" buffer-file-name)))
+            (org-export-as-html 3)
+            (shell-command (format "scp -P 38170 %s pierre@qsdfgh.com:/home/www/www/" buffer-file-name-html))
+            (delete-file buffer-file-name-html)))
+      (error "Error while exporting and publishing webplaces.org"))))
+
+
+(add-hook 'org-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'pl/org-mode-publish-webplaces nil 'make-it-local)))
+#+end_src
+
 * Ido mode
 
 ** General mode
