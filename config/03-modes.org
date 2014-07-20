@@ -184,5 +184,6 @@ Setup feeds
         ("http://www.reddit.com/r/ruby.rss" ruby dev)
         ("https://www.ruby-lang.org/en/feeds/news.rss" ruby dev)
         ("http://devblog.avdi.org/feed/" ruby dev blog)
+        ("http://feeds.feedburner.com/codinghorror?format=xml" dev blog)
         "http://xkcd.com/rss.xml"))
 #+end_src
