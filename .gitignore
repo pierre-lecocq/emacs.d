@@ -2,7 +2,7 @@
 *
 # ... but my files
 !init.el
-!config/*.org
+!config/org/*.org
 !org/*.org
 !README.org
 !.gitignore

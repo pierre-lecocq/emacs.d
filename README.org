@@ -6,11 +6,11 @@ My emacs config is based on Org files that are parsed and transformed into emacs
 
 - =init.el= does nothing except parsing and converting org files
 - =config/*.org= are the config files themselves. Config is embed in org source code blocks
-    - [[./config/01-packages.org][config/01-packages.org]]: list and install wanted packages
-    - [[./config/02-common.org][config/02-common.org]]: generic configuration
-    - [[./config/03-modes.org][config/03-modes.org]]: configuration for modes that require one
-    - [[./config/04-keybindings.org][config/04-keybindings.org]]: the keyboard mapping
-    - there are special org files in the config directory named after the machine names I use (=config/09-*.org=). It provides specific config for each machine.
+    - [[./config/org/01-packages.org][config/org/01-packages.org]]: list and install wanted packages
+    - [[./config/org/02-common.org][config/org/02-common.org]]: generic configuration
+    - [[./config/org/03-modes.org][config/org/03-modes.org]]: configuration for modes that require one
+    - [[./config/org/04-keybindings.org][config/org/04-keybindings.org]]: the keyboard mapping
+    - there are special org files in the config directory named after the machine names I use (=config/org/09-*.org=). It provides specific config for each machine.
 
 ** Install and run
 
@@ -23,13 +23,13 @@ My emacs config is based on Org files that are parsed and transformed into emacs
 A Makefile is provided in order to do some operations:
 
 - =make= builds everything
-- =make clean= removes the /config/*.el/ files that were previously generated
-- =make restart= removes /config/*.el/ files and the whole /el-get/ directory
+- =make clean= removes the /config/elisp/*.el/ files that were previously generated
+- =make restart= removes /config/elisp/*.el/ files and the whole /el-get/ directory
 
 Therefore:
 
 - to start from the begining, type =make=
-- after any config/*.org modification, type =make clean && make=
+- after any config/org/*.org modification, type =make clean && make=
 - to restart the deployment from the begining (the hard way), type =make reset && make=
 
 *** Possible troubles
