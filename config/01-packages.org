@@ -53,6 +53,7 @@ List and sync all wanted packages
    rainbow-mode
    ruby-mode
    visual-regexp
+   web-mode
    yaml-mode
 ))
 
