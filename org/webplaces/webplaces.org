@@ -1,3 +1,7 @@
+#+STYLE: <link href="webplaces.css" rel="stylesheet" type="text/css" />
+#+TITLE: Webplaces
+#+AUTHOR: Pierre Lecocq
+
 * [[http://overapi.com/ruby/][Ruby cheat sheet]]
 :ruby:cheatsheet:
 * [[http://ck.kennt-wayne.de/2013/may/emacs:-jump-to-matching-paren-beginning-of-block][Jump to matching paren/beginning of block]]

@@ -29,7 +29,7 @@
         "* TODO %?\n  %U\n  %i\n  %a\n")
      ("j" "Journal" entry (file+datetree (concat org-files-root "notes.org"))
         "* %?\nEntered on %U\n  %i\n  %a\n")
-     ("w" "Webplace" entry (file (concat org-files-root "webplaces.org"))
+     ("w" "Webplace" entry (file (concat org-files-root "webplaces/webplaces.org"))
         "* %^L\n%^g\n")
    ))
 #+end_src
@@ -56,22 +56,48 @@
 ** Publish webplaces when saving webplaces.org file
 
 #+begin_src emacs-lisp
-(defun pl/org-mode-publish-webplaces()
-  (interactive)
-  (message "Org mode publish webplaces hook")
-  (when (string-match "webplaces\\.org" buffer-file-name)
-    (condition-case nil
-        (progn
-          (let ((buffer-file-name-html (replace-regexp-in-string "\\.org$" ".html" buffer-file-name)))
-            (org-export-as-html 3)
-            (shell-command (format "scp -P 38170 %s pierre@qsdfgh.com:/home/www/www/" buffer-file-name-html))
-            (delete-file buffer-file-name-html)))
-      (error "Error while exporting and publishing webplaces.org"))))
+ (defun pl/org-mode-publish-webplaces()
+   (interactive)
+   (message "Org mode publish webplaces hook")
+   (when (string-match "webplaces\\.org" buffer-file-name)
+     (condition-case nil
+         (progn
+           (let ((buffer-file-name-html (replace-regexp-in-string "\\.org$" ".html" buffer-file-name)))
+             (org-export-as-html 3)
+             (shell-command (format "scp -P 38170 %s pierre@qsdfgh.com:/home/www/www/" buffer-file-name-html))
+             (delete-file buffer-file-name-html)))
+       (error "Error while exporting and publishing webplaces.org"))))
 
+;; (add-hook 'org-mode-hook
+;;           (lambda ()
+;;             (add-hook 'after-save-hook 'pl/org-mode-publish-webplaces nil 'make-it-local)))
+;;
 
-(add-hook 'org-mode-hook
-          (lambda ()
-            (add-hook 'after-save-hook 'pl/org-mode-publish-webplaces nil 'make-it-local)))
+#+end_src
+
+** Org publishing projects
+
+#+begin_src emacs-lisp
+;; Invoke with `org-publish'
+(setq org-publish-project-alist '(("webplaces-org"
+                                   :base-directory "~/.emacs.d/org/webplaces/"
+                                   :base-extension "org"
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
+                                        ;: publishing-directory "/ssh:user@server" ;export to server
+                                   :publishing-function org-publish-org-to-html
+                                   :headline-levels 1
+                                   :auto-preamble nil
+                                   :auto-postamble nil
+                                   :table-of-contents nil
+                                   :section-numbers nil
+                                   :html-postamble "<p class=\"postamble\">Last Updated: %d. Author: %a. Created by Org-Mode in Emacs.</p> "
+                                   :style-include-default nil)
+                                  ("webplaces-static"
+                                   :base-directory "~/.emacs.d/org/webplaces/"
+                                   :base-extension "css\\|js"
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
+                                   :publishing-function org-publish-attachment)
+                                  ("webplaces" :components ("webplaces-org" "webplaces-static"))))
 #+end_src
 
 * Ido mode
