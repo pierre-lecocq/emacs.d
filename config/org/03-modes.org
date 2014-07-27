@@ -79,11 +79,12 @@
 
 #+begin_src emacs-lisp
 ;; Invoke with `org-publish'
-(setq org-publish-project-alist '(("webplaces-org"
+(setq org-publish-project-alist '(
+                                  ;; webplaces
+                                  ("webplaces-org"
                                    :base-directory "~/.emacs.d/org/webplaces/"
                                    :base-extension "org"
                                    :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
-                                        ;: publishing-directory "/ssh:user@server" ;export to server
                                    :publishing-function org-publish-org-to-html
                                    :headline-levels 1
                                    :auto-preamble nil
@@ -97,7 +98,32 @@
                                    :base-extension "css\\|js"
                                    :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
                                    :publishing-function org-publish-attachment)
-                                  ("webplaces" :components ("webplaces-org" "webplaces-static"))))
+                                  ("webplaces" :components ("webplaces-org" "webplaces-static"))
+                                  ;; qsdfgh.com
+                                  ("qsdfgh-org"
+                                   :base-directory "~/.emacs.d/org/qsdfgh.com/"
+                                   :base-extension "org"
+                                   :exclude-tags ("noexport" "todo")
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/"
+                                   :publishing-function org-publish-org-to-html
+                                   :recursive t
+                                   :headline-levels 4
+                                   :auto-preamble nil
+                                   :auto-postamble nil
+                                   :auto-sitemap t
+                                   :sitemap-filename "sitemap.org"
+                                   :sitemap-title "Sitemap"
+                                   :table-of-contents nil
+                                   :section-numbers nil
+                                   :html-postamble "<p class=\"postamble\">Last Updated: %d. Author: %a. Created by Org-Mode in Emacs.</p> "
+                                   :style-include-default nil)
+                                  ("qsdfgh-static"
+                                   :base-directory "~/.emacs.d/org/qsdfgh.com/assets/"
+                                   :base-extension "css\\|js\\|png\\|gif\\|jpg\\|jpeg\\|pdf"
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/assets/"
+                                   :publishing-function org-publish-attachment)
+                                  ("qsdfgh.com" :components ("qsdfgh-org" "qsdfgh-static"))
+                                 ))
 #+end_src
 
 * Ido mode

@@ -1,0 +1,9 @@
+#+STYLE: <link href="assets/qsdfgh.css" rel="stylesheet" type="text/css" />
+
+#+INCLUDE: "./_header.org"
+
+* About
+
+This is the about page!!!
+
+#+INCLUDE: "./_footer.org"
