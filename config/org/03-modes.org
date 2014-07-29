@@ -239,3 +239,23 @@ Setup feeds
         ("http://feeds.feedburner.com/codinghorror?format=xml" dev blog)
         "http://xkcd.com/rss.xml"))
 #+end_src
+
+* Emms
+
+Emms configuration that I use only for listening to streams (via =emms-streams=) or single file (via =emms-play-file=)
+
+#+begin_src emacs-lisp
+(require 'emms-setup)
+(emms-standard)
+(emms-default-players)
+
+(setq emms-info-asynchronously nil)
+(setq emms-playlist-buffer-name "*Music*")
+
+;; Add flv and ogv
+(define-emms-simple-player mplayer '(file url)
+      (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
+                    ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
+                    ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
+      "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+#+end_src
