@@ -251,6 +251,7 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
 
 (setq emms-info-asynchronously nil)
 (setq emms-playlist-buffer-name "*Music*")
+(setq emms-stream-bookmarks-file "~/.emacs.d/emms-streams")
 
 ;; Add flv and ogv
 (define-emms-simple-player mplayer '(file url)
