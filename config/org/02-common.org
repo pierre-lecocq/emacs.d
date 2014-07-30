@@ -209,10 +209,14 @@ Only if X is detected
 (defun pl/x-mode()
   (interactive)
   ;; (global-hl-line-mode t)
-  (color-theme-dark-laptop)
   ;; (pl/theme-switch)
   ;; (pl/transparency 85)
   ;; (global-linum-mode t)
+
+  (when (member "Inconsolata-g" (font-family-list))
+    (set-face-attribute 'default nil :font "Inconsolata-g-10"))
+
+  (color-theme-dark-laptop)
   (set-fringe-mode '(5 . 5)))
 
 (if window-system (pl/x-mode))

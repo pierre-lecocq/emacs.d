@@ -50,7 +50,6 @@ List and sync all wanted packages
    js2-mode
    magit
    multiple-cursors
-   org-present
    php-mode
    rainbow-mode
    ruby-mode

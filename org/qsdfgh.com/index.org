@@ -1,9 +1,7 @@
-#+STYLE: <link href="assets/qsdfgh.css" rel="stylesheet" type="text/css" />
-
-#+INCLUDE: "./_header.org"
+#+INCLUDE: ~/.emacs.d/org/qsdfgh.com/_header.org
 
 * Index
 
-This is the index page!!!
+This is the index!
 
-#+INCLUDE: "./_footer.org"
+And this is another line. That is cool.

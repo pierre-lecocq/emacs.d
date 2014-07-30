@@ -1,6 +1,0 @@
-#+TITLE: Sitemap
-
-   + [[file:_footer.org][_footer]]
-   + [[file:_header.org][_header]]
-   + [[file:about.org][about]]
-   + [[file:index.org][index]]

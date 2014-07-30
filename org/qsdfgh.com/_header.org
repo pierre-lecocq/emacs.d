@@ -1,3 +1,11 @@
-#+TAGS; @noexport
+#+TAGS: @noexport
 
-This is the header
+* Pierre L.
+
+- [[https://github.com/pierre-lecocq/][Github]]
+- [[https://twitter.com/pierre404][Twitter]]
+- [[http://fr.linkedin.com/in/pierrelecocqlinkedin][Linkedin]]
+- [[mailto:pierre.lecocq@gmail.com][Email]]
+
+- [[file:index.org][Home]]
+- [[file:about.org][About]]

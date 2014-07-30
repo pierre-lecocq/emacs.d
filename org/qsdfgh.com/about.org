@@ -1,9 +1,5 @@
-#+STYLE: <link href="assets/qsdfgh.css" rel="stylesheet" type="text/css" />
-
-#+INCLUDE: "./_header.org"
+#+INCLUDE: ~/.emacs.d/org/qsdfgh.com/_header.org
 
 * About
 
-This is the about page!!!
-
-#+INCLUDE: "./_footer.org"
+This is the about page

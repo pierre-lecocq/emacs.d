@@ -3,7 +3,7 @@
 * Fonts
 
 #+begin_src emacs-lisp
-(set-default-font "DejaVu Sans Mono-9")
+;; (set-default-font "DejaVu Sans Mono-9")
 #+end_src
 
 * Additionnal packages

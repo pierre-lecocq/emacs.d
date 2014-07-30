@@ -3,6 +3,8 @@
 ;; Load all configs from org files code blocks (~/.emacs.d/config/org/*.org)
 ;;
 
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+
 ;; Prepare directories
 
 (setq config-dir-org (format "%sconfig/org" user-emacs-directory))
