@@ -7,6 +7,8 @@
 
 And others that are forgotten.
 
+#+HTML: <div class="spacer"></div>
+
 * Some open source contributions
 
 - [[https://github.com/dimitri/el-get][el-get]] Manage the external elisp bits and pieces upon which you depend

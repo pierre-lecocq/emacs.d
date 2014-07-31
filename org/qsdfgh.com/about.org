@@ -4,6 +4,8 @@ Not much to say, in fact...
 
 I am a french (Paris) developer involved in a few open source projects since I do support open source for software and operating systems.
 
+#+HTML: <div class="spacer"></div>
+
 * I use or support
 
 ** Software
@@ -12,6 +14,8 @@ I am a french (Paris) developer involved in a few open source projects since I d
 - [[http://orgmode.org][OrgMode]] is for keeping notes, maintaining TODO lists, planning projects, and authoring documents with a fast and effective plain-text system
 - [[https://www.debian.org][Debian]] is a free operating system for your computer
 - [[https://www.ruby-lang.org][Ruby]] A dynamic, open source programming language with a focus on simplicity and productivity
+
+#+HTML: <div class="spacer"></div>
 
 ** Organisation
 
