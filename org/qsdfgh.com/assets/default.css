@@ -1,27 +1,39 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;} article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;} body{line-height:1;} ol,ul{list-style:none;} blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;} table{border-collapse:collapse;	border-spacing:0;}
 
 body {
-    font: 12px Arial;
+    font-size: 100%;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     background: #f5f5f5;
 }
 
 .spacer {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
-a { color: blue; }
+a { color: blue; outline: none; }
 a:hover { color: #444444; }
+
+
+p, ul li {
+    margin: 10px 0;
+}
 
 /**
  * Preamble
  */
 
-#preamble { line-height: 50px; }
+#preamble {  }
 #preamble:after { content:""; display:table; clear:both; }
 
 #preamble h1 {
     float: left;
     width: 50%;
+    font-size: 200%;
+}
+
+#preamble a {
+    display: inline-block;
+    margin: 0px 0 0 20px;
 }
 
 #preamble ul {
@@ -33,11 +45,12 @@ a:hover { color: #444444; }
 #preamble ul li {
     display: inline-block;
     border-left: 1px solid #cccccc;
+    margin: 0;
+    padding: 20px;
 }
 
 #preamble ul li a {
-    display: block;
-    text-indent: -9999px;
+    display: inline-block;
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
@@ -59,7 +72,7 @@ a:hover { color: #444444; }
 
 #content {
     background: #ffffff;
-    padding: 20px;
+    padding: 40px 20px;
     border-top: 1px solid #cccccc;
     border-bottom: 1px solid #cccccc;
 }
@@ -69,12 +82,12 @@ a:hover { color: #444444; }
 }
 
 #content h2 {
-    font-size: 20px;
+    font-size: 150%;
     margin-bottom: 20px;
 }
 
 #content h3 {
-    font-size: 16px;
+    font-size: 120%;
     margin-bottom: 20px;
 }
 
@@ -84,4 +97,10 @@ a:hover { color: #444444; }
 
 #postamble {
     padding: 20px;
+    color: #aaaaaa;
+    font-size: 90%;
+}
+
+#postamble a {
+    color: #999999;
 }
