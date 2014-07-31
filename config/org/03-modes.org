@@ -80,56 +80,68 @@
 #+begin_src emacs-lisp
 ;; Invoke with `org-publish'
 (setq org-publish-project-alist '(
-                                   ;; ;; webplaces
-                                   ;; ("webplaces-org"
-                                   ;;  :author "Pierre Lecocq"
-                                   ;;  :email "pierre.lecocq@gmail.com"
-                                   ;;  :language "en"
-                                   ;;  :base-directory "~/.emacs.d/org/webplaces/"
-                                   ;;  :base-extension "org"
-                                   ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
-                                   ;;  :publishing-function org-publish-org-to-html
-                                   ;;  :headline-levels 1
-                                   ;;  :auto-preamble nil
-                                   ;;  :auto-postamble nil
-                                   ;;  :table-of-contents nil
-                                   ;;  :section-numbers nil
-                                   ;;  :html-postamble "<footer>Last Updated: %d. Author: %a. Created by Org-Mode in Emacs.</footer>"
-                                   ;;  :style-include-default nil)
-                                   ;; ("webplaces-static"
-                                   ;;  :base-directory "~/.emacs.d/org/webplaces/"
-                                   ;;  :base-extension "css\\|js"
-                                   ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
-                                   ;;  :publishing-function org-publish-attachment)
-                                   ;; ("webplaces" :components ("webplaces-org" "webplaces-static"))
-                                   ;; ;; qsdfgh.com
-                                   ("qsdfgh-org"
-                                  :with-author "Pierre Lecocq"
-                                  :with-email "pierre.lecocq@gmail.com"
-                                  :base-directory "~/.emacs.d/org/qsdfgh.com/"
-                                  :publishing-directory "~/public_html/qsdfgh/"
-                                  :publishing-function (org-html-publish-to-html)
-                                  :html-extension "html"
-                                  :base-extension "org"
-                                  :recursive t
-                                  :language "en"
-                                  :exclude-tags ("noexport" "todo")
-                                  :section-numbers nil
-                                  :with-toc nil
-                                  :html-doctype "html5"
-                                  :html-head-include-default-style nil
-                                  :html-head-include-scripts nil
-                                  :html-preamble nil
-                                  :html-postamble "Generated with <a href=\"http://orgmode.org\">OrgMode</a>."
-                                  :html-head "<link href='assets/default.css' rel='stylesheet' type='text/css' />")
+                                  ;; ;; webplaces
+                                  ;; ("webplaces-org"
+                                  ;;  :author "Pierre Lecocq"
+                                  ;;  :email "pierre.lecocq@gmail.com"
+                                  ;;  :language "en"
+                                  ;;  :base-directory "~/.emacs.d/org/webplaces/"
+                                  ;;  :base-extension "org"
+                                  ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
+                                  ;;  :publishing-function org-publish-org-to-html
+                                  ;;  :headline-levels 1
+                                  ;;  :auto-preamble nil
+                                  ;;  :auto-postamble nil
+                                  ;;  :table-of-contents nil
+                                  ;;  :section-numbers nil
+                                  ;;  :html-postamble "<footer>Last Updated: %d. Author: %a. Created by Org-Mode in Emacs.</footer>"
+                                  ;;  :style-include-default nil)
+                                  ;; ("webplaces-static"
+                                  ;;  :base-directory "~/.emacs.d/org/webplaces/"
+                                  ;;  :base-extension "css\\|js"
+                                  ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
+                                  ;;  :publishing-function org-publish-attachment)
+                                  ;; ("webplaces" :components ("webplaces-org" "webplaces-static"))
+                                  ;; ;; qsdfgh.com
+                                  ("qsdfgh-org"
+                                   :with-author "Pierre Lecocq"
+                                   :with-email "pierre.lecocq@gmail.com"
+                                   :base-directory "~/.emacs.d/org/qsdfgh.com/"
+                                   :publishing-directory "~/public_html/qsdfgh/"
+                                   :publishing-function (org-html-publish-to-html)
+                                   :html-extension "html"
+                                   :base-extension "org"
+                                   :recursive t
+                                   :language "en"
+                                   :exclude-tags ("noexport" "todo")
+                                   :section-numbers nil
+                                   :with-toc nil
+                                   :html-doctype "html5"
+                                   :html-head-include-default-style nil
+                                   :html-head-include-scripts nil
+                                   :html-head "<link href='assets/default.css' rel='stylesheet' type='text/css' />"
+                                   :html-preamble "
+                                        <h1><a href=\"index.html\">Pierre L.</a></h1>
+                                        <ul class=\"contact\">
+                                        <li><a href=\"https://github.com/pierre-lecocq?tab=repositories\" class=\"github\" target=\"_blank\">github</a></li>
+                                        <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" target=\"_blank\">twitter</a></li>
+                                        <li><a href=\"http://fr.linkedin.com/in/pierrelecocqlinkedin\" class=\"linkedin\" target=\"_blank\">linkedin</a></li>
+                                        <li><a href=\"mailto:pierre.lecocq@gmail.com\" class=\"email\" target=\"_blank\">email</a></li>
+                                        </ul>
+                                   "
+                                   :html-postamble "
+                                        <a href=\"index.html\">Home</a>
+                                         | <a href=\"about.html\">About</a>
+                                         | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
+                                   "
+                                   :htmlized-source t)
                                   ("qsdfgh-assets"
-                                  :base-directory "~/.emacs.d/org/qsdfgh.com/assets/"
-                                  :publishing-directory "~/public_html/qsdfgh/assets/"
-                                  :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
-                                  :recursive t
-                                  :publishing-function org-publish-attachment)
+                                   :base-directory "~/.emacs.d/org/qsdfgh.com/assets/"
+                                   :publishing-directory "~/public_html/qsdfgh/assets/"
+                                   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+                                   :recursive t
+                                   :publishing-function org-publish-attachment)
                                   ("qsdfgh" :components ("qsdfgh-org" "qsdfgh-assets"))
-
                                   ))
 #+end_src
 

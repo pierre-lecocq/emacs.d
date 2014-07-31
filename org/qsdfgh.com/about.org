@@ -1,5 +1,3 @@
-#+INCLUDE: ~/.emacs.d/org/qsdfgh.com/_header.org
-
 * About
 
 Not much to say, in fact...

@@ -1,5 +1,3 @@
-#+INCLUDE: ~/.emacs.d/org/qsdfgh.com/_header.org
-
 * Some open source repositories
 
 - [[https://github.com/pierre-lecocq/emacs.d][emacs.d]] My emacs config. No worries, literate programming makes it more readable
