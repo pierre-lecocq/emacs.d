@@ -2,6 +2,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 body {
     font: 12px Arial;
+    background: #f5f5f5;
 }
 
 .spacer {
@@ -15,16 +16,12 @@ a:hover { color: #444444; }
  * Preamble
  */
 
-#preamble {
-    padding: 0 20px;
-    border-bottom: 1px solid #cccccc;
-}
+#preamble { line-height: 50px; }
 #preamble:after { content:""; display:table; clear:both; }
 
 #preamble h1 {
     float: left;
     width: 50%;
-    padding: 20px 0;
 }
 
 #preamble ul {
@@ -36,7 +33,6 @@ a:hover { color: #444444; }
 #preamble ul li {
     display: inline-block;
     border-left: 1px solid #cccccc;
-    padding: 20px;
 }
 
 #preamble ul li a {
@@ -62,7 +58,10 @@ a:hover { color: #444444; }
  */
 
 #content {
+    background: #ffffff;
     padding: 20px;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
 }
 
 #content h1.title {
@@ -84,6 +83,5 @@ a:hover { color: #444444; }
  */
 
 #postamble {
-    border-top: 1px solid #cccccc;
     padding: 20px;
 }
