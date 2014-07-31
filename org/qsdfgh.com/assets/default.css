@@ -39,6 +39,24 @@ a:hover { color: #444444; }
     padding: 20px;
 }
 
+#preamble ul li a {
+    display: block;
+    text-indent: -9999px;
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#preamble ul li a.github { background-image: url(github-off.png); }
+#preamble ul li a:hover.github { background-image: url(github-on.png); }
+#preamble ul li a.twitter { background-image: url(twitter-off.png); }
+#preamble ul li a:hover.twitter { background-image: url(twitter-on.png); }
+#preamble ul li a.linkedin { background-image: url(linkedin-off.png); }
+#preamble ul li a:hover.linkedin { background-image: url(linkedin-on.png); }
+#preamble ul li a.email { background-image: url(email-off.png); }
+#preamble ul li a:hover.email { background-image: url(email-on.png); }
+
 /**
  * Content
  */
