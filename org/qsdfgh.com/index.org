@@ -1,7 +1,17 @@
 #+INCLUDE: ~/.emacs.d/org/qsdfgh.com/_header.org
 
-* Index
+* Some open source repositories
 
-This is the index!
+- [[https://github.com/pierre-lecocq/emacs.d][emacs.d]] My emacs config. No worries, literate programming makes it more readable
+- [[https://github.com/pierre-lecocq/config.d][config.d]] All my dot files for debian, emacs, i3wm, openbox, zsh, three little dots
+- [[https://github.com/pierre-lecocq/emacs4developers][emacs4developers]] An emacs tutorial from the begining to help developers to see the light. Finally
+- [[https://github.com/pierre-lecocq/dockstack][dockstack]] A very simple and light collection of dockerfiles to setup services quickly
 
-And this is another line. That is cool.
+And others that are forgotten.
+
+* Some open source contributions
+
+- [[https://github.com/dimitri/el-get][el-get]] Manage the external elisp bits and pieces upon which you depend
+- [[https://github.com/bdewey/org-ruby][org-ruby]] This gem contains Ruby routines for parsing org-mode files
+
+And others that are minor contributions.
