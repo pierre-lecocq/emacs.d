@@ -29,7 +29,7 @@
         "* TODO %?\n  %U\n  %i\n  %a\n")
      ("j" "Journal" entry (file+datetree (concat org-files-root "notes.org"))
         "* %?\nEntered on %U\n  %i\n  %a\n")
-     ("w" "Webplace" entry (file (concat org-files-root "webplaces/webplaces.org"))
+     ("w" "Webplace" entry (file (concat org-files-root "webplaces.org"))
         "* %^L\n%^g\n")
    ))
 #+end_src
@@ -80,29 +80,24 @@
 #+begin_src emacs-lisp
 ;; Invoke with `org-publish'
 (setq org-publish-project-alist '(
-                                  ;; ;; webplaces
-                                  ;; ("webplaces-org"
-                                  ;;  :author "Pierre Lecocq"
-                                  ;;  :email "pierre.lecocq@gmail.com"
-                                  ;;  :language "en"
-                                  ;;  :base-directory "~/.emacs.d/org/webplaces/"
-                                  ;;  :base-extension "org"
-                                  ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
-                                  ;;  :publishing-function org-publish-org-to-html
-                                  ;;  :headline-levels 1
-                                  ;;  :auto-preamble nil
-                                  ;;  :auto-postamble nil
-                                  ;;  :table-of-contents nil
-                                  ;;  :section-numbers nil
-                                  ;;  :html-postamble "<footer>Last Updated: %d. Author: %a. Created by Org-Mode in Emacs.</footer>"
-                                  ;;  :style-include-default nil)
-                                  ;; ("webplaces-static"
-                                  ;;  :base-directory "~/.emacs.d/org/webplaces/"
-                                  ;;  :base-extension "css\\|js"
-                                  ;;  :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/webplaces/"
-                                  ;;  :publishing-function org-publish-attachment)
-                                  ;; ("webplaces" :components ("webplaces-org" "webplaces-static"))
-                                  ;; ;; qsdfgh.com
+                                  ("webplaces"
+                                   :with-author "Pierre Lecocq"
+                                   :with-email "pierre.lecocq@gmail.com"
+                                   :base-directory "~/.emacs.d/org/"
+                                   :include ("webplaces.org")
+                                   :exclude "agenda.org|notes.org"
+                                   :exclude-tags ("noexport" "todo")
+                                   :recursive nil
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/"
+                                   :publishing-function (org-html-publish-to-html)
+                                   :html-extension "html"
+                                   :base-extension "org"
+                                   :language "en"
+                                   :with-toc nil
+                                   :html-doctype "html5"
+                                   :html-head-include-default-style nil
+                                   :html-head-include-scripts nil
+                                   :htmlized-source t)
                                   ("qsdfgh-org"
                                    :with-author "Pierre Lecocq"
                                    :with-email "pierre.lecocq@gmail.com"
