@@ -1,22 +1,20 @@
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;} article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block;} body{line-height:1;} ol,ul{list-style:none;} blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;} table{border-collapse:collapse;	border-spacing:0;}
 
 body {
+    border-top: 5px solid #222222;
     font-size: 100%;
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     background: #f5f5f5;
 }
 
-.spacer {
-    margin-bottom: 40px;
-}
+.spacer { margin-bottom: 40px; }
 
-a { color: blue; outline: none; }
+a { color: #4389F9; outline: none; }
 a:hover { color: #444444; }
 
+p, ul li { margin: 10px 0; }
 
-p, ul li {
-    margin: 10px 0;
-}
+header, #content, footer { width: 1024px; margin: 0 auto; }
 
 /**
  * Preamble
@@ -29,11 +27,15 @@ p, ul li {
     float: left;
     width: 50%;
     font-size: 200%;
+    height: 80px;
 }
 
-#preamble a {
+#preamble h1 a {
+    color: #222222;
     display: inline-block;
-    margin: 0px 0 0 20px;
+    vertical-align: center;
+    padding: 20px 0 0 0;
+    text-decoration: none;
 }
 
 #preamble ul {
@@ -44,9 +46,8 @@ p, ul li {
 
 #preamble ul li {
     display: inline-block;
-    border-left: 1px solid #cccccc;
     margin: 0;
-    padding: 20px;
+    padding: 20px 0 0 20px;
 }
 
 #preamble ul li a {
@@ -54,17 +55,18 @@ p, ul li {
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
-    background-position: center center;
+    background-position: 0 0;
+    background-image: url(contact-sprite.png);
 }
 
-#preamble ul li a.github { background-image: url(github-off.png); }
-#preamble ul li a:hover.github { background-image: url(github-on.png); }
-#preamble ul li a.twitter { background-image: url(twitter-off.png); }
-#preamble ul li a:hover.twitter { background-image: url(twitter-on.png); }
-#preamble ul li a.linkedin { background-image: url(linkedin-off.png); }
-#preamble ul li a:hover.linkedin { background-image: url(linkedin-on.png); }
-#preamble ul li a.email { background-image: url(email-off.png); }
-#preamble ul li a:hover.email { background-image: url(email-on.png); }
+#preamble ul li a.github { background-position: 0 0; }
+#preamble ul li a:hover.github { background-position: -32px 0; }
+#preamble ul li a.twitter { background-position: 0 -32px; }
+#preamble ul li a:hover.twitter { background-position: -32px -32px; }
+#preamble ul li a.linkedin { background-position: 0 -64px; }
+#preamble ul li a:hover.linkedin { background-position: -32px -64px; }
+#preamble ul li a.email { background-position: 0 -96px; }
+#preamble ul li a:hover.email { background-position: -32px -96px; }
 
 /**
  * Content
@@ -72,9 +74,9 @@ p, ul li {
 
 #content {
     background: #ffffff;
-    padding: 40px 20px;
-    border-top: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
+    padding: 40px;
+    border: 1px solid #cccccc;
+    line-height: 140%;
 }
 
 #content h1.title {
