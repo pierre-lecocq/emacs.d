@@ -107,7 +107,7 @@
                                    :with-author "Pierre Lecocq"
                                    :with-email "pierre.lecocq@gmail.com"
                                    :base-directory "~/.emacs.d/org/qsdfgh.com/"
-                                   :publishing-directory "~/public_html/qsdfgh/"
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/"
                                    :publishing-function (org-html-publish-to-html)
                                    :html-extension "html"
                                    :base-extension "org"
@@ -141,7 +141,7 @@
                                    :htmlized-source t)
                                   ("qsdfgh-assets"
                                    :base-directory "~/.emacs.d/org/qsdfgh.com/assets/"
-                                   :publishing-directory "~/public_html/qsdfgh/assets/"
+                                   :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/assets/"
                                    :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
                                    :recursive t
                                    :publishing-function org-publish-attachment)
