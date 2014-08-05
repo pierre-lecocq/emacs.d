@@ -7,7 +7,7 @@ Activate auto-insert-mode for ubserting some templates specific files
 (setq auto-insert-copyright (user-full-name))
 #+end_src
 
-** Skeleton for Ruby commented headers
+** Skeletons by major mode
 
 #+begin_src emacs-lisp
 (setq auto-insert-alist
