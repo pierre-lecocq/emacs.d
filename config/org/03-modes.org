@@ -30,7 +30,7 @@
      ("j" "Journal" entry (file+datetree (concat org-files-root "notes.org"))
         "* %?\nEntered on %U\n  %i\n  %a\n")
      ("w" "Webplace" entry (file (concat org-files-root "webplaces.org"))
-        "* %^L\n%^g\n")
+        "- %^L %^g\n")
    ))
 #+end_src
 
@@ -80,7 +80,7 @@
 #+begin_src emacs-lisp
 ;; Invoke with `org-publish'
 (setq org-publish-project-alist '(
-                                  ("webplaces"
+                                  ("webplaces-org"
                                    :with-author "Pierre Lecocq"
                                    :with-email "pierre.lecocq@gmail.com"
                                    :base-directory "~/.emacs.d/org/"
@@ -94,9 +94,19 @@
                                    :base-extension "org"
                                    :language "en"
                                    :with-toc nil
+                                   :section-numbers nil
                                    :html-doctype "html5"
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
+                                   :html-head "<link href='assets/webplaces.css' rel='stylesheet' type='text/css' />"
+                                   :html-postamble "
+<footer>
+<a href=\"index.html\">Home</a>
+ | <a href=\"about.html\">About</a>
+ | <a href=\"webplaces.html\">Bookmarks</a>
+ | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
+</footer>
+                                   "
                                    :htmlized-source t)
                                   ("qsdfgh-org"
                                    :with-author "Pierre Lecocq"
@@ -130,6 +140,7 @@
 <footer>
 <a href=\"index.html\">Home</a>
  | <a href=\"about.html\">About</a>
+ | <a href=\"webplaces.html\">Bookmarks</a>
  | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
 </footer>
                                    "
@@ -140,7 +151,9 @@
                                    :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
                                    :recursive t
                                    :publishing-function org-publish-attachment)
+
                                   ("qsdfgh" :components ("qsdfgh-org" "qsdfgh-assets"))
+                                  ("webplaces" :components ("webplaces-org" "qsdfgh-assets"))
                                   ))
 #+end_src
 
