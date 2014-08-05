@@ -10,6 +10,7 @@ My emacs config is based on Org files that are parsed and transformed into emacs
     - [[./config/org/02-common.org][config/org/02-common.org]]: generic configuration
     - [[./config/org/03-modes.org][config/org/03-modes.org]]: configuration for modes that require one
     - [[./config/org/04-keybindings.org][config/org/04-keybindings.org]]: the keyboard mapping
+    - [[./config/org/05-autoinserts.org][config/org/05-autoinserts.org]]: auto-insert configuration
     - there are special org files in the config directory named after the machine names I use (=config/org/09-*.org=). It provides specific config for each machine.
 
 ** Install and run
