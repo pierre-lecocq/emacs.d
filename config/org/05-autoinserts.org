@@ -3,7 +3,7 @@
 Activate auto-insert-mode for ubserting some templates specific files
 
 #+begin_src emacs-lisp
-(auto-insert-mode)
+(add-hook 'find-file-hooks 'auto-insert)
 (setq auto-insert-copyright (user-full-name))
 #+end_src
 
@@ -16,6 +16,7 @@ Activate auto-insert-mode for ubserting some templates specific files
       nil
       "#!/usr/bin/env ruby\n\n"
       "# File: " (file-name-nondirectory buffer-file-name) "\n"
+      "# Time-stamp: <>\n"
       "# Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
       "# Description: " _ "\n\n"
      )
@@ -25,6 +26,7 @@ Activate auto-insert-mode for ubserting some templates specific files
       "<?php\n\n"
       "/**\n"
       " * File: " (file-name-nondirectory buffer-file-name) "\n"
+      " * Time-stamp: <>\n"
       " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
       " * Description: " _ "\n"
       " */\n\n"
