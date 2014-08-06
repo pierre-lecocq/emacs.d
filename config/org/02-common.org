@@ -131,7 +131,10 @@ Fuck you, backup files
 (setq inhibit-startup-message t
       inhibit-splash-screen t
 ;;      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
-      initial-scratch-message ""
+      initial-major-mode 'org-mode
+      initial-scratch-message "\
+# Scratch buffer (org-mode enabled)
+"
       frame-title-format "%f @emacs")
 #+end_src
 
