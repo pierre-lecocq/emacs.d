@@ -215,14 +215,13 @@ Only if X is detected
   ;; (pl/theme-switch)
   ;; (pl/transparency 85)
   ;; (global-linum-mode t)
-  ;; (color-theme-dark-laptop)
-
-  (color-theme-sanityinc-tomorrow-night)
+  ;; (color-theme-sanityinc-tomorrow-night)
+  (color-theme-dark-laptop)
 
   (when (member "Inconsolata-g" (font-family-list))
     (set-face-attribute 'default nil :font "Inconsolata-g-10"))
 
-  (set-fringe-mode '(5 . 5)))
+  (set-fringe-mode '(1 . 1)))
 
 (if window-system (pl/x-mode))
 #+end_src
