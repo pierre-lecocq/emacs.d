@@ -49,6 +49,7 @@ List and sync all wanted packages
    ido-vertical-mode
    js2-mode
    magit
+   markdown-mode
    multiple-cursors
    php-mode
    rainbow-mode
