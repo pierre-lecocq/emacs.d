@@ -101,9 +101,9 @@
                                    :html-head "<link href='assets/webplaces.css' rel='stylesheet' type='text/css' />"
                                    :html-postamble "
 <footer>
-<a href=\"index.html\">Home</a>
- | <a href=\"about.html\">About</a>
- | <a href=\"webplaces.html\">Bookmarks</a>
+<a href=\"/\">Home</a>
+ | <a href=\"/about.html\">About</a>
+ | <a href=\"/webplaces.html\">Bookmarks</a>
  | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
 </footer>
                                    "
@@ -127,7 +127,7 @@
                                    :html-head "<link href='assets/default.css' rel='stylesheet' type='text/css' />"
                                    :html-preamble "
 <header>
-<h1><a href=\"index.html\">Pierre L.</a></h1>
+<h1><a href=\"/\">Pierre L.</a></h1>
 <ul class=\"contact\">
 <li><a href=\"https://github.com/pierre-lecocq?tab=repositories\" class=\"github\" title=\"Github\" target=\"_blank\"></a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\"></a></li>
@@ -138,9 +138,9 @@
                                    "
                                    :html-postamble "
 <footer>
-<a href=\"index.html\">Home</a>
- | <a href=\"about.html\">About</a>
- | <a href=\"webplaces.html\">Bookmarks</a>
+<a href=\"/\">Home</a>
+ | <a href=\"/about.html\">About</a>
+ | <a href=\"/webplaces.html\">Bookmarks</a>
  | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
 </footer>
                                    "
