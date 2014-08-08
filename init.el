@@ -23,6 +23,7 @@
 
 (setq org-files
       (list (format "%s/01-packages.org" config-dir-org)
+            (format "%s/10-color-theme-darkmine.org" config-dir-org)
             (format "%s/02-common.org" config-dir-org)
             (format "%s/03-modes.org" config-dir-org)
             (format "%s/04-keybindings.org" config-dir-org)
