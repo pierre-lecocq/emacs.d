@@ -26,3 +26,5 @@
 - [[http://rue89.nouvelobs.com/][Rue89]] :morning:
 - [[http://www.securityfocus.com/][Security focus]] :security:morning:
 - [[https://github.com/markets/awesome-ruby][Awesome list of ruby resources]] :ruby:
+- [[http://nullprogram.com/blog/2013/02/06/][How to Make an Emacs Minor Mode]] :emacs:lisp:
+- [[http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/][Hidden features of Ruby you may not know about]] :ruby:
