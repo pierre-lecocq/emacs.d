@@ -32,6 +32,18 @@ Load el-get system and recipes
 List and sync all wanted packages
 
 #+begin_src emacs-lisp
+(add-to-list 'el-get-sources
+             '(:name emacs-goodies-el
+                     :type git
+                     :url "https://github.com/errge/emacs-goodies-el.git"
+                     :load-path ("usr/share/emacs/site-lisp/debian-el"
+                                 "usr/share/emacs/site-lisp/devscripts-el"
+                                 "usr/share/emacs/site-lisp/dpkg-dev-el"
+                                 "usr/share/emacs/site-lisp/emacs-goodies-el"
+                                 "usr/share/emacs/site-lisp/gnus-bonus-el"
+                                 "usr/share/emacs/site-lisp/vm-bonus-el"))
+             t)
+
 (setq
  el-get-packages
  '(
@@ -41,6 +53,7 @@ List and sync all wanted packages
    centered-window-mode
    color-theme-sanityinc-tomorrow
    elfeed
+   emacs-goodies-el
    emms
    flycheck
    gnus-desktop-notify
