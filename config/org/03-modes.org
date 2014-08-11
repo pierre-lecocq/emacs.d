@@ -98,7 +98,7 @@
                                    :html-doctype "html5"
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
-                                   :html-head "<link href='assets/webplaces.css' rel='stylesheet' type='text/css' />"
+                                   :html-head "<link href='/assets/webplaces.css' rel='stylesheet' type='text/css' />"
                                    :html-postamble "
 <footer>
 <a href=\"/\">Home</a>
@@ -121,10 +121,12 @@
                                    :exclude-tags ("noexport" "todo")
                                    :section-numbers nil
                                    :with-toc nil
+                                   :org-src-fontify-natively t
+                                   :org-export-htmlize-output-type 'css
                                    :html-doctype "html5"
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
-                                   :html-head "<link href='assets/default.css' rel='stylesheet' type='text/css' />"
+                                   :html-head "<link href='/assets/default.css' rel='stylesheet' type='text/css' />"
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.</a></h1>
@@ -132,7 +134,7 @@
 <li><a href=\"https://github.com/pierre-lecocq?tab=repositories\" class=\"github\" title=\"Github\" target=\"_blank\"></a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\"></a></li>
 <li><a href=\"http://fr.linkedin.com/in/pierrelecocqlinkedin\" class=\"linkedin\" title=\"Linkedin\" target=\"_blank\"></a></li>
-<li><a href=\"mailto:pierre.lecocq@gmail.com\" class=\"email\" title=\"Email\" target=\"_blank\"></a></li>
+<li><a href=\"mailto:pierre.lecocq@gmail.com?subject=Contact+from+qsdfgh.com\" class=\"email\" title=\"Email\" target=\"_blank\"></a></li>
 </ul>
 </header>
                                    "
