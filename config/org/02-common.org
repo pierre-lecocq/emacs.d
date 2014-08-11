@@ -215,7 +215,6 @@ Only if X is detected
   ;; (pl/theme-switch)
   ;; (pl/transparency 85)
   ;; (global-linum-mode t)
-  ;; (color-theme-sanityinc-tomorrow-night)
   ;; (color-theme-dark-laptop)
   (color-theme-darkmine)
 

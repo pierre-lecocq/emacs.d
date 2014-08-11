@@ -27,6 +27,22 @@ Load el-get system and recipes
       (eval-print-last-sexp))))
 #+end_src
 
+** Custom recipes
+
+Essentially for packages that do not have an official recipe for the moment
+
+#+begin_src emacs-lisp
+(setq
+ el-get-sources
+ '((:name color-theme-darkmine
+	  :description "Yet another emacs dark color theme"
+	  :type github
+	  :pkgname "pierre-lecocq/color-theme-darkmine"
+	  :depends color-theme
+	  :prepare (autoload 'color-theme-darkmine "color-theme-darkmine"
+		     "color-theme: darkmine" t))))
+#+end_src
+
 ** List and install packages
 
 List and sync all wanted packages
@@ -37,9 +53,7 @@ List and sync all wanted packages
  '(
    auto-complete
    autopair
-;;   buffer-move
-   centered-window-mode
-   color-theme-sanityinc-tomorrow
+   color-theme-darkmine
    elfeed
    emms
    flycheck
@@ -51,7 +65,6 @@ List and sync all wanted packages
    magit
    markdown-mode
    multiple-cursors
-   php-mode
    rainbow-mode
    ruby-mode
    visual-regexp
