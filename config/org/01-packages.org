@@ -35,12 +35,12 @@ Essentially for packages that do not have an official recipe for the moment
 (setq
  el-get-sources
  '((:name color-theme-darkmine
-	  :description "Yet another emacs dark color theme"
-	  :type github
-	  :pkgname "pierre-lecocq/color-theme-darkmine"
-	  :depends color-theme
-	  :prepare (autoload 'color-theme-darkmine "color-theme-darkmine"
-		     "color-theme: darkmine" t))))
+      :description "Yet another emacs dark color theme"
+      :type github
+      :pkgname "pierre-lecocq/color-theme-darkmine"
+      :depends color-theme
+      :prepare (autoload 'color-theme-darkmine "color-theme-darkmine"
+             "color-theme: darkmine" t))))
 #+end_src
 
 ** List and install packages
@@ -58,6 +58,7 @@ List and sync all wanted packages
    emms
    flycheck
    gnus-desktop-notify
+   htmlize
    idle-highlight-mode
    ido-hacks
    ido-vertical-mode
