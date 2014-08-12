@@ -302,3 +302,42 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
                     ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
       "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
 #+end_src
+
+* ERC
+
+#+begin_src emacs-lisp
+(defun pl/erc-connect ()
+  (interactive)
+
+  (setq erc-nick "pierreL")
+  (setq erc-log-insert-log-on-open nil)
+  (setq erc-log-channels t)
+  (setq erc-log-channels-directory "~/.irclogs/")
+  (setq erc-save-buffer-on-part t)
+  (setq erc-hide-timestamps nil)
+  (erc-netsplit-mode 1)
+  (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+  (setq erc-max-buffer-size 20000)
+  (defvar erc-insert-post-hook)
+  (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+  (setq erc-truncate-buffer-on-save t)
+  (setq erc-keywords '("pierreL"))
+  (erc-match-mode 1)
+  (setq erc-timestamp-only-if-changed-flag nil)
+  (setq erc-timestamp-format "[%R] ")
+  (setq erc-insert-timestamp-function 'erc-insert-timestamp-left)
+  (setq erc-server-coding-system '(utf-8 . utf-8))
+  (setq erc-interpret-mirc-color t)
+  (setq erc-kill-buffer-on-part t)
+  (setq erc-kill-queries-on-quit t)
+  (setq erc-kill-server-buffer-on-quit t)
+  (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
+  ;;(erc-scrolltobottom-enable)
+
+  (add-hook 'erc-after-connect
+            '(lambda (SERVER NICK)
+               (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
+
+  (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+#+end_src
