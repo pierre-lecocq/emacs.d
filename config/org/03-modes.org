@@ -339,5 +339,6 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
                (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
 
   (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
-  (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+  ;; (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+  (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 #+end_src
