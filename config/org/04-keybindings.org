@@ -14,6 +14,16 @@
       x-select-enable-clipboard t)
 #+end_src
 
+* Mode hooks
+
+Jump to header/code files in C modes
+
+#+begin_src emacs-lisp
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+#+end_src
+
 * Join lines
 
 #+begin_src emacs-lisp
