@@ -52,6 +52,12 @@ Fuck you, backup files
 (setq bookmark-default-file (concat user-emacs-directory "bookmarks"))
 #+end_src
 
+** Custom file location (untracked)
+
+#+begin_src emacs-lisp
+(setq custom-file (concat user-emacs-directory "custom.el"))
+#+end_src
+
 * Indentation
 
 ** Basics
