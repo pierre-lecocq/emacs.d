@@ -40,3 +40,7 @@ Happend one time: auto-complete complains about lib/ert that is not a git reposi
 ** Emacs for developers tutorial
 
 In order to know how to setup Emacs from the begining and build your development environment, you really should refer to the [[https://github.com/pierre-lecocq/emacs4developers][emacs4developers tutorial]].
+
+** Gnus configuration example
+
+Gnus is an amazing email reader within Emacs. To see a configuration example, please refer to [[http://qsdfgh.com/articles/gnus-configuration-example.html][qsdfgh.com/gnus-configuration-example.html]].
