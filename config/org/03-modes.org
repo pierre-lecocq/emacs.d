@@ -341,3 +341,11 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
   ;; (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
   (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))
 #+end_src
+* Twitter
+
+#+begin_src emacs-lisp
+(setq
+ twittering-use-master-password t
+ twittering-icon-mode t
+)
+#+end_src

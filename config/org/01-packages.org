@@ -69,6 +69,7 @@ List and sync all wanted packages
    multiple-cursors
    rainbow-mode
    ruby-mode
+   twittering-mode
    visual-regexp
    web-mode
    yaml-mode
