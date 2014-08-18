@@ -4,6 +4,7 @@ Activate auto-insert-mode for ubserting some templates specific files
 
 #+begin_src emacs-lisp
 (add-hook 'find-file-hooks 'auto-insert)
+(add-hook 'before-save-hook 'time-stamp)
 (setq auto-insert-copyright (user-full-name))
 #+end_src
 
