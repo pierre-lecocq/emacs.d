@@ -262,6 +262,12 @@ Find files through TAGs
 
 * Buffers
 
+Auto revert buffers (mandatory if working with VCs)
+
+#+begin_src emacs-lisp
+(global-auto-revert-mode t)
+#+end_src
+
 Kill all buffers but initial ones
 #+begin_src emacs-lisp
 (defun pl/clean-buffers ()
