@@ -2,38 +2,17 @@
 
 * Set up packages
 
-** Add sources to package.el
-
-Not used, but in case el-get does not provide a wanted package
+Define the package manager of choice. "package.el" and "el-get" are supported.
 
 #+begin_src emacs-lisp
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-             ("marmalade" . "http://marmalade-repo.org/packages/")
-             ("melpa" . "http://melpa.milkbox.net/packages/")))
+(setq pmoc "el-get")
 #+end_src
 
-** Load el-get
-
-Load el-get system and recipes
-
-#+begin_src emacs-lisp
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-#+end_src
-
-** List and install packages
-
-List and sync all wanted packages
+Define the wanted packages
 
 #+begin_src emacs-lisp
 (setq
- el-get-packages
+ wanted-packages
  '(
    auto-complete
    autopair
@@ -58,21 +37,50 @@ List and sync all wanted packages
    web-mode
    yaml-mode
 ))
-
-(el-get 'sync el-get-packages)
 #+end_src
 
-** Function : update packages once a week
-
-Update all packages every 7 days
+Define the function that will handle packages
 
 #+begin_src emacs-lisp
-(defun pl/el-get-update-once-a-week()
+(defun install-wanted-packages ()
+  "Install wanted packages according to a specific package manager"
   (interactive)
-  (if (= 0 (% 7 (string-to-number (format-time-string "%d"))))
-    (progn
-      (el-get-self-update)
-      (el-get-update-all))))
+  (cond
+   ;; package.el
+   ((string= pmoc "package.el")
+    (require 'package)
+    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
+    (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+    (add-to-list 'package-archives '("marmelade" . "http://marmalade-repo.org/packages/"))
+    (package-initialize)
+    (let ((need-refresh nil))
+      (mapc (lambda (package-name)
+          (unless (package-installed-p package-name)
+        (set 'need-refresh t))) wanted-packages)
+      (if need-refresh
+        (package-refresh-contents)))
+    (mapc (lambda (package-name)
+        (unless (package-installed-p package-name)
+          (package-install package-name))) wanted-packages)
+    )
+   ;; el-get
+   ((string= pmoc "el-get")
+    (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+    (unless (require 'el-get nil 'noerror)
+      (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+    (el-get 'sync wanted-packages))
+   ;; fallback
+   (t (error "Unsupported package manager")))
+  )
+#+end_src
 
-;;(pl/el-get-update-once-a-week)
+And call it !
+
+#+begin_src emacs-lisp
+(install-wanted-packages)
 #+end_src
