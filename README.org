@@ -2,6 +2,8 @@
 
 My emacs config is based on Org files that are parsed and transformed into emacs lisp.
 
+Literate programming make it more readable!
+
 ** Files
 
 - =init.el= does nothing except parsing and converting org files
@@ -25,7 +27,7 @@ A Makefile is provided in order to do some operations:
 
 - =make= builds everything
 - =make clean= removes the /config/elisp/*.el/ files that were previously generated
-- =make restart= removes /config/elisp/*.el/ files and the whole /el-get/ directory
+- =make reset= removes /config/elisp/*.el/ files and the whole /el-get/ directory
 
 Therefore:
 
@@ -35,7 +37,8 @@ Therefore:
 
 *** Possible troubles
 
-Happend one time: auto-complete complains about lib/ert that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
+- Happend one time: /auto-complete/ package complains about /lib/ert/ that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
+- On MacOSX, the =make= command can fail. Instead of that, just launch Emacs.app, and he will handle all for for (compilation and packages installation).
 
 ** Emacs for developers tutorial
 
