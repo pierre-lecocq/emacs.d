@@ -38,7 +38,7 @@ Therefore:
 *** Possible troubles
 
 - Happend one time: /auto-complete/ package complains about /lib/ert/ that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
-- On MacOSX, the =make= command can fail. Instead of that, just launch Emacs.app, and he will handle all for for (compilation and packages installation).
+- On MacOSX, the =make= command may fail. Instead of that, just launch Emacs.app, and it will handle all for you (compilation and packages installation).
 
 ** Package manager
 
@@ -47,7 +47,9 @@ The package manager of my choice is [[https://github.com/dimitri/el-get][el-get]
 But, I have a solution to let the user choose between several package managers (/package.el/ and /el-get/ for now).
 
 In order to configure it, just have a look at the two first variables set in [[./config/org/01-packages.org][config/org/01-packages.org]].
+
 The first one, =pmoc= is a string ("el-get" or "package.el"), and the second one, =wanted-packages= are the list of packages to install.
+
 Set them as you wish, and let the magic happen.
 
 ** Emacs for developers tutorial
