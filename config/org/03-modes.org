@@ -192,22 +192,33 @@
 * Auto-complete-mode
 
 #+begin_src emacs-lisp
-(require 'auto-complete)
-(global-auto-complete-mode t)
-(require 'auto-complete-config)
-(ac-config-default)
-(setq-default ac-sources
-              '(
-                ac-source-abbrev
-                ac-source-dictionary
-                ac-source-filename
-                ac-source-files-in-current-dir
-                ac-source-functions
-                ac-source-variables
-                ac-source-symbols
-                ac-source-features
-                ac-source-words-in-all-buffer
-                ac-source-words-in-same-mode-buffers))
+;; (require 'auto-complete)
+;; (global-auto-complete-mode t)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (setq-default ac-sources
+;;               '(
+;;                 ac-source-abbrev
+;;                 ac-source-dictionary
+;;                 ac-source-filename
+;;                 ac-source-files-in-current-dir
+;;                 ac-source-functions
+;;                 ac-source-variables
+;;                 ac-source-symbols
+;;                 ac-source-features
+;;                 ac-source-words-in-all-buffer
+;;                 ac-source-words-in-same-mode-buffers))
+#+end_src
+
+* Company-mode
+
+#+begin_src emacs-lisp
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-auto-complete nil)
+(global-company-mode 1)
+(add-to-list 'company-backends 'company-dabbrev t)
+(add-to-list 'company-backends 'company-ispell t)
+(add-to-list 'company-backends 'company-files t)
 #+end_src
 
 * Recentf mode

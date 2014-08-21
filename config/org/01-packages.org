@@ -14,9 +14,10 @@ Define the wanted packages
 (setq
  wanted-packages
  '(
-   auto-complete
+   ;; auto-complete
    autopair
    color-theme-darkmine
+   company-mode
    elfeed
    emms
    erc
