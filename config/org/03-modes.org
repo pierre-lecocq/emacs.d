@@ -30,7 +30,7 @@
      ("j" "Journal" entry (file+datetree (concat org-files-root "notes.org"))
         "* %?\nEntered on %U\n  %i\n  %a\n")
      ("w" "Webplace" entry (file (concat org-files-root "webplaces.org"))
-        "- %^L %^g\n")
+        "* %^L %^g\n")
    ))
 #+end_src
 
