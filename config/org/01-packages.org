@@ -11,13 +11,24 @@ Define the package manager of choice. "package.el" and "el-get" are supported.
 Define the wanted packages
 
 #+begin_src emacs-lisp
+
+(setq
+ el-get-sources
+ '((:name darkmine-theme
+    :description "Yet another emacs dark color theme"
+    :type github
+    :pkgname "pierre-lecocq/darkmine-theme"
+    :minimum-emacs-version 24
+    :prepare (add-to-list 'custom-theme-load-path
+              default-directory)
+)))
+
 (setq
  wanted-packages
  '(
-   ;; auto-complete
    autopair
-   color-theme-darkmine
    company-mode
+   darkmine-theme
    elfeed
    emms
    erc
@@ -31,6 +42,7 @@ Define the wanted packages
    magit
    markdown-mode
    multiple-cursors
+   php-mode
    rainbow-mode
    ruby-mode
    twittering-mode

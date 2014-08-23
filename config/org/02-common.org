@@ -222,7 +222,8 @@ Only if X is detected
   ;; (pl/transparency 85)
   ;; (global-linum-mode t)
   ;; (color-theme-dark-laptop)
-  (color-theme-darkmine)
+  ;; (color-theme-darkmine)
+  (load-theme 'darkmine t)
 
   (when (member "Inconsolata-g" (font-family-list))
     (set-face-attribute 'default nil :font "Inconsolata-g-10"))
