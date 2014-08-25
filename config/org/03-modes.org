@@ -244,6 +244,13 @@ Only when CSS file is loaded
 (require 'flycheck)
 #+end_src
 
+* Uniquify
+
+#+begin_src emacs-lisp
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward uniquify-separator "/")
+#+end_src
+
 * Idle Highlight mode
 
 Highlight a word-at-point after a delay
