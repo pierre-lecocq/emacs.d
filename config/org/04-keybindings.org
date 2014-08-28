@@ -20,7 +20,7 @@ Jump to header/code files in C modes
 
 #+begin_src emacs-lisp
 (add-hook 'c-mode-common-hook
-  (lambda() 
+  (lambda()
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 #+end_src
 
@@ -59,15 +59,6 @@ Jump to header/code files in C modes
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
-#+end_src
-
-* Buffer move
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "<C-S-up>")     'buf-move-up)
-(global-set-key (kbd "<C-S-down>")   'buf-move-down)
-(global-set-key (kbd "<C-S-left>")   'buf-move-left)
-(global-set-key (kbd "<C-S-right>")  'buf-move-right)
 #+end_src
 
 * Browse url

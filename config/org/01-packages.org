@@ -8,7 +8,7 @@ Define the package manager of choice. "package.el" and "el-get" are supported.
 (setq pmoc "el-get")
 #+end_src
 
-Define the wanted packages
+Define the wanted packages that will be installed automatically.
 
 #+begin_src emacs-lisp
 (setq
@@ -40,7 +40,7 @@ Define the wanted packages
 ))
 #+end_src
 
-Define the function that will handle packages
+Define the function that will install the wanted packages thanks to the chosen package manager.
 
 #+begin_src emacs-lisp
 (defun install-wanted-packages ()
@@ -80,7 +80,7 @@ Define the function that will handle packages
   )
 #+end_src
 
-And call it !
+And finally call it!
 
 #+begin_src emacs-lisp
 (install-wanted-packages)
