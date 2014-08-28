@@ -33,6 +33,7 @@ Define the wanted packages that will be installed automatically.
    php-mode
    rainbow-mode
    ruby-mode
+   slime
    twittering-mode
    visual-regexp
    web-mode

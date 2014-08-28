@@ -45,5 +45,4 @@
               (error "Can not load config file %s" org-file)))
           (load-file el-file))
         ) org-files)
-
 ;; EOF
