@@ -28,4 +28,4 @@
 * [[http://nullprogram.com/blog/2013/02/06/][How to Make an Emacs Minor Mode]] :emacs:lisp:
 * [[http://blog.arkency.com/2014/07/hidden*features*of*ruby*you*may*dont*know*about/][Hidden features of Ruby you may not know about]] :ruby:
 * [[http://www.cnx-software.com/2012/07/31/84-mb-minimal-raspbian-armhf-image-for-raspberry-pi/][84 MB Minimal Raspbian ARMHF Image for Raspberry Pi]]      :debian:raspberry:
-* [[www.youtube.com/watch?v=gk39mp8Vy4Mf][Writing games in Emacs]]                                              :emacs:
+* [[http://www.youtube.com/watch?v=gk39mp8Vy4Mf][Writing games in Emacs]]                                              :emacs:
