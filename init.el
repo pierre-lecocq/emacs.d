@@ -27,6 +27,7 @@
             (format "%s/03-modes.org" config-dir-org)
             (format "%s/04-keybindings.org" config-dir-org)
             (format "%s/05-autoinserts.org" config-dir-org)
+            (format "%s/06-orgmode.org" config-dir-org)
             (format "%s/09-%s.org" config-dir-org (downcase (car (split-string system-name "\\."))))))
 
 ;; Load org config files

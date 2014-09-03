@@ -29,3 +29,4 @@
 * [[http://blog.arkency.com/2014/07/hidden*features*of*ruby*you*may*dont*know*about/][Hidden features of Ruby you may not know about]] :ruby:
 * [[http://www.cnx-software.com/2012/07/31/84-mb-minimal-raspbian-armhf-image-for-raspberry-pi/][84 MB Minimal Raspbian ARMHF Image for Raspberry Pi]]      :debian:raspberry:
 * [[http://www.youtube.com/watch?v=gk39mp8Vy4Mf][Writing games in Emacs]]                                              :emacs:
+* [[http://dfir.org/?q=node/8][Security Recommended Reading]]                                     :security:
