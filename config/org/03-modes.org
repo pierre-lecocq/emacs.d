@@ -98,7 +98,12 @@
                                    :html-doctype "html5"
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
-                                   :html-head "<link href='/assets/default2.css' rel='stylesheet' type='text/css' />"
+                                   :html-head "
+<link href='/assets/default2.css' rel='stylesheet' type='text/css' />
+<link href='/assets/webplaces.css' rel='stylesheet' type='text/css' />
+<script type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\"></script>
+<script type=\"text/javascript\" src=\"/assets/webplaces.js\"></script>
+                                   "
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.<span></span></a></h1>
