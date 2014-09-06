@@ -141,16 +141,43 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
 (emms-standard)
 (emms-default-players)
 
-(setq emms-info-asynchronously nil)
-(setq emms-playlist-buffer-name "*Music*")
-(setq emms-stream-bookmarks-file "~/.emacs.d/emms-streams")
+(setq
+  emms-info-asynchronously nil
+  emms-playlist-buffer-name "*Music*"
+  emms-source-file-default-directory "~/music/"
+  emms-stream-bookmarks-file "~/.emacs.d/emms-streams")
 
-;; Add flv and ogv
 (define-emms-simple-player mplayer '(file url)
       (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
                     ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
                     ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
       "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+
+(defun pl/emms-track-description(track)
+  (let ((tracknumber (emms-track-get track 'info-tracknumber))
+        (playtime (emms-track-get track 'info-playing-time))
+        (artist (emms-track-get track 'info-artist))
+        (album (emms-track-get track 'info-album))
+        (title (emms-track-get track 'info-title)))
+    (if (eq nil title)
+        (emms-track-simple-description track)
+      (format " %02d | %s (%s) - %s - %02d"
+              (if (> (length tracknumber) 0) (string-to-number tracknumber) 0)
+              (if (> (length artist) 0) artist "Unknown artist")
+              (if (> (length album) 0) album "Unknown album")
+              (if (> (length title) 0) title "Unknown title")
+              (if (> (length playtime) 0) (string-to-number playtime) 0)))
+    ))
+
+(setq emms-track-description-function 'pl/emms-track-description)
+
+(defun pl/emms-toggle()
+  (interactive)
+  (if (eq nil (get-buffer "*Music*"))
+        (call-interactively 'emms-play-directory)
+    (emms-pause)))
+
+(global-set-key (kbd "<XF86AudioPlay>") 'pl/emms-toggle)
 #+end_src
 
 * ERC
