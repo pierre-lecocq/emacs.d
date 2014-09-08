@@ -265,7 +265,7 @@ Find files through TAGs
 Auto revert buffers (mandatory if working with VCs)
 
 #+begin_src emacs-lisp
-(global-auto-revert-mode t)
+(global-auto-revert-mode 1)
 #+end_src
 
 Kill all buffers but initial ones
@@ -339,4 +339,14 @@ To be continued and must add other documentation urls
   '(which-func-mode (" " which-func-format " -"))
   " %m";; (format " %s" minor-mode-alist)
   ))
+#+end_src
+* PHP lint
+
+Lint the current file (credits to Dimitri Fontaine)
+
+#+begin_src emacs-lisp
+(defun php-lint ()
+  "Run php -l on the current buffer in a *Compile* buffer"
+  (interactive)
+  (compile (format "php -l %s" (buffer-file-name))))
 #+end_src
