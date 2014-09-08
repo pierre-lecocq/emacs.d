@@ -140,6 +140,7 @@ Fuck you, backup files
 ;;      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
 ;;      initial-major-mode 'org-mode
 ;;      initial-scratch-message "# Scratch buffer (org-mode enabled)"
+      initial-scratch-message ";; Scratch buffer\n\n(setq debug-on-error t)\n\n"
       frame-title-format "emacs %f")
 #+end_src
 
@@ -272,7 +273,7 @@ Kill all buffers but initial ones
 #+begin_src emacs-lisp
 (defun pl/clean-buffers ()
   (interactive)
-  (setq whitelist '("*scratch*" "*Messages*" "*Group*" "*shell*"))
+  (setq whitelist '("*scratch*" "*Messages*" "*Group*" "*shell*" "*Music*"))
   (mapcar (lambda (the-buffer)
             (unless (member (buffer-name the-buffer) whitelist)
               (kill-buffer (buffer-name the-buffer)))) (buffer-list)))

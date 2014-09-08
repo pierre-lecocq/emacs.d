@@ -161,13 +161,12 @@ Emms configuration that I use only for listening to streams (via =emms-streams=)
         (title (emms-track-get track 'info-title)))
     (if (eq nil title)
         (emms-track-simple-description track)
-      (format " %02d | %s (%s) - %s - %02d"
+      (format " %02d | %s (%s) - %s [%02d]"
               (if (> (length tracknumber) 0) (string-to-number tracknumber) 0)
               (if (> (length artist) 0) artist "Unknown artist")
               (if (> (length album) 0) album "Unknown album")
               (if (> (length title) 0) title "Unknown title")
-              (if (> (length playtime) 0) (string-to-number playtime) 0)))
-    ))
+              (if (> playtime 0) playtime 0)))))
 
 (setq emms-track-description-function 'pl/emms-track-description)
 
