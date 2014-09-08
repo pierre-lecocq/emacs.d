@@ -138,11 +138,9 @@ Fuck you, backup files
 (setq inhibit-startup-message t
       inhibit-splash-screen t
 ;;      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
-      initial-major-mode 'org-mode
-      initial-scratch-message "\
-# Scratch buffer (org-mode enabled)
-"
-      frame-title-format "%f @emacs")
+;;      initial-major-mode 'org-mode
+;;      initial-scratch-message "# Scratch buffer (org-mode enabled)"
+      frame-title-format "emacs %f")
 #+end_src
 
 ** Remove menu, toolbar and scrollbar
