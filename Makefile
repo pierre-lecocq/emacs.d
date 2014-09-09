@@ -8,4 +8,4 @@ clean:
 	rm -rf *.elc config/elisp
 
 reset: clean
-	rm -rf el-get elpa
+	rm -rf el-get elpa auto-save-list
