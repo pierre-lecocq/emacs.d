@@ -1,41 +1,15 @@
-# Common config file
+* Common configurations
 
-* Basic config
+** Generic configuration
 
-** Identity
-
-Set up my identity
+Set my identity
 
 #+begin_src emacs-lisp
 (setq user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com")
 #+end_src
 
-** Yes or no
-
-Who is not lazy ?
-
-#+begin_src emacs-lisp
-(fset 'yes-or-no-p 'y-or-n-p)
-#+end_src
-
-** No backup files
-
-Fuck you, backup files
-
-#+begin_src emacs-lisp
-(setq make-backup-files nil
-      backup-inhibited t
-      auto-save-default nil)
-#+end_src
-
-** Kill whole line
-
-#+begin_src emacs-lisp
-(setq kill-whole-line t)
-#+end_src
-
-** Set locales
+Set locales
 
 #+begin_src emacs-lisp
 (set-language-environment 'utf-8)
@@ -46,21 +20,7 @@ Fuck you, backup files
 (prefer-coding-system 'utf-8)
 #+end_src
 
-** Bookmarks file location
-
-#+begin_src emacs-lisp
-(setq bookmark-default-file (concat user-emacs-directory "bookmarks"))
-#+end_src
-
-** Custom file location (untracked)
-
-#+begin_src emacs-lisp
-(setq custom-file (concat user-emacs-directory "custom.el"))
-#+end_src
-
-* Indentation
-
-** Basics
+Set indentation rules
 
 #+begin_src emacs-lisp
 (setq-default tab-width 4
@@ -81,37 +41,71 @@ Fuck you, backup files
            (not (string-equal mode-name "Change Log"))
            (not (string-equal mode-name "Makefile")))
       (setq indent-tabs-mode nil))))
-#+end_src
 
-** Custom indentation for PHP mode
+;; Ruby specific rules
+(setq ruby-deep-indent-paren nil)
 
-#+begin_src emacs-lisp
+;; PHP specific rules
 (add-hook 'php-mode-hook
           '(lambda ()
              (setq comment-start "// ")
              (setq comment-end "")
              (set (make-local-variable 'indent-tabs-mode) nil)
              (c-set-style "custom-four-indent")))
+
 #+end_src
 
-** Custom indentation for Ruby mode
+
+Remove useless whitespaces and add a new line at the end of the file
 
 #+begin_src emacs-lisp
-(setq ruby-deep-indent-paren nil)
+(setq-default show-trailing-whitespace t)
+(setq-default highlight-tabs t)
+(setq require-final-newline t)
+(setq next-line-add-newlines nil)
+(add-hook 'before-save-hook 'whitespace-cleanup)
+(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
 #+end_src
 
-** Indent the whole file
+Load indispensable modes
 
 #+begin_src emacs-lisp
-(defun pl/indent-all ()
-  "indent whole buffer"
-  (interactive)
-  (delete-trailing-whitespace)
-  (indent-region (point-min) (point-max) nil)
-  (untabify (point-min) (point-max)))
+(show-paren-mode t)
+(global-font-lock-mode t)
+(transient-mark-mode t)
+(line-number-mode t)
+(column-number-mode t)
+(global-auto-revert-mode 1)
 #+end_src
 
-* File modes
+Laziness...
+
+#+begin_src emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+And some other common configurations
+
+#+begin_src emacs-lisp
+(setq
+      ;; No backups
+      make-backup-files nil
+      backup-inhibited t
+      auto-save-default nil
+      ;; Startup buffer
+      inhibit-startup-message t
+      inhibit-splash-screen t
+      initial-scratch-message ";; Scratch buffer\n\n(setq debug-on-error t)\n\n"
+      ;; Frame title
+      frame-title-format "Emacs %f"
+      ;; Kill the whole line
+      kill-whole-line t
+      ;; Special files localtions
+      custom-file (concat user-emacs-directory "custom.el")
+      bookmark-default-file (concat user-emacs-directory "bookmarks"))
+#+end_src
+
+** File modes
 
 #+begin_src emacs-lisp
 (add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
@@ -130,21 +124,7 @@ Fuck you, backup files
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 #+end_src
 
-* Look and feel
-
-** Startup buffer
-
-#+begin_src emacs-lisp
-(setq inhibit-startup-message t
-      inhibit-splash-screen t
-;;      initial-scratch-message (format "* Perkeleen Vittupää (%s)\n" (substring (emacs-version) 10 16))
-;;      initial-major-mode 'org-mode
-;;      initial-scratch-message "# Scratch buffer (org-mode enabled)"
-      initial-scratch-message ";; Scratch buffer\n\n(setq debug-on-error t)\n\n"
-      frame-title-format "emacs %f")
-#+end_src
-
-** Remove menu, toolbar and scrollbar
+** Look and feel
 
 Remove useless UI
 
@@ -154,34 +134,7 @@ Remove useless UI
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 #+end_src
 
-** Whitespaces and new lines
-
-Remove useless whitespaces and add a new line at the end of the file
-
-#+begin_src emacs-lisp
-(setq-default show-trailing-whitespace t)
-(setq-default highlight-tabs t)
-(setq require-final-newline t)
-(setq next-line-add-newlines nil)
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(add-hook 'before-save-hook (lambda() (delete-trailing-whitespace)))
-#+end_src
-
-** Basic modes
-
-Load indispensable modes
-
-#+begin_src emacs-lisp
-(show-paren-mode t)
-(global-font-lock-mode t)
-(transient-mark-mode t)
-(line-number-mode t)
-(column-number-mode t)
-#+end_src
-
-** Transparency
-
-Set up frame transparency
+Control frame transparency
 
 #+begin_src emacs-lisp
 (defun pl/transparency (value)
@@ -190,50 +143,43 @@ Set up frame transparency
   (set-frame-parameter (selected-frame) 'alpha value))
 #+end_src
 
-** Color theme switcher
-
-Switch between color themes
-
-#+begin_src emacs-lisp
-(setq pl/available-themes '(
-                            color-theme-dark-laptop
-                            color-theme-deep-blue
-                            color-theme-standard))
-
-(defun pl/theme-switch()
-  "Switch between themes"
-  (interactive)
-  (setq pl/next-theme (pop pl/available-themes))
-  (setq pl/available-themes (append pl/available-themes (list pl/next-theme)))
-  (message "Switch to theme %s" pl/next-theme)
-  (funcall pl/next-theme)
-)
-#+end_src
-
-** X mode
-
-Only if X is detected
+Enable X specific configs
 
 #+begin_src emacs-lisp
 (defun pl/x-mode()
   (interactive)
   ;; (global-hl-line-mode t)
-  ;; (pl/theme-switch)
   ;; (pl/transparency 85)
   ;; (global-linum-mode t)
-  ;; (color-theme-dark-laptop)
-  ;; (color-theme-darkmine)
   (load-theme 'darkmine t)
-
+  (set-fringe-mode '(1 . 1))
   (when (member "Inconsolata-g" (font-family-list))
-    (set-face-attribute 'default nil :font "Inconsolata-g-10"))
-
-  (set-fringe-mode '(1 . 1)))
+    (set-face-attribute 'default nil :font "Inconsolata-g-10")))
 
 (if window-system (pl/x-mode))
 #+end_src
 
-* Shell
+Custom modeline
+
+#+begin_src emacs-lisp
+(which-func-mode)
+
+(setq-default
+ mode-line-format
+ (list
+  '(:eval (if (buffer-modified-p)
+      (propertize "  %b" 'face 'bold-italic)
+    (propertize "  %b" 'face 'bold)))
+  " (%l:%c)"
+  " %p/%I -"
+  '(which-func-mode (" " which-func-format " -"))
+  " %m";; (format " %s" minor-mode-alist)
+))
+#+end_src
+
+** Functions
+
+*** Shell
 
 If shell has not been launched, launch it. If it was, simply switch to its buffer
 
@@ -245,7 +191,7 @@ If shell has not been launched, launch it. If it was, simply switch to its buffe
     (switch-to-buffer "*shell*")))
 #+end_src
 
-* Tags
+*** Tags
 
 Find files through TAGs
 
@@ -261,25 +207,7 @@ Find files through TAGs
        "Project file: " (tags-table-files) nil t)))))
 #+end_src
 
-* Buffers
-
-Auto revert buffers (mandatory if working with VCs)
-
-#+begin_src emacs-lisp
-(global-auto-revert-mode 1)
-#+end_src
-
-Kill all buffers but initial ones
-#+begin_src emacs-lisp
-(defun pl/clean-buffers ()
-  (interactive)
-  (setq whitelist '("*scratch*" "*Messages*" "*Group*" "*shell*" "*Music*"))
-  (mapcar (lambda (the-buffer)
-            (unless (member (buffer-name the-buffer) whitelist)
-              (kill-buffer (buffer-name the-buffer)))) (buffer-list)))
-#+end_src
-
-* Occur at point
+*** Occur at point
 
 Find occurrences of symbol at point
 
@@ -292,7 +220,7 @@ Find occurrences of symbol at point
   (occur thing))
 #+end_src
 
-* Go to documentation
+*** Go to documentation
 
 To be continued and must add other documentation urls
 
@@ -324,24 +252,7 @@ To be continued and must add other documentation urls
     (browse-url (concat search-url search-term))))
 #+end_src
 
-* Modeline
-
-#+begin_src emacs-lisp
-(which-func-mode)
-
-(setq-default
- mode-line-format
- (list
-  '(:eval (if (buffer-modified-p)
-      (propertize "  %b" 'face 'bold-italic)
-    (propertize "  %b" 'face 'bold)))
-  " (%l:%c)"
-  " %p/%I -"
-  '(which-func-mode (" " which-func-format " -"))
-  " %m";; (format " %s" minor-mode-alist)
-  ))
-#+end_src
-* PHP lint
+*** PHP lint
 
 Lint the current file (credits to Dimitri Fontaine)
 

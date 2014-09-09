@@ -1,7 +1,0 @@
-# Config file for Popole machine (work)
-
-* Fonts
-
-#+begin_src emacs-lisp
-(set-default-font "Monaco-11")
-#+end_src

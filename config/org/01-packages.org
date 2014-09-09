@@ -1,88 +1,338 @@
-# Packages config file
+* Packages
 
-* Set up packages
+** Setup
 
-Define the package manager of choice. "package.el" and "el-get" are supported.
+Set up the package manager and its sources
 
 #+begin_src emacs-lisp
-(setq pmoc "el-get")
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+(package-initialize)
 #+end_src
 
-Define the wanted packages that will be installed automatically.
+Install John Wiegley's =use-package= package
 
 #+begin_src emacs-lisp
-(setq
- wanted-packages
- '(
-   autopair
-   company-mode
-   darkmine-theme
-   elfeed
-   emms
-   erc
-   flycheck
-   gnus-desktop-notify
-   htmlize
-   idle-highlight-mode
-   ido-hacks
-   ido-vertical-mode
-   js2-mode
-   magit
-   markdown-mode
-   multiple-cursors
-   php-mode
-   rainbow-mode
-   ruby-mode
-   slime
-   twittering-mode
-   visual-regexp
-   web-mode
-   yaml-mode
-))
+(unless (package-installed-p 'use-package)
+  (progn
+    (package-refresh-contents)
+    (package-install 'use-package)))
+
+(require 'use-package)
 #+end_src
 
-Define the function that will install the wanted packages thanks to the chosen package manager.
+** Install and configure
+
+*Autopair* - Automagically pair braces and quotes
 
 #+begin_src emacs-lisp
-(defun install-wanted-packages ()
-  "Install wanted packages according to a specific package manager"
-  (interactive)
-  (cond
-   ;; package.el
-   ((string= pmoc "package.el")
-    (require 'package)
-    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/"))
-    (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-    (add-to-list 'package-archives '("marmelade" . "http://marmalade-repo.org/packages/"))
-    (package-initialize)
-    (let ((need-refresh nil))
-      (mapc (lambda (package-name)
-          (unless (package-installed-p package-name)
-        (set 'need-refresh t))) wanted-packages)
-      (if need-refresh
-        (package-refresh-contents)))
-    (mapc (lambda (package-name)
-        (unless (package-installed-p package-name)
-          (package-install package-name))) wanted-packages)
-    )
-   ;; el-get
-   ((string= pmoc "el-get")
-    (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-    (unless (require 'el-get nil 'noerror)
-      (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-    (el-get 'sync wanted-packages))
-   ;; fallback
-   (t (error "Unsupported package manager")))
-  )
+(use-package autopair
+	     :ensure autopair
+	     :init (progn
+		     (autopair-global-mode t)))
 #+end_src
 
-And finally call it!
+*BBDB* - The Insidious Big Brother Database for GNU Emacs
 
 #+begin_src emacs-lisp
-(install-wanted-packages)
+(use-package bbdb
+	     :ensure bbdb)
+#+end_src
+
+*Company* - Modular text completion framework
+
+#+begin_src emacs-lisp
+(use-package company
+	     :ensure company
+	     :init (progn
+		     (add-hook 'after-init-hook 'global-company-mode)
+		     (setq company-auto-complete nil)
+		     (global-company-mode 1)
+		     (add-to-list 'company-backends 'company-dabbrev t)
+		     (add-to-list 'company-backends 'company-ispell t)
+		     (add-to-list 'company-backends 'company-files t)))
+#+end_src
+
+*Darkmine-theme* - Yet another emacs dark color theme
+
+#+begin_src emacs-lisp
+(use-package darkmine-theme
+	     :ensure darkmine-theme)
+#+end_src
+
+*Elfeed* - An Emacs Atom/RSS feed reader
+
+#+begin_src emacs-lisp
+(use-package elfeed
+	     :ensure elfeed
+	     :init (progn
+		     (setq elfeed-feeds
+			   '(("http://planet.emacsen.org/atom.xml" emacs)
+			     ("http://emacsredux.com/atom.xml" emacs dev blog)
+			     ("http://nullprogram.com/feed/" emacs blog)
+			     ("http://www.masteringemacs.org/feed/" emacs dev blog)
+			     ("http://sachachua.com/blog/feed/" emacs blog)
+			     ("http://batsov.com/atom.xml" ruby emacs dev blog)
+			     ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
+			     ("http://planet.debian.org/rss20.xml" system linux debian)
+			     ("http://www.reddit.com/r/debian.rss" system linux debian)
+			     ("http://www.reddit.com/r/emacs.rss" emacs)
+			     ("http://www.reddit.com/r/netsec.rss" security)
+			     ("https://www.schneier.com/blog/atom.xml" security blog)
+			     ("http://www.reddit.com/r/linux.rss" system linux)
+			     ("http://www.reddit.com/r/ruby.rss" ruby dev)
+			     ("https://www.ruby-lang.org/en/feeds/news.rss" ruby dev)
+			     ("http://devblog.avdi.org/feed/" ruby dev blog)
+			     ("http://feeds.feedburner.com/codinghorror?format=xml" dev blog)
+			     "http://xkcd.com/rss.xml"))))
+#+end_src
+
+*EMMS* - The Emacs Multimedia System
+
+#+begin_src emacs-lisp
+(use-package emms
+	     :ensure emms
+	     :init (progn
+		     (require 'emms-setup)
+		     (emms-standard)
+		     (emms-default-players)
+                     ;; Cache is good when using EMMS but slows Emacs startup
+                     (emms-cache -1)
+
+		     (setq
+		      emms-info-asynchronously nil
+		      emms-playlist-buffer-name "*Music*"
+		      emms-source-file-default-directory "~/music/"
+		      emms-stream-bookmarks-file "~/.emacs.d/emms/streams")
+
+		     (define-emms-simple-player mplayer '(file url)
+		       (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
+				     ".mov" ".avi" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
+				     ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
+		       "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+
+		     (defun pl/emms-track-description(track)
+		       (let ((tracknumber (emms-track-get track 'info-tracknumber))
+			     (playtime (emms-track-get track 'info-playing-time))
+			     (artist (emms-track-get track 'info-artist))
+			     (album (emms-track-get track 'info-album))
+			     (title (emms-track-get track 'info-title)))
+			 (if (eq nil title)
+			     (emms-track-simple-description track)
+			   (format " %02d | %s (%s) - %s [%02d]"
+				   (if (> (length tracknumber) 0) (string-to-number tracknumber) 0)
+				   (if (> (length artist) 0) artist "Unknown artist")
+				   (if (> (length album) 0) album "Unknown album")
+				   (if (> (length title) 0) title "Unknown title")
+				   (if (> playtime 0) playtime 0)))))
+
+		     (setq emms-track-description-function 'pl/emms-track-description)
+
+		     (defun pl/emms-toggle()
+		       (interactive)
+		       (if (eq nil (get-buffer "*Music*"))
+			   (call-interactively 'emms-play-directory)
+			 (emms-pause)))
+
+		     (global-set-key (kbd "<XF86AudioPlay>") 'pl/emms-toggle)))
+#+end_src
+
+*ERC* - A powerful, modular, and extensible IRC client for Emacs
+
+#+begin_src emacs-lisp
+(use-package erc
+	     :init (progn
+		     (defun pl/erc-connect ()
+		       (interactive)
+
+		       (setq erc-nick "pierreL")
+		       (setq erc-log-insert-log-on-open nil)
+		       (setq erc-log-channels t)
+		       (setq erc-log-channels-directory "~/.irclogs/")
+		       (setq erc-save-buffer-on-part t)
+		       (setq erc-hide-timestamps nil)
+		       (erc-netsplit-mode 1)
+		       (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+		       (setq erc-max-buffer-size 20000)
+		       (defvar erc-insert-post-hook)
+		       (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+		       (setq erc-truncate-buffer-on-save t)
+		       (setq erc-keywords '("pierreL"))
+		       (erc-match-mode 1)
+		       (setq erc-timestamp-only-if-changed-flag nil)
+		       (setq erc-timestamp-format "[%R] ")
+		       (setq erc-insert-timestamp-function 'erc-insert-timestamp-left)
+		       (setq erc-server-coding-system '(utf-8 . utf-8))
+		       (setq erc-interpret-mirc-color t)
+		       (setq erc-kill-buffer-on-part t)
+		       (setq erc-kill-queries-on-quit t)
+		       (setq erc-kill-server-buffer-on-quit t)
+		       (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
+		       ;;(erc-scrolltobottom-enable)
+
+		       (add-hook 'erc-after-connect
+				 '(lambda (SERVER NICK)
+				    (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
+
+		       (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
+		       ;; (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+		       (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))))
+#+end_src
+
+*Flycheck* - Modern on-the-fly syntax checking for GNU Emacs
+
+#+begin_src emacs-lisp
+(use-package flycheck
+	     :ensure flycheck)
+#+end_src
+
+*Gnus Desktop Notify* - Gnus Desktop Notification global minor mode
+
+#+begin_src emacs-lisp
+(use-package gnus-desktop-notify
+	     :ensure gnus-desktop-notify)
+#+end_src
+
+*HTMLize* - Convert buffer text and decorations to HTML
+
+#+begin_src emacs-lisp
+(use-package htmlize
+	     :ensure htmlize)
+#+end_src
+
+*Idle Highlight Mode* - Highlight the word the point is on
+
+#+begin_src emacs-lisp
+
+(use-package idle-highlight-mode
+	     :ensure idle-highlight-mode
+	     :init (progn
+		     (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
+		     (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
+		     (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
+		     (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t)))))
+#+end_src
+
+*Ido mode* - Interactively do things with buffers and files
+
+#+begin_src emacs-lisp
+(use-package ido
+             :init (progn
+		     (require 'ido)
+		     (ido-mode t)
+		     (setq ido-enable-flex-matching t)
+                     (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))))
+#+end_src
+
+*Ido hacks* - Put more IDO in your IDO
+
+#+begin_src emacs-lisp
+(use-package ido-hacks
+	     :ensure ido-hacks
+             :init (progn
+		     (ido-hacks-mode)))
+#+end_src
+
+*Ido vertical mode* - Makes ido-mode display prospects vertically
+
+#+begin_src emacs-lisp
+
+(use-package ido-vertical-mode
+	     :ensure ido-vertical-mode
+	     :init (progn
+		     (ido-vertical-mode)))
+#+end_src
+
+*JS2 mode* - Improved JavaScript editing mode
+
+#+begin_src emacs-lisp
+(use-package js2-mode
+	     :ensure js2-mode)
+#+end_src
+
+*Magit* - Control Git from Emacs
+
+#+begin_src emacs-lisp
+(use-package magit
+	     :ensure magit)
+#+end_src
+
+*Markdown mode* - Emacs Major mode for Markdown-formatted text files
+
+#+begin_src emacs-lisp
+(use-package markdown-mode
+	     :ensure markdown-mode)
+#+end_src
+
+*PHP mode* - Major mode for editing PHP code
+
+#+begin_src emacs-lisp
+(use-package php-mode
+	     :ensure php-mode)
+#+end_src
+
+*Rainbow mode* - Minor mode which displays strings representing colors with the color they represent
+
+#+begin_src emacs-lisp
+
+(use-package rainbow-mode
+	     :ensure rainbow-mode
+	     :init (progn
+		     (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))))
+#+end_src
+
+*Recentf* - Minor mode that builds a list of recently opened files
+
+#+begin_src emacs-lisp
+(use-package recentf
+	     :init (progn
+		     (recentf-mode 1)
+		     (setq recentf-max-menu-items 25)))
+#+end_src
+
+*Ruby mode* - Major mode for editing Ruby code
+
+#+begin_src emacs-lisp
+(use-package ruby-mode
+	     :ensure ruby-mode)
+#+end_src
+
+*SLIME* - Superior Lisp Interaction Mode for Emacs
+
+#+begin_src emacs-lisp
+(use-package slime
+	     :ensure slime
+             :init (progn
+                     (setq inferior-lisp-program "sbcl")))
+#+end_src
+
+*Uniquify* - 
+
+#+begin_src emacs-lisp
+(use-package uniquify
+	     :init (progn
+                     (setq uniquify-buffer-name-style 'forward uniquify-separator "/")))
+#+end_src
+
+*Visual regexp* - A regexp/replace command for Emacs with interactive visual feedback
+
+#+begin_src emacs-lisp
+(use-package visual-regexp
+	     :ensure visual-regexp)
+#+end_src
+
+*Web mode* - Major mode for editing html templates
+
+#+begin_src emacs-lisp
+(use-package web-mode
+	     :ensure web-mode)
+#+end_src
+
+*YAML mode* - Major mode for editing YAML files
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+	     :ensure yaml-mode)
 #+end_src

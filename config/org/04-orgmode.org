@@ -1,15 +1,14 @@
-# Org mode specific configuration
+* Org mode specific configuration
 
-* Org mode
+Set org files root
 
-** Set org files root
 #+begin_src emacs-lisp
 (setq org-files-root (format "%sorg/" user-emacs-directory))
 (unless (file-accessible-directory-p org-files-root)
   (make-directory org-files-root))
 #+end_src
 
-** Set up agenda file
+Set up agenda file
 
 #+begin_src emacs-lisp
 (setq org-agenda-files (list
@@ -18,7 +17,7 @@
                         ))
 #+end_src
 
-** Capture configuration
+Capture configuration
 
 #+begin_src emacs-lisp
 (setq org-default-notes-file (format "%sorg/notes.org" user-emacs-directory))
@@ -34,7 +33,7 @@
    ))
 #+end_src
 
-** Strike done tasks
+Strike done tasks (from Sacha's config)
 
 #+begin_src emacs-lisp
 (setq org-fontify-done-headline t)
@@ -47,35 +46,13 @@
      (:foreground "Grey55" :strike-through t)))))
 #+end_src
 
-** Source code syntax highlighting
+Source code syntax highlighting
 
 #+begin_src emacs-lisp
 (setq org-src-fontify-natively t)
 #+end_src
 
-** Publish webplaces when saving webplaces.org file
-
-#+begin_src emacs-lisp
- (defun pl/org-mode-publish-webplaces()
-   (interactive)
-   (message "Org mode publish webplaces hook")
-   (when (string-match "webplaces\\.org" buffer-file-name)
-     (condition-case nil
-         (progn
-           (let ((buffer-file-name-html (replace-regexp-in-string "\\.org$" ".html" buffer-file-name)))
-             (org-export-as-html 3)
-             (shell-command (format "scp -P 38170 %s pierre@qsdfgh.com:/home/www/www/" buffer-file-name-html))
-             (delete-file buffer-file-name-html)))
-       (error "Error while exporting and publishing webplaces.org"))))
-
-;; (add-hook 'org-mode-hook
-;;           (lambda ()
-;;             (add-hook 'after-save-hook 'pl/org-mode-publish-webplaces nil 'make-it-local)))
-;;
-
-#+end_src
-
-** Org publishing projects
+Org publishing projects
 
 #+begin_src emacs-lisp
 (setq org-publish-my-header "

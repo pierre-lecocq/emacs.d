@@ -4,6 +4,7 @@
 !init.el
 !config/org/*.org
 !org/*.org
+!emms/streams
 !README.org
 !.gitignore
 !Makefile

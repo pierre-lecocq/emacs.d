@@ -1,6 +1,6 @@
-# Packages config file
+* Key bindings
 
-* Generic bindings
+Generic bindings
 
 #+begin_src emacs-lisp
 (global-set-key [delete] 'delete-char)
@@ -14,8 +14,6 @@
       x-select-enable-clipboard t)
 #+end_src
 
-* Mode hooks
-
 Jump to header/code files in C modes
 
 #+begin_src emacs-lisp
@@ -24,13 +22,13 @@ Jump to header/code files in C modes
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 #+end_src
 
-* Join lines
+Join lines
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
 #+end_src
 
-* Steroid moves
+Steroid moves
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-S-n") (lambda() (interactive) (ignore-errors (next-line 5))))
@@ -39,13 +37,13 @@ Jump to header/code files in C modes
 (global-set-key (kbd "C-S-b") (lambda() (interactive) (ignore-errors (backward-char 5))))
 #+end_src
 
-* Ido specific behaviour
+Ido specific behaviour
 
 #+begin_src emacs-lisp
 (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))
 #+end_src
 
-* Tags
+Tags
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-S-t g") 'find-tag) ;; Goto tag under point
@@ -55,25 +53,25 @@ Jump to header/code files in C modes
 (global-set-key (kbd "C-S-f") 'imenu) ;; iMenu
 #+end_src
 
-* Find file in TAGS
+Find file in TAGS
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-S-x C-S-f") 'ido-find-file-in-tag-files)
 #+end_src
 
-* Browse url
+Browse url
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-S-u") 'w3m-view-url-with-external-browser)
 #+end_src
 
-* Launch OrgCapture
+Launch OrgCapture
 
 #+begin_src emacs-lisp
 (global-set-key (kbd "C-c c") 'org-capture)
 #+end_src
 
-* F keys
+F keys
 
 #+begin_src emacs-lisp
 (global-set-key [f1] 'pl/go-to-doc)

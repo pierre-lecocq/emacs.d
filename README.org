@@ -7,13 +7,13 @@ Literate programming make it more readable!
 ** Files
 
 - =init.el= does nothing except parsing and converting org files
-- =config/*.org= are the config files themselves. Config is embed in org source code blocks
+- =config/org/*.org= are the config files themselves. Config is embed in org source code blocks
     - [[./config/org/01-packages.org][config/org/01-packages.org]]: list and install wanted packages
     - [[./config/org/02-common.org][config/org/02-common.org]]: generic configuration
-    - [[./config/org/03-modes.org][config/org/03-modes.org]]: configuration for modes that require one
-    - [[./config/org/04-keybindings.org][config/org/04-keybindings.org]]: the keyboard mapping
-    - [[./config/org/05-autoinserts.org][config/org/05-autoinserts.org]]: auto-insert configuration
-    - there are special org files in the config directory named after the machine names I use (=config/org/09-*.org=). It provides specific config for each machine.
+    - [[./config/org/03-autoinsert.org][config/org/03 autoinsert.org]]: autoinsert settings
+    - [[./config/org/04-orgmode.org][config/org/04-orgmode.org]]: orgmode specific configuration
+    - [[./config/org/09-keybindings.org][config/org/09-keybindings.org]]: keybindings
+    - there are special org files in the config directory named after the machine names I use (=config/org/99-*.org=). It provides specific config for each machine.
 
 ** Install and run
 
@@ -37,20 +37,7 @@ Therefore:
 
 *** Possible troubles
 
-- Happend one time: /auto-complete/ package complains about /lib/ert/ that is not a git repository. To solve it, add =:submodule nil= to its recipe ([[https://github.com/dimitri/el-get/issues/1031][source]]).
 - On MacOSX, the =make= command may fail. Instead of that, just launch Emacs.app, and it will handle all for you (compilation and packages installation).
-
-** Package manager
-
-The package manager of my choice is [[https://github.com/dimitri/el-get][el-get]].
-
-But, I have a solution to let the user choose between several package managers (/package.el/ and /el-get/ for now).
-
-In order to configure it, just have a look at the two first variables set in [[./config/org/01-packages.org][config/org/01-packages.org]].
-
-The first one, =pmoc= is a string ("el-get" or "package.el"), and the second one, =wanted-packages= are the list of packages to install.
-
-Set them as you wish, and let the magic happen.
 
 ** Emacs for developers tutorial
 
