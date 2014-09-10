@@ -26,14 +26,15 @@ Literate programming make it more readable!
 A Makefile is provided in order to do some operations:
 
 - =make= builds everything
+- =make org-mode= builds org-mode from sources
 - =make clean= removes the /config/elisp/*.el/ files that were previously generated
-- =make reset= removes /config/elisp/*.el/ files and the whole /el-get/ directory
+- =make reset= removes /config/elisp/*.el/ files and /el-get/, /elpa/, /org-mode/ directories
 
 Therefore:
 
-- to start from the begining, type =make=
+- to start from the begining, type =make org-mode && make=
 - after any config/org/*.org modification, type =make clean && make=
-- to restart the deployment from the begining (the hard way), type =make reset && make=
+- to restart the deployment from the begining (the hard way), type =make reset && make org-mode && make=
 
 *** Possible troubles
 

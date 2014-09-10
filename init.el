@@ -5,6 +5,9 @@
 
 (setq debug-on-error t)
 
+(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp" t)
+
 ;; Prepare directories
 (defvar config-dir-org (format "%sconfig/org" user-emacs-directory))
 (unless (file-exists-p config-dir-org)
