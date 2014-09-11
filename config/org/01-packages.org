@@ -25,6 +25,16 @@ Install John Wiegley's =use-package= package
 
 ** Install and configure
 
+*Anzu* - Displays current match and total matches information in the mode-line in various search modes
+
+#+begin_src emacs-lisp
+(use-package anzu
+         :ensure anzu
+         :init (progn
+                 (global-anzu-mode +1)
+                 (set-face-attribute 'anzu-mode-line nil :foreground "yellow" :weight 'bold)))
+#+end_src
+
 *Autopair* - Automagically pair braces and quotes
 
 #+begin_src emacs-lisp
@@ -39,6 +49,15 @@ Install John Wiegley's =use-package= package
 #+begin_src emacs-lisp
 (use-package bbdb
          :ensure bbdb)
+#+end_src
+
+*Browse-kill-ring* - For when 'C-y M-y M-y M-y' gets you down
+
+#+begin_src emacs-lisp
+(use-package browse-kill-ring
+         :ensure browse-kill-ring
+         :init (progn
+                 (global-set-key "\M-y" 'browse-kill-ring)))
 #+end_src
 
 *Company* - Modular text completion framework
@@ -321,6 +340,13 @@ Install John Wiegley's =use-package= package
 #+begin_src emacs-lisp
 (use-package visual-regexp
          :ensure visual-regexp)
+#+end_src
+
+*W3m* - An Emacs interface to w3m
+
+#+begin_src emacs-lisp
+(use-package w3m
+         :ensure w3m)
 #+end_src
 
 *Web mode* - Major mode for editing html templates
