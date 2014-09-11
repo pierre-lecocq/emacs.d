@@ -117,12 +117,12 @@ Install John Wiegley's =use-package= package
              (require 'emms-setup)
              (emms-standard)
              (emms-default-players)
-                     ;; Cache is good when using EMMS but slows Emacs startup
-                     (emms-cache -1)
+             ;; Cache is good when using EMMS but slows Emacs startup
+             (emms-cache -1)
 
              (setq
               emms-info-asynchronously nil
-              emms-playlist-buffer-name "*Music*"
+              emms-playlist-buffer-name "*EMMS*"
               emms-source-file-default-directory "~/music/"
               emms-stream-bookmarks-file "~/.emacs.d/emms/streams")
 
@@ -151,7 +151,7 @@ Install John Wiegley's =use-package= package
 
              (defun pl/emms-toggle()
                (interactive)
-               (if (eq nil (get-buffer "*Music*"))
+               (if (eq nil (get-buffer "*EMMS*"))
                (call-interactively 'emms-play-directory)
              (emms-pause)))
 
