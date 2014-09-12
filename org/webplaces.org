@@ -32,3 +32,4 @@
 * [[http://dfir.org/?q=node/8][Security Recommended Reading]]                                     :security:
 * [[http://www.flockport.com/lxc-guide/][LXC guide]]                                                  :virtualization:
 * [[http://www.flockport.com/lxc-advanced-guide/][LXC advanced guide]]                                         :virtualization:
+* [[http://c.learncodethehardway.org/book/][Learn C The Hard Way]]                                        :c:programming:
