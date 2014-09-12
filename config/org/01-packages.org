@@ -224,7 +224,6 @@ Install John Wiegley's =use-package= package
 *Idle Highlight Mode* - Highlight the word the point is on
 
 #+begin_src emacs-lisp
-
 (use-package idle-highlight-mode
          :ensure idle-highlight-mode
          :init (progn
@@ -257,12 +256,21 @@ Install John Wiegley's =use-package= package
 *Ido vertical mode* - Makes ido-mode display prospects vertically
 
 #+begin_src emacs-lisp
-
 (use-package ido-vertical-mode
          :ensure ido-vertical-mode
          :init (progn
              (ido-vertical-mode)))
 #+end_src
+
+*Indent guide* - Show vertical lines to guide indentation
+
+#+begin_src emacs-lisp
+(use-package indent-guide
+         :ensure indent-guide
+         :init (progn
+                 (indent-guide-global-mode)))
+#+end_src
+
 
 *JS2 mode* - Improved JavaScript editing mode
 
