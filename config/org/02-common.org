@@ -23,24 +23,26 @@ Set locales
 Set indentation rules
 
 #+begin_src emacs-lisp
-(setq-default tab-width 4
-              c-basic-offset 4
-              c-hanging-comment-ender-p nil
-              indent-tabs-mode nil)
+(unless (string= major-mode "GNUmakefile")
+  (setq-default tab-width 4
+                c-basic-offset 4
+                c-hanging-comment-ender-p nil
+                indent-tabs-mode nil)
 
-(c-add-style
- "custom-four-indent"
- '((c-offsets-alist
-    (arglist-close . 0)
-    (arglist-intro . 4)
-    (case-label . 4))))
+  (c-add-style
+   "custom-four-indent"
+   '((c-offsets-alist
+      (arglist-close . 0)
+      (arglist-intro . 4)
+      (case-label . 4))))
 
-(add-hook 'find-file-hook '(lambda ()
-  (if (and buffer-file-name
-           (string-match "/gnulib\\>" (buffer-file-name))
-           (not (string-equal mode-name "Change Log"))
-           (not (string-equal mode-name "Makefile")))
-      (setq indent-tabs-mode nil))))
+  (add-hook 'find-file-hook '(lambda ()
+                               (if (and buffer-file-name
+                                        (string-match "/gnulib\\>" (buffer-file-name))
+                                        (not (string-equal mode-name "Change Log"))
+                                        (not (string-equal mode-name "Makefile")))
+                                   (setq indent-tabs-mode nil))))
+  )
 
 ;; Ruby specific rules
 (setq ruby-deep-indent-paren nil)
@@ -101,7 +103,6 @@ And some other common configurations
       ;; Kill the whole line
       kill-whole-line t
       ;; Special files localtions
-      custom-file (concat user-emacs-directory "custom.el")
       bookmark-default-file (concat user-emacs-directory "bookmarks"))
 #+end_src
 

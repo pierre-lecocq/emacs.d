@@ -5,8 +5,10 @@
 
 (setq debug-on-error t)
 
-(add-to-list 'load-path "~/.emacs.d/org-mode/lisp")
-(add-to-list 'load-path "~/.emacs.d/org-mode/contrib/lisp" t)
+;; Custom file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(if (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Prepare directories
 (defvar config-dir-org (format "%sconfig/org" user-emacs-directory))
