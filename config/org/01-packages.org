@@ -335,7 +335,18 @@ Install John Wiegley's =use-package= package
                      (setq inferior-lisp-program "sbcl")))
 #+end_src
 
-*Uniquify* -
+*Show marks* - Navigate and visualize the mark-ring
+
+#+begin_src emacs-lisp
+(use-package show-marks
+         :ensure show-marks
+             :init (progn
+                      (global-set-key (kbd "C-M-m n") 'forward-mark)
+                      (global-set-key (kbd "C-M-m p") 'backward-mark)
+                      (global-set-key (kbd "C-M-m s") 'show-marks)))
+#+end_src
+
+*Uniquify* - Making buffer names unique
 
 #+begin_src emacs-lisp
 (use-package uniquify
