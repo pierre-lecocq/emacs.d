@@ -55,19 +55,6 @@ Source code syntax highlighting
 Org publishing projects
 
 #+begin_src emacs-lisp
-(setq org-publish-my-header "
-")
-
-(setq org-publish-my-footer "
-<footer>
-<a href=\"/\">Home</a>
- | <a href=\"/about.html\">About</a>
- | <a href=\"/webplaces.html\">Bookmarks</a>
- | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
- <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"5DVQSZALUACTY\"><input type=\"image\" src=\"http://qsdfgh.com/assets/donate.png\" border=\"0\" name=\"submit\" alt=\"\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>
-</footer>
-")
-
 ;; Invoke with `org-publish'
 (setq org-publish-project-alist '(
                                   ("webplaces-org"
@@ -89,10 +76,12 @@ Org publishing projects
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
                                    :html-head "
-<link href='/assets/style.css' rel='stylesheet' type='text/css' />
-<link href='/assets/webplaces.css' rel='stylesheet' type='text/css' />
+<link href=\"/assets/style.css\" rel=\"stylesheet\" type=\"text/css\" />
+<link href=\"/assets/webplaces.css\" rel=\"stylesheet\" type=\"text/css\" />
 <script type=\"text/javascript\" src=\"//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js\"></script>
-<script type=\"text/javascript\" src=\"/assets/webplaces.js\"></script>"
+<script type=\"text/javascript\" src=\"/assets/webplaces.js\"></script>
+<link rel=\"alternate\" type=\"application/rss+xml\" href=\"/rss.xml\" title=\"RSS feed for qsdfgh.com\" />
+"
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.<span></span></a></h1>
@@ -104,8 +93,10 @@ Org publishing projects
 <li><a href=\"https://github.com/pierre-lecocq\" class=\"github\" title=\"Github\" target=\"_blank\">Github</a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\">Twitter</a></li>
 <li><a href=\"http://fr.linkedin.com/in/pierrelecocqlinkedin\" class=\"linkedin\" title=\"Linkedin\" target=\"_blank\">Linkedin</a></li>
+<li><a href=\"/rss.xml\" class=\"rss\" title=\"RSS\" target=\"_blank\">RSS</a></li>
 <li><a href=\"mailto:pierre.lecocq@gmail.com?subject=Contact+from+qsdfgh.com\" class=\"email\" title=\"Email\" target=\"_blank\">Email</a></li>
 </ul>
+<div class=\"screen\"></div>
 </header>"
                                    :html-postamble "
 <footer>
@@ -113,9 +104,10 @@ Org publishing projects
  | <a href=\"/about.html\">About</a>
  | <a href=\"/webplaces.html\">Bookmarks</a>
  | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
- <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"5DVQSZALUACTY\"><input type=\"image\" src=\"http://qsdfgh.com/assets/donate.png\" border=\"0\" name=\"submit\" alt=\"\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>
+ <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"5DVQSZALUACTY\"><input type=\"image\" src=\"/assets/donate.png\" border=\"0\" name=\"submit\" alt=\"\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>
 </footer>"
                                    :htmlized-source t)
+
                                   ("qsdfgh-org"
                                    :with-author "Pierre Lecocq"
                                    :with-email "pierre.lecocq@gmail.com"
@@ -134,7 +126,10 @@ Org publishing projects
                                    :html-doctype "html5"
                                    :html-head-include-default-style nil
                                    :html-head-include-scripts nil
-                                   :html-head "<link href='/assets/style.css' rel='stylesheet' type='text/css' />"
+                                   :html-head "
+<link href=\"/assets/style.css\" rel=\"stylesheet\" type=\"text/css\" />
+<link rel=\"alternate\" type=\"application/rss+xml\" href=\"/rss.xml\" title=\"RSS feed for qsdfgh.com\" />
+"
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.<span></span></a></h1>
@@ -146,8 +141,10 @@ Org publishing projects
 <li><a href=\"https://github.com/pierre-lecocq\" class=\"github\" title=\"Github\" target=\"_blank\">Github</a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\">Twitter</a></li>
 <li><a href=\"http://fr.linkedin.com/in/pierrelecocqlinkedin\" class=\"linkedin\" title=\"Linkedin\" target=\"_blank\">Linkedin</a></li>
+<li><a href=\"/rss.xml\" class=\"rss\" title=\"RSS\" target=\"_blank\">RSS</a></li>
 <li><a href=\"mailto:pierre.lecocq@gmail.com?subject=Contact+from+qsdfgh.com\" class=\"email\" title=\"Email\" target=\"_blank\">Email</a></li>
 </ul>
+<div class=\"screen\"></div>
 </header>"
                                    :html-postamble "
 <footer>
@@ -155,13 +152,14 @@ Org publishing projects
  | <a href=\"/about.html\">About</a>
  | <a href=\"/webplaces.html\">Bookmarks</a>
  | Generated with <a href=\"http://orgmode.org\">OrgMode</a> under <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/deed.en_US\">Creative Commons License</a>
- <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"5DVQSZALUACTY\"><input type=\"image\" src=\"http://qsdfgh.com/assets/donate.png\" border=\"0\" name=\"submit\" alt=\"\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>
+ <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\"><input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\"><input type=\"hidden\" name=\"hosted_button_id\" value=\"5DVQSZALUACTY\"><input type=\"image\" src=\"/assets/donate.png\" border=\"0\" name=\"submit\" alt=\"\"><img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif\" width=\"1\" height=\"1\"></form>
 </footer>"
                                    :htmlized-source t)
+
                                   ("qsdfgh-assets"
                                    :base-directory "~/.emacs.d/org/qsdfgh.com/assets/"
                                    :publishing-directory "/ssh:pierre@qsdfgh.com#38170:/home/www/www/assets/"
-                                   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf"
+                                   :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf"
                                    :recursive t
                                    :publishing-function org-publish-attachment)
 
