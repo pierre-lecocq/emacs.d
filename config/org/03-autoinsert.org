@@ -33,8 +33,10 @@ Activate auto-insert-mode for ubserting some templates specific files
       "#include <stdlib.h>\n"
       "#include <stdio.h>\n"
       "#include <unistd.h>\n\n"
-      "int main(int ac, char **av)\n"
+      "int main(int argc, char **argv)\n"
       "{\n"
+      "    printf("%s: start\n", argv[0]);\n\n"
+      "    printf("%s: end\n", argv[0]);\n\n"
       "    return(0);\n"
       "}\n"
      )
@@ -52,7 +54,7 @@ Activate auto-insert-mode for ubserting some templates specific files
 
      ((shell-mode . "Shell script")
       nil
-      "#!/bin/sh\n\n"
+      "#!/bin/bash\n\n"
       " # File: " (file-name-nondirectory buffer-file-name) "\n"
       " # Time-stamp: <>\n"
       " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
