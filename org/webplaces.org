@@ -33,3 +33,4 @@
 * [[http://www.flockport.com/lxc-guide/][LXC guide]]                                                  :virtualization:
 * [[http://www.flockport.com/lxc-advanced-guide/][LXC advanced guide]]                                         :virtualization:
 * [[http://c.learncodethehardway.org/book/][Learn C The Hard Way]]                                        :c:programming:
+* [[http://greenruby.org/][Green Ruby]]                                                   :ruby:morning:
