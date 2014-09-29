@@ -86,6 +86,16 @@ Laziness...
 (fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
+Rgrep exclude directories
+
+#+begin_src emacs-lisp
+(eval-after-load 'grep
+  '(progn
+     (add-to-list 'grep-find-ignored-directories "build")
+     (add-to-list 'grep-find-ignored-directories "elpa")))
+(add-hook 'grep-mode-hook (lambda () (toggle-truncate-lines 1)))
+#+end_src
+
 And some other common configurations
 
 #+begin_src emacs-lisp
