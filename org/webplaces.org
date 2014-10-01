@@ -34,3 +34,4 @@
 * [[http://www.flockport.com/lxc-advanced-guide/][LXC advanced guide]]                                         :virtualization:
 * [[http://c.learncodethehardway.org/book/][Learn C The Hard Way]]                                        :c:programming:
 * [[http://greenruby.org/][Green Ruby]]                                                   :ruby:morning:
+* [[http://www.linusakesson.net/programming/tty/][The TTY demystified]]                                             :linux:tty:
