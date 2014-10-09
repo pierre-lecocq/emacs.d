@@ -18,6 +18,17 @@ Set locales
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;; Because fuck you, PHP
+(add-hook 'find-file-hook '(lambda ()
+  (when (string= major-mode "php-mode")
+    (progn
+      (set-language-environment 'latin-1)
+      (set-terminal-coding-system 'latin-1)
+      (setq locale-coding-system 'latin-1)
+      (set-default-coding-systems 'latin-1)
+      (set-selection-coding-system 'latin-1)
+      (prefer-coding-system 'latin-1)))))
 #+end_src
 
 Set indentation rules
