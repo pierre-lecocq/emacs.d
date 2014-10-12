@@ -36,3 +36,4 @@
 * [[http://greenruby.org/][Green Ruby]]                                                   :ruby:morning:
 * [[http://www.linusakesson.net/programming/tty/][The TTY demystified]]                                             :linux:tty:
 * [[http://www.wains.be/pub/networking/tcpdump_advanced_filters.txt][TCPdump advanced filters]]				:network:pcap:
+* [[http://www.inetdoc.net/guides/iptables-tutorial/][Iptables tutorial complet (FR)]]                           :network:iptables:
