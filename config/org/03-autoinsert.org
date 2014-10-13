@@ -35,8 +35,6 @@ Activate auto-insert-mode for ubserting some templates specific files
       "#include <unistd.h>\n\n"
       "int main(int argc, char **argv)\n"
       "{\n"
-      "    printf("%s: start\n", argv[0]);\n\n"
-      "    printf("%s: end\n", argv[0]);\n\n"
       "    return(0);\n"
       "}\n"
      )
