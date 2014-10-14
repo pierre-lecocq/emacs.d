@@ -3,7 +3,7 @@
 ;; Load all configs from org files code blocks (~/.emacs.d/config/org/*.org)
 ;;
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;; Custom file
 (setq custom-file (concat user-emacs-directory "custom.el"))
@@ -25,7 +25,7 @@
     (format "%s/02-common.org" config-dir-org)
     (format "%s/03-autoinsert.org" config-dir-org)
     (format "%s/04-orgmode.org" config-dir-org)
-;;    (format "%s/05-projects.org" config-dir-org)
+    ;; (format "%s/05-projects.org" config-dir-org)
     (format "%s/09-keybindings.org" config-dir-org)
     (format "%s/99-%s.org" config-dir-org (downcase (car (split-string system-name "\\."))))))
 

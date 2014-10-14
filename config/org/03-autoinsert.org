@@ -59,5 +59,13 @@ Activate auto-insert-mode for ubserting some templates specific files
       " # Description: " _ "\n"
       " #/\n\n"
      )
+
+     ((lisp-mode . "Lisp mode")
+      nil
+      ";; File: " (file-name-nondirectory buffer-file-name) "\n"
+      ";; Time-stamp: <>\n"
+      ";; Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
+      ";; Description: " _ "\n\n"
+     )
 ))
 #+end_src
