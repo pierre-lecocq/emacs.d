@@ -85,10 +85,6 @@ Org publishing projects
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.<span></span></a></h1>
-<ul class=\"nav\">
-<li><a href=\"/\">Home</a></li>
-<li><a href=\"/about.html\">About</a></li>
-</ul>
 <ul class=\"contact\">
 <li><a href=\"https://github.com/pierre-lecocq\" class=\"github\" title=\"Github\" target=\"_blank\">Github</a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\">Twitter</a></li>
@@ -133,10 +129,6 @@ Org publishing projects
                                    :html-preamble "
 <header>
 <h1><a href=\"/\">Pierre L.<span></span></a></h1>
-<ul class=\"nav\">
-<li><a href=\"/\">Home</a></li>
-<li><a href=\"/about.html\">About</a></li>
-</ul>
 <ul class=\"contact\">
 <li><a href=\"https://github.com/pierre-lecocq\" class=\"github\" title=\"Github\" target=\"_blank\">Github</a></li>
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\">Twitter</a></li>
