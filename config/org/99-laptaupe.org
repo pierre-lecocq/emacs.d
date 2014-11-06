@@ -9,8 +9,8 @@ Set fonts
 Additionnal packages
 
 #+begin_src emacs-lisp
-(use-package go-mode
-	     :ensure go-mode)
+;; (use-package go-mode
+;;	     :ensure go-mode)
 
 (use-package inf-ruby
 	     :ensure inf-ruby)
@@ -20,6 +20,6 @@ Additionnal packages
              :init (progn
                      (add-hook 'ruby-mode-hook (lambda () (rvm-activate-corresponding-ruby)))))
 
-(use-package vagrant
-	     :ensure vagrant)
+;; (use-package vagrant
+;;	     :ensure vagrant)
 #+end_src
