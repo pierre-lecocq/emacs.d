@@ -293,6 +293,15 @@ Install John Wiegley's =use-package= package
          :ensure markdown-mode)
 #+end_src
 
+*PHP extras* - Extra features for Emacs php-mode.
+
+#+begin_src emacs-lisp
+(use-package php-extras
+         :ensure php-extras
+         :init (progn
+           (add-hook 'php-mode-hook (lambda () (require 'php-extras)))))
+#+end_src
+
 *PHP mode* - Major mode for editing PHP code
 
 #+begin_src emacs-lisp
