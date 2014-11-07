@@ -240,6 +240,7 @@ Install John Wiegley's =use-package= package
              :init (progn
              (require 'ido)
              (ido-mode t)
+             (ido-everywhere 1)
              (setq ido-enable-flex-matching t)
                      (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))))
 #+end_src
@@ -326,6 +327,16 @@ Install John Wiegley's =use-package= package
          :init (progn
              (recentf-mode 1)
              (setq recentf-max-menu-items 25)))
+#+end_src
+
+*Robe mode* - Code navigation, documentation lookup and completion for Ruby
+
+#+begin_src emacs-lisp
+(use-package robe
+         :ensure robe
+         :init (progn
+             (add-hook 'ruby-mode-hook 'robe-mode)
+             (push 'company-robe company-backends)))
 #+end_src
 
 *Ruby mode* - Major mode for editing Ruby code
