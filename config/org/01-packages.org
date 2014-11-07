@@ -227,6 +227,7 @@ Install John Wiegley's =use-package= package
 (use-package idle-highlight-mode
          :ensure idle-highlight-mode
          :init (progn
+             (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
