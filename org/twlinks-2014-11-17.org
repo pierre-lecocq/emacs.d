@@ -1,3 +1,0 @@
-* [[http://www.lunaryorn.com/2014/08/12/emacs-script-pitfalls.html][http://www.lunaryorn.com/2014/08/12/emacs-script-pitfalls.html]] :unread:
-* [[http://barracudafirewalls.ca/freebies/poster/poster_http_packet.pdf][http://barracudafirewalls.ca/freebies/poster/poster_http_packet.pdf]] :unread:
-* [[http://stackoverflow.com/questions/16801396/when-should-emacs-function-syntax-be-used][http://stackoverflow.com/questions/16801396/when-should-emacs-function-syntax-be-used]] :unread:
