@@ -2,13 +2,12 @@
 #+STARTUP: showall
 
 * [[http://overapi.com/ruby/][Ruby cheat sheet]] :ruby:cheatsheet:
-* [[http://ck.kennt*wayne.de/2013/may/emacs:*jump*to*matching*paren*beginning*of*block][Jump to matching paren/beginning of block]] :emacs:elisp:
-* [[http://www.secdocs.org/docs/ruby*for*pentesters*the*workshop*slides/][Ruby for Pentesters: The Workshop]] :ruby:security:
-* [[http://documentation.online.net/fr/serveur*dedie/tutoriel/iptables*netfilter*configuration*firewall][Iptables & Netfilter firewall example]] :security:
-* [[http://ruby*metaprogramming.rubylearning.com/][Ruby metaprogramming full course]] :ruby:metaprogramming:
+* [[http://www.secdocs.org/docs/ruby-for-pentesters-the-workshop-slides/][Ruby for Pentesters: The Workshop]] :ruby:security:
+* [[http://documentation.online.net/fr/serveur-dedie/tutoriel/iptables-netfilter-configuration-firewall][Iptables & Netfilter firewall example]] :security:
+* [[http://ruby-metaprogramming.rubylearning.com/][Ruby metaprogramming full course]] :ruby:metaprogramming:
 * [[http://viewsourcecode.org/why/hacking/seeingMetaclassesClearly.html][Seeing Metaclasses Clearly]] :ruby:metaprogramming:
-* [[http://www.thefanclub.co.za/how*to/how*secure*ubuntu*1204*lts*server*part*1*basics][How to secure a linux server * Part 1 The Basics]] :security:linux:
-* [[http://stackoverflow.com/questions/6795203/create*class*dynamically*with*inheritance*and*particular*accessors][Create class dynamically, with inheritance and particular accessors]] :ruby:metaprogramming:
+* [[http://www.thefanclub.co.za/how-to/how-secure-ubuntu-1204-lts-server-part-1-basics][How to secure a linux server * Part 1 The Basics]] :security:linux:
+* [[http://stackoverflow.com/questions/6795203/create-class-dynamically-with-inheritance-and-particular-accessors][Create class dynamically, with inheritance and particular accessors]] :ruby:metaprogramming:
 * [[http://rubyweekly.com/issues][Ruby weekly]] :ruby:
 * [[http://ruby5.envylabs.com/][Ruby5 casts]] :ruby:
 * [[https://news.ycombinator.com/][Hacker news]] :morning;
@@ -27,9 +26,9 @@
 * [[http://www.lemonde.fr/][Le Monde]] :morning:
 * [[http://rue89.nouvelobs.com/][Rue89]] :morning:
 * [[http://www.rugbyrama.fr/][Rugbyrama]] :morning:
-* [[https://github.com/markets/awesome*ruby][Awesome list of ruby resources]] :ruby:
+* [[https://github.com/markets/awesome-ruby][Awesome list of ruby resources]] :ruby:
 * [[http://nullprogram.com/blog/2013/02/06/][How to Make an Emacs Minor Mode]] :emacs:lisp:
-* [[http://blog.arkency.com/2014/07/hidden*features*of*ruby*you*may*dont*know*about/][Hidden features of Ruby you may not know about]] :ruby:
+* [[http://blog.arkency.com/2014/07/hidden-features-of-ruby-you-may-dont-know-about/][Hidden features of Ruby you may not know about]] :ruby:
 * [[http://www.cnx-software.com/2012/07/31/84-mb-minimal-raspbian-armhf-image-for-raspberry-pi/][84 MB Minimal Raspbian ARMHF Image for Raspberry Pi]]      :debian:raspberry:
 * [[http://www.youtube.com/watch?v=gk39mp8Vy4Mf][Writing games in Emacs]]                                              :emacs:
 * [[http://dfir.org/?q=node/8][Security Recommended Reading]]                                     :security:
@@ -66,7 +65,6 @@
 * [[http://fr.slideshare.net/yukiogoto7/how-to-make-dslhowtomakedsl][How to make DSL]] :ruby:programming:
 * [[http://redgetan.cc/understanding-timeouts-in-cruby][Understanding Timeouts in Ruby (MRI)]] :ruby:programming:
 * [[https://github.com/SamyPesse/How-to-Make-a-Computer-Operating-System][How to Make a Computer Operating System]] :system:programming:
-* [[https://github.com/markets/awesome-ruby][Awesome Ruby]] :ruby:
 * [[https://emailselfdefense.fsf.org/en/][Email Self-Defense]] :netsec:
 * [[https://hakiri.io/blog/ruby-security-tools-and-resources][Ruby Security Tools and Resources]] :ruby:security:
 * [[http://blog.tjll.net/ssh-kung-fu/][SSH Kung Fu]] :ssh:system:security:
