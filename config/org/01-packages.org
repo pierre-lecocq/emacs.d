@@ -273,7 +273,6 @@ Install John Wiegley's =use-package= package
                  (indent-guide-global-mode)))
 #+end_src
 
-
 *JS2 mode* - Improved JavaScript editing mode
 
 #+begin_src emacs-lisp

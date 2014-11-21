@@ -156,6 +156,19 @@ Remove useless UI
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 #+end_src
 
+Activate linum-mode for org-mode, markdown-mode and text-mode (stolen from the internetz)
+
+#+begin_src emacs-lisp
+(defun pl/linum-mode()
+    (interactive)
+    (linum-mode 1)
+    (make-local-variable 'linum-format)
+    (setq linum-format "  %d "))
+(add-hook 'org-mode-hook 'pl/linum-mode)
+(add-hook 'markdown-mode-hook 'pl/linum-mode)
+(add-hook 'text-mode-hook 'pl/linum-mode)
+#+end_src
+
 Control frame transparency
 
 #+begin_src emacs-lisp
