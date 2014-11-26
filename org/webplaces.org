@@ -10,7 +10,7 @@
 * [[http://stackoverflow.com/questions/6795203/create-class-dynamically-with-inheritance-and-particular-accessors][Create class dynamically, with inheritance and particular accessors]] :ruby:metaprogramming:
 * [[http://rubyweekly.com/issues][Ruby weekly]] :ruby:
 * [[http://ruby5.envylabs.com/][Ruby5 casts]] :ruby:
-* [[https://news.ycombinator.com/][Hacker news]] :morning;
+* [[https://news.ycombinator.com/][Hacker news]] :morning:
 * [[http://www.reddit.com/r/debian+emacs+netsec+ruby+linux][Reddit mashup]] :morning:
 * [[http://stream.rubydaily.org/][Rubydaily stream]] :ruby:morning:
 * [[http://www.rubyflow.com/][Rubyflow]] :ruby:morning:
