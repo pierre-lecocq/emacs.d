@@ -87,7 +87,6 @@ Org publishing projects
 <li><a href=\"/rss.xml\" class=\"rss\" title=\"RSS\" target=\"_blank\">RSS</a></li>
 <li><a href=\"mailto:pierre.lecocq@gmail.com?subject=Contact+from+qsdfgh.com\" class=\"email\" title=\"Email\" target=\"_blank\">Email</a></li>
 </ul>
-<div class=\"screen\"></div>
 </header>")
 
 (setq html-chunk-postamble "
