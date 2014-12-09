@@ -105,3 +105,9 @@
 * [[http://www.offensive-security.com/penetration-testing-sample-report.pdf][Penetration Test Report]] :netsec:
 * [[http://www.lunaryorn.com/2014/08/12/emacs-script-pitfalls.html][Emacs script pitfalls (Making Emacs Lisp scripts executable)]] :emacs:lisp:programming:
 * [[http://barracudafirewalls.ca/freebies/poster/poster_http_packet.pdf][HTTP Packet poster]] :networking:
+* [[http://phusion.github.io/traveling-ruby/][Easily ship Ruby apps to end users]]                           :ruby:
+* [[http://ahefner.livejournal.com/20528.html][Fun with Lisp: Programming the NES]] :lisp:programming:
+* [[http://www.leighhalliday.com/posts/block-based-configuration][Block Based Configuration]] :ruby:
+* [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Eschewing Zshell for Emacs]] :emacs:shell:
+* [[http://thorstenball.com/blog/2014/11/20/unicorn-unix-magic-tricks/][Unicorn Unix Magic Tricks]] :ruby:sysadmin:
+* [[http://pragtob.wordpress.com/2014/11/19/writing-dsls-in-ruby-without-monkeypatching-object/][Writing DSLs in Ruby without monkeypatching Object]] :ruby:programming:
