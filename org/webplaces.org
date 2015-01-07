@@ -111,3 +111,41 @@
 * [[http://www.howardism.org/Technical/Emacs/eshell-fun.html][Eschewing Zshell for Emacs]] :emacs:shell:
 * [[http://thorstenball.com/blog/2014/11/20/unicorn-unix-magic-tricks/][Unicorn Unix Magic Tricks]] :ruby:sysadmin:
 * [[http://pragtob.wordpress.com/2014/11/19/writing-dsls-in-ruby-without-monkeypatching-object/][Writing DSLs in Ruby without monkeypatching Object]] :ruby:programming:
+* [[https://stribika.github.io/2015/01/04/secure-secure-shell.html][https://stribika.github.io/2015/01/04/secure-secure-shell.html]] :unread:
+* [[http://blog.ppelgren.se/2015-01-03/DIY-Make-Your-Own-Programming-language/][http://blog.ppelgren.se/2015-01-03/DIY-Make-Your-Own-Programming-language/]] :unread:
+* [[https://github.com/Nils-TUD/Escape][https://github.com/Nils-TUD/Escape]] :unread:
+* [[http://rubybib.org/][http://rubybib.org/]] :unread:
+* [[https://github.com/0xAX/linux-insides/blob/master/linux-bootstrap-1.md][https://github.com/0xAX/linux-insides/blob/master/linux-bootstrap-1.md]] :unread:
+* [[http://dspace.mit.edu/bitstream/handle/1721.1/5731/AIM-514.pdf][http://dspace.mit.edu/bitstream/handle/1721.1/5731/AIM-514.pdf]] :unread:
+* [[https://gist.github.com/danielpclark/aa90153a882a875eafc2][https://gist.github.com/danielpclark/aa90153a882a875eafc2]] :unread:
+* [[http://przemekmroczek.com/post/106717411075/5-killer-ruby-talks-of-2014][http://przemekmroczek.com/post/106717411075/5-killer-ruby-talks-of-2014]] :unread:
+* [[http://rubini.us/2014/12/31/matz-s-ruby-developers-don-t-use-rubyspec/][http://rubini.us/2014/12/31/matz-s-ruby-developers-don-t-use-rubyspec/]] :unread:
+* [[https://plus.google.com/+JorgenSch%C3%A4fer/posts/ZaZcunihGqc][https://plus.google.com/+JorgenSch%C3%A4fer/posts/ZaZcunihGqc]] :unread:
+* [[http://darkmail.info/][http://darkmail.info/]] :unread:
+* [[http://nshipster.com/the-death-of-cocoa/][http://nshipster.com/the-death-of-cocoa/]] :unread:
+* [[https://sagitta.systems/hardware/gpu-compute-nodes/brutalis/][https://sagitta.systems/hardware/gpu-compute-nodes/brutalis/]] :unread:
+* [[http://www.sitepoint.com/ruby-peek-2015/][http://www.sitepoint.com/ruby-peek-2015/]] :unread:
+* [[http://nullprogram.com/blog/2014/12/23/][http://nullprogram.com/blog/2014/12/23/]] :unread:
+* [[http://www.nextinpact.com/news/91376-interview-eric-freyssinet-nous-parle-botnets-et-sa-botconf.htm][http://www.nextinpact.com/news/91376-interview-eric-freyssinet-nous-parle-botnets-et-sa-botconf.htm]] :unread:
+* [[http://www.mostlymaths.net/2013/04/just-as-mario-using-plan9-plumber.html][http://www.mostlymaths.net/2013/04/just-as-mario-using-plan9-plumber.html]] :unread:
+* [[https://www.kickstarter.com/projects/chug/the-drinking-jacket-the-ultimate-drinking-accessor/][https://www.kickstarter.com/projects/chug/the-drinking-jacket-the-ultimate-drinking-accessor/]] :unread:
+* [[http://www.masteringemacs.org/book][http://www.masteringemacs.org/book]] :unread:
+* [[https://github.com/syohex/emacs-quickrun][https://github.com/syohex/emacs-quickrun]] :unread:
+* [[http://lisper.in/promises/][http://lisper.in/promises/]] :unread:
+* [[http://www.nhplace.com/kent/Papers/cl-untold-story.html][http://www.nhplace.com/kent/Papers/cl-untold-story.html]] :unread:
+* [[http://yarchive.net/comp/linux/semaphores.html][http://yarchive.net/comp/linux/semaphores.html]] :unread:
+* [[http://www.saturnflyer.com/blog/jim/2014/12/16/preferring-value-objects-or-setters-and-arguments/][http://www.saturnflyer.com/blog/jim/2014/12/16/preferring-value-objects-or-setters-and-arguments/]] :unread:
+* [[http://zvkemp.github.io/blog/2014/12/15/introduction-to-functional-programming-in-ruby-linked-lists/][http://zvkemp.github.io/blog/2014/12/15/introduction-to-functional-programming-in-ruby-linked-lists/]] :unread:
+* [[http://zvkemp.github.io/blog/2014/04/25/binary-search-trees-in-ruby/][http://zvkemp.github.io/blog/2014/04/25/binary-search-trees-in-ruby/]] :unread:
+* [[http://goaccess.io/][http://goaccess.io/]] :unread:
+* [[http://www.weheartcv.com/understanding-image/][http://www.weheartcv.com/understanding-image/]] :unread:
+* [[http://juanreyero.com/article/emacs/org-teams.html][http://juanreyero.com/article/emacs/org-teams.html]] :unread:
+* [[http://blog.lse.epita.fr/articles/75-sstpinball.html][http://blog.lse.epita.fr/articles/75-sstpinball.html]] :unread:
+* [[https://highon.coffee/docs/nmap/][https://highon.coffee/docs/nmap/]] :unread:
+* [[https://sslimgs.xkcd.com/comics/incident.png?utm_content=buffer8c17a&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer][https://sslimgs.xkcd.com/comics/incident.png?utm_content=buffer8c17a&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer]] :unread:
+* [[http://www.codergears.com/Blog/?p=1103][http://www.codergears.com/Blog/?p=1103]] :unread:
+* [[https://github.com/matz/streem][https://github.com/matz/streem]] :unread:
+* [[http://people.skolelinux.org/pere/blog/How_to_stay_with_sysvinit_in_Debian_Jessie.html][http://people.skolelinux.org/pere/blog/How_to_stay_with_sysvinit_in_Debian_Jessie.html]] :unread:
+* [[http://www.howardism.org/Technical/Emacs/literate-devops.html][http://www.howardism.org/Technical/Emacs/literate-devops.html]] :unread:
+* [[http://www.developingandstuff.com/2013/08/tuning-your-ruby-gc-for-fun-and-profit.html][http://www.developingandstuff.com/2013/08/tuning-your-ruby-gc-for-fun-and-profit.html]] :unread:
+* [[http://endlessparentheses.com/introducing-names-practical-namespaces-for-emacs-lisp.html][http://endlessparentheses.com/introducing-names-practical-namespaces-for-emacs-lisp.html]] :unread:
