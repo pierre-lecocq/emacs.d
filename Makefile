@@ -48,6 +48,9 @@ helm: prepare
 		echo "(add-to-list 'load-path \"$(BASE_DIR)/$(PACKAGES_DIR)/async\" t)" >> $(CUSTOM_FILE); \
 		echo "(add-to-list 'load-path \"$(BASE_DIR)/$(PACKAGES_DIR)/helm\" t)" >> $(CUSTOM_FILE); \
 		echo "(require 'helm-config)" >> $(CUSTOM_FILE); \
+		echo "(helm-mode 1)" >> $(CUSTOM_FILE); \
+		echo "(helm-autoresize-mode 1)" >> $(CUSTOM_FILE); \
+		echo "(global-set-key (kbd \"M-x\") 'helm-M-x)" >> $(CUSTOM_FILE); \
 	fi \
 
 love: reset org my
