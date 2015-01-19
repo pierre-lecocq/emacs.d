@@ -52,6 +52,13 @@ Source code syntax highlighting
 (setq org-src-fontify-natively t)
 #+end_src
 
+Hack to avoid `org-html-fontify-code' errors (credits: http://wenshanren.org/?p=781)
+
+#+begin_src emacs-lisp
+(defun org-font-lock-ensure ()
+  (font-lock-fontify-buffer))
+#+end_src
+
 Org publishing projects
 
 #+begin_src emacs-lisp
