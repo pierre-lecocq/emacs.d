@@ -1,0 +1,132 @@
+*Elfeed* - An Emacs Atom/RSS feed reader
+
+#+begin_src emacs-lisp
+(use-package elfeed
+         :ensure elfeed
+         :init (progn
+             (setq elfeed-feeds
+               '(("http://planet.emacsen.org/atom.xml" emacs)
+                 ("http://emacsredux.com/atom.xml" emacs dev blog)
+                 ("http://nullprogram.com/feed/" emacs blog)
+                 ("http://www.masteringemacs.org/feed/" emacs dev blog)
+                 ("http://sachachua.com/blog/feed/" emacs blog)
+                 ("http://batsov.com/atom.xml" ruby emacs dev blog)
+                 ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
+                 ("http://planet.debian.org/rss20.xml" system linux debian)
+                 ("http://www.reddit.com/r/debian.rss" system linux debian)
+                 ("http://www.reddit.com/r/emacs.rss" emacs)
+                 ("http://www.reddit.com/r/netsec.rss" security)
+                 ("https://www.schneier.com/blog/atom.xml" security blog)
+                 ("http://www.reddit.com/r/linux.rss" system linux)
+                 ("http://www.reddit.com/r/ruby.rss" ruby dev)
+                 ("https://www.ruby-lang.org/en/feeds/news.rss" ruby dev)
+                 ("http://devblog.avdi.org/feed/" ruby dev blog)
+                 ("http://feeds.feedburner.com/codinghorror?format=xml" dev blog)
+                 "http://xkcd.com/rss.xml"))))
+#+end_src
+
+*EMMS* - The Emacs Multimedia System
+
+#+begin_src emacs-lisp
+(use-package emms
+         :ensure emms
+         :init (progn
+             (require 'emms-setup)
+             (emms-standard)
+             (emms-default-players)
+             ;; Cache is good when using EMMS but slows Emacs startup
+             (emms-cache -1)
+
+             (setq
+              emms-info-asynchronously nil
+              emms-playlist-buffer-name "*EMMS*"
+              emms-source-file-default-directory "~/music/"
+              emms-stream-bookmarks-file "~/.emacs.d/emms/streams")
+
+             (define-emms-simple-player mplayer '(file url)
+               (regexp-opt '(".ogg" ".mp3" ".wav" ".mpg" ".mpeg" ".wmv" ".wma"
+                     ".mov" ".avi" ".m4v" ".divx" ".ogm" ".asf" ".mkv" "http://" "mms://"
+                     ".rm" ".rmvb" ".mp4" ".flac" ".vob" ".m4a" ".flv" ".ogv" ".pls"))
+               "mplayer" "-slave" "-quiet" "-really-quiet" "-fullscreen")
+
+             (defun pl/emms-track-description(track)
+               (let ((tracknumber (emms-track-get track 'info-tracknumber))
+                 (playtime (emms-track-get track 'info-playing-time))
+                 (artist (emms-track-get track 'info-artist))
+                 (album (emms-track-get track 'info-album))
+                 (title (emms-track-get track 'info-title)))
+             (if (eq nil title)
+                 (emms-track-simple-description track)
+               (format " %02d | %s (%s) - %s [%02d]"
+                   (if (> (length tracknumber) 0) (string-to-number tracknumber) 0)
+                   (if (> (length artist) 0) artist "Unknown artist")
+                   (if (> (length album) 0) album "Unknown album")
+                   (if (> (length title) 0) title "Unknown title")
+                   (if (> playtime 0) playtime 0)))))
+
+             (setq emms-track-description-function 'pl/emms-track-description)
+
+             (defun pl/emms-toggle()
+               (interactive)
+               (if (eq nil (get-buffer "*EMMS*"))
+               (call-interactively 'emms-play-directory)
+             (emms-pause)))
+
+             (global-set-key (kbd "<XF86AudioPlay>") 'pl/emms-toggle)))
+#+end_src
+
+*ERC* - A powerful, modular, and extensible IRC client for Emacs
+
+#+begin_src emacs-lisp
+(use-package erc
+         :init (progn
+             (defun pl/erc-connect ()
+               (interactive)
+
+               (setq erc-nick "pierreL")
+               (setq erc-log-insert-log-on-open nil)
+               (setq erc-log-channels t)
+               (setq erc-log-channels-directory "~/.irclogs/")
+               (setq erc-save-buffer-on-part t)
+               (setq erc-hide-timestamps nil)
+               (erc-netsplit-mode 1)
+               (setq erc-hide-list '("JOIN" "PART" "QUIT"))
+               (setq erc-max-buffer-size 20000)
+               (defvar erc-insert-post-hook)
+               (add-hook 'erc-insert-post-hook 'erc-truncate-buffer)
+               (setq erc-truncate-buffer-on-save t)
+               (setq erc-keywords '("pierreL"))
+               (erc-match-mode 1)
+               (setq erc-timestamp-only-if-changed-flag nil)
+               (setq erc-timestamp-format "[%R] ")
+               (setq erc-insert-timestamp-function 'erc-insert-timestamp-left)
+               (setq erc-server-coding-system '(utf-8 . utf-8))
+               (setq erc-interpret-mirc-color t)
+               (setq erc-kill-buffer-on-part t)
+               (setq erc-kill-queries-on-quit t)
+               (setq erc-kill-server-buffer-on-quit t)
+               (add-hook 'erc-mode-hook (lambda () (auto-fill-mode 0)))
+               ;;(erc-scrolltobottom-enable)
+
+               (add-hook 'erc-after-connect
+                 '(lambda (SERVER NICK)
+                    (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))
+
+               (erc :server "irc.freenode.net" :port 6666 :nick "pierreL" :full-name "Pierre")
+               ;; (setq erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+               (setq erc-autojoin-channels-alist '(("freenode.net" "#emacs"))))))
+#+end_src
+
+*Magit* - Control Git from Emacs
+
+#+begin_src emacs-lisp
+(use-package magit
+         :ensure magit)
+#+end_src
+
+*W3m* - An Emacs interface to w3m
+
+#+begin_src emacs-lisp
+(use-package w3m
+         :ensure w3m)
+#+end_src

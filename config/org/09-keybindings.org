@@ -62,7 +62,7 @@ Find file in TAGS
 Browse url
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-S-u") 'w3m-view-url-with-external-browser)
+(global-set-key (kbd "C-S-u") 'eww-browse-with-external-browser)
 #+end_src
 
 Launch OrgCapture
