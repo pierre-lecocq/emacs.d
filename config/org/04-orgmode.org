@@ -88,7 +88,6 @@ Org publishing projects
 (setq html-chunk-preamble "
 <header>
 <h1><a href=\"/\">Qsdfgh.com<span></span></a></h1>
-<a href=\"/index.html\" class=\"single\">Home</a>
 <a href=\"/about.html\" class=\"single\">About</a>
 <ul class=\"contact\">
 <li><a href=\"https://twitter.com/pierre404\" class=\"twitter\" title=\"Twitter\" target=\"_blank\">Twitter</a></li>
