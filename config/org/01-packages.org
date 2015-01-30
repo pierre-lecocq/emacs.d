@@ -6,9 +6,9 @@ Set up the package manager and its sources
 
 #+begin_src emacs-lisp
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 #+end_src
 
@@ -238,6 +238,15 @@ Install John Wiegley's =use-package= package
                       (global-set-key (kbd "C-M-m n") 'forward-mark)
                       (global-set-key (kbd "C-M-m p") 'backward-mark)
                       (global-set-key (kbd "C-M-m s") 'show-marks)))
+#+end_src
+
+*Symon* - Tiny graphical system monitor
+
+#+begin_src emacs-lisp
+(use-package symon
+         :ensure symon
+         :init (progn
+                 (symon-mode t)))
 #+end_src
 
 *Uniquify* - Making buffer names unique
