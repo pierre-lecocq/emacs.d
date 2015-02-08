@@ -110,6 +110,7 @@ Install John Wiegley's =use-package= package
          :init (progn
              (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
+             (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t)))))
@@ -187,7 +188,6 @@ Install John Wiegley's =use-package= package
 *Rainbow mode* - Minor mode which displays strings representing colors with the color they represent
 
 #+begin_src emacs-lisp
-
 (use-package rainbow-mode
          :ensure rainbow-mode
          :init (progn
