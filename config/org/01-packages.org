@@ -257,6 +257,15 @@ Install John Wiegley's =use-package= package
                  (symon-mode t)))
 #+end_src
 
+*Switch window* -  Offer a visual way to choose a window to switch
+
+#+begin_src emacs-lisp
+(use-package switch-window
+         :ensure switch-window
+         :init (progn
+                 (global-set-key (kbd "C-x o") 'switch-window)))
+#+end_src
+
 *Uniquify* - Making buffer names unique
 
 #+begin_src emacs-lisp
