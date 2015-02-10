@@ -6,9 +6,9 @@ Set up the package manager and its sources
 
 #+begin_src emacs-lisp
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 (package-initialize)
 #+end_src
 
@@ -51,15 +51,6 @@ Install John Wiegley's =use-package= package
          :ensure bbdb)
 #+end_src
 
-*Browse-kill-ring* - For when 'C-y M-y M-y M-y' gets you down
-
-#+begin_src emacs-lisp
-(use-package browse-kill-ring
-         :ensure browse-kill-ring
-         :init (progn
-                 (global-set-key "\M-y" 'browse-kill-ring)))
-#+end_src
-
 *Company* - Modular text completion framework
 
 #+begin_src emacs-lisp
@@ -74,6 +65,16 @@ Install John Wiegley's =use-package= package
              (add-to-list 'company-backends 'company-files t)))
 #+end_src
 
+*Cycle-resize* - Cycle resize the current window horizontally or vertically
+
+#+begin_src emacs-lisp
+(use-package cycle-resize
+         :ensure cycle-resize
+         :init (progn
+                 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
+                 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)))
+#+end_src
+
 *Darkmine-theme* - Yet another emacs dark color theme
 
 #+begin_src emacs-lisp
@@ -86,6 +87,13 @@ Install John Wiegley's =use-package= package
 #+begin_src emacs-lisp
 (use-package flycheck
          :ensure flycheck)
+#+end_src
+
+*Flx-ido* - (required for projectile)
+
+#+begin_src emacs-lisp
+(use-package flx-ido
+         :ensure flx-ido)
 #+end_src
 
 *Gnus Desktop Notify* - Gnus Desktop Notification global minor mode
@@ -110,6 +118,7 @@ Install John Wiegley's =use-package= package
          :init (progn
              (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
+             (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
              (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t)))))
@@ -184,10 +193,20 @@ Install John Wiegley's =use-package= package
          :ensure php-mode)
 #+end_src
 
+*Projectile* - Project Interaction Library for Emacs
+
+#+begin_src emacs-lisp
+(use-package projectile
+         :ensure projectile
+         :init (progn
+                  (projectile-global-mode)
+                  (setq projectile-enable-caching t)
+                  (setq projectile-file-exists-remote-cache-expire nil)))
+#+end_src
+
 *Rainbow mode* - Minor mode which displays strings representing colors with the color they represent
 
 #+begin_src emacs-lisp
-
 (use-package rainbow-mode
          :ensure rainbow-mode
          :init (progn
@@ -229,15 +248,22 @@ Install John Wiegley's =use-package= package
                      (setq inferior-lisp-program "sbcl")))
 #+end_src
 
-*Show marks* - Navigate and visualize the mark-ring
+*Symon* - Tiny graphical system monitor
 
 #+begin_src emacs-lisp
-(use-package show-marks
-         :ensure show-marks
-             :init (progn
-                      (global-set-key (kbd "C-M-m n") 'forward-mark)
-                      (global-set-key (kbd "C-M-m p") 'backward-mark)
-                      (global-set-key (kbd "C-M-m s") 'show-marks)))
+(use-package symon
+         :ensure symon
+         :init (progn
+                 (symon-mode t)))
+#+end_src
+
+*Switch window* -  Offer a visual way to choose a window to switch
+
+#+begin_src emacs-lisp
+(use-package switch-window
+         :ensure switch-window
+         :init (progn
+                 (global-set-key (kbd "C-x o") 'switch-window)))
 #+end_src
 
 *Uniquify* - Making buffer names unique
