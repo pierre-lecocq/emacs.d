@@ -38,19 +38,4 @@ org: prepare
 		echo "(add-to-list 'load-path \"$(BASE_DIR)/$(PACKAGES_DIR)/org-mode/contrib/lisp\" t)" >> $(CUSTOM_FILE); \
 	fi
 
-helm: prepare
-	if ! [ -d $(PACKAGES_DIR)/helm ]; then \
-		$(info Installing Helm from sources) \
-		git clone https://github.com/emacs-helm/helm.git $(PACKAGES_DIR)/helm; \
-	        git clone git@github.com:jwiegley/emacs-async.git $(PACKAGES_DIR)/async; \
-		cd $(PACKAGES_DIR)/helm && make; \
-		cd $(BASE_DIR); \
-		echo "(add-to-list 'load-path \"$(BASE_DIR)/$(PACKAGES_DIR)/async\" t)" >> $(CUSTOM_FILE); \
-		echo "(add-to-list 'load-path \"$(BASE_DIR)/$(PACKAGES_DIR)/helm\" t)" >> $(CUSTOM_FILE); \
-		echo "(require 'helm-config)" >> $(CUSTOM_FILE); \
-		echo "(helm-mode 1)" >> $(CUSTOM_FILE); \
-		echo "(helm-autoresize-mode 1)" >> $(CUSTOM_FILE); \
-		echo "(global-set-key (kbd \"M-x\") 'helm-M-x)" >> $(CUSTOM_FILE); \
-	fi \
-
 love: reset org my
