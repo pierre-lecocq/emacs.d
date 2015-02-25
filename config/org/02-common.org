@@ -295,3 +295,18 @@ Lint the current file (credits goes to Dimitri Fontaine)
   (interactive)
   (compile (format "php -l %s" (buffer-file-name))))
 #+end_src
+
+*** Insert rubygems in ruby buffer
+
+#+begin_src emacs-lisp
+(defun rb-require ()
+  "Insert required rubygems"
+  (interactive "*")
+  (let ((gems (read-from-minibuffer "Rubygems to require: ")))
+    (when gems
+      (mapcar (lambda (gem)
+                (insert (format "require \"%s\"\n" gem)))
+              (split-string gems nil t)))))
+
+(add-hook 'ruby-mode-hook (lambda () (global-set-key "\C-c\C-p" 'rb-require)))
+#+end_src
