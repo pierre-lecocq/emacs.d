@@ -2,9 +2,8 @@
 *
 # ... but my files
 !init.el
-!config/org/*.org
+!lisp/*.el
 !org/*.org
-!emms/streams
 !README.org
 !.gitignore
 !Makefile

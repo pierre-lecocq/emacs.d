@@ -1,52 +1,70 @@
-;;
-;; Emacs config file - Pierre Lecocq
-;; Load all configs from org files code blocks (~/.emacs.d/config/org/*.org)
-;;
+;;; init.el --- Emacs Config - Main init file
 
-;; (setq debug-on-error t)
+;;; Commentary:
+;; Time-stamp: <2015-02-25 23:39:18 pierre>
+;; Copyright (C) 2015 Pierre Lecocq
 
-;; Custom file
-(setq custom-file (concat user-emacs-directory "custom.el"))
-(if (file-exists-p custom-file)
-  (load custom-file))
+(setq debug-on-error t)
 
-;; Prepare directories
-(defvar config-dir-org (format "%sconfig/org" user-emacs-directory))
-(unless (file-exists-p config-dir-org)
-  (error (format "Missing %s directory" config-dir-org)))
+;;; Code:
 
-(defvar config-dir-elisp (format "%sconfig/elisp" user-emacs-directory))
-(unless (file-exists-p config-dir-elisp)
-  (make-directory config-dir-elisp))
+(setq
+ user-full-name "Pierre Lecocq"
+ user-mail-address "pierre.lecocq@gmail.com")
 
-;; Set org config files to load
-(defvar org-files
-  (list (format "%s/01-packages.org" config-dir-org)
-    (format "%s/02-common.org" config-dir-org)
-    (format "%s/03-autoinsert.org" config-dir-org)
-    (format "%s/04-orgmode.org" config-dir-org)
-    ;; (format "%s/05-projects.org" config-dir-org)
-    (format "%s/09-keybindings.org" config-dir-org)
-    (format "%s/99-%s.org" config-dir-org (downcase (car (split-string system-name "\\."))))))
+;; Generic variables
 
-(unless (file-exists-p (car (last org-files)))
-  (write-region "#+begin_src emacs-lisp\n;;\n#+end_src\n" nil (car (last org-files))))
+(setq
+ ;; Files and path
+ package-user-dir "~/.emacs.d/packages"
+ custom-file "~/.emacs.d/custom.el"
+ bookmark-default-file "~/.emacs.d/bookmarks"
+ org-files-dir "~/.emacs.d/org"
+ ;; No backups
+ backup-inhibited t
+ make-backup-files nil
+ auto-save-default nil
+ ;; Startup buffer
+ inhibit-startup-message t
+ inhibit-splash-screen t
+ initial-scratch-message ";; Scratch buffer\n(setq debug-on-error t)\n\n"
+ ;; Frame title
+ frame-title-format "Emacs %f"
+ ;; Kill the whole line
+ kill-whole-line t)
 
 ;; Set load path
-(add-to-list 'load-path config-dir-elisp)
 
-;; Load org config files
-(require 'org-install)
-(require 'ob-tangle)
-(mapc (lambda (org-file)
-        (let ((el-file (replace-regexp-in-string "/org/\\([-_0-9A-Za-z]+\\)\\.org" "/elisp/\\1.el" org-file)))
-          (unless (file-exists-p el-file)
-            (if (file-exists-p org-file)
-                (progn
-                  (condition-case nil
-                      (org-babel-tangle-file org-file el-file "emacs-lisp")
-                    (error "Error while loading code from %s" org-file)))
-          (error "Can not load config file %s" org-file)))
-          (load-file el-file))) org-files)
+(eval-and-compile
+  (add-to-list 'load-path "~/.emacs.d/lisp")
+  (let ((default-directory "~/.emacs.d/packages"))
+    (normal-top-level-add-subdirs-to-load-path)))
 
-;; EOF
+;; Load files
+
+(setq files-to-load
+      (list custom-file
+            "~/.emacs.d/lisp/01-packages.el"
+            "~/.emacs.d/lisp/02-functions.el"
+            "~/.emacs.d/lisp/03-autoinsert.el"
+            "~/.emacs.d/lisp/04-orgmode.el"
+            "~/.emacs.d/lisp/09-keybindings.el"
+            (format "~/.emacs.d/lisp/99-%s.el" (downcase (car (split-string system-name "\\."))))))
+
+(dolist (f files-to-load)
+  (when (file-exists-p f)
+    (load-file f)))
+
+;; Call initialization functions
+
+(setq init-functions
+      (list #'pl--init-look-and-feel
+            #'pl--init-indentation
+            #'pl--init-files-modes
+            #'pl--init-hooks))
+
+(dolist (f init-functions)
+  (declare-function f "~/.emacs.d/lisp/02-functions.el" nil)
+  (funcall f))
+
+;;; init.el ends here

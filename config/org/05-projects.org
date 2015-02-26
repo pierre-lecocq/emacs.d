@@ -1,8 +1,0 @@
-* Project specific configurations
-
-When working on /gitsuperv/, the compile command must be different
-
-#+begin_src emacs-lisp
-(when (string-match (file-truename "~/work/emacs.d") buffer-file-name)
-  (setq compile-command "make test"))
-#+end_src
