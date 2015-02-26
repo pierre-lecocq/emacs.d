@@ -1,10 +1,10 @@
 ;;; init.el --- Emacs Config - Main init file
 
 ;;; Commentary:
-;; Time-stamp: <2015-02-25 23:39:18 pierre>
+;; Time-stamp: <2015-02-26 11:38:33 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 ;;; Code:
 
@@ -33,12 +33,11 @@
  ;; Kill the whole line
  kill-whole-line t)
 
-;; Set load path
+(unless (file-accessible-directory-p package-user-dir)
+  (make-directory package-user-dir))
 
-(eval-and-compile
-  (add-to-list 'load-path "~/.emacs.d/lisp")
-  (let ((default-directory "~/.emacs.d/packages"))
-    (normal-top-level-add-subdirs-to-load-path)))
+(unless (file-accessible-directory-p org-files-dir)
+  (make-directory org-files-dir))
 
 ;; Load files
 

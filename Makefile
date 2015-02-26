@@ -11,13 +11,9 @@ my:
 	$(info Generating config)
 	emacs -batch -l init.el
 
-compile:
-	$(info Compiling generated config)
-	emacs -batch -f batch-byte-compile init.el $(LISP_PATH)/*.el
-
 clean:
 	$(info Cleaning generated config)
-	rm -rf *.elc $(LISP_PATH)/*.elc *.eld $(EXTRAS)
+	rm -rf *~ $(LISP_PATH)/*~ *.eld $(EXTRAS)
 
 reset: clean
 	$(info Removing packages sources)

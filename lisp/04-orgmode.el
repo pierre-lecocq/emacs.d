@@ -6,9 +6,6 @@
 
 ;;; Code:
 
-(unless (file-accessible-directory-p org-files-dir)
-  (make-directory org-files-dir))
-
 (setq
  org-fontify-done-headline t
  org-src-fontify-natively t

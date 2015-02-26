@@ -1,13 +1,10 @@
 ;;; 01-packages.el --- Emacs Config - Packages
 
 ;;; Commentary:
-;; Time-stamp: <2015-02-25 23:36:33 pierre>
+;; Time-stamp: <2015-02-26 11:20:38 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Code:
-
-(unless (file-accessible-directory-p package-user-dir)
-  (make-directory package-user-dir))
 
 (require 'package)
 

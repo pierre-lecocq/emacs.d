@@ -1,7 +1,7 @@
 ;;; 02-functions.el --- Emacs Config - Functions
 
 ;;; Commentary:
-;; Time-stamp: <2015-02-25 23:39:31 pierre>
+;; Time-stamp: <2015-02-26 11:37:32 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Code:
@@ -60,7 +60,6 @@
 
   ;; Theme
   (load-theme 'darkmine t)
-  (set-fringe-mode '(1 . 1))
 
   ;; Mode line
   (which-function-mode)
