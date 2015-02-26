@@ -2,8 +2,7 @@
 *
 # ... but my files
 !init.el
-!lisp/*.el
+!lisp/config
 !org/*.org
-!README.org
 !.gitignore
 !Makefile

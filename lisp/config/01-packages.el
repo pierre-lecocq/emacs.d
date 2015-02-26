@@ -1,7 +1,7 @@
 ;;; 01-packages.el --- Emacs Config - Packages
 
 ;;; Commentary:
-;; Time-stamp: <2015-02-26 11:20:38 pierre>
+;; Time-stamp: <2015-02-26 13:21:44 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Code:
@@ -150,7 +150,9 @@
 
 (use-package symon
   :ensure symon
-  :init (symon-mode t))
+  :init (progn
+          (symon-mode t)
+          (setq symon-delay 5)))
 
 (use-package switch-window
   :ensure switch-window)

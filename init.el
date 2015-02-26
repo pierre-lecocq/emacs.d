@@ -1,7 +1,7 @@
 ;;; init.el --- Emacs Config - Main init file
 
 ;;; Commentary:
-;; Time-stamp: <2015-02-26 11:38:33 pierre>
+;; Time-stamp: <2015-02-26 13:34:31 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;; (setq debug-on-error t)
@@ -16,7 +16,7 @@
 
 (setq
  ;; Files and path
- package-user-dir "~/.emacs.d/packages"
+ package-user-dir "~/.emacs.d/lisp/vendor"
  custom-file "~/.emacs.d/custom.el"
  bookmark-default-file "~/.emacs.d/bookmarks"
  org-files-dir "~/.emacs.d/org"
@@ -43,12 +43,12 @@
 
 (setq files-to-load
       (list custom-file
-            "~/.emacs.d/lisp/01-packages.el"
-            "~/.emacs.d/lisp/02-functions.el"
-            "~/.emacs.d/lisp/03-autoinsert.el"
-            "~/.emacs.d/lisp/04-orgmode.el"
-            "~/.emacs.d/lisp/09-keybindings.el"
-            (format "~/.emacs.d/lisp/99-%s.el" (downcase (car (split-string system-name "\\."))))))
+            "~/.emacs.d/lisp/config/01-packages.el"
+            "~/.emacs.d/lisp/config/02-functions.el"
+            "~/.emacs.d/lisp/config/03-autoinsert.el"
+            "~/.emacs.d/lisp/config/04-orgmode.el"
+            "~/.emacs.d/lisp/config/09-keybindings.el"
+            (format "~/.emacs.d/lisp/config/99-%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (dolist (f files-to-load)
   (when (file-exists-p f)
@@ -63,7 +63,7 @@
             #'pl--init-hooks))
 
 (dolist (f init-functions)
-  (declare-function f "~/.emacs.d/lisp/02-functions.el" nil)
+  (declare-function f "~/.emacs.d/lisp/config/02-functions.el" nil)
   (funcall f))
 
 ;;; init.el ends here
