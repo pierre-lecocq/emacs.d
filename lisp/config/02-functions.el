@@ -28,9 +28,9 @@
 	    '(lambda ()
 	       (setq show-trailing-whitespace nil)))
   ;; Text modes
-  (add-hook 'org-mode-hook 'pl--linum-mode)
-  (add-hook 'markdown-mode-hook 'pl--linum-mode)
-  (add-hook 'text-mode-hook 'pl--linum-mode)
+  (add-hook 'org-mode-hook 'pl--text-mode)
+  (add-hook 'markdown-mode-hook 'pl--text-mode)
+  (add-hook 'text-mode-hook 'pl--text-mode)
   ;; Find file hook
   (add-hook 'find-file-hook
             '(lambda ()
@@ -50,12 +50,13 @@
   (fset 'yes-or-no-p 'y-or-n-p)
 
   ;; Bars
-  (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-  (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-  (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+  (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+  (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+  (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
   ;; Internal modes
   (show-paren-mode t)
+  (setq show-paren-style 'expression)
   (global-font-lock-mode t)
   (transient-mark-mode t)
   (line-number-mode t)
@@ -128,8 +129,12 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (set-frame-parameter (selected-frame) 'alpha value))
 
-(defun pl--linum-mode()
+(defun pl--text-mode ()
+  "Set up for text modes."
   (interactive)
+  ;; Visual line mode
+  (global-visual-line-mode 1)
+  ;; Linum mode
   (linum-mode 1)
   (make-local-variable 'linum-format)
   (setq linum-format "  %d "))
