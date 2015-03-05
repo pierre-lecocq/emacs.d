@@ -23,6 +23,10 @@
 
 (defun pl--init-hooks ()
   "Initialize hooks."
+  ;; Minibuffer mode
+  (add-hook 'minibuffer-setup-hook
+	    '(lambda ()
+	       (setq show-trailing-whitespace nil)))
   ;; Text modes
   (add-hook 'org-mode-hook 'pl--linum-mode)
   (add-hook 'markdown-mode-hook 'pl--linum-mode)
