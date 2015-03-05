@@ -83,7 +83,9 @@
           (require 'ido)
           (ido-mode t)
           (ido-everywhere 1)
+	  (flx-ido-mode 1)
           (setq ido-enable-flex-matching t)
+	  (setq ido-use-faces nil)
           (add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))))
 
 (use-package ido-hacks
@@ -117,13 +119,6 @@
                       (setq comment-end "")
                       (set (make-local-variable 'indent-tabs-mode) nil)
                       (c-set-style "custom-four-indent")))))
-
-(use-package projectile
-  :ensure projectile
-  :init (progn
-          (projectile-global-mode)
-          (setq projectile-enable-caching t)
-          (setq projectile-file-exists-remote-cache-expire nil)))
 
 (use-package rainbow-mode
   :ensure rainbow-mode
