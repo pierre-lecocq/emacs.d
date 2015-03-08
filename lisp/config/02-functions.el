@@ -139,13 +139,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (make-local-variable 'linum-format)
   (setq linum-format "  %d "))
 
-(defun pl--get-shell ()
+(defun pl-get-shell ()
   "Get a shell buffer."
   (interactive)
-  (if (eq nil (get-buffer "*shell*"))
-      (shell)
-    (switch-to-buffer "*shell*")))
-
+  (if (eq (current-buffer) (get-buffer "*shell*"))
+      (switch-to-buffer (other-buffer (current-buffer) t))
+    (progn
+      (if (member (get-buffer "*shell*") (buffer-list))
+	  (switch-to-buffer "*shell*")
+	(shell)))))
+	
 (defun pl--rb-require ()
   "Insert required rubygems."
   (interactive "*")
