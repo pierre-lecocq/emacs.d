@@ -38,7 +38,7 @@
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f7] 'add-change-log-entry-other-window)
-(global-set-key [f12] 'pl--get-shell)
+(global-set-key [f12] 'pl-get-shell)
 
 (add-hook 'c-mode-common-hook
           (lambda()
