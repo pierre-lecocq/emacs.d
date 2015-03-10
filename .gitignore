@@ -1,8 +1,4 @@
 # Ignore everything ...
 *
 # ... but my files
-!init.el
-!lisp/config
-!org/*.org
-!.gitignore
-!Makefile
+!emacs.el
