@@ -5,7 +5,11 @@
 
 ;;; Code:
 
+;; dev mode
 (setq debug-on-error t)
+
+;; semi-dev mode (will be naturally `user-emacs-directory')
+(setq base-dir "~/emacs.d-single-file/")
 
 ;;;; core
 
@@ -107,7 +111,6 @@
  user-full-name "Pierre Lecocq"
  user-mail-address "pierre.lecocq@gmail.com")
 
-(setq base-dir "~/emacs.d-single-file/")
 (setq
  package-user-dir (mkpath "vendor/packages" t)
  orgs-dir (mkpath "org" t "~/")
@@ -123,6 +126,7 @@
 (pkg-add 'anzu)
 
 (pkg-add 'darkmine-theme
+	 (message "Set DAT theme")
 	 (load-theme 'darkmine t))
 
 (pkg-add 'symon
