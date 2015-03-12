@@ -1,41 +1,7 @@
-;;; init.el --- Emacs Config - Main file
+;;; emacs.el --- Emacs Config - Main file
 
-;;; Commentary:
 ;; Time-stamp: <2015-02-26 13:34:31 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
-
-;;
-;; This file is another step into the world of emacs configuration holy grail.
-;;
-;; Step 1: Use emacs like rms just the time to realize that emacs is amazing
-;; Step 2: Be amazed by lots of things you do not even understand
-;; Step 3: Copy & paste from everywhere in a fucking messy config file
-;; Step 4: Split your config into many files but don't figure out which part goes where
-;; Step 5: Begin to write your own 5-lines lisp functions that are, in fact, already implemented
-;; Step 6: Try to organize the whole mess and learn some real emacs lisp basics
-;; Step 7: Be sick & tired of all the code you don't understand and don't use even 10% of the time
-;; Step 8: Be honest and realize that you don't know more than 60% of elisp's power
-;; Step 9: Empty your config files and try to make a single file one to figure out what's going on
-;; Step 10: Clean the code you stole elsewhere but don't use
-;; Step 11: Rewrite you config by keeping the things you understand
-;; Step 12: Be honest and realize that you don't know more than 40% of elisp's power
-;; Step 13: Read more blogs, youtube chats or reddit posts
-;; Step 14: Be honest and realize that you don't know more than 30% of elisp's power
-;; Step 15: Be honest and realize that you don't know more than 25% of elisp's power
-;; Step 16: Stick with your config but think about making it better
-;; Step 17: Buy books about lisp or emacs lisp
-;; Step 18: Be honest and realize that you don't know more than 20% of elisp's power
-;; Step 19: Discover package managers and macros like use-package
-;; Step 20: Feel cool with a clean and mastered config files
-;; Step 21: Try to make it cleaner and smaller
-;; Step 22: Try to figure out what's going on behind package managers. Be mind fucked.
-;; Step 23: Be honest and realize that you don't know more than 15% of elisp's power
-;; Step 24: Finally, be confident and realize that you know more than 15% of elisp's power
-;; Step 25: Write your own functions and macros to manage your packages, initializations and keybindings
-;; Step 26: Realize that you understand any line of your configuration, but it is only "configuration", not programs
-;; Step 27: Be confident and realize that you MIGHT know more than 40% of elisp's power if you read more documentation
-;; Step 28: write steps you crossed to finally be here, but know that the path is still hard and long. Without any pun.
-;;
 
 ;;; Code:
 
