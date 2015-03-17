@@ -29,7 +29,6 @@
 (defun init-package-manager (name)
   "Initialize the package manager. If package NAME is not installed, refresh it."
   (unless (boundp 'pm-initialized)
-    (message " + Initializing package.el ...")
     (require 'package)
     (setq package-archives '(("melpa" . "http://melpa.org/packages/")))
     (package-initialize)
@@ -37,18 +36,17 @@
   (unless (or (package-built-in-p name)
 	      (package-installed-p name)
 	      (boundp 'pm-refreshed))
-    (message " + Refreshing packages list ...")
     (package-refresh-contents)
     (setq pm-refreshed t)))
 
 (defmacro pkg-add (name &rest body)
-  "Macro for package installation."
-  (init-package-manager name)
-  (unless (package-built-in-p name)
-    `(package-install ,name))
-  ;; `(eval-after-load ,name
-  ;;    '(progn ,@body))
-  )
+  "Macro for package installation and intialization."
+  `(progn
+     (init-package-manager ,name)
+     (unless (package-built-in-p ,name)
+       (package-install ,name))
+     (eval-after-load ,name
+       (progn ,@body))))
 
 ;;;; internals
 
