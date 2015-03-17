@@ -186,10 +186,6 @@
 (pkg-add 'rainbow-mode
 	 (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
 
-(pkg-add 'recentf
-	 (recentf-mode 1)
-	 (setq recentf-max-menu-items 50))
-
 (pkg-add 'ruby-mode
 	 (setq ruby-deep-indent-paren nil))
 
