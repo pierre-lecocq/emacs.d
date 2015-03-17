@@ -30,7 +30,10 @@
   "Initialize the package manager. If package NAME is not installed, refresh it."
   (unless (boundp 'pm-initialized)
     (require 'package)
-    (setq package-archives '(("melpa" . "http://melpa.org/packages/")))
+    (setq package-archives
+	  '(("melpa" . "http://melpa.org/packages/")
+	    ("gnu" . "http://elpa.gnu.org/packages/")
+	    ("marmalade" . "http://marmalade-repo.org/packages/")))
     (package-initialize)
     (setq pm-initialized))
   (unless (or (package-built-in-p name)
