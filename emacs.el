@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-17 22:26:09 pierre>
+;; Time-stamp: <2015-03-17 22:31:52 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -382,8 +382,8 @@ Argument LOCALE the locale to set."
 (defun pl-transparency (value)
   "Set the transparency of the frame window.
 Argument VALUE 0 = transparent, 100 = opaque."
+  (interactive "nTransparency Value 0 - 100 opaque: ")
   (when window-system
-    (interactive "nTransparency Value 0 - 100 opaque: ")
     (set-frame-parameter (selected-frame) 'alpha value)))
 
 (defun pl-rb-require ()
