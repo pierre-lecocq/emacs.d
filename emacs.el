@@ -151,8 +151,7 @@
 	 (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
 	 (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
 	 (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
-;;	 (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t)))
-	 )
+	 (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t))))
 
 (pkg-add 'ido
 	 (require 'ido)
@@ -160,9 +159,7 @@
 	 (ido-everywhere 1)
 	 (flx-ido-mode 1)
 	 (setq ido-enable-flex-matching t)
-	 (setq ido-use-faces nil)
-	 ;;(add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))
-	 )
+	 (setq ido-use-faces nil))
 
 (pkg-add 'ido-hacks
 	 (require 'ido-hacks)
@@ -176,12 +173,10 @@
 
 (pkg-add 'js2-mode)
 (pkg-add 'markdown-mode)
-;; (pkg-add 'php-extras)
 
 (pkg-add 'php-mode
 	 (add-hook 'php-mode-hook
 		   (lambda ()
-		     ;; (require 'php-extras)
 		     (setq comment-start "// ")
 		     (setq comment-end "")
 		     (set (make-local-variable 'indent-tabs-mode) nil)
