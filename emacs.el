@@ -122,17 +122,90 @@
 
 ;;;; packages
 
-(pkg-add 'ido)
+(pkg-add 'anzu
+	 (global-anzu-mode +1)
+	 (set-face-attribute 'anzu-mode-line nil :foreground "yellow" :weight 'bold))
 
-(pkg-add 'anzu)
+(pkg-add 'autopair
+	 (autopair-global-mode t))
+
+(pkg-add 'company
+	 (add-hook 'after-init-hook 'global-company-mode)
+	 (setq company-auto-complete nil)
+	 (global-company-mode 1))
+
+(pkg-add 'cycle-resize
+	 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
+	 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally))
 
 (pkg-add 'darkmine-theme
-	 (message "Set DAT theme")
 	 (load-theme 'darkmine t))
 
+(pkg-add 'flycheck)
+(pkg-add 'flx-ido)
+(pkg-add 'htmlize)
+
+(pkg-add 'idle-highlight-mode
+	 (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
+	 (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
+	 (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
+	 (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
+	 (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
+;;	 (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t)))
+	 )
+
+(pkg-add 'ido
+	 (require 'ido)
+	 (ido-mode t)
+	 (ido-everywhere 1)
+	 (flx-ido-mode 1)
+	 (setq ido-enable-flex-matching t)
+	 (setq ido-use-faces nil)
+	 ;;(add-hook 'ido-setup-hook (lambda () (define-key ido-completion-map [tab] 'ido-complete)))
+	 )
+
+(pkg-add 'ido-hacks
+	 (require 'ido-hacks)
+	 (ido-hacks-mode))
+
+(pkg-add 'ido-vertical-mode
+	 (ido-vertical-mode))
+
+(pkg-add 'indent-guide
+	 (indent-guide-global-mode))
+
+(pkg-add 'js2-mode)
+(pkg-add 'markdown-mode)
+;; (pkg-add 'php-extras)
+
+(pkg-add 'php-mode
+	 (add-hook 'php-mode-hook
+		   (lambda ()
+		     ;; (require 'php-extras)
+		     (setq comment-start "// ")
+		     (setq comment-end "")
+		     (set (make-local-variable 'indent-tabs-mode) nil)
+		     ;;		     (c-set-style "custom-four-indent"))))
+		     )))
+
+(pkg-add 'rainbow-mode
+	 (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
+
+(pkg-add 'recentf
+	 (recentf-mode 1)
+	 (setq recentf-max-menu-items 50))
+
+(pkg-add 'ruby-mode
+	 (setq ruby-deep-indent-paren nil))
+
 (pkg-add 'symon
-	 (message "En voiture symon")
+	 (setq symon-delay 5)
 	 (symon-mode t))
+
+(pkg-add 'switch-window)
+(pkg-add 'visual-regexp)
+(pkg-add 'web-mode)
+(pkg-add 'yaml-mode)
 
 ;;;; functions
 
