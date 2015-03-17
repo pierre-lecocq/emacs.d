@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-17 22:20:01 pierre>
+;; Time-stamp: <2015-03-17 22:26:09 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -99,7 +99,7 @@
   (let ((path (expand-file-name (concat (file-name-as-directory mkpath-base-dir) path))))
     (when create
       (unless (file-accessible-directory-p path)
-    (make-directory path t)))
+        (make-directory path t)))
     path))
 
 (defun init-package-manager (name)
@@ -107,14 +107,14 @@
   (unless (boundp 'pm-initialized)
     (require 'package)
     (setq package-archives
-      '(("melpa" . "http://melpa.org/packages/")
-        ("gnu" . "http://elpa.gnu.org/packages/")
-        ("marmalade" . "http://marmalade-repo.org/packages/")))
+          '(("melpa" . "http://melpa.org/packages/")
+            ("gnu" . "http://elpa.gnu.org/packages/")
+            ("marmalade" . "http://marmalade-repo.org/packages/")))
     (package-initialize)
     (setq pm-initialized))
   (unless (or (package-built-in-p name)
-          (package-installed-p name)
-          (boundp 'pm-refreshed))
+              (package-installed-p name)
+              (boundp 'pm-refreshed))
     (package-refresh-contents)
     (setq pm-refreshed t)))
 
@@ -173,8 +173,8 @@
  mode-line-format
  (list
   '(:eval (if (buffer-modified-p)
-          (propertize "  %b" 'face 'bold-italic)
-        (propertize "  %b" 'face 'bold)))
+              (propertize "  %b" 'face 'bold-italic)
+            (propertize "  %b" 'face 'bold)))
   " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
   '(which-function-mode (" " which-func-format))))
 
@@ -195,78 +195,78 @@
 ;;;; packages
 
 (pkg-add 'anzu
-     (global-anzu-mode +1)
-     (set-face-attribute 'anzu-mode-line nil :foreground "yellow" :weight 'bold))
+         (global-anzu-mode +1)
+         (set-face-attribute 'anzu-mode-line nil :foreground "yellow" :weight 'bold))
 
 (pkg-add 'autopair
-     (autopair-global-mode t))
+         (autopair-global-mode t))
 
 (pkg-add 'company
-     (add-hook 'after-init-hook 'global-company-mode)
-     (setq company-auto-complete nil)
-     (global-company-mode 1))
+         (add-hook 'after-init-hook 'global-company-mode)
+         (setq company-auto-complete nil)
+         (global-company-mode 1))
 
 (pkg-add 'cycle-resize
-     (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
-     (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally))
+         (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
+         (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally))
 
 (pkg-add 'darkmine-theme
-     (load-theme 'darkmine t))
+         (load-theme 'darkmine t))
 
 (pkg-add 'flycheck)
 (pkg-add 'flx-ido)
 (pkg-add 'htmlize)
 
 (pkg-add 'idle-highlight-mode
-     (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
-     (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
-     (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
-     (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
-     (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
-     (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t))))
+         (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
+         (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
+         (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
+         (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
+         (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
+         (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t))))
 
 (pkg-add 'ido
-     (require 'ido)
-     (ido-mode t)
-     (ido-everywhere 1)
-     (flx-ido-mode 1)
-     (setq ido-enable-flex-matching t)
-     (setq ido-use-faces nil))
+         (require 'ido)
+         (ido-mode t)
+         (ido-everywhere 1)
+         (flx-ido-mode 1)
+         (setq ido-enable-flex-matching t)
+         (setq ido-use-faces nil))
 
 (pkg-add 'ido-hacks
-     (require 'ido-hacks)
-     (ido-hacks-mode))
+         (require 'ido-hacks)
+         (ido-hacks-mode))
 
 (pkg-add 'ido-vertical-mode
-     (ido-vertical-mode))
+         (ido-vertical-mode))
 
 (pkg-add 'indent-guide
-     (indent-guide-global-mode))
+         (indent-guide-global-mode))
 
 (pkg-add 'js2-mode)
 (pkg-add 'markdown-mode)
 
 (pkg-add 'php-mode
-     (add-hook 'php-mode-hook
-           (lambda ()
-             (setq comment-start "// ")
-             (setq comment-end "")
-             (set (make-local-variable 'indent-tabs-mode) nil)
-             ;;          (c-set-style "custom-four-indent"))))
-             )))
+         (add-hook 'php-mode-hook
+                   (lambda ()
+                     (setq comment-start "// ")
+                     (setq comment-end "")
+                     (set (make-local-variable 'indent-tabs-mode) nil)
+                     ;;          (c-set-style "custom-four-indent"))))
+                     )))
 
 (pkg-add 'rainbow-mode
-     (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
+         (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
 
 (pkg-add 'ruby-mode
-     (setq ruby-deep-indent-paren nil))
+         (setq ruby-deep-indent-paren nil))
 
 (pkg-add 'symon
-     (setq symon-delay 5)
-     (symon-mode t))
+         (setq symon-delay 5)
+         (symon-mode t))
 
 (pkg-add 'switch-window
-     (global-set-key (kbd "C-x o") 'switch-window))
+         (global-set-key (kbd "C-x o") 'switch-window))
 
 (pkg-add 'visual-regexp)
 (pkg-add 'web-mode)
@@ -313,8 +313,8 @@ Argument LOCALE the locale to set."
   "Initialize hooks."
   ;; Minibuffer mode
   (add-hook 'minibuffer-setup-hook
-        '(lambda ()
-           (setq show-trailing-whitespace nil)))
+            '(lambda ()
+               (setq show-trailing-whitespace nil)))
   ;; Text modes
   (add-hook 'org-mode-hook 'pl--text-mode)
   (add-hook 'markdown-mode-hook 'pl--text-mode)
@@ -376,8 +376,8 @@ Argument LOCALE the locale to set."
       (switch-to-buffer (other-buffer (current-buffer) t))
     (progn
       (if (member (get-buffer "*shell*") (buffer-list))
-      (switch-to-buffer "*shell*")
-    (shell)))))
+          (switch-to-buffer "*shell*")
+        (shell)))))
 
 (defun pl-transparency (value)
   "Set the transparency of the frame window.
@@ -392,8 +392,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (let ((gems (read-from-minibuffer "Rubygems to require: ")))
     (when gems
       (mapcar (lambda (gem)
-        (insert (format "require \"%s\"\n" gem)))
-          (split-string gems nil t)))))
+                (insert (format "require \"%s\"\n" gem)))
+              (split-string gems nil t)))))
 
 ;;;; keybindings
 
@@ -431,39 +431,39 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (setq auto-insert-alist
       '(((ruby-mode . "Ruby program") nil
-     "#!/usr/bin/env ruby\n\n"
-     "# File: " (file-name-nondirectory buffer-file-name) "\n"
-     "# Time-stamp: <>\n"
-     "# Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-     "# Description: " _ "\n\n")
-    ((emacs-lisp-mode . "Emacs lisp mode") nil
-     ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
-     ";;; Commentary:\n"
-     ";; Time-stamp: <>\n"
-     ";; Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n\n"
-     ";;; Code:\n\n"
-     ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
-    ((c-mode . "C program") nil
-     "/*\n"
-     " * File: " (file-name-nondirectory buffer-file-name) "\n"
-     " * Time-stamp: <>\n"
-     " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-     " * Description: " _ "\n"
-     " */\n\n")
-    ((shell-mode . "Shell script") nil
-     "#!/bin/bash\n\n"
-     " # File: " (file-name-nondirectory buffer-file-name) "\n"
-     " # Time-stamp: <>\n"
-     " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-     " # Description: " _ "\n\n")
-    ((php-mode . "PHP script") nil
-     "<?php\n\n"
-     "/**\n"
-     " * File: " (file-name-nondirectory buffer-file-name) "\n"
-     " * Time-stamp: <>\n"
-     " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-     " * Description: " _ "\n"
-     " */\n\n")))
+         "#!/usr/bin/env ruby\n\n"
+         "# File: " (file-name-nondirectory buffer-file-name) "\n"
+         "# Time-stamp: <>\n"
+         "# Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
+         "# Description: " _ "\n\n")
+        ((emacs-lisp-mode . "Emacs lisp mode") nil
+         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
+         ";;; Commentary:\n"
+         ";; Time-stamp: <>\n"
+         ";; Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n\n"
+         ";;; Code:\n\n"
+         ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
+        ((c-mode . "C program") nil
+         "/*\n"
+         " * File: " (file-name-nondirectory buffer-file-name) "\n"
+         " * Time-stamp: <>\n"
+         " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
+         " * Description: " _ "\n"
+         " */\n\n")
+        ((shell-mode . "Shell script") nil
+         "#!/bin/bash\n\n"
+         " # File: " (file-name-nondirectory buffer-file-name) "\n"
+         " # Time-stamp: <>\n"
+         " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
+         " # Description: " _ "\n\n")
+        ((php-mode . "PHP script") nil
+         "<?php\n\n"
+         "/**\n"
+         " * File: " (file-name-nondirectory buffer-file-name) "\n"
+         " * Time-stamp: <>\n"
+         " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
+         " * Description: " _ "\n"
+         " */\n\n")))
 
 ;;;; Init
 
