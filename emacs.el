@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-18 18:17:28 pierre>
+;; Time-stamp: <2015-03-18 19:59:03 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -200,11 +200,9 @@
          (global-anzu-mode +1)
          (set-face-attribute 'anzu-mode-line nil :foreground "yellow" :weight 'bold))
 
-(pkg-add 'autopair
-         (autopair-global-mode t))
+(pkg-add 'autopair (autopair-global-mode t))
 
 (pkg-add 'company
-         (add-hook 'after-init-hook 'global-company-mode)
          (setq company-auto-complete nil)
          (global-company-mode 1))
 
@@ -212,20 +210,11 @@
          (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
          (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally))
 
-(pkg-add 'darkmine-theme
-         (load-theme 'darkmine t))
-
+(pkg-add 'darkmine-theme (load-theme 'darkmine t))
 (pkg-add 'flycheck)
 (pkg-add 'flx-ido)
 (pkg-add 'htmlize)
-
-(pkg-add 'idle-highlight-mode
-         (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
-         (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
-         (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
-         (add-hook 'ruby-mode-hook (lambda () (idle-highlight-mode t)))
-         (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
-         (add-hook 'php-mode-hook (lambda () (idle-highlight-mode t))))
+(pkg-add 'idle-highlight-mode)
 
 (pkg-add 'ido
          (require 'ido)
@@ -239,36 +228,21 @@
          (require 'ido-hacks)
          (ido-hacks-mode))
 
-(pkg-add 'ido-vertical-mode
-         (ido-vertical-mode))
-
-(pkg-add 'indent-guide
-         (indent-guide-global-mode))
-
+(pkg-add 'ido-vertical-mode (ido-vertical-mode))
+;; (pkg-add 'indent-guide (indent-guide-global-mode))
 (pkg-add 'js2-mode)
 (pkg-add 'markdown-mode)
+(pkg-add 'php-extras)
+(pkg-add 'php-mode)
+(pkg-add 'rainbow-mode)
 
-(pkg-add 'php-mode
-         (add-hook 'php-mode-hook
-                   (lambda ()
-                     (setq comment-start "// ")
-                     (setq comment-end "")
-                     (set (make-local-variable 'indent-tabs-mode) nil)
-                     (c-set-style "custom-four-indent"))))
-
-(pkg-add 'rainbow-mode
-         (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
-
-(pkg-add 'ruby-mode
-         (setq ruby-deep-indent-paren nil))
+(pkg-add 'ruby-mode (setq ruby-deep-indent-paren nil))
 
 (pkg-add 'symon
          (setq symon-delay 5)
          (symon-mode t))
 
-(pkg-add 'switch-window
-         (global-set-key (kbd "C-x o") 'switch-window))
-
+(pkg-add 'switch-window (global-set-key (kbd "C-x o") 'switch-window))
 (pkg-add 'visual-regexp)
 (pkg-add 'web-mode)
 (pkg-add 'yaml-mode)
@@ -312,28 +286,47 @@ Argument LOCALE the locale to set."
 
 (defun pl--init-hooks ()
   "Initialize hooks."
+  ;; After init
+  (add-hook 'after-init-hook 'global-company-mode)
   ;; Minibuffer mode
-  (add-hook 'minibuffer-setup-hook
-            '(lambda ()
-               (setq show-trailing-whitespace nil)))
+  (add-hook 'minibuffer-setup-hook '(lambda () (setq show-trailing-whitespace nil)))
   ;; Text modes
   (add-hook 'org-mode-hook 'pl--text-mode)
   (add-hook 'markdown-mode-hook 'pl--text-mode)
   (add-hook 'text-mode-hook 'pl--text-mode)
+  ;; Lisp mode hook
+  (add-hook 'lisp-mode-hook (lambda () (idle-highlight-mode t)))
+  (add-hook 'emacs-lisp-mode-hook (lambda () (idle-highlight-mode t)))
   ;; C mode hook
-  (add-hook 'c-mode-common-hook
-            (lambda()
-              (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+  (add-hook 'c-mode-hook (lambda () (idle-highlight-mode t)))
+  (add-hook 'c-mode-common-hook (lambda() (local-set-key (kbd "C-c o") 'ff-find-other-file)))
   ;; Ruby mode hook
   (add-hook 'ruby-mode-hook
             (lambda()
+              (idle-highlight-mode t)
               (global-set-key (kbd "C-c C-r") 'pl-rb-require)))
+
   ;; Before save hook
   (add-hook 'before-save-hook
             (lambda()
               (time-stamp)
               (delete-trailing-whitespace)
               (whitespace-cleanup)))
+
+  ;; PHP mode hook
+  (add-hook 'php-mode-hook
+            (lambda ()
+              (require 'php-extras)
+              (idle-highlight-mode t)
+              (setq comment-start "// ")
+              (setq comment-end "")
+              (set (make-local-variable 'indent-tabs-mode) nil)
+              (c-set-style "custom-four-indent")))
+
+  ;; CSS mode hook
+  (add-hook 'css-mode-hook (lambda () (rainbow-mode 1)))
+  ;; JS mode hook
+  (add-hook 'js2-mode-hook (lambda () (idle-highlight-mode t)))
   ;; Find file hook
   (add-hook 'find-file-hook
             '(lambda ()
@@ -460,9 +453,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; init
 
-(pl--init-hooks)
 (pl--init-indentation)
 (pl--init-files-modes)
+(pl--init-hooks)
 
 ;;;; load files
 
