@@ -3,3 +3,4 @@
 # ... but my files
 !emacs.el
 !Makefile
+!README.org
