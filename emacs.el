@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-17 22:31:52 pierre>
+;; Time-stamp: <2015-03-18 09:14:38 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -55,7 +55,7 @@
 ;;
 ;; mkdir -p ~/src
 ;; git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d
-;; ln -s ~/src/emacs.d/emacs.el ~/.emacs
+;; echo "(load-file \"~/src/emacs.d\")" >  ~/.emacs
 ;;
 ;; * Author
 ;;
@@ -81,25 +81,23 @@
 
 ;;; Code:
 
-;; dev mode
-(setq debug-on-error t)
-
-;; semi-dev mode (will be naturally `user-emacs-directory')
-(setq base-dir "~/emacs.d-single-file/")
-
 ;;;; core
 
-(defun mkpath (path &optional create forced-base-dir)
-  "Make path and eventually creat it on file system."
-  (unless (boundp 'base-dir)
-    (setq base-dir user-emacs-directory))
+(defun mkpath (path &optional is-directory create forced-base-dir)
+  "Make path and eventually create it on file system."
+  (unless (boundp 'base-dir) (setq base-dir user-emacs-directory))
   (if forced-base-dir
       (setq mkpath-base-dir forced-base-dir)
     (setq mkpath-base-dir base-dir))
   (let ((path (expand-file-name (concat (file-name-as-directory mkpath-base-dir) path))))
     (when create
-      (unless (file-accessible-directory-p path)
-        (make-directory path t)))
+      (if is-directory
+          (progn
+            (unless (file-accessible-directory-p path)
+              (make-directory path t)))
+        (progn
+          (unless (file-exists-p path)
+            (write-region "" nil path)))))
     path))
 
 (defun init-package-manager (name)
@@ -134,7 +132,6 @@
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
 (fset 'yes-or-no-p 'y-or-n-p)
-
 (recentf-mode 1)
 (show-paren-mode t)
 (setq show-paren-style 'expression)
@@ -184,13 +181,18 @@
  user-full-name "Pierre Lecocq"
  user-mail-address "pierre.lecocq@gmail.com")
 
+;; Comment this if you want to use `user-emacs-directory'
+(setq base-dir (file-name-directory (or load-file-name (buffer-file-name))))
+
 (setq
- package-user-dir (mkpath "vendor/packages" t)
- org-dir (mkpath "org" t "~/")
+ bookmark-default-file (mkpath "bookmarks")
+ package-user-dir (mkpath "vendor/packages" t t)
+ org-dir (mkpath "org" t t "~/")
  custom-file (mkpath "custom.el")
- bookmark-default-file (mkpath "bookmarks"))
+ machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (load custom-file 'noerror)
+(load machine-file 'noerror)
 
 ;;;; packages
 
@@ -419,7 +421,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-fontify-done-headline t
  org-src-fontify-natively t
  org-agenda-files (list
-                   (expand-file-name "agenda.org" org-dir)
+                   (mkpath "agenda.org" nil t org-dir)
                    ;; Add other files here ...
                    ))
 
