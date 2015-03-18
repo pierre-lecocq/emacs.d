@@ -190,7 +190,7 @@
 (setq
  bookmark-default-file (mkpath "bookmarks")
  package-user-dir (mkpath "vendor/packages" t t)
- org-dir (mkpath "org" t t "~/")
+ org-dir (mkpath "org-files" t t "~/")
  custom-file (mkpath "custom.el")
  machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
