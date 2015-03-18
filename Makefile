@@ -1,6 +1,6 @@
 BASE_DIR=$(shell pwd)
 BASE_FILE=$(BASE_DIR)/emacs.el
-COMPILED_FILE=$(BASE_FILE)c
+LOADABLE_FILE=$(BASE_DIR)/emacs
 VENDOR_DIR=$(BASE_DIR)/vendor
 
 all: build
@@ -15,7 +15,7 @@ install: clean build compile
         $(info )
         $(info Save your current configuration, then execute:)
         $(info )
-        $(info echo "(load-file \"$(COMPILED_FILE)\")" > ~/.emacs)
+        $(info echo "(load \"$(LOADABLE_FILE)\")" > ~/.emacs)
         $(info )
 
 clean:
