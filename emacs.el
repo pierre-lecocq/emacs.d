@@ -109,7 +109,7 @@
             ("gnu" . "http://elpa.gnu.org/packages/")
             ("marmalade" . "http://marmalade-repo.org/packages/")))
     (package-initialize)
-    (setq pm-initialized))
+    (setq pm-initialized t))
   (unless (or (package-built-in-p name)
               (package-installed-p name)
               (boundp 'pm-refreshed))
@@ -192,9 +192,6 @@
  custom-file (mkpath "custom.el")
  machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
-(load custom-file 'noerror)
-(load machine-file 'noerror)
-
 ;;;; packages
 
 (pkg-add 'anzu
@@ -255,8 +252,7 @@
                      (setq comment-start "// ")
                      (setq comment-end "")
                      (set (make-local-variable 'indent-tabs-mode) nil)
-                     ;;          (c-set-style "custom-four-indent"))))
-                     )))
+                     (c-set-style "custom-four-indent"))))
 
 (pkg-add 'rainbow-mode
          (add-hook 'css-mode-hook (lambda () (rainbow-mode 1))))
@@ -404,7 +400,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (setq
    mac-option-modifier nil
    mac-command-modifier 'meta
-   x-select-enable-clipboard t))
+   select-enable-clipboard t))
 
 (global-set-key [delete] 'delete-char)
 (global-set-key (kbd "C-c C-c") 'comment-region)
@@ -428,7 +424,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun org-font-lock-ensure ()
   "Org font lock ensure."
-  (font-lock-fontify-buffer))
+  (font-lock-ensure))
 
 ;;;; autoinserts
 
@@ -460,10 +456,15 @@ Argument VALUE 0 = transparent, 100 = opaque."
          " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
          " # Description: " _ "\n\n")))
 
-;;;; Init
+;;;; init
 
 (pl--init-hooks)
 (pl--init-indentation)
 (pl--init-files-modes)
+
+;;;; load files
+
+(load custom-file 'noerror)
+(load machine-file 'noerror)
 
 ;;; init.el ends here
