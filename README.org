@@ -50,9 +50,11 @@ The idea is to get a single configuration file that will handle:
 
 Warning: You might save your existing configuration before installing this one
 
-mkdir -p ~/src
-git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d
+#+begin_src sh
+mkdir -p ~/src;
+git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d;
 cd  ~/src/emacs.d; make && make compile && make install
+#+end_src
 
 ** Author
 
