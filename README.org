@@ -57,7 +57,7 @@ cd  ~/src/emacs.d
 make && make compile && make install
 #+end_src
 
-** Author
+** Credits
 
 Pierre Lecocq, version <BIGINT>
 

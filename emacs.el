@@ -1,10 +1,11 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-18 09:14:38 pierre>
+;; Time-stamp: <2015-03-18 18:17:28 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
+;;
 ;; * Introduction
 ;;
 ;; This file is another step into the world of emacs configuration holy grail:
@@ -58,9 +59,9 @@
 ;; cd  ~/src/emacs.d
 ;; make && make compile && make install
 ;;
-;; * Author
+;; * Credits
 ;;
-;; Pierre Lecocq
+;; Pierre Lecocq, version <BIGINT>
 ;;
 ;; * Disclaimer
 ;;
