@@ -148,6 +148,7 @@
  auto-save-default nil
  inhibit-startup-message t
  inhibit-splash-screen t
+ initial-scratch-message ";; Scratch buffer\n\n"
  kill-whole-line t
  require-final-newline t
  next-line-add-newlines nil
