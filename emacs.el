@@ -458,15 +458,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
          " # File: " (file-name-nondirectory buffer-file-name) "\n"
          " # Time-stamp: <>\n"
          " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-         " # Description: " _ "\n\n")
-        ((php-mode . "PHP script") nil
-         "<?php\n\n"
-         "/**\n"
-         " * File: " (file-name-nondirectory buffer-file-name) "\n"
-         " * Time-stamp: <>\n"
-         " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-         " * Description: " _ "\n"
-         " */\n\n")))
+         " # Description: " _ "\n\n")))
 
 ;;;; Init
 
