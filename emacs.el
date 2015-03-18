@@ -55,7 +55,7 @@
 ;;
 ;; mkdir -p ~/src
 ;; git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d
-;; echo "(load-file \"~/src/emacs.d\")" >  ~/.emacs
+;; echo "(load-file \"~/src/emacs.d/emacs.el\")" >  ~/.emacs
 ;;
 ;; * Author
 ;;
