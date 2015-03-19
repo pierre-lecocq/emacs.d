@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 12:27:54 pierre>
+;; Time-stamp: <2015-03-19 12:30:38 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -94,12 +94,10 @@
   (let ((path (expand-file-name (concat (file-name-as-directory mkpath-base-dir) path))))
     (when create
       (if is-directory
-          (progn
-            (unless (file-accessible-directory-p path)
-              (make-directory path t)))
-        (progn
-          (unless (file-exists-p path)
-            (write-region "" nil path)))))
+          (unless (file-accessible-directory-p path)
+            (make-directory path t))
+        (unless (file-exists-p path)
+          (write-region "" nil path))))
     path))
 
 (defun init-package-manager (name)
