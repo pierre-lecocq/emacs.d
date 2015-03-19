@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-18 19:59:03 pierre>
+;; Time-stamp: <2015-03-19 09:09:30 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -166,8 +166,8 @@
 (when window-system
   (set-fringe-mode '(1 . 1)))
 
-(when (member "Inconsolata-g" (font-family-list))
-  (set-face-attribute 'default nil :font "Inconsolata-g-10"))
+(when (member "Inconsolata" (font-family-list))
+  (set-face-attribute 'default nil :font "Inconsolata-12"))
 
 (setq-default
  mode-line-format
@@ -229,23 +229,23 @@
          (ido-hacks-mode))
 
 (pkg-add 'ido-vertical-mode (ido-vertical-mode))
-;; (pkg-add 'indent-guide (indent-guide-global-mode))
 (pkg-add 'js2-mode)
 (pkg-add 'markdown-mode)
 (pkg-add 'php-extras)
 (pkg-add 'php-mode)
 (pkg-add 'rainbow-mode)
-
 (pkg-add 'ruby-mode (setq ruby-deep-indent-paren nil))
 
 (pkg-add 'symon
          (setq symon-delay 5)
          (symon-mode t))
 
-(pkg-add 'switch-window (global-set-key (kbd "C-x o") 'switch-window))
 (pkg-add 'visual-regexp)
 (pkg-add 'web-mode)
 (pkg-add 'yaml-mode)
+
+;; (pkg-add 'indent-guide (indent-guide-global-mode))
+;; (pkg-add 'switch-window (global-set-key (kbd "C-x o") 'switch-window))
 
 ;;;; private functions
 
