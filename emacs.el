@@ -195,7 +195,7 @@
          (setq company-auto-complete nil)
          (global-company-mode 1))
 
-(pkg-add 'cycle-resize (require 'cycle-resize))
+(pkg-add 'cycle-resize)
 (pkg-add 'darkmine-theme (load-theme 'darkmine t))
 (pkg-add 'flycheck)
 (pkg-add 'flx-ido)
