@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 12:30:38 pierre>
+;; Time-stamp: <2015-03-19 12:40:28 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -88,10 +88,8 @@
 (defun mkpath (path &optional is-directory create forced-base-dir)
   "Make path and eventually create it on file system."
   (unless (boundp 'base-dir) (setq base-dir user-emacs-directory))
-  (if forced-base-dir
-      (setq mkpath-base-dir forced-base-dir)
-    (setq mkpath-base-dir base-dir))
-  (let ((path (expand-file-name (concat (file-name-as-directory mkpath-base-dir) path))))
+  (let* ((l-base-dir (if forced-base-dir forced-base-dir base-dir))
+         (path (expand-file-name (concat (file-name-as-directory l-base-dir) path))))
     (when create
       (if is-directory
           (unless (file-accessible-directory-p path)
