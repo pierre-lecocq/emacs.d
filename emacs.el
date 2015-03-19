@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 09:09:30 pierre>
+;; Time-stamp: <2015-03-19 12:27:54 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -432,9 +432,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
          "# Description: " _ "\n\n")
         ((emacs-lisp-mode . "Emacs lisp mode") nil
          ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
-         ";;; Commentary:\n"
          ";; Time-stamp: <>\n"
          ";; Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n\n"
+         ";;; Commentary:\n\n"
          ";;; Code:\n\n"
          ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
         ((c-mode . "C program") nil
