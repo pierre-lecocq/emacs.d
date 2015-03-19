@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 13:10:38 pierre>
+;; Time-stamp: <2015-03-19 13:19:29 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,14 +8,14 @@
 ;;
 ;; * Introduction
 ;;
-;; This file is another step into the world of emacs configuration holy grail:
+;; This file is another step into the world of Emacs configuration holy grail:
 ;;
-;; - Step 1: Use emacs like rms just the time to realize that emacs is amazing.
+;; - Step 1: Use Emacs like rms just the time to realize that Emacs is amazing.
 ;; - Step 2: Be amazed by lots of things you do not even understand.
 ;; - Step 3: Copy & paste from everywhere in a fucking messy config file.
 ;; - Step 4: Split your config into many files but don't figure out which part goes where.
-;; - Step 5: Begin to write your own 5-lines lisp functions that are, in fact, already implemented.
-;; - Step 6: Try to organize the whole mess and learn some real emacs lisp basics.
+;; - Step 5: Begin to write your own 5-lines Lisp functions that are, in fact, already implemented.
+;; - Step 6: Try to organize the whole mess and learn some real Emacs Lisp basics.
 ;; - Step 7: Be sick & tired of all the code you don't understand and don't use even 10% of the time.
 ;; - Step 8: Be honest and realize that you don't know more than 60% of elisp's power.
 ;; - Step 9: Empty your config files and try to make a single file one to figure out what's going on.
@@ -26,18 +26,18 @@
 ;; - Step 14: Be honest and realize that you don't know more than 30% of elisp's power.
 ;; - Step 15: Be honest and realize that you don't know more than 25% of elisp's power.
 ;; - Step 16: Stick with your config but think about making it better.
-;; - Step 17: Buy books about lisp or emacs lisp.
+;; - Step 17: Buy books about Lisp or Emacs Lisp.
 ;; - Step 18: Be honest and realize that you don't know more than 20% of elisp's power.
 ;; - Step 19: Discover package managers and macros like use-package.
 ;; - Step 20: Feel cool with a clean and mastered config files.
 ;; - Step 21: Try to make it cleaner and smaller.
-;; - Step 22: Try to figure out what's going on behind package managers. Be mind fucked.
+;; - Step 22: Try to figure out what's going on behind package managers.  Be mind fucked.
 ;; - Step 23: Be honest and realize that you don't know more than 15% of elisp's power.
 ;; - Step 24: Finally, be confident and realize that you know more than 15% of elisp's power.
 ;; - Step 25: Write your own functions and macros to manage your packages, initializations and keybindings.
 ;; - Step 26: Realize that you understand any line of your configuration, but it is only "configuration", not programs.
 ;; - Step 27: Be confident and realize that you MIGHT know more than 40% of elisp's power if you read more documentation.
-;; - Step 28: write steps you crossed to finally be here, but know that the path is still long. But funny. But long ...
+;; - Step 28: write steps you crossed to finally be here, but know that the path is still long.  But funny.  But long ...
 ;;
 ;; * Purpose
 ;;
@@ -72,11 +72,11 @@
 ;;
 ;; This program is distributed in the hope that it will be useful, but
 ;; WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 ;; General Public License for more details.
 ;;
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs; see the file COPYING. If not, write to the
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
 ;; Free Software Foundation, Inc., 59 Temple Place - Suite 330,
 ;; Boston, MA 02111-1307, USA.
 ;;
@@ -90,7 +90,7 @@
 ;;;; core
 
 (defun mkpath (path &optional is-directory create forced-base-dir)
-  "Make path and eventually create it on file system."
+  "Make PATH and eventually CREATE it on file system."
   (unless (boundp 'base-dir) (setq base-dir user-emacs-directory))
   (let* ((l-base-dir (if forced-base-dir forced-base-dir base-dir))
          (path (expand-file-name (concat (file-name-as-directory l-base-dir) path))))
@@ -450,4 +450,4 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (load custom-file 'noerror)
 (load machine-file 'noerror)
 
-;;; init.el ends here
+;;; emacs.el ends here
