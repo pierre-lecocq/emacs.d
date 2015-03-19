@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 12:43:46 pierre>
+;; Time-stamp: <2015-03-19 13:10:38 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -85,7 +85,7 @@
 
 (defvar base-dir
   (file-name-directory (or load-file-name (buffer-file-name)))
-  "The base directory. Default: the emacs.el directory, may be replaced by `user-emacs-directory'.")
+  "The base directory. Default: the emacs.el directory. Uses `user-emacs-directory' if nil.")
 
 ;;;; core
 
@@ -136,7 +136,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (recentf-mode 1)
 (show-paren-mode t)
-(setq show-paren-style 'expression)
 (global-font-lock-mode t)
 (transient-mark-mode t)
 (line-number-mode t)
@@ -145,6 +144,8 @@
 (which-function-mode)
 
 (setq
+ user-full-name "Pierre Lecocq"
+ user-mail-address "pierre.lecocq@gmail.com"
  backup-inhibited t
  make-backup-files nil
  auto-save-default nil
@@ -154,22 +155,20 @@
  kill-whole-line t
  require-final-newline t
  next-line-add-newlines nil
+ show-paren-style 'expression
  recentf-max-menu-items 50
  uniquify-buffer-name-style 'forward uniquify-separator "/"
  frame-title-format "Emacs %f"
- auto-insert-copyright (user-full-name))
+ auto-insert-copyright (user-full-name)
+ bookmark-default-file (mkpath "bookmarks")
+ package-user-dir (mkpath "vendor/packages" t t)
+ org-dir (mkpath "org-files" t t "~/")
+ custom-file (mkpath "custom.el")
+ machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  show-trailing-whitespace t
- highlight-tabs t)
-
-(when window-system
-  (set-fringe-mode '(1 . 1)))
-
-(when (member "Inconsolata" (font-family-list))
-  (set-face-attribute 'default nil :font "Inconsolata-12"))
-
-(setq-default
+ highlight-tabs t
  mode-line-format
  (list
   '(:eval (if (buffer-modified-p)
@@ -178,18 +177,11 @@
   " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
   '(which-function-mode (" " which-func-format))))
 
-;;;; variables
+(when window-system
+  (set-fringe-mode '(1 . 1)))
 
-(setq
- user-full-name "Pierre Lecocq"
- user-mail-address "pierre.lecocq@gmail.com")
-
-(setq
- bookmark-default-file (mkpath "bookmarks")
- package-user-dir (mkpath "vendor/packages" t t)
- org-dir (mkpath "org-files" t t "~/")
- custom-file (mkpath "custom.el")
- machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
+(when (member "Inconsolata" (font-family-list))
+  (set-face-attribute 'default nil :font "Inconsolata-12"))
 
 ;;;; packages
 
@@ -203,10 +195,7 @@
          (setq company-auto-complete nil)
          (global-company-mode 1))
 
-(pkg-add 'cycle-resize
-         (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
-         (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally))
-
+(pkg-add 'cycle-resize (require 'cycle-resize))
 (pkg-add 'darkmine-theme (load-theme 'darkmine t))
 (pkg-add 'flycheck)
 (pkg-add 'flx-ido)
@@ -398,8 +387,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
 (global-set-key (kbd "C-S-s") 'find-grep)
-(global-set-key (kbd "M-j") (lambda () (interactive) (join-line -1)))
+(global-set-key (kbd "M-j") (join-line -1))
 (global-set-key (kbd "C-S-f") 'imenu)
+(global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
+(global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f12] 'pl-get-shell)
