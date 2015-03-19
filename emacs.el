@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 12:40:28 pierre>
+;; Time-stamp: <2015-03-19 12:43:46 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -82,6 +82,10 @@
 ;;
 
 ;;; Code:
+
+(defvar base-dir
+  (file-name-directory (or load-file-name (buffer-file-name)))
+  "The base directory. Default: the emacs.el directory, may be replaced by `user-emacs-directory'.")
 
 ;;;; core
 
@@ -179,9 +183,6 @@
 (setq
  user-full-name "Pierre Lecocq"
  user-mail-address "pierre.lecocq@gmail.com")
-
-;; Comment this if you want to use `user-emacs-directory'
-(setq base-dir (file-name-directory (or load-file-name (buffer-file-name))))
 
 (setq
  bookmark-default-file (mkpath "bookmarks")
