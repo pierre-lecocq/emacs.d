@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-20 17:37:58 pierre>
+;; Time-stamp: <2015-03-20 17:42:16 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -330,22 +330,21 @@ Argument LOCALE the locale to set."
 
 (defun pl--init-files-modes ()
   "Initialize files modes."
-  (add-to-list 'auto-mode-alist '(".bashrc" . shell-script-mode))
-  (add-to-list 'auto-mode-alist '(".zshrc" . shell-script-mode))
-  (add-to-list 'auto-mode-alist '(".gnus" . emacs-lisp-mode))
-  (add-to-list 'auto-mode-alist '("Dockerfile" . ruby-mode))
+  (add-to-list 'auto-mode-alist '(".bashrc"     . shell-script-mode))
+  (add-to-list 'auto-mode-alist '(".zshrc"      . shell-script-mode))
+  (add-to-list 'auto-mode-alist '(".gnus"       . emacs-lisp-mode))
+  (add-to-list 'auto-mode-alist '("Dockerfile"  . ruby-mode))
   (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
-  (add-to-list 'auto-mode-alist '(".rake" . ruby-mode))
-  (add-to-list 'auto-mode-alist '(".ru" . ruby-mode))
-  (add-to-list 'auto-mode-alist '(".gemspec" . ruby-mode))
-  (add-to-list 'auto-mode-alist '(".erb" . rhtml-mode))
-  (add-to-list 'auto-mode-alist '(".erubis" . rhtml-mode))
-  (add-to-list 'auto-mode-alist '(".ya?ml" . yaml-mode))
-  (add-to-list 'auto-mode-alist '(".js" . js2-mode))
-  (add-to-list 'auto-mode-alist '(".json" . js2-mode))
-  (add-to-list 'auto-mode-alist '(".html?" . web-mode)))
+  (add-to-list 'auto-mode-alist '("Gemfile"     . ruby-mode))
+  (add-to-list 'auto-mode-alist '("Rakefile"    . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.rake$"    . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.ru$"      . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb$"     . rhtml-mode))
+  (add-to-list 'auto-mode-alist '("\\.erubis$"  . rhtml-mode))
+  (add-to-list 'auto-mode-alist '("\\.ya?ml$"   . yaml-mode))
+  (add-to-list 'auto-mode-alist '("\\.js[on]$"  . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.html?$"   . web-mode)))
 
 ;;;; public functions
 
