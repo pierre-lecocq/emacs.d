@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs Config - Main file
 
-;; Time-stamp: <2015-03-19 13:19:29 pierre>
+;; Time-stamp: <2015-03-20 17:37:58 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -162,7 +162,7 @@
  auto-insert-copyright (user-full-name)
  bookmark-default-file (mkpath "bookmarks")
  package-user-dir (mkpath "vendor/packages" t t)
- org-dir (mkpath "org-files" t t "~/")
+ org-directory (mkpath "org-files" t t "~/")
  custom-file (mkpath "custom.el")
  machine-file (mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
@@ -383,17 +383,22 @@ Argument VALUE 0 = transparent, 100 = opaque."
    mac-command-modifier 'meta
    select-enable-clipboard t))
 
-(global-set-key [delete] 'delete-char)
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
-(global-set-key (kbd "C-S-s") 'find-grep)
-(global-set-key (kbd "M-j") (join-line -1))
+
 (global-set-key (kbd "C-S-f") 'imenu)
+(global-set-key (kbd "C-S-s") 'find-grep)
+(global-set-key (kbd "C-S-r") 'revert-buffer)
+
+(global-set-key (kbd "M-j") (join-line -1))
+
 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
+
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f12] 'pl-get-shell)
+(global-set-key [delete] 'delete-char)
 
 ;;;; org-mode
 
@@ -401,7 +406,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-fontify-done-headline t
  org-src-fontify-natively t
  org-agenda-files (list
-                   (mkpath "agenda.org" nil t org-dir)
+                   (mkpath "agenda.org" nil t org-directory)
                    ;; Add other files here ...
                    ))
 
