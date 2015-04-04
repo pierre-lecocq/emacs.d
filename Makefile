@@ -11,9 +11,9 @@ build:
 compile:
 	emacs --batch --eval '(byte-compile-file "$(BASE_FILE)")'
 
-install: clean build compile
+install:
 	$(info )
-	$(info Save your current configuration, then execute:)
+	$(info Save your current configuration if needed, then execute:)
 	$(info )
 	$(info echo "(load \"$(LOADABLE_FILE)\")" > ~/.emacs)
 	$(info )

@@ -4,36 +4,7 @@ My Emacs configuration file
 
 ** Introduction
 
-This file is another step into the world of Emacs configuration holy grail:
-
-- Step 1: Use Emacs like rms just the time to realize that Emacs is amazing.
-- Step 2: Be amazed by lots of things you do not even understand.
-- Step 3: Copy & paste from everywhere in a fucking messy config file.
-- Step 4: Split your config into many files but don't figure out which part goes where.
-- Step 5: Begin to write your own 5-lines Lisp functions that are, in fact, already implemented.
-- Step 6: Try to organize the whole mess and learn some real Emacs Lisp basics.
-- Step 7: Be sick & tired of all the code you don't understand and don't use even 10% of the time.
-- Step 8: Be honest and realize that you don't know more than 60% of elisp's power.
-- Step 9: Empty your config files and try to make a single file one to figure out what's going on.
-- Step 10: Clean the code you stole elsewhere but don't use.
-- Step 11: Rewrite you config by keeping the things you understand.
-- Step 12: Be honest and realize that you don't know more than 40% of elisp's power.
-- Step 13: Read more blogs, youtube chats or reddit posts.
-- Step 14: Be honest and realize that you don't know more than 30% of elisp's power.
-- Step 15: Be honest and realize that you don't know more than 25% of elisp's power.
-- Step 16: Stick with your config but think about making it better.
-- Step 17: Buy books about Lisp or Emacs Lisp.
-- Step 18: Be honest and realize that you don't know more than 20% of elisp's power.
-- Step 19: Discover package managers and macros like use-package.
-- Step 20: Feel cool with a clean and mastered config files.
-- Step 21: Try to make it cleaner and smaller.
-- Step 22: Try to figure out what's going on behind package managers. Be mind fucked.
-- Step 23: Be honest and realize that you don't know more than 15% of elisp's power.
-- Step 24: Finally, be confident and realize that you know more than 15% of elisp's power.
-- Step 25: Write your own functions and macros to manage your packages, initializations and keybindings.
-- Step 26: Realize that you understand any line of your configuration, but it is only "configuration", not programs.
-- Step 27: Be confident and realize that you MIGHT know more than 40% of elisp's power if you read more documentation.
-- Step 28: write steps you crossed to finally be here, but know that the path is still long. But funny. But long ...
+This is yet another step to the biggest lie in the world: a perfect Emacs configuration file.
 
 ** Purpose
 
@@ -51,29 +22,12 @@ The idea is to get a single configuration file that will handle:
 Warning: You might save your existing configuration before installing this one
 
 #+begin_src sh
-mkdir -p ~/src
-git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d
-cd  ~/src/emacs.d
+mkdir -p ~/work/src
+git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
+cd  ~/work/src/emacs.d
 make && make compile && make install
 #+end_src
 
 ** Credits
 
 Pierre Lecocq, version <BIGINT>
-
-** Disclaimer
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation; either version 2, or (at
-your option) any later version.
-
-This program is distributed in the hope that it will be useful, but
-WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with GNU Emacs; see the file COPYING. If not, write to the
-Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-Boston, MA 02111-1307, USA.
