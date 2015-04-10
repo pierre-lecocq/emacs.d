@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-04 14:04:45 pierre>
+;; Time-stamp:  <2015-04-10 17:14:43 lecocq>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -76,13 +76,7 @@
      tab-width 4
      c-basic-offset 4
      c-hanging-comment-ender-p nil
-     indent-tabs-mode nil))
-  (c-add-style
-   "custom-four-indent"
-   '((c-offsets-alist
-      (arglist-close . 0)
-      (arglist-intro . 4)
-      (case-label . 4)))))
+     indent-tabs-mode nil)))
 
 (pl/set-indentation)
 
@@ -221,7 +215,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'whitespace
          (require 'whitespace)
          (setq whitespace-line-column 80)
-         (setq whitespace-style '(tabs tab-mark face lines-tail))
+         ;; (setq whitespace-style '(tabs tab-mark face lines-tail))
+         (setq whitespace-style '(tabs tab-mark face))
          (setq whitespace-global-modes '(not org-mode web-mode))
          (global-whitespace-mode))
 
@@ -264,8 +259,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
              (require 'php-extras)
              (setq comment-start "// ")
              (setq comment-end "")
-             (set (make-local-variable 'indent-tabs-mode) nil)
-             (c-set-style "custom-four-indent")))
+             (set (make-local-variable 'indent-tabs-mode) nil)))
 
 (add-hook 'before-save-hook
           '(lambda()
@@ -277,7 +271,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
           '(lambda ()
              (auto-insert)
              (if (string= major-mode "php-mode")
-                 (pl/set-locale 'latin-1)
+                 (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
                (pl/set-locale 'utf-8))
              (if (and buffer-file-name
                       (string-match "/gnulib\\>" (buffer-file-name))
