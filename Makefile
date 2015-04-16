@@ -1,6 +1,5 @@
 BASE_DIR=$(shell pwd)
 BASE_FILE=$(BASE_DIR)/emacs.el
-LOADABLE_FILE=$(BASE_DIR)/emacs
 VENDOR_DIR=$(BASE_DIR)/vendor
 
 all: build
@@ -10,13 +9,6 @@ build:
 
 compile:
 	emacs --batch --eval '(byte-compile-file "$(BASE_FILE)")'
-
-install:
-	$(info )
-	$(info Save your current configuration if needed, then execute:)
-	$(info )
-	$(info echo "(load \"$(LOADABLE_FILE)\")" > ~/.emacs)
-	$(info )
 
 clean:
 	rm -f $(BASE_DIR)/*~ $(BASE_DIR)/*.elc

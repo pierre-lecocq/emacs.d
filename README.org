@@ -53,8 +53,8 @@ Warning: You might save your existing configuration before installing this one
 #+begin_src sh
 mkdir -p ~/work/src
 git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
-cd  ~/work/src/emacs.d
-make && make compile && make install
+cd  ~/work/src/emacs.d && make && make compile
+echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
 #+end_src
 
 ** Credits
