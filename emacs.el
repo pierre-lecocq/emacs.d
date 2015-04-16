@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-16 22:17:03 pierre>
+;; Time-stamp:  <2015-04-16 22:53:43 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -45,13 +45,17 @@
      (eval-after-load ,name
        (progn ,@body))))
 
-(defun yak/mkpath (path &optional is-directory create forced-base-dir)
-  "Make PATH and eventually CREATE it on file system."
-  (unless (boundp 'yak/base-dir) (setq yak/base-dir user-emacs-directory))
-  (let* ((l-base-dir (if forced-base-dir forced-base-dir yak/base-dir))
-         (path (expand-file-name (concat (file-name-as-directory l-base-dir) path))))
+(defun yak/mkpath (&rest args)
+  "Build a path and eventually create it on file system."
+  (unless (boundp 'yak/base-dir)
+    (setq yak/base-dir user-emacs-directory))
+  (let* ((name (plist-get args :name))
+         (base (or (plist-get args :base) yak/base-dir))
+         (directory (plist-get args :directory))
+         (create (plist-get args :create))
+         (path (expand-file-name (concat (file-name-as-directory base) name))))
     (when create
-      (if is-directory
+      (if directory
           (unless (file-accessible-directory-p path)
             (make-directory path t))
         (unless (file-exists-p path)
@@ -157,11 +161,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
  uniquify-buffer-name-style 'forward uniquify-separator "/"
  frame-title-format "Emacs %f"
  auto-insert-copyright (user-full-name)
- bookmark-default-file (yak/mkpath "bookmarks")
- package-user-dir (yak/mkpath "vendor/packages" t t)
- org-directory (yak/mkpath "org-files" t t "~/")
- custom-file (yak/mkpath "custom.el")
- machine-file (yak/mkpath (format "%s.el" (downcase (car (split-string system-name "\\."))))))
+ bookmark-default-file (yak/mkpath :name "bookmarks")
+ package-user-dir (yak/mkpath :name "vendor/packages" :directory t :create t)
+ org-directory (yak/mkpath :name "org-files" :directory t :create t :base "~/")
+ custom-file (yak/mkpath :name "custom.el")
+ machine-file (yak/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  show-trailing-whitespace t
@@ -371,10 +375,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-hide-emphasis-markers t
  org-fontify-done-headline t
  org-src-fontify-natively t
- org-default-notes-file (yak/mkpath "notes.org" nil t org-directory)
+ org-default-notes-file (yak/mkpath :name "notes.org" :create t :base org-directory)
  org-agenda-files (list
                    ;; Add other files here byt duplicating the below line.
-                   (yak/mkpath "agenda.org" nil t org-directory)))
+                   (yak/mkpath :name "agenda.org" :create t :base org-directory)))
 
 (defun org-font-lock-ensure ()
   "Org font lock ensure."
