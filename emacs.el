@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-16 21:38:58 pierre>
+;; Time-stamp:  <2015-04-16 21:41:59 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -277,6 +277,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'emacs-lisp-mode-hook
           '(lambda ()
              (turn-on-eldoc-mode)))
+
+(add-hook 'compilation-filter-hook
+          '(lambda ()
+             (require 'ansi-color)
+             (toggle-read-only)
+             (ansi-color-apply-on-region (point-min) (point-max))
+             (toggle-read-only)))
 
 (add-hook 'before-save-hook
           '(lambda()
