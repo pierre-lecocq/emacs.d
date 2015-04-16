@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-16 21:41:59 pierre>
+;; Time-stamp:  <2015-04-16 22:17:03 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -239,69 +239,81 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (add-hook 'after-init-hook 'global-company-mode)
 
-(add-hook 'minibuffer-setup-hook
-          '(lambda ()
-             (setq show-trailing-whitespace nil)))
+(defun hook-minibuffer-setup ()
+  (setq show-trailing-whitespace nil))
 
-(add-hook 'text-mode-hook
-          '(lambda ()
-             (global-visual-line-mode 1)
-             (linum-mode 1)
-             (make-local-variable 'linum-format)
-             (setq linum-format " %d ")))
+(add-hook 'minibuffer-setup-hook 'hook-minibuffer-setup)
 
-(add-hook 'prog-mode-hook
-          '(lambda ()
-             (idle-highlight-mode t)
-             (local-set-key (kbd "C-c <right>") 'hs-show-block)
-             (local-set-key (kbd "C-c <left>")  'hs-hide-block)
-             (local-set-key (kbd "C-c <up>")    'hs-hide-all)
-             (local-set-key (kbd "C-c <down>")  'hs-show-all)
-             (hs-minor-mode t)))
+(defun hook-text-mode ()
+  (global-visual-line-mode 1)
+  (linum-mode 1)
+  (make-local-variable 'linum-format)
+  (setq linum-format " %d "))
 
-(add-hook 'c-mode-common-hook
-          '(lambda()
-             (local-set-key (kbd "C-c o") 'ff-find-other-file)))
+(add-hook 'text-mode-hook 'hook-text-mode)
 
-(add-hook 'ruby-mode-hook
-          '(lambda()
-             (global-set-key (kbd "C-c C-r") 'pl/rb-require)))
+(defun hook-prog-mode ()
+  (idle-highlight-mode t)
+  (local-set-key (kbd "C-c <right>") 'hs-show-block)
+  (local-set-key (kbd "C-c <left>")  'hs-hide-block)
+  (local-set-key (kbd "C-c <up>")    'hs-hide-all)
+  (local-set-key (kbd "C-c <down>")  'hs-show-all)
+  (hs-minor-mode t))
 
-(add-hook 'php-mode-hook
-          '(lambda ()
-             (require 'php-extras)
-             (setq comment-start "// ")
-             (setq comment-end "")
-             (set (make-local-variable 'indent-tabs-mode) nil)))
+(add-hook 'prog-mode-hook 'hook-prog-mode)
 
-(add-hook 'emacs-lisp-mode-hook
-          '(lambda ()
-             (turn-on-eldoc-mode)))
+(defun hook-c-mode-common ()
+  (local-set-key (kbd "C-c o") 'ff-find-other-file))
 
-(add-hook 'compilation-filter-hook
-          '(lambda ()
-             (require 'ansi-color)
-             (toggle-read-only)
-             (ansi-color-apply-on-region (point-min) (point-max))
-             (toggle-read-only)))
+(add-hook 'c-mode-common-hook 'hookc-mode-common)
 
-(add-hook 'before-save-hook
-          '(lambda()
-             (time-stamp)
-             (delete-trailing-whitespace)
-             (whitespace-cleanup)))
+(defun hook-ruby-mode ()
+  (global-set-key (kbd "C-c C-r") 'pl/rb-require))
 
-(add-hook 'find-file-hook
-          '(lambda ()
-             (auto-insert)
-             (if (string= major-mode "php-mode")
-                 (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
-               (pl/set-locale 'utf-8))
-             (if (and buffer-file-name
-                      (string-match "/gnulib\\>" (buffer-file-name))
-                      (not (string-equal mode-name "Change Log"))
-                      (not (string-equal mode-name "Makefile")))
-                 (setq indent-tabs-mode nil))))
+(add-hook 'ruby-mode-hook 'hook-ruby-mode)
+
+(defun hook-php-mode ()
+  (require 'php-extras)
+  (setq comment-start "// ")
+  (setq comment-end "")
+  (set (make-local-variable 'indent-tabs-mode) nil))
+
+(add-hook 'php-mode-hook 'hook-php-mode)
+
+(defun hook-emacs-lisp-mode ()
+  (turn-on-eldoc-mode))
+
+(add-hook 'emacs-lisp-mode-hook 'hook-emacs-lisp-mode)
+
+(defun hook-compilation-filter ()
+  (require 'ansi-color)
+  (toggle-read-only)
+  (ansi-color-apply-on-region (point-min) (point-max))
+  (toggle-read-only))
+
+(add-hook 'compilation-filter-hook 'hook-compilation-filter)
+
+(defun hook-before-save ()
+  (time-stamp)
+  (delete-trailing-whitespace)
+  (whitespace-cleanup))
+
+(add-hook 'before-save-hook 'hook-before-save)
+(add-hook 'kill-buffer-hook 'hook-before-save)
+
+(defun hook-find-file ()
+  (auto-insert)
+  (if (string= major-mode "php-mode")
+      (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
+    (pl/set-locale 'utf-8))
+  (if (and buffer-file-name
+           (string-match "/gnulib\\>" (buffer-file-name))
+           (not (string-equal mode-name "Change Log"))
+           (not (string-equal mode-name "Makefile")))
+      (setq indent-tabs-mode nil)))
+
+(add-hook 'find-file-hook 'hook-find-file)
+
 
 ;;;; files
 
