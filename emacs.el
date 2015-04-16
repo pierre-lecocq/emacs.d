@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-10 17:14:43 lecocq>
+;; Time-stamp:  <2015-04-16 21:33:30 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -112,8 +112,21 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (when window-system (set-fringe-mode '(1 . 1)))
+
+;; Set Inconsolata font but falls back to DejaVu when unicode chars fail
 (when (member "Inconsolata" (font-family-list))
-  (set-face-attribute 'default nil :font "Inconsolata-12"))
+  (set-face-attribute 'default nil
+                      :family "Inconsolata"
+                      :height 120
+                      :weight 'normal
+                      :width 'normal))
+(when (functionp 'set-fontset-font)
+  (set-fontset-font "fontset-default"
+                    'unicode
+                    (font-spec :family "DejaVu Sans Mono"
+                               :width 'normal
+                               :size 12
+                               :weight 'normal)))
 
 ;;;; internals
 
