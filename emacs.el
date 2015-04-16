@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-16 21:33:30 pierre>
+;; Time-stamp:  <2015-04-16 21:38:58 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -273,6 +273,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
              (setq comment-start "// ")
              (setq comment-end "")
              (set (make-local-variable 'indent-tabs-mode) nil)))
+
+(add-hook 'emacs-lisp-mode-hook
+          '(lambda ()
+             (turn-on-eldoc-mode)))
 
 (add-hook 'before-save-hook
           '(lambda()
