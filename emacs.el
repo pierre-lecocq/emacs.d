@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 19:28:56 pierre>
+;; Time-stamp:  <2015-04-17 19:29:41 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -111,6 +111,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
               (split-string gems nil t)))))
 
 (defun pl/kill-buffers-by-mode (&optional mode-name)
+  (interactive)
   (unless mode-name
     (setq mode-name (read-from-minibuffer "Mode to kill: ")))
   (let ((killed-buffers 0)
