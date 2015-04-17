@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 19:30:53 pierre>
+;; Time-stamp:  <2015-04-17 19:35:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -160,20 +160,21 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (setq
  user-full-name "Pierre Lecocq"
  user-mail-address "pierre.lecocq@gmail.com"
+ frame-title-format "Emacs %f"
+ time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
+ auto-insert-copyright (user-full-name)
+ initial-scratch-message ";; Scratch buffer\n\n"
+ inhibit-startup-message t
+ inhibit-splash-screen t
  backup-inhibited t
  make-backup-files nil
  auto-save-default nil
- inhibit-startup-message t
- inhibit-splash-screen t
- initial-scratch-message ";; Scratch buffer\n\n"
  kill-whole-line t
  require-final-newline t
  next-line-add-newlines nil
  show-paren-style 'expression
  recentf-max-menu-items 50
  uniquify-buffer-name-style 'forward uniquify-separator "/"
- frame-title-format "Emacs %f"
- auto-insert-copyright (user-full-name)
  bookmark-default-file (yak/mkpath :name "bookmarks")
  package-user-dir (yak/mkpath :name "vendor/packages" :directory t :create t)
  org-directory (yak/mkpath :name "org-files" :directory t :create t :base "~/")
