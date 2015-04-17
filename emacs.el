@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-16 22:53:43 pierre>
+;; Time-stamp:  <2015-04-17 14:09:49 lecocq>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -109,6 +109,17 @@ Argument VALUE 0 = transparent, 100 = opaque."
       (mapcar (lambda (gem)
                 (insert (format "require \"%s\"\n" gem)))
               (split-string gems nil t)))))
+
+(defun pl/kill-buffers-by-mode (&optional mode-name)
+  (unless mode-name
+    (setq mode-name (read-from-minibuffer "Mode to kill: ")))
+  (let ((killed-buffers 0)
+        (mode-to-kill (intern mode-name)))
+    (dolist (buffer (buffer-list))
+      (when (eq mode-to-kill (buffer-local-value 'major-mode buffer))
+        (setq killed-buffers (1+ killed-buffers))
+        (kill-buffer buffer)))
+    (message "%d buffer(s) killed" killed-buffers)))
 
 ;;;; display
 
@@ -403,6 +414,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
+
+(global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
 
 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
