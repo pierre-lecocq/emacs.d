@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 14:09:49 lecocq>
+;; Time-stamp:  <2015-04-17 14:33:26 lecocq>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -75,12 +75,11 @@
 
 (defun pl/set-indentation ()
   "Set indentation."
-  (unless (string= major-mode "GNUmakefile")
-    (setq-default
-     tab-width 4
-     c-basic-offset 4
-     c-hanging-comment-ender-p nil
-     indent-tabs-mode nil)))
+  (setq-default
+   tab-width 4
+   c-basic-offset 4
+   c-hanging-comment-ender-p nil
+   indent-tabs-mode nil))
 
 (pl/set-indentation)
 
@@ -300,6 +299,12 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (add-hook 'emacs-lisp-mode-hook 'hook-emacs-lisp-mode)
 
+(defun hook-makefile-mode ()
+  (whitespace-toggle-options '(tabs))
+  (setq indent-tabs-mode t))
+
+(add-hook 'makefile-mode-hook 'hook-makefile-mode)
+
 (defun hook-compilation-filter ()
   (require 'ansi-color)
   (toggle-read-only)
@@ -328,7 +333,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
       (setq indent-tabs-mode nil)))
 
 (add-hook 'find-file-hook 'hook-find-file)
-
 
 ;;;; files
 
