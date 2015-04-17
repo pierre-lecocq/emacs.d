@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 14:09:49 lecocq>
+;; Time-stamp:  <2015-04-17 19:28:56 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,10 +10,10 @@
 
 ;;; Code:
 
+;;;; core - Yet Another Konfig-helper
+
 (defvar yak/base-dir
   (file-name-directory (or load-file-name (buffer-file-name))))
-
-;;;; core - Yet Another Konfig-helper
 
 (defun yak/pkg-initialize (name)
   "Initialize and refresh the package manager if needed."
