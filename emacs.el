@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 19:35:25>
+;; Time-stamp:  <2015-04-23 22:54:52>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -110,6 +110,12 @@ Argument VALUE 0 = transparent, 100 = opaque."
                 (insert (format "require \"%s\"\n" gem)))
               (split-string gems nil t)))))
 
+(defun pl/google-at-point ()
+  "Search on the internetz of Google"
+  (interactive)
+  (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'word))))
+    (browse-url (format "http://www.google.com/search?q=%s" q))))
+
 (defun pl/kill-buffers-by-mode (&optional mode-name)
   "Kill buffers by mode"
   (interactive)
@@ -210,6 +216,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'darkmine-theme
          (load-theme 'darkmine t))
 
+(yak/pkg 'flycheck)
+
 (yak/pkg 'flx-ido)
 
 (yak/pkg 'htmlize)
@@ -258,11 +266,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'after-init-hook 'global-company-mode)
 
 (defun hook-minibuffer-setup ()
+  "Hook for minibuffer."
   (setq show-trailing-whitespace nil))
 
 (add-hook 'minibuffer-setup-hook 'hook-minibuffer-setup)
 
 (defun hook-text-mode ()
+  "Hook for text modes."
   (global-visual-line-mode 1)
   (linum-mode 1)
   (make-local-variable 'linum-format)
@@ -271,26 +281,31 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'text-mode-hook 'hook-text-mode)
 
 (defun hook-prog-mode ()
+  "Hook for prog modes."
   (idle-highlight-mode t)
   (local-set-key (kbd "C-c <right>") 'hs-show-block)
   (local-set-key (kbd "C-c <left>")  'hs-hide-block)
   (local-set-key (kbd "C-c <up>")    'hs-hide-all)
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
-  (hs-minor-mode t))
+  (hs-minor-mode t)
+  (global-flycheck-mode))
 
 (add-hook 'prog-mode-hook 'hook-prog-mode)
 
 (defun hook-c-mode-common ()
+  "Hook for C modes."
   (local-set-key (kbd "C-c o") 'ff-find-other-file))
 
-(add-hook 'c-mode-common-hook 'hookc-mode-common)
+(add-hook 'c-mode-common-hook 'hook-c-mode-common)
 
 (defun hook-ruby-mode ()
+  "Hook for Ruby modes."
   (global-set-key (kbd "C-c C-r") 'pl/rb-require))
 
 (add-hook 'ruby-mode-hook 'hook-ruby-mode)
 
 (defun hook-php-mode ()
+  "Hook for PHP modes."
   (require 'php-extras)
   (setq comment-start "// ")
   (setq comment-end "")
@@ -299,19 +314,22 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'php-mode-hook 'hook-php-mode)
 
 (defun hook-emacs-lisp-mode ()
-  (turn-on-eldoc-mode))
+  "Hook for Emacs LISP modes."
+  (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'hook-emacs-lisp-mode)
 
 (defun hook-compilation-filter ()
+  "Hook for compilation buffers."
   (require 'ansi-color)
-  (toggle-read-only)
+  (read-only-mode)
   (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
+  (read-only-mode))
 
 (add-hook 'compilation-filter-hook 'hook-compilation-filter)
 
 (defun hook-before-save ()
+  "Hook before saving."
   (time-stamp)
   (delete-trailing-whitespace)
   (whitespace-cleanup))
@@ -320,6 +338,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'kill-buffer-hook 'hook-before-save)
 
 (defun hook-find-file ()
+  "Hook when finding a file."
   (auto-insert)
   (if (string= major-mode "php-mode")
       (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
