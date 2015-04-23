@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-23 22:54:52>
+;; Time-stamp:  <2015-04-23 23:51:11>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -129,6 +129,14 @@ Argument VALUE 0 = transparent, 100 = opaque."
         (kill-buffer buffer)))
     (message "%d buffer(s) killed" killed-buffers)))
 
+(defun pl/cycle-dictionaries()
+  "Cycle through my dictionaries."
+  (interactive)
+  (let* ((prev-dict ispell-dictionary)
+         (next-dict (if (string= prev-dict "francais") "english" "francais")))
+    (setq ispell-dictionary next-dict)
+    (message "Dictionary switched from %s to %s" prev-dict next-dict)))
+
 ;;;; display
 
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
@@ -218,6 +226,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (yak/pkg 'flycheck)
 
+(yak/pkg 'flyspell
+         (setq ispell-program-name "aspell")
+         (setq ispell-dictionary "english"))
+
 (yak/pkg 'flx-ido)
 
 (yak/pkg 'htmlize)
@@ -276,7 +288,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (global-visual-line-mode 1)
   (linum-mode 1)
   (make-local-variable 'linum-format)
-  (setq linum-format " %d "))
+  (setq linum-format " %d ")
+  (flyspell-mode 1))
 
 (add-hook 'text-mode-hook 'hook-text-mode)
 
