@@ -60,3 +60,26 @@ echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
 ** Credits
 
 Pierre Lecocq, version <BIGINT>
+
+** Links
+
+*** Official
+
+- [[https://www.gnu.org/software/emacs/][The GNU Emacs official website]]
+- [[http://www.damtp.cam.ac.uk/user/sje30/ess11/resources/emacs-refcard.pdf][Gnu Emacs refcard (PDF)]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][GNU Emacs manual]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html][Emacs Lisp Reference Manual]]
+- [[https://www.gnu.org/software/emacs/manual/index.html][Other Emacs manuals]]
+
+*** Third-party
+
+- [[http://planet.emacsen.org/][Planet Emacsen]]
+- [[http://www.reddit.com/r/emacs][Emacs subreddit]]
+- [[http://www.emacswiki.org/][Emacs Wiki]]
+- [[http://oremacs.com/][(or emacs]]
+- [[http://emacsredux.com/][Emacs Redux]]
+- [[http://emacsrocks.com/][Emacs Rocks]]
+- [[https://www.masteringemacs.org/][Mastering Emacs]]
+- [[http://sachachua.com/blog/category/emacs/][Sacha Chua - Emacs category]]
+- [[https://github.com/pierre-lecocq/emacs4developers][Emacs for Developers tutorial]]
