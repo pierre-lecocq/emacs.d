@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-23 23:51:11>
+;; Time-stamp:  <2015-04-24 11:31:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -142,7 +142,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(when window-system (set-fringe-mode '(1 . 1)))
+(when window-system (set-fringe-mode 10))
 
 ;; Set Inconsolata font but falls back to DejaVu when unicode chars fail
 (when (member "Inconsolata" (font-family-list))
