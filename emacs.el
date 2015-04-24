@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 15:56:50>
+;; Time-stamp:  <2015-04-24 18:47:41>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -208,10 +208,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; packages
 
-(yak/pkg 'anzu
-         (global-anzu-mode +1)
-         (set-face-attribute 'anzu-mode-line nil :foreground "yellow"))
-
 (yak/pkg 'autopair
          (autopair-global-mode t))
 
@@ -245,9 +241,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'swiper
          (setq ivy-extra-directories nil)
          (setq ivy-height 20)
+         (setq ivy-wrap t)
          (ivy-mode t)
-         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
-         (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done))
+         ;; (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+         ;; (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+         )
 
 (yak/pkg 'symon
          (setq symon-delay 5)
@@ -357,7 +355,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (add-hook 'find-file-hook 'hook-find-file)
 
-
 ;;;; files
 
 (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
@@ -440,6 +437,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "M-j") (join-line -1))
 
+(global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
 
