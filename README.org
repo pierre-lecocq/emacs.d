@@ -74,7 +74,7 @@ The idea is just to call =yak/pkg= in order to install and initialize a package.
           (my-package-mode t))
 #+end_src
 
-It works for internal packages and third-party packages installed thanks to =package.el= (through ELPA/MELPA/GNU...)
+It works for internal packages and third-party packages installed thanks to =package.el=
 
 **** Internal details
 
