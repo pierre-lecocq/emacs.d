@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 20:36:31>
+;; Time-stamp:  <2015-04-24 23:56:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,25 +14,27 @@
   (file-name-directory (or load-file-name (buffer-file-name)))
   "The configuration base directory.  Default: the current directory.")
 
-(defvar yak/initialized nil)
-
 ;;;; core - Yet Another Konfig-helper
 
-(defun yak/initialize ()
-  "Initialize and refresh the package manager."
-  (unless (boundp 'yak/initialized)
+(defun yak/initialize (name)
+  "Initialize and refresh the package manager if needed."
+  (unless (boundp 'yak/pkg-initialized)
     (require 'package)
     (setq package-archives
           '(("melpa"        . "http://melpa.org/packages/")
             ("gnu"          . "http://elpa.gnu.org/packages/")
             ("marmalade"    . "http://marmalade-repo.org/packages/")))
     (package-initialize)
+    (setq yak/pkg-initialized t))
+  (unless (or (package-built-in-p name)
+              (package-installed-p name)
+              (boundp 'yak/pkg-refreshed))
     (package-refresh-contents)
-    (setq yak/initialized t)))
+    (setq yak/pkg-refreshed t)))
 
 (defun yak/pkg-install (name)
   "Install the NAME package."
-  (yak/initialize)
+  (yak/initialize name)
   (unless (or (package-built-in-p name)
               (package-installed-p name))
     (package-install name)))
@@ -112,7 +114,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (defun pl/google-at-point ()
   "Search on the internetz of Google."
   (interactive)
-  (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'word))))
+  (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'symbol))))
     (browse-url (format "http://www.google.com/search?q=%s" q))))
 
 (defun pl/kill-buffers-by-mode (&optional mode-name)
