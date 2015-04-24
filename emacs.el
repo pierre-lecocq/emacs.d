@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 19:02:09>
+;; Time-stamp:  <2015-04-24 20:36:31>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,30 +14,25 @@
   (file-name-directory (or load-file-name (buffer-file-name)))
   "The configuration base directory.  Default: the current directory.")
 
-(defvar yak/pkg-initialized nil)
-(defvar yak/pkg-refreshed nil)
+(defvar yak/initialized nil)
 
 ;;;; core - Yet Another Konfig-helper
 
-(defun yak/pkg-initialize (name)
-  "Initialize and refresh the package manager if needed before installing NAME."
-  (unless (boundp 'yak/pkg-initialized)
+(defun yak/initialize ()
+  "Initialize and refresh the package manager."
+  (unless (boundp 'yak/initialized)
     (require 'package)
     (setq package-archives
           '(("melpa"        . "http://melpa.org/packages/")
             ("gnu"          . "http://elpa.gnu.org/packages/")
             ("marmalade"    . "http://marmalade-repo.org/packages/")))
     (package-initialize)
-    (setq yak/pkg-initialized t))
-  (unless (or (package-built-in-p name)
-              (package-installed-p name)
-              (boundp 'yak/pkg-refreshed))
     (package-refresh-contents)
-    (setq yak/pkg-refreshed t)))
+    (setq yak/initialized t)))
 
 (defun yak/pkg-install (name)
   "Install the NAME package."
-  (yak/pkg-initialize name)
+  (yak/initialize)
   (unless (or (package-built-in-p name)
               (package-installed-p name))
     (package-install name)))
@@ -49,7 +44,9 @@
      (eval-after-load ,name
        (progn ,@body))))
 
-(defun yak/mkpath (&rest args)
+;;;; functions
+
+(defun pl/mkpath (&rest args)
   "Build a path and eventually create it on file system according to ARGS."
   (unless (boundp 'yak/base-dir)
     (setq yak/base-dir user-emacs-directory))
@@ -65,8 +62,6 @@
         (unless (file-exists-p path)
           (write-region "" nil path))))
     path))
-
-;;;; functions
 
 (defun pl/set-locale (locale)
   "Set the LOCALE locale."
@@ -193,11 +188,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
  show-paren-style 'expression
  recentf-max-menu-items 50
  uniquify-buffer-name-style 'forward uniquify-separator "/"
- bookmark-default-file (yak/mkpath :name "bookmarks")
- package-user-dir (yak/mkpath :name "vendor/packages" :directory t :create t)
- org-directory (yak/mkpath :name "org-files" :directory t :create t :base "~/")
- custom-file (yak/mkpath :name "custom.el")
- machine-file (yak/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
+ bookmark-default-file (pl/mkpath :name "bookmarks")
+ package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
+ org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
+ custom-file (pl/mkpath :name "custom.el")
+ machine-file (pl/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  show-trailing-whitespace t
@@ -410,10 +405,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-hide-emphasis-markers t
  org-fontify-done-headline t
  org-src-fontify-natively t
- org-default-notes-file (yak/mkpath :name "notes.org" :create t :base org-directory)
+ org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
  org-agenda-files (list
                    ;; Add other files here byt duplicating the below line.
-                   (yak/mkpath :name "agenda.org" :create t :base org-directory)))
+                   (pl/mkpath :name "agenda.org" :create t :base org-directory)))
 
 (defun org-font-lock-ensure ()
   "Org font lock ensure."
