@@ -154,4 +154,5 @@ Pierre Lecocq, version <BIGINT>
 - [[http://emacsrocks.com/][Emacs Rocks]]
 - [[https://www.masteringemacs.org/][Mastering Emacs]]
 - [[http://sachachua.com/blog/category/emacs/][Sacha Chua - Emacs category]]
+- [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
 - [[https://github.com/pierre-lecocq/emacs4developers][Emacs for Developers tutorial]]
