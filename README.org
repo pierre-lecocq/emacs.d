@@ -40,7 +40,7 @@ This is yet another step to the biggest lie in the world: a perfect Emacs config
 The idea is to get a single configuration file that will handle:
 
 - File system preparation (create necessary folders and files)
-- Packages with the help of macros (wrappers for `package.el')
+- Packages with the help of macros (wrappers for =package.el=)
 - Initialization of modes and packages
 - Basic configuration
 - Set of functions
@@ -94,14 +94,14 @@ My collection of functions.
 
 | Name                    | Arguments           | Interactive | Description                                                                                                                    |
 |-------------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------------|
-| =pl/mkpath=               | =&rest args=          | No          | Create a file or a directory. It take named arguments: :name (string), :base (string), :directory (boolean), :create (boolean) |
+| =pl/mkpath=               | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
 | =pl/set-locale=           | =locale=              | No          | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                         |
 | =pl/set-indentation=      |                     | No          | Set indentation rules                                                                                                          |
 | =pl/get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer             |
-| =pl/transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque                                                                |
+| =pl/transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                    |
 | =pl/rb-require=           |                     | Yes         | Insert a list of required gems (for ruby development)                                                                          |
 | =pl/google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                             |
-| =pl/kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers of a specific major-mode (i.e: dired-mode or ruby-mode)                                                       |
+| =pl/kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                 |
 | =pl/cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                 |
 
 *** Keybindings
