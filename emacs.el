@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 18:47:41>
+;; Time-stamp:  <2015-04-24 19:02:09>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,13 +10,17 @@
 
 ;;; Code:
 
+(defvar yak/base-dir
+  (file-name-directory (or load-file-name (buffer-file-name)))
+  "The configuration base directory.  Default: the current directory.")
+
+(defvar yak/pkg-initialized nil)
+(defvar yak/pkg-refreshed nil)
+
 ;;;; core - Yet Another Konfig-helper
 
-(defvar yak/base-dir
-  (file-name-directory (or load-file-name (buffer-file-name))))
-
 (defun yak/pkg-initialize (name)
-  "Initialize and refresh the package manager if needed."
+  "Initialize and refresh the package manager if needed before installing NAME."
   (unless (boundp 'yak/pkg-initialized)
     (require 'package)
     (setq package-archives
@@ -32,21 +36,21 @@
     (setq yak/pkg-refreshed t)))
 
 (defun yak/pkg-install (name)
-  "Install a package."
+  "Install the NAME package."
   (yak/pkg-initialize name)
   (unless (or (package-built-in-p name)
               (package-installed-p name))
     (package-install name)))
 
 (defmacro yak/pkg (name &rest body)
-  "Install and configure and package."
+  "Install the NAME package and configure with BODY."
   `(progn
      (yak/pkg-install ,name)
      (eval-after-load ,name
        (progn ,@body))))
 
 (defun yak/mkpath (&rest args)
-  "Build a path and eventually create it on file system."
+  "Build a path and eventually create it on file system according to ARGS."
   (unless (boundp 'yak/base-dir)
     (setq yak/base-dir user-emacs-directory))
   (let* ((name (plist-get args :name))
@@ -65,7 +69,7 @@
 ;;;; functions
 
 (defun pl/set-locale (locale)
-  "Set locale."
+  "Set the LOCALE locale."
   (set-language-environment locale)
   (set-terminal-coding-system locale)
   (setq locale-coding-system locale)
@@ -111,13 +115,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
               (split-string gems nil t)))))
 
 (defun pl/google-at-point ()
-  "Search on the internetz of Google"
+  "Search on the internetz of Google."
   (interactive)
   (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'word))))
     (browse-url (format "http://www.google.com/search?q=%s" q))))
 
 (defun pl/kill-buffers-by-mode (&optional mode-name)
-  "Kill buffers by mode"
+  "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
   (interactive)
   (unless mode-name
     (setq mode-name (read-from-minibuffer "Mode to kill: ")))
@@ -343,15 +347,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun hook-find-file ()
   "Hook when finding a file."
-  (auto-insert)
   (if (string= major-mode "php-mode")
       (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
     (pl/set-locale 'utf-8))
-  (if (and buffer-file-name
-           (string-match "/gnulib\\>" (buffer-file-name))
-           (not (string-equal mode-name "Change Log"))
-           (not (string-equal mode-name "Makefile")))
-      (setq indent-tabs-mode nil)))
+  (auto-insert))
 
 (add-hook 'find-file-hook 'hook-find-file)
 
