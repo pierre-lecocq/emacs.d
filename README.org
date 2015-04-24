@@ -48,13 +48,16 @@ The idea is to get a single configuration file that will handle:
 
 ** Install
 
-Warning: You might save your existing configuration before installing this one
+Warning: You might save your existing configuration before installing this one.
+
+You might also change the =$MY_SRC_DIR= value to fit your needs.
 
 #+begin_src sh
-mkdir -p ~/work/src
-git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
-cd  ~/work/src/emacs.d && make && make compile
-echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
+export MY_SRC_DIR="~/work/src"
+mkdir -p $MY_SRC_DIR
+git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
+cd  $MY_SRC_DIR/emacs.d && make && make compile
+echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
 #+end_src
 
 ** Credits
