@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 11:31:55>
+;; Time-stamp:  <2015-04-24 15:56:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -224,30 +224,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'darkmine-theme
          (load-theme 'darkmine t))
 
+(yak/pkg 'find-file-in-project)
 (yak/pkg 'flycheck)
 
 (yak/pkg 'flyspell
          (setq ispell-program-name "aspell")
          (setq ispell-dictionary "english"))
 
-(yak/pkg 'flx-ido)
-
 (yak/pkg 'htmlize)
 
 (yak/pkg 'idle-highlight-mode)
-
-(yak/pkg 'ido-hacks)
-(yak/pkg 'ido-vertical-mode)
-(yak/pkg 'ido
-         (require 'ido)
-         (ido-mode t)
-         (ido-everywhere 1)
-         (flx-ido-mode 1)
-         (setq ido-enable-flex-matching t)
-         (setq ido-use-faces nil)
-         (require 'ido-hacks)
-         (ido-hacks-mode)
-         (ido-vertical-mode))
 
 (yak/pkg 'js2-mode)
 (yak/pkg 'markdown-mode)
@@ -255,6 +241,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'php-mode)
 (yak/pkg 'rainbow-mode)
 (yak/pkg 'ruby-mode)
+
+(yak/pkg 'swiper
+         (setq ivy-extra-directories nil)
+         (setq ivy-height 20)
+         (ivy-mode t)
+         (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+         (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done))
 
 (yak/pkg 'symon
          (setq symon-delay 5)
@@ -449,6 +442,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
+
+(global-set-key (kbd "C-S-x C-S-f") 'find-file-in-project)
 
 (global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
 
