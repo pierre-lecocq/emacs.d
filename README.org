@@ -69,8 +69,8 @@ The idea is just to call =yak/pkg= in order to install and initialize a package.
 #+begin_src emacs-lisp
 (yak-pkg 'my-package
           ;; The configuration for the package:
-          (setq 'my-package-custom-var1 t)
-          (setq 'my-package-custom-var2 nil)
+          (setq my-package-custom-var1 t)
+          (setq my-package-custom-var2 nil)
           (my-package-mode t))
 #+end_src
 
