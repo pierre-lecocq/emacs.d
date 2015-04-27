@@ -95,7 +95,7 @@ My collection of functions.
 | Name                    | Arguments           | Interactive | Description                                                                                                                    |
 |-------------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------------|
 | =pl/mkpath=               | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
-| =pl/set-locale=           | =locale=              | No          | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                         |
+| =pl/set-locale=           | =locale=              | Yes          | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                         |
 | =pl/set-indentation=      |                     | No          | Set indentation rules                                                                                                          |
 | =pl/get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer             |
 | =pl/transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                    |

@@ -67,6 +67,7 @@
 
 (defun pl/set-locale (locale)
   "Set the LOCALE locale."
+  (interactive "zLocale: ")
   (set-language-environment locale)
   (set-terminal-coding-system locale)
   (setq locale-coding-system locale)
