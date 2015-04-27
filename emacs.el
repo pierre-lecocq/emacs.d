@@ -345,7 +345,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (whitespace-cleanup))
 
 (add-hook 'before-save-hook 'hook-before-save)
-(add-hook 'kill-buffer-hook 'hook-before-save)
+;; (add-hook 'kill-buffer-hook 'hook-before-save)
 
 (defun hook-find-file ()
   "Hook when finding a file."
