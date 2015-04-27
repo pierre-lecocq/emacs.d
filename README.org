@@ -40,7 +40,7 @@ This is yet another step to the biggest lie in the world: a perfect Emacs config
 The idea is to get a single configuration file that will handle:
 
 - File system preparation (create necessary folders and files)
-- Packages with the help of macros (wrappers for `package.el')
+- Packages with the help of macros (wrappers for =package.el=)
 - Initialization of modes and packages
 - Basic configuration
 - Set of functions
@@ -48,15 +48,111 @@ The idea is to get a single configuration file that will handle:
 
 ** Install
 
-Warning: You might save your existing configuration before installing this one
+Warning: You might save your existing configuration before installing this one.
+
+You might also change the =$MY_SRC_DIR= value to fit your needs.
 
 #+begin_src sh
-mkdir -p ~/work/src
-git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
-cd  ~/work/src/emacs.d && make && make compile
-echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
+export MY_SRC_DIR="~/work/src"
+mkdir -p $MY_SRC_DIR
+git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
+cd  $MY_SRC_DIR/emacs.d && make && make compile
+echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
 #+end_src
+
+** Functions and keys
+
+*** Yak (Yet Another Konfig-helper)
+
+The idea is just to call =yak/pkg= in order to install and initialize a package. Here is a dummy example:
+
+#+begin_src emacs-lisp
+(yak-pkg 'my-package
+          ;; The configuration for the package:
+          (setq 'my-package-custom-var1 t)
+          (setq 'my-package-custom-var2 nil)
+          (my-package-mode t))
+#+end_src
+
+It works for internal packages and third-party packages installed thanks to =package.el=
+
+**** Internal details
+
+=Yak= is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
+
+| Name            | Type     | Arguments       | Description                                                                                |
+|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------|
+| =yak/base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory |
+| =yak/initialize=  | Function |                 | Initialize and refresh the package manager                                                 |
+| =yak/pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager |
+| =yak/pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                      |
+|                 |          |                 |                                                                                            |
+
+*** Functions
+
+My collection of functions.
+
+| Name                    | Arguments           | Interactive | Description                                                                                                                    |
+|-------------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------------|
+| =pl/mkpath=               | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
+| =pl/set-locale=           | =locale=              | No          | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                         |
+| =pl/set-indentation=      |                     | No          | Set indentation rules                                                                                                          |
+| =pl/get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer             |
+| =pl/transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                    |
+| =pl/rb-require=           |                     | Yes         | Insert a list of required gems (for ruby development)                                                                          |
+| =pl/google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                             |
+| =pl/kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                 |
+| =pl/cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                 |
+
+*** Keybindings
+
+| Keys        | Function                         | Mode          |
+|-------------+----------------------------------+---------------|
+| =C-c <right>= | =hs-show-block=                    | prog-mode     |
+| =C-c <left>=  | =hs-hide-block=                    | prog-mode     |
+| =C-c <up>=    | =hs-hide-all=                      | prog-mode     |
+| =C-c <down>=  | =hs-show-all=                      | prog-mode     |
+| =C-c o=       | =ff-find-other-file=               | c-common-mode |
+| =C-c C-r=     | =pl/rb-require=                    | ruby-mode     |
+| =M-g=         | =goto-line=                        | *             |
+| =C-c C-c=     | =comment-region=                   | *             |
+| =C-c C-u=     | =uncomment-region=                 | *             |
+| =M-j=         | =join-line -1=                     | *             |
+| =C-s=         | =swiper=                           | *             |
+| =C-S-s=       | =find-grep=                        | *             |
+| =C-S-f=       | =imenu=                            | *             |
+| =C-S-x C-S-f= | =find-file-in-project=             | *             |
+| =C-S-x k=     | =pl/kill-buffers-by-mode=          | *             |
+| =C-M-v=       | =cycle-resize-window-vertically=   | *             |
+| =C-M-h=       | =cycle-resize-window-horizontally= | *             |
+| =f5=          | =bookmark-bmenu-list=              | *             |
+| =f6=          | =recentf-open-files=               | *             |
+| =f12=         | =pl/get-shell=                     | *             |
 
 ** Credits
 
 Pierre Lecocq, version <BIGINT>
+
+** Links
+
+*** Official
+
+- [[https://www.gnu.org/software/emacs/][The GNU Emacs official website]]
+- [[http://www.damtp.cam.ac.uk/user/sje30/ess11/resources/emacs-refcard.pdf][Gnu Emacs refcard (PDF)]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][GNU Emacs manual]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
+- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html][Emacs Lisp Reference Manual]]
+- [[https://www.gnu.org/software/emacs/manual/index.html][Other Emacs manuals]]
+
+*** Third-party
+
+- [[http://planet.emacsen.org/][Planet Emacsen]]
+- [[http://www.reddit.com/r/emacs][Emacs subreddit]]
+- [[http://www.emacswiki.org/][Emacs Wiki]]
+- [[http://oremacs.com/][(or emacs]]
+- [[http://emacsredux.com/][Emacs Redux]]
+- [[http://emacsrocks.com/][Emacs Rocks]]
+- [[https://www.masteringemacs.org/][Mastering Emacs]]
+- [[http://sachachua.com/blog/category/emacs/][Sacha Chua - Emacs category]]
+- [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
+- [[https://github.com/pierre-lecocq/emacs4developers][Emacs for Developers tutorial]]

@@ -16,4 +16,4 @@ clean:
 reset: clean
 	rm -rf $(VENDOR_DIR)
 
-love: reset build
+love: reset build compile

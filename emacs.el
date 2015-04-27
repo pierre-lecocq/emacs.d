@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-17 14:33:26 lecocq>
+;; Time-stamp:  <2015-04-24 23:56:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,11 +11,12 @@
 ;;; Code:
 
 (defvar yak/base-dir
-  (file-name-directory (or load-file-name (buffer-file-name))))
+  (file-name-directory (or load-file-name (buffer-file-name)))
+  "The configuration base directory.  Default: the current directory.")
 
 ;;;; core - Yet Another Konfig-helper
 
-(defun yak/pkg-initialize (name)
+(defun yak/initialize (name)
   "Initialize and refresh the package manager if needed."
   (unless (boundp 'yak/pkg-initialized)
     (require 'package)
@@ -32,21 +33,23 @@
     (setq yak/pkg-refreshed t)))
 
 (defun yak/pkg-install (name)
-  "Install a package."
-  (yak/pkg-initialize name)
+  "Install the NAME package."
+  (yak/initialize name)
   (unless (or (package-built-in-p name)
               (package-installed-p name))
     (package-install name)))
 
 (defmacro yak/pkg (name &rest body)
-  "Install and configure and package."
+  "Install the NAME package and configure with BODY."
   `(progn
      (yak/pkg-install ,name)
      (eval-after-load ,name
        (progn ,@body))))
 
-(defun yak/mkpath (&rest args)
-  "Build a path and eventually create it on file system."
+;;;; functions
+
+(defun pl/mkpath (&rest args)
+  "Build a path and eventually create it on file system according to ARGS."
   (unless (boundp 'yak/base-dir)
     (setq yak/base-dir user-emacs-directory))
   (let* ((name (plist-get args :name))
@@ -62,10 +65,8 @@
           (write-region "" nil path))))
     path))
 
-;;;; functions
-
 (defun pl/set-locale (locale)
-  "Set locale."
+  "Set the LOCALE locale."
   (set-language-environment locale)
   (set-terminal-coding-system locale)
   (setq locale-coding-system locale)
@@ -109,7 +110,15 @@ Argument VALUE 0 = transparent, 100 = opaque."
                 (insert (format "require \"%s\"\n" gem)))
               (split-string gems nil t)))))
 
+(defun pl/google-at-point ()
+  "Search on the internetz of Google."
+  (interactive)
+  (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'symbol))))
+    (browse-url (format "http://www.google.com/search?q=%s" q))))
+
 (defun pl/kill-buffers-by-mode (&optional mode-name)
+  "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
+  (interactive)
   (unless mode-name
     (setq mode-name (read-from-minibuffer "Mode to kill: ")))
   (let ((killed-buffers 0)
@@ -120,12 +129,20 @@ Argument VALUE 0 = transparent, 100 = opaque."
         (kill-buffer buffer)))
     (message "%d buffer(s) killed" killed-buffers)))
 
+(defun pl/cycle-dictionaries()
+  "Cycle through my dictionaries."
+  (interactive)
+  (let* ((prev-dict ispell-dictionary)
+         (next-dict (if (string= prev-dict "francais") "english" "francais")))
+    (setq ispell-dictionary next-dict)
+    (message "Dictionary switched from %s to %s" prev-dict next-dict)))
+
 ;;;; display
 
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(when window-system (set-fringe-mode '(1 . 1)))
+(when window-system (set-fringe-mode 10))
 
 ;; Set Inconsolata font but falls back to DejaVu when unicode chars fail
 (when (member "Inconsolata" (font-family-list))
@@ -157,25 +174,26 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (setq
  user-full-name "Pierre Lecocq"
  user-mail-address "pierre.lecocq@gmail.com"
+ frame-title-format "Emacs %f"
+ time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
+ auto-insert-copyright (user-full-name)
+ initial-scratch-message ";; Scratch buffer\n\n"
+ inhibit-startup-message t
+ inhibit-splash-screen t
  backup-inhibited t
  make-backup-files nil
  auto-save-default nil
- inhibit-startup-message t
- inhibit-splash-screen t
- initial-scratch-message ";; Scratch buffer\n\n"
  kill-whole-line t
  require-final-newline t
  next-line-add-newlines nil
  show-paren-style 'expression
  recentf-max-menu-items 50
  uniquify-buffer-name-style 'forward uniquify-separator "/"
- frame-title-format "Emacs %f"
- auto-insert-copyright (user-full-name)
- bookmark-default-file (yak/mkpath :name "bookmarks")
- package-user-dir (yak/mkpath :name "vendor/packages" :directory t :create t)
- org-directory (yak/mkpath :name "org-files" :directory t :create t :base "~/")
- custom-file (yak/mkpath :name "custom.el")
- machine-file (yak/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
+ bookmark-default-file (pl/mkpath :name "bookmarks")
+ package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
+ org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
+ custom-file (pl/mkpath :name "custom.el")
+ machine-file (pl/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  show-trailing-whitespace t
@@ -190,10 +208,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; packages
 
-(yak/pkg 'anzu
-         (global-anzu-mode +1)
-         (set-face-attribute 'anzu-mode-line nil :foreground "yellow"))
-
 (yak/pkg 'autopair
          (autopair-global-mode t))
 
@@ -206,24 +220,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'darkmine-theme
          (load-theme 'darkmine t))
 
-(yak/pkg 'flx-ido)
+(yak/pkg 'find-file-in-project)
+(yak/pkg 'flycheck)
+
+(yak/pkg 'flyspell
+         (setq ispell-program-name "aspell")
+         (setq ispell-dictionary "english"))
 
 (yak/pkg 'htmlize)
 
 (yak/pkg 'idle-highlight-mode)
-
-(yak/pkg 'ido-hacks)
-(yak/pkg 'ido-vertical-mode)
-(yak/pkg 'ido
-         (require 'ido)
-         (ido-mode t)
-         (ido-everywhere 1)
-         (flx-ido-mode 1)
-         (setq ido-enable-flex-matching t)
-         (setq ido-use-faces nil)
-         (require 'ido-hacks)
-         (ido-hacks-mode)
-         (ido-vertical-mode))
 
 (yak/pkg 'js2-mode)
 (yak/pkg 'markdown-mode)
@@ -231,6 +237,15 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'php-mode)
 (yak/pkg 'rainbow-mode)
 (yak/pkg 'ruby-mode)
+
+(yak/pkg 'swiper
+         (setq ivy-extra-directories nil)
+         (setq ivy-height 20)
+         (setq ivy-wrap t)
+         (ivy-mode t)
+         ;; (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
+         ;; (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
+         )
 
 (yak/pkg 'symon
          (setq symon-delay 5)
@@ -254,39 +269,47 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'after-init-hook 'global-company-mode)
 
 (defun hook-minibuffer-setup ()
+  "Hook for minibuffer."
   (setq show-trailing-whitespace nil))
 
 (add-hook 'minibuffer-setup-hook 'hook-minibuffer-setup)
 
 (defun hook-text-mode ()
+  "Hook for text modes."
   (global-visual-line-mode 1)
   (linum-mode 1)
   (make-local-variable 'linum-format)
-  (setq linum-format " %d "))
+  (setq linum-format " %d ")
+  (flyspell-mode 1))
 
 (add-hook 'text-mode-hook 'hook-text-mode)
 
 (defun hook-prog-mode ()
+  "Hook for prog modes."
   (idle-highlight-mode t)
   (local-set-key (kbd "C-c <right>") 'hs-show-block)
   (local-set-key (kbd "C-c <left>")  'hs-hide-block)
   (local-set-key (kbd "C-c <up>")    'hs-hide-all)
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
-  (hs-minor-mode t))
+  (hs-minor-mode t)
+  (global-flycheck-mode))
 
 (add-hook 'prog-mode-hook 'hook-prog-mode)
 
 (defun hook-c-mode-common ()
+  "Hook for C modes."
   (local-set-key (kbd "C-c o") 'ff-find-other-file))
 
-(add-hook 'c-mode-common-hook 'hookc-mode-common)
+(add-hook 'c-mode-common-hook 'hook-c-mode-common)
 
 (defun hook-ruby-mode ()
+  "Hook for Ruby modes."
   (global-set-key (kbd "C-c C-r") 'pl/rb-require))
 
 (add-hook 'ruby-mode-hook 'hook-ruby-mode)
 
 (defun hook-php-mode ()
+  "Hook for PHP modes."
   (require 'php-extras)
   (setq comment-start "// ")
   (setq comment-end "")
@@ -295,7 +318,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'php-mode-hook 'hook-php-mode)
 
 (defun hook-emacs-lisp-mode ()
-  (turn-on-eldoc-mode))
+  "Hook for Emacs LISP modes."
+  (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'hook-emacs-lisp-mode)
 
@@ -306,14 +330,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'makefile-mode-hook 'hook-makefile-mode)
 
 (defun hook-compilation-filter ()
+  "Hook for compilation buffers."
   (require 'ansi-color)
-  (toggle-read-only)
+  (read-only-mode)
   (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
+  (read-only-mode))
 
 (add-hook 'compilation-filter-hook 'hook-compilation-filter)
 
 (defun hook-before-save ()
+  "Hook before saving."
   (time-stamp)
   (delete-trailing-whitespace)
   (whitespace-cleanup))
@@ -322,15 +348,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'kill-buffer-hook 'hook-before-save)
 
 (defun hook-find-file ()
-  (auto-insert)
+  "Hook when finding a file."
   (if (string= major-mode "php-mode")
       (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
     (pl/set-locale 'utf-8))
-  (if (and buffer-file-name
-           (string-match "/gnulib\\>" (buffer-file-name))
-           (not (string-equal mode-name "Change Log"))
-           (not (string-equal mode-name "Makefile")))
-      (setq indent-tabs-mode nil)))
+  (auto-insert))
 
 (add-hook 'find-file-hook 'hook-find-file)
 
@@ -390,10 +412,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-hide-emphasis-markers t
  org-fontify-done-headline t
  org-src-fontify-natively t
- org-default-notes-file (yak/mkpath :name "notes.org" :create t :base org-directory)
+ org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
  org-agenda-files (list
                    ;; Add other files here byt duplicating the below line.
-                   (yak/mkpath :name "agenda.org" :create t :base org-directory)))
+                   (pl/mkpath :name "agenda.org" :create t :base org-directory)))
 
 (defun org-font-lock-ensure ()
   "Org font lock ensure."
@@ -416,8 +438,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "M-j") (join-line -1))
 
+(global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
+
+(global-set-key (kbd "C-S-x C-S-f") 'find-file-in-project)
 
 (global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
 
