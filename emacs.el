@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-24 23:56:27>
+;; Time-stamp:  <2015-04-27 13:50:24>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -229,9 +229,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
          (setq ispell-dictionary "english"))
 
 (yak/pkg 'htmlize)
-
 (yak/pkg 'idle-highlight-mode)
-
 (yak/pkg 'js2-mode)
 (yak/pkg 'markdown-mode)
 (yak/pkg 'php-extras)

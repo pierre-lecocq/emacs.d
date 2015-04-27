@@ -48,9 +48,9 @@ The idea is to get a single configuration file that will handle:
 
 ** Install
 
-Warning: You might save your existing configuration before installing this one.
+Warning: You may want to save your existing configuration before installing this one.
 
-You might also change the =$MY_SRC_DIR= value to fit your needs.
+You may also change the =$MY_SRC_DIR= value to fit your needs.
 
 #+begin_src sh
 export MY_SRC_DIR="~/work/src"
@@ -60,7 +60,7 @@ cd  $MY_SRC_DIR/emacs.d && make && make compile
 echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
 #+end_src
 
-** Functions and keys
+** Content
 
 *** Yak (Yet Another Konfig-helper)
 
@@ -87,6 +87,30 @@ It works for internal packages and third-party packages installed thanks to =pac
 | =yak/pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager |
 | =yak/pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                      |
 |                 |          |                 |                                                                                            |
+
+*** Packages
+
+- autopair
+- company
+- cycle-resize
+- darkmine-theme
+- find-file-in-project
+- flycheck
+- flyspell
+- htmlize
+- idle-highlight-mode
+- js2-mode
+- markdown-mode
+- php-extras
+- php-mode
+- rainbow-mode
+- ruby-mode
+- swiper
+- symon
+- visual-regexp
+- web-mode
+- whitespace
+- yaml-mode
 
 *** Functions
 
