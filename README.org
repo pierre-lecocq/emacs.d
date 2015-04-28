@@ -104,6 +104,7 @@ It works for internal packages and third-party packages installed thanks to =pac
 - php-extras
 - php-mode
 - rainbow-mode
+- rainbow-delimiter-mode
 - ruby-mode
 - swiper
 - symon

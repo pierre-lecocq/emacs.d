@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-27 13:50:24>
+;; Time-stamp:  <2015-04-28 11:08:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -235,6 +235,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'php-extras)
 (yak/pkg 'php-mode)
 (yak/pkg 'rainbow-mode)
+(yak/pkg 'rainbow-delimiters)
 (yak/pkg 'ruby-mode)
 
 (yak/pkg 'swiper
@@ -291,7 +292,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (local-set-key (kbd "C-c <up>")    'hs-hide-all)
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
   (hs-minor-mode t)
-  (global-flycheck-mode))
+  (global-flycheck-mode)
+  (rainbow-delimiters-mode))
 
 (add-hook 'prog-mode-hook 'hook-prog-mode)
 
@@ -302,13 +304,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'c-mode-common-hook 'hook-c-mode-common)
 
 (defun hook-ruby-mode ()
-  "Hook for Ruby modes."
+  "Hook for Ruby mode."
   (global-set-key (kbd "C-c C-r") 'pl/rb-require))
 
 (add-hook 'ruby-mode-hook 'hook-ruby-mode)
 
 (defun hook-php-mode ()
-  "Hook for PHP modes."
+  "Hook for PHP mode."
   (require 'php-extras)
   (setq comment-start "// ")
   (setq comment-end "")
@@ -317,10 +319,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'php-mode-hook 'hook-php-mode)
 
 (defun hook-emacs-lisp-mode ()
-  "Hook for Emacs LISP modes."
+  "Hook for Emacs LISP mode."
   (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook 'hook-emacs-lisp-mode)
+
+(defun hook-css-mode ()
+  "Hook for CSS mode."
+  (rainbow-mode))
+
+(add-hook 'css-mode-hook 'hook-css-mode)
 
 (defun hook-makefile-mode ()
   (whitespace-toggle-options '(tabs))
