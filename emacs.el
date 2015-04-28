@@ -274,6 +274,15 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (add-hook 'minibuffer-setup-hook 'hook-minibuffer-setup)
 
+(defun hook-dired-mode ()
+  "Hook for dired mode."
+  (put 'dired-find-alternate-file 'disabled nil)
+  (setq dired-guess-shell-alist-user
+	'(("\\.pdf\\'" "xpf")
+	  ("\\.ods\\'\\|\\.xlsx?\\'\\|\\.docx?\\'\\|\\.csv\\'" "libreoffice"))))
+
+(add-hook 'dired-mode-hook 'hook-dired-mode)
+
 (defun hook-text-mode ()
   "Hook for text modes."
   (global-visual-line-mode 1)
