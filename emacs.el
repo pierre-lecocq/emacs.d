@@ -469,6 +469,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f12] 'pl/get-shell)
 
+(global-unset-key (kdb "C-z")) ;; Fuck you, `suspend-frame'
+
 ;;;; extrafiles
 
 (load custom-file 'noerror)
