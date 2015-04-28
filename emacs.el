@@ -194,7 +194,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
  org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
  custom-file (pl/mkpath :name "custom.el")
- machine-file (pl/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
+ host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  truncate-lines t
@@ -475,6 +475,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 ;;;; extrafiles
 
 (load custom-file 'noerror)
-(load machine-file 'noerror)
+(if (file-exists-p host-file)
+    (load host-file)
+  (message "No host specific file loaded (%s)" host-file))
 
 ;;; emacs.el ends here
