@@ -197,6 +197,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  machine-file (pl/mkpath :name (format "%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
+ truncate-lines t
  show-trailing-whitespace t
  highlight-tabs t
  mode-line-format
