@@ -455,6 +455,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "M-j") (join-line -1))
 
+(global-set-key (kbd "C-r") 'swiper)
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
