@@ -97,6 +97,7 @@ It works for internal packages and third-party packages installed thanks to =pac
 - find-file-in-project
 - flycheck
 - flyspell
+- helm
 - htmlize
 - idle-highlight-mode
 - js2-mode
@@ -106,7 +107,6 @@ It works for internal packages and third-party packages installed thanks to =pac
 - rainbow-mode
 - rainbow-delimiter-mode
 - ruby-mode
-- swiper
 - symon
 - visual-regexp
 - web-mode
@@ -143,7 +143,6 @@ My collection of functions.
 | =C-c C-c=     | =comment-region=                   | *             |
 | =C-c C-u=     | =uncomment-region=                 | *             |
 | =M-j=         | =join-line -1=                     | *             |
-| =C-s=         | =swiper=                           | *             |
 | =C-S-s=       | =find-grep=                        | *             |
 | =C-S-f=       | =imenu=                            | *             |
 | =C-S-x C-S-f= | =find-file-in-project=             | *             |
@@ -153,6 +152,10 @@ My collection of functions.
 | =f5=          | =bookmark-bmenu-list=              | *             |
 | =f6=          | =recentf-open-files=               | *             |
 | =f12=         | =pl/get-shell=                     | *             |
+| =M-x=         | =helm-M-x=                         | *             |
+| =M-y=         | =helm-show-kill-ring=              | *             |
+| =C-x b=       | =helm-mini=                        | *             |
+| =C-x C-f=     | =helm-find-file=                   | *             |
 
 ** Credits
 
