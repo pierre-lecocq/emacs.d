@@ -102,6 +102,7 @@ It works for internal packages and third-party packages installed thanks to =pac
 - idle-highlight-mode
 - js2-mode
 - markdown-mode
+- paredit
 - php-extras
 - php-mode
 - rainbow-mode
