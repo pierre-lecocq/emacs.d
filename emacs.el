@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-04-28 11:08:42>
+;; Time-stamp:  <2015-05-06 18:06:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -229,6 +229,21 @@ Argument VALUE 0 = transparent, 100 = opaque."
          (setq ispell-program-name "aspell")
          (setq ispell-dictionary "english"))
 
+(yak/pkg 'helm
+         (require 'helm)
+         (require 'helm-config)
+         (setq
+          helm-buffers-fuzzy-matching t
+          helm-recentf-fuzzy-match t
+          helm-M-x-fuzzy-match t
+          helm-split-window-in-side-p t
+          helm-move-to-line-cycle-in-source t
+          helm-ff-file-name-history-use-recentf t)
+         (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+         (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
+         (helm-autoresize-mode t)
+         (helm-mode 1))
+
 (yak/pkg 'htmlize)
 (yak/pkg 'idle-highlight-mode)
 (yak/pkg 'js2-mode)
@@ -238,15 +253,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'rainbow-mode)
 (yak/pkg 'rainbow-delimiters)
 (yak/pkg 'ruby-mode)
-
-(yak/pkg 'swiper
-         (setq ivy-extra-directories nil)
-         (setq ivy-height 20)
-         (setq ivy-wrap t)
-         (ivy-mode t)
-         ;; (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-done)
-         ;; (define-key ivy-minibuffer-map (kbd "C-m") 'ivy-alt-done)
-         )
 
 (yak/pkg 'symon
          (setq symon-delay 5)
@@ -455,8 +461,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "M-j") (join-line -1))
 
-(global-set-key (kbd "C-r") 'swiper)
-(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
 
