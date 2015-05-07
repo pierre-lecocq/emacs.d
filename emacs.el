@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-06 20:41:41>
+;; Time-stamp:  <2015-05-07 18:26:33>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -248,7 +248,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'idle-highlight-mode)
 (yak/pkg 'js2-mode)
 (yak/pkg 'markdown-mode)
-(yak/pkg 'paredit)
 (yak/pkg 'php-extras)
 (yak/pkg 'php-mode)
 (yak/pkg 'rainbow-mode)
@@ -308,7 +307,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (local-set-key (kbd "C-c <left>")  'hs-hide-block)
   (local-set-key (kbd "C-c <up>")    'hs-hide-all)
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
-  (enable-paredit-mode)
   (hs-minor-mode t)
   (global-flycheck-mode)
   (rainbow-delimiters-mode))
