@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-07 18:26:33>
+;; Time-stamp:  <2015-05-11 22:43:30>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,50 +10,50 @@
 
 ;;; Code:
 
-(defvar yak/base-dir
+(defvar yak-base-dir
   (file-name-directory (or load-file-name (buffer-file-name)))
   "The configuration base directory.  Default: the current directory.")
 
 ;;;; core - Yet Another Konfig-helper
 
-(defun yak/initialize (name)
+(defun yak--initialize (name)
   "Initialize and refresh the package manager if needed."
-  (unless (boundp 'yak/pkg-initialized)
+  (unless (boundp 'yak--pkg-initialized)
     (require 'package)
     (setq package-archives
           '(("melpa"        . "http://melpa.org/packages/")
             ("gnu"          . "http://elpa.gnu.org/packages/")
             ("marmalade"    . "http://marmalade-repo.org/packages/")))
     (package-initialize)
-    (setq yak/pkg-initialized t))
+    (setq yak--pkg-initialized t))
   (unless (or (package-built-in-p name)
               (package-installed-p name)
-              (boundp 'yak/pkg-refreshed))
+              (boundp 'yak--pkg-refreshed))
     (package-refresh-contents)
-    (setq yak/pkg-refreshed t)))
+    (setq yak--pkg-refreshed t)))
 
-(defun yak/pkg-install (name)
+(defun yak--pkg-install (name)
   "Install the NAME package."
-  (yak/initialize name)
+  (yak--initialize name)
   (unless (or (package-built-in-p name)
               (package-installed-p name))
     (package-install name)))
 
-(defmacro yak/pkg (name &rest body)
+(defmacro yak-pkg (name &rest body)
   "Install the NAME package and configure with BODY."
   `(progn
-     (yak/pkg-install ,name)
+     (yak--pkg-install ,name)
      (eval-after-load ,name
        (progn ,@body))))
 
 ;;;; functions
 
-(defun pl/mkpath (&rest args)
+(defun pl--mkpath (&rest args)
   "Build a path and eventually create it on file system according to ARGS."
-  (unless (boundp 'yak/base-dir)
-    (setq yak/base-dir user-emacs-directory))
+  (unless (boundp 'yak-base-dir)
+    (setq yak-base-dir user-emacs-directory))
   (let* ((name (plist-get args :name))
-         (base (or (plist-get args :base) yak/base-dir))
+         (base (or (plist-get args :base) yak-base-dir))
          (directory (plist-get args :directory))
          (create (plist-get args :create))
          (path (expand-file-name (concat (file-name-as-directory base) name))))
@@ -65,7 +65,7 @@
           (write-region "" nil path))))
     path))
 
-(defun pl/set-locale (locale)
+(defun pl-set-locale (locale)
   "Set the LOCALE locale."
   (interactive "zLocale: ")
   (set-language-environment locale)
@@ -75,7 +75,7 @@
   (set-selection-coding-system locale)
   (prefer-coding-system locale))
 
-(defun pl/set-indentation ()
+(defun pl--set-indentation ()
   "Set indentation."
   (setq-default
    tab-width 4
@@ -83,9 +83,9 @@
    c-hanging-comment-ender-p nil
    indent-tabs-mode nil))
 
-(pl/set-indentation)
+(pl--set-indentation)
 
-(defun pl/get-shell ()
+(defun pl-get-shell ()
   "Get a shell buffer."
   (interactive)
   (if (eq (current-buffer) (get-buffer "*shell*"))
@@ -95,14 +95,14 @@
           (switch-to-buffer "*shell*")
         (shell)))))
 
-(defun pl/transparency (value)
+(defun pl-transparency (value)
   "Set the transparency of the frame window.
 Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (when window-system
     (set-frame-parameter (selected-frame) 'alpha value)))
 
-(defun pl/rb-require ()
+(defun pl-rb-require ()
   "Insert required rubygems."
   (interactive "*")
   (let ((gems (read-from-minibuffer "Rubygems to require: ")))
@@ -111,13 +111,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
                 (insert (format "require \"%s\"\n" gem)))
               (split-string gems nil t)))))
 
-(defun pl/google-at-point ()
+(defun pl-google-at-point ()
   "Search on the internetz of Google."
   (interactive)
   (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'symbol))))
     (browse-url (format "http://www.google.com/search?q=%s" q))))
 
-(defun pl/kill-buffers-by-mode (&optional mode-name)
+(defun pl-kill-buffers-by-mode (&optional mode-name)
   "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
   (interactive)
   (unless mode-name
@@ -130,7 +130,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
         (kill-buffer buffer)))
     (message "%d buffer(s) killed" killed-buffers)))
 
-(defun pl/cycle-dictionaries()
+(defun pl-cycle-dictionaries()
   "Cycle through my dictionaries."
   (interactive)
   (let* ((prev-dict ispell-dictionary)
@@ -190,11 +190,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
  show-paren-style 'expression
  recentf-max-menu-items 50
  uniquify-buffer-name-style 'forward uniquify-separator "/"
- bookmark-default-file (pl/mkpath :name "bookmarks")
- package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
- org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
- custom-file (pl/mkpath :name "custom.el")
- host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
+ bookmark-default-file (pl--mkpath :name "bookmarks")
+ package-user-dir (pl--mkpath :name "vendor/packages" :directory t :create t)
+ org-directory (pl--mkpath :name "org-files" :directory t :create t :base "~/")
+ custom-file (pl--mkpath :name "custom.el")
+ host-file (pl--mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
  truncate-lines t
@@ -210,26 +210,26 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; packages
 
-(yak/pkg 'autopair
+(yak-pkg 'autopair
          (autopair-global-mode t))
 
-(yak/pkg 'company
+(yak-pkg 'company
          (setq company-auto-complete nil)
          (global-company-mode 1))
 
-(yak/pkg 'cycle-resize)
+(yak-pkg 'cycle-resize)
 
-(yak/pkg 'darkmine-theme
+(yak-pkg 'darkmine-theme
          (load-theme 'darkmine t))
 
-(yak/pkg 'find-file-in-project)
-(yak/pkg 'flycheck)
+(yak-pkg 'find-file-in-project)
+(yak-pkg 'flycheck)
 
-(yak/pkg 'flyspell
+(yak-pkg 'flyspell
          (setq ispell-program-name "aspell")
          (setq ispell-dictionary "english"))
 
-(yak/pkg 'helm
+(yak-pkg 'helm
          (require 'helm)
          (require 'helm-config)
          (setq
@@ -244,24 +244,24 @@ Argument VALUE 0 = transparent, 100 = opaque."
          (helm-autoresize-mode t)
          (helm-mode 1))
 
-(yak/pkg 'htmlize)
-(yak/pkg 'idle-highlight-mode)
-(yak/pkg 'js2-mode)
-(yak/pkg 'markdown-mode)
-(yak/pkg 'php-extras)
-(yak/pkg 'php-mode)
-(yak/pkg 'rainbow-mode)
-(yak/pkg 'rainbow-delimiters)
-(yak/pkg 'ruby-mode)
+(yak-pkg 'htmlize)
+(yak-pkg 'idle-highlight-mode)
+(yak-pkg 'js2-mode)
+(yak-pkg 'markdown-mode)
+(yak-pkg 'php-extras)
+(yak-pkg 'php-mode)
+(yak-pkg 'rainbow-mode)
+(yak-pkg 'rainbow-delimiters)
+(yak-pkg 'ruby-mode)
 
-(yak/pkg 'symon
+(yak-pkg 'symon
          (setq symon-delay 5)
          (symon-mode t))
 
-(yak/pkg 'visual-regexp)
-(yak/pkg 'web-mode)
+(yak-pkg 'visual-regexp)
+(yak-pkg 'web-mode)
 
-(yak/pkg 'whitespace
+(yak-pkg 'whitespace
          (require 'whitespace)
          (setq whitespace-line-column 80)
          ;; (setq whitespace-style '(tabs tab-mark face lines-tail))
@@ -269,7 +269,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
          (setq whitespace-global-modes '(not org-mode web-mode))
          (global-whitespace-mode))
 
-(yak/pkg 'yaml-mode)
+(yak-pkg 'yaml-mode)
 
 ;;;; hooks
 
@@ -321,7 +321,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun hook-ruby-mode ()
   "Hook for Ruby mode."
-  (global-set-key (kbd "C-c C-r") 'pl/rb-require))
+  (global-set-key (kbd "C-c C-r") 'pl-rb-require))
 
 (add-hook 'ruby-mode-hook 'hook-ruby-mode)
 
@@ -373,8 +373,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (defun hook-find-file ()
   "Hook when finding a file."
   (if (string= major-mode "php-mode")
-      (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
-    (pl/set-locale 'utf-8))
+      (pl-set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
+    (pl-set-locale 'utf-8))
   (auto-insert))
 
 (add-hook 'find-file-hook 'hook-find-file)
@@ -435,10 +435,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
  org-hide-emphasis-markers t
  org-fontify-done-headline t
  org-src-fontify-natively t
- org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
+ org-default-notes-file (pl--mkpath :name "notes.org" :create t :base org-directory)
  org-agenda-files (list
                    ;; Add other files here byt duplicating the below line.
-                   (pl/mkpath :name "agenda.org" :create t :base org-directory)))
+                   (pl--mkpath :name "agenda.org" :create t :base org-directory)))
 
 (defun org-font-lock-ensure ()
   "Org font lock ensure."
@@ -471,14 +471,14 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key (kbd "C-S-x C-S-f") 'find-file-in-project)
 
-(global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
+(global-set-key (kbd "C-S-x k") 'pl-kill-buffers-by-mode)
 
 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
 
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
-(global-set-key [f12] 'pl/get-shell)
+(global-set-key [f12] 'pl-get-shell)
 
 (global-unset-key (kbd "C-z")) ;; Fuck you, `suspend-frame'
 
