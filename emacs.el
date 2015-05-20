@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-07 18:26:33>
+;; Time-stamp:  <2015-05-20 22:43:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -189,6 +189,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  next-line-add-newlines nil
  show-paren-style 'expression
  recentf-max-menu-items 50
+ password-cache-expiry nil
  uniquify-buffer-name-style 'forward uniquify-separator "/"
  bookmark-default-file (pl/mkpath :name "bookmarks")
  package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
@@ -197,7 +198,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
  host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
 
 (setq-default
- truncate-lines t
  show-trailing-whitespace t
  highlight-tabs t
  mode-line-format
@@ -212,6 +212,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (yak/pkg 'autopair
          (autopair-global-mode t))
+
+(yak/pkg 'browse-kill-ring)
 
 (yak/pkg 'company
          (setq company-auto-complete nil)
@@ -229,20 +231,23 @@ Argument VALUE 0 = transparent, 100 = opaque."
          (setq ispell-program-name "aspell")
          (setq ispell-dictionary "english"))
 
-(yak/pkg 'helm
-         (require 'helm)
-         (require 'helm-config)
+(yak/pkg 'flx-ido)
+(yak/pkg 'ido-hacks)
+(yak/pkg 'ido-vertical-mode)
+(yak/pkg 'ido
+         (require 'ido)
+         (require 'ido-hacks)
          (setq
-          helm-buffers-fuzzy-matching t
-          helm-recentf-fuzzy-match t
-          helm-M-x-fuzzy-match t
-          helm-split-window-in-side-p t
-          helm-move-to-line-cycle-in-source t
-          helm-ff-file-name-history-use-recentf t)
-         (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-         (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-         (helm-autoresize-mode t)
-         (helm-mode 1))
+          ido-case-fold t
+          ido-enable-flex-matching t
+          ido-use-filename-at-point 'guess
+          ido-create-new-buffer 'always
+          ido-use-virtual-buffers t)
+         (ido-everywhere 1)
+         (flx-ido-mode 1)
+         (ido-mode t)
+         (ido-hacks-mode)
+         (ido-vertical-mode))
 
 (yak/pkg 'htmlize)
 (yak/pkg 'idle-highlight-mode)
@@ -250,15 +255,14 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak/pkg 'markdown-mode)
 (yak/pkg 'php-extras)
 (yak/pkg 'php-mode)
-(yak/pkg 'rainbow-mode)
 (yak/pkg 'rainbow-delimiters)
+(yak/pkg 'rainbow-mode)
 (yak/pkg 'ruby-mode)
 
 (yak/pkg 'symon
          (setq symon-delay 5)
          (symon-mode t))
 
-(yak/pkg 'visual-regexp)
 (yak/pkg 'web-mode)
 
 (yak/pkg 'whitespace
@@ -285,14 +289,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Hook for dired mode."
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-guess-shell-alist-user
-	'(("\\.pdf\\'" "xpf")
-	  ("\\.ods\\'\\|\\.xlsx?\\'\\|\\.docx?\\'\\|\\.csv\\'" "libreoffice"))))
+        '(("\\.pdf\\'" "xpf")
+          ("\\.ods\\'\\|\\.xlsx?\\'\\|\\.docx?\\'\\|\\.csv\\'" "libreoffice"))))
 
 (add-hook 'dired-mode-hook 'hook-dired-mode)
 
 (defun hook-text-mode ()
   "Hook for text modes."
-  (global-visual-line-mode 1)
   (linum-mode 1)
   (make-local-variable 'linum-format)
   (setq linum-format " %d ")
@@ -327,6 +330,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
+  ;; (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
   (require 'php-extras)
   (setq comment-start "// ")
   (setq comment-end "")
@@ -368,13 +372,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (whitespace-cleanup))
 
 (add-hook 'before-save-hook 'hook-before-save)
-;; (add-hook 'kill-buffer-hook 'hook-before-save)
 
 (defun hook-find-file ()
   "Hook when finding a file."
-  (if (string= major-mode "php-mode")
-      (pl/set-locale 'latin-1) ;; Fuck you, PHP. Just Fuck you.
-    (pl/set-locale 'utf-8))
+  (pl/set-locale 'utf-8)
   (auto-insert))
 
 (add-hook 'find-file-hook 'hook-find-file)
@@ -453,33 +454,21 @@ Argument VALUE 0 = transparent, 100 = opaque."
    select-enable-clipboard t))
 
 (global-set-key [delete] 'delete-char)
-
 (global-set-key (kbd "M-g") 'goto-line)
-
+(global-set-key (kbd "M-y") 'browse-kill-ring)
+(global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
-
 (global-set-key (kbd "M-j") (join-line -1))
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
-
 (global-set-key (kbd "C-S-x C-S-f") 'find-file-in-project)
-
 (global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
-
 (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
 (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
-
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f12] 'pl/get-shell)
-
 (global-unset-key (kbd "C-z")) ;; Fuck you, `suspend-frame'
 
 ;;;; extrafiles

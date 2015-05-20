@@ -91,25 +91,24 @@ It works for internal packages and third-party packages installed thanks to =pac
 *** Packages
 
 - autopair
+- browse-kill-ring
 - company
 - cycle-resize
 - darkmine-theme
 - find-file-in-project
 - flycheck
 - flyspell
-- helm
 - htmlize
+- ido, ido-hacks, ido-vertical-mode, flx-ido
 - idle-highlight-mode
 - js2-mode
 - markdown-mode
-- paredit
 - php-extras
 - php-mode
+- rainbow-delimiters
 - rainbow-mode
-- rainbow-delimiter-mode
 - ruby-mode
 - symon
-- visual-regexp
 - web-mode
 - whitespace
 - yaml-mode
@@ -141,6 +140,8 @@ My collection of functions.
 | =C-c o=       | =ff-find-other-file=               | c-common-mode |
 | =C-c C-r=     | =pl/rb-require=                    | ruby-mode     |
 | =M-g=         | =goto-line=                        | *             |
+| =M-y=         | =browse-kill-ring=                 | *             |
+| =M-o=         | =occur=                            | *             |
 | =C-c C-c=     | =comment-region=                   | *             |
 | =C-c C-u=     | =uncomment-region=                 | *             |
 | =M-j=         | =join-line -1=                     | *             |
