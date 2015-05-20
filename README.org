@@ -145,7 +145,6 @@ My collection of functions.
 | =M-o=         | =occur=                            | *             |
 | =C-c C-c=     | =comment-region=                   | *             |
 | =C-c C-u=     | =uncomment-region=                 | *             |
-| =M-j=         | =join-line -1=                     | *             |
 | =C-S-s=       | =find-grep=                        | *             |
 | =C-S-f=       | =imenu=                            | *             |
 | =C-S-x C-S-f= | =find-file-in-project=             | *             |

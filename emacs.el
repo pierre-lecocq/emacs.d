@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-20 22:56:12>
+;; Time-stamp:  <2015-05-20 23:41:11>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -463,7 +463,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "C-c C-c") 'comment-region)
 (global-set-key (kbd "C-c C-u") 'uncomment-region)
-(global-set-key (kbd "M-j") (join-line -1))
 (global-set-key (kbd "C-S-s") 'find-grep)
 (global-set-key (kbd "C-S-f") 'imenu)
 (global-set-key (kbd "C-S-x C-S-f") 'find-file-in-project)
