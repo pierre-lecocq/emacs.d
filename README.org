@@ -90,6 +90,7 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 *** Packages
 
+- anzu
 - autopair
 - browse-kill-ring
 - company

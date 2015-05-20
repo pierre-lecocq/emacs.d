@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-20 22:43:25>
+;; Time-stamp:  <2015-05-20 22:56:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -209,6 +209,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
   '(which-function-mode (" " which-func-format))))
 
 ;;;; packages
+
+(yak/pkg 'anzu
+         (global-anzu-mode +1)
+         (set-face-attribute 'anzu-mode-line nil :foreground "yellow"))
 
 (yak/pkg 'autopair
          (autopair-global-mode t))
