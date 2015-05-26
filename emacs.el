@@ -138,6 +138,15 @@ Argument VALUE 0 = transparent, 100 = opaque."
     (setq ispell-dictionary next-dict)
     (message "Dictionary switched from %s to %s" prev-dict next-dict)))
 
+(defun pl/force-eval ()
+  "Forced emacs lisp buffer evaluation. Stolen from SO."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (forward-sexp)
+      (eval-defun nil))))
+
 ;;;; display
 
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
