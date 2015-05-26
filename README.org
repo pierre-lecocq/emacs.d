@@ -129,6 +129,7 @@ My collection of functions.
 | =pl/google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                             |
 | =pl/kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                 |
 | =pl/cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                 |
+| =pl/force-eval=   |                     | Yes         | Forced emacs lisp buffer evaluation                                                                                 |
 
 *** Keybindings
 
