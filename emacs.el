@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-26 22:08:19>
+;; Time-stamp:  <2015-05-26 22:44:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,7 +19,6 @@
 (defun yak/initialize (name)
   "Initialize and refresh the package manager if needed (to install NAME)."
   (unless yak/pkg-initialized
-    (require 'package)
     (setq package-archives
           '(("melpa"        . "http://melpa.org/packages/")
             ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -189,14 +188,27 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; internals
 
+(require 'autoinsert)
+(require 'bookmark)
+(require 'linum)
+(require 'org)
+(require 'package)
+(require 'paren)
+(require 'recentf)
+(require 'time-stamp)
+(require 'whitespace)
+
+(defvar host-file nil)
+(defvar lisp-user-dir nil)
+
+(column-number-mode t)
 (fset 'yes-or-no-p 'y-or-n-p)
+(global-auto-revert-mode 1)
+(global-font-lock-mode t)
+(line-number-mode t)
 (recentf-mode 1)
 (show-paren-mode t)
-(global-font-lock-mode t)
 (transient-mark-mode t)
-(line-number-mode t)
-(column-number-mode t)
-(global-auto-revert-mode 1)
 (which-function-mode)
 
 (setq
@@ -204,7 +216,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
  user-mail-address "pierre.lecocq@gmail.com"
  frame-title-format "Emacs %f"
  time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
- auto-insert-copyright (user-full-name)
  initial-scratch-message ";; Scratch buffer\n\n"
  inhibit-startup-message t
  inhibit-splash-screen t
@@ -223,7 +234,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  lisp-user-dir (pl/mkpath :name "vendor/lisp" :directory t :create t)
  org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
  custom-file (pl/mkpath :name "custom.el")
- host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
+ host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string (system-name) "\\."))))))
 
 (setq-default
  show-trailing-whitespace t
@@ -235,6 +246,52 @@ Argument VALUE 0 = transparent, 100 = opaque."
             (propertize "  %b" 'face 'bold)))
   " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
   '(which-function-mode (" " which-func-format))))
+
+;;;; org-mode
+
+(setq
+ org-hide-leading-stars t
+ org-hide-emphasis-markers t
+ org-fontify-done-headline t
+ org-src-fontify-natively t
+ org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
+ org-agenda-files (list
+                   ;; Add other files here byt duplicating the below line.
+                   (pl/mkpath :name "agenda.org" :create t :base org-directory)))
+
+(defun org-font-lock-ensure (beg end)
+  "Org font lock ensure from BEG to END."
+  (font-lock-ensure))
+
+;;;; autoinsert
+
+(setq auto-insert-alist
+      '(((ruby-mode . "Ruby program") nil
+         "#!/usr/bin/env ruby\n\n"
+         "# File: " (file-name-nondirectory buffer-file-name) "\n"
+         "# Time-stamp: <>\n"
+         "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         "# Description: " _ "\n\n")
+        ((emacs-lisp-mode . "Emacs lisp mode") nil
+         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
+         ";; Time-stamp: <>\n"
+         ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
+         ";;; Commentary:\n\n"
+         ";;; Code:\n\n"
+         ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
+        ((c-mode . "C program") nil
+         "/*\n"
+         " * File: " (file-name-nondirectory buffer-file-name) "\n"
+         " * Time-stamp: <>\n"
+         " * Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " * Description: " _ "\n"
+         " */\n\n")
+        ((shell-mode . "Shell script") nil
+         "#!/bin/bash\n\n"
+         " # File: " (file-name-nondirectory buffer-file-name) "\n"
+         " # Time-stamp: <>\n"
+         " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " # Description: " _ "\n\n")))
 
 ;;;; packages
 
@@ -433,53 +490,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-to-list 'auto-mode-alist '("\\.erb\\'"         . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
-
-;;;; autoinsert
-
-(setq auto-insert-alist
-      '(((ruby-mode . "Ruby program") nil
-         "#!/usr/bin/env ruby\n\n"
-         "# File: " (file-name-nondirectory buffer-file-name) "\n"
-         "# Time-stamp: <>\n"
-         "# Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-         "# Description: " _ "\n\n")
-        ((emacs-lisp-mode . "Emacs lisp mode") nil
-         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
-         ";; Time-stamp: <>\n"
-         ";; Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n\n"
-         ";;; Commentary:\n\n"
-         ";;; Code:\n\n"
-         ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
-        ((c-mode . "C program") nil
-         "/*\n"
-         " * File: " (file-name-nondirectory buffer-file-name) "\n"
-         " * Time-stamp: <>\n"
-         " * Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-         " * Description: " _ "\n"
-         " */\n\n")
-        ((shell-mode . "Shell script") nil
-         "#!/bin/bash\n\n"
-         " # File: " (file-name-nondirectory buffer-file-name) "\n"
-         " # Time-stamp: <>\n"
-         " # Copyright (C) " (substring (current-time-string) -4) " " auto-insert-copyright "\n"
-         " # Description: " _ "\n\n")))
-
-;;;; org-mode
-
-(require 'org)
-(setq
- org-hide-leading-stars t
- org-hide-emphasis-markers t
- org-fontify-done-headline t
- org-src-fontify-natively t
- org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
- org-agenda-files (list
-                   ;; Add other files here byt duplicating the below line.
-                   (pl/mkpath :name "agenda.org" :create t :base org-directory)))
-
-(defun org-font-lock-ensure ()
-  "Org font lock ensure."
-  (font-lock-ensure))
 
 ;;;; keybindings
 
