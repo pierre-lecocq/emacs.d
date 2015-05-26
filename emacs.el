@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-05-20 23:41:11>
+;; Time-stamp:  <2015-05-26 22:08:19>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,15 +10,15 @@
 
 ;;; Code:
 
-(defvar yak/base-dir
-  (file-name-directory (or load-file-name (buffer-file-name)))
-  "The configuration base directory.  Default: the current directory.")
+(defvar yak/base-dir (file-name-directory (or load-file-name (buffer-file-name))))
+(defvar yak/pkg-initialized nil)
+(defvar yak/pkg-refreshed nil)
 
 ;;;; core - Yet Another Konfig-helper
 
 (defun yak/initialize (name)
-  "Initialize and refresh the package manager if needed."
-  (unless (boundp 'yak/pkg-initialized)
+  "Initialize and refresh the package manager if needed (to install NAME)."
+  (unless yak/pkg-initialized
     (require 'package)
     (setq package-archives
           '(("melpa"        . "http://melpa.org/packages/")
@@ -26,9 +26,9 @@
             ("marmalade"    . "http://marmalade-repo.org/packages/")))
     (package-initialize)
     (setq yak/pkg-initialized t))
-  (unless (or (package-built-in-p name)
-              (package-installed-p name)
-              (boundp 'yak/pkg-refreshed))
+  (unless (or yak/pkg-refreshed
+              (package-built-in-p name)
+              (package-installed-p name))
     (package-refresh-contents)
     (setq yak/pkg-refreshed t)))
 
@@ -45,6 +45,24 @@
      (yak/pkg-install ,name)
      (eval-after-load ,name
        (progn ,@body))))
+
+(defmacro yak/repo (name &rest body)
+  "Install the NAME package from its repository and configure with BODY."
+  `(progn
+     (let ((bin "git"))
+       (unless (executable-find bin)
+         (error "The executable git is not found in your PATH"))
+       (let* ((repo-name (car (last (split-string (symbol-name ,name) "/"))))
+              (path (concat
+                     (file-name-as-directory lisp-user-dir)
+                     repo-name))
+              (cmd (format "%s clone https://github.com/%s %s"
+                           bin (symbol-name ,name) path)))
+         (unless (file-accessible-directory-p path)
+           (shell-command cmd))
+         (add-to-list 'load-path path)
+         (require (intern repo-name))
+         (progn ,@body)))))
 
 ;;;; functions
 
@@ -139,7 +157,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
     (message "Dictionary switched from %s to %s" prev-dict next-dict)))
 
 (defun pl/force-eval ()
-  "Forced emacs lisp buffer evaluation. Stolen from SO."
+  "Forced Emacs Lisp buffer evaluation - stolen from SO."
   (interactive)
   (save-excursion
     (goto-char (point-min))
@@ -202,6 +220,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
  uniquify-buffer-name-style 'forward uniquify-separator "/"
  bookmark-default-file (pl/mkpath :name "bookmarks")
  package-user-dir (pl/mkpath :name "vendor/packages" :directory t :create t)
+ lisp-user-dir (pl/mkpath :name "vendor/lisp" :directory t :create t)
  org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
  custom-file (pl/mkpath :name "custom.el")
  host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string system-name "\\."))))))
@@ -288,6 +307,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (yak/pkg 'yaml-mode)
 
+(yak/repo 'pierre-lecocq/bonjourmadame)
+
 ;;;; hooks
 
 (add-hook 'after-init-hook 'global-company-mode)
@@ -364,6 +385,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'css-mode-hook 'hook-css-mode)
 
 (defun hook-makefile-mode ()
+  "Hook for Makefiles."
   (whitespace-toggle-options '(tabs))
   (setq indent-tabs-mode t))
 
@@ -444,6 +466,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 ;;;; org-mode
 
+(require 'org)
 (setq
  org-hide-leading-stars t
  org-hide-emphasis-markers t

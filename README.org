@@ -80,13 +80,13 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 =Yak= is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
 
-| Name            | Type     | Arguments       | Description                                                                                |
-|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------|
-| =yak/base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory |
-| =yak/initialize=  | Function |                 | Initialize and refresh the package manager                                                 |
-| =yak/pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager |
-| =yak/pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                      |
-|                 |          |                 |                                                                                            |
+| Name            | Type     | Arguments       | Description                                                                                      |
+|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
+| =yak/base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory       |
+| =yak/initialize=  | Function |                 | Initialize and refresh the package manager                                                       |
+| =yak/pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager       |
+| =yak/pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                            |
+| =yak/repo=        | Macro    | =name &rest body= | Install the NAME package from its github repository and execute BODY after the package is loaded |
 
 *** Packages
 
