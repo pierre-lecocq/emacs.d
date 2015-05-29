@@ -515,7 +515,8 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (global-set-key [f5] 'bookmark-bmenu-list)
 (global-set-key [f6] 'recentf-open-files)
 (global-set-key [f12] 'pl/get-shell)
-(global-unset-key (kbd "C-z")) ;; Fuck you, `suspend-frame'
+(when window-system
+  (global-unset-key (kbd "C-z"))) ;; Fuck you, `suspend-frame'
 
 ;;;; extrafiles
 
