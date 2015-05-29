@@ -501,6 +501,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (global-set-key [delete] 'delete-char)
 (global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-y") 'browse-kill-ring)
 (global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "C-c C-c") 'comment-region)
