@@ -10,8 +10,6 @@
 
 ;;; Code:
 
-(setq debug-on-error t)
-
 (defvar internal-libs
   '(autoinsert
     bookmark
