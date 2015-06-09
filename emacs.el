@@ -38,12 +38,12 @@
     which-function-mode))
 
 (defvar init-funcs
-  '(pl/init-behaviour
-    pl/init-display
-    pl/init-files
-    pl/init-auto-insert
-    pl/init-org-mode
-    pl/init-keybindings))
+  '(pl--init-behaviour
+    pl--init-display
+    pl--init-files
+    pl--init-auto-insert
+    pl--init-org-mode
+    pl--init-keybindings))
 
 (add-to-list 'load-path "~/work/src/yak")
 (setq yak-dir-base (file-name-directory (or load-file-name (buffer-file-name))))
@@ -56,7 +56,7 @@
 ;; + functions ;;
 ;;;;;;;;;;;;;;;;;
 
-(defun pl/mkpath (&rest args)
+(defun pl--mkpath (&rest args)
   "Build a path and eventually create it on file system according to ARGS."
   (unless (boundp 'yak-dir-base)
     (setq yak-dir-base user-emacs-directory))
@@ -73,7 +73,14 @@
           (write-region "" nil path))))
     path))
 
-(defun pl/set-locale (locale)
+(defun pl--set-indentation ()
+  "Set indentation."
+  (setq-default tab-width 4
+                c-basic-offset 4
+                c-hanging-comment-ender-p nil
+                indent-tabs-mode nil))
+
+(defun pl-set-locale (locale)
   "Set the LOCALE locale."
   (interactive "zLocale: ")
   (set-language-environment locale)
@@ -83,14 +90,7 @@
   (set-selection-coding-system locale)
   (prefer-coding-system locale))
 
-(defun pl/set-indentation ()
-  "Set indentation."
-  (setq-default tab-width 4
-                c-basic-offset 4
-                c-hanging-comment-ender-p nil
-                indent-tabs-mode nil))
-
-(defun pl/get-shell ()
+(defun pl-get-shell ()
   "Get a shell buffer."
   (interactive)
   (if (eq (current-buffer) (get-buffer "*shell*"))
@@ -100,14 +100,14 @@
           (switch-to-buffer "*shell*")
         (shell)))))
 
-(defun pl/transparency (value)
+(defun pl-transparency (value)
   "Set the transparency of the frame window.
 Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (when (display-graphic-p)
     (set-frame-parameter (selected-frame) 'alpha value)))
 
-(defun pl/rb-require ()
+(defun pl-rb-require ()
   "Insert required rubygems."
   (interactive "*")
   (let ((gems (read-from-minibuffer "Rubygems to require: ")))
@@ -116,13 +116,13 @@ Argument VALUE 0 = transparent, 100 = opaque."
                 (insert (format "require \"%s\"\n" gem)))
               (split-string gems nil t)))))
 
-(defun pl/google-at-point ()
+(defun pl-google-at-point ()
   "Search on the internetz of Google."
   (interactive)
   (let* ((q (read-from-minibuffer "Google: " (thing-at-point 'symbol))))
     (browse-url (format "http://www.google.com/search?q=%s" q))))
 
-(defun pl/kill-buffers-by-mode (&optional mode-name)
+(defun pl-kill-buffers-by-mode (&optional mode-name)
   "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
   (interactive)
   (unless mode-name
@@ -135,7 +135,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
         (kill-buffer buffer)))
     (message "%d buffer(s) killed" killed-buffers)))
 
-(defun pl/force-eval ()
+(defun pl-force-eval ()
   "Forced Emacs Lisp buffer evaluation - stolen from SO."
   (interactive)
   (save-excursion
@@ -266,7 +266,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 ;; + initializers ;;
 ;;;;;;;;;;;;;;;;;;;;
 
-(defun pl/init-behaviour ()
+(defun pl--init-behaviour ()
   "Initialize behaviour."
   (setq user-full-name "Pierre Lecocq"
         user-mail-address "pierre.lecocq@gmail.com"
@@ -285,16 +285,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
         recentf-max-menu-items 50
         password-cache-expiry nil
         uniquify-buffer-name-style 'forward uniquify-separator "/"
-        bookmark-default-file (pl/mkpath :name "bookmarks")
-        org-directory (pl/mkpath :name "org-files" :directory t :create t :base "~/")
-        custom-file (pl/mkpath :name "custom.el")
-        host-file (pl/mkpath :name (format "host-%s.el" (downcase (car (split-string (system-name) "\\."))))))
+        bookmark-default-file (pl--mkpath :name "bookmarks")
+        org-directory (pl--mkpath :name "org-files" :directory t :create t :base "~/")
+        custom-file (pl--mkpath :name "custom.el")
+        host-file (pl--mkpath :name (format "host-%s.el" (downcase (car (split-string (system-name) "\\."))))))
   (auto-insert)
-  (pl/set-indentation)
-  (pl/set-locale 'utf-8)
+  (pl--set-indentation)
+  (pl-set-locale 'utf-8)
   (fset 'yes-or-no-p 'y-or-n-p))
 
-(defun pl/init-display ()
+(defun pl--init-display ()
   "Initialize display."
   (setq-default show-trailing-whitespace t
                 highlight-tabs t
@@ -316,7 +316,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
           x-select-enable-clipboard t)
     (set-fringe-mode 10)))
 
-(defun pl/init-files ()
+(defun pl--init-files ()
   "Initialize files."
   (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
   (add-to-list 'auto-mode-alist '("\\.js[on]\\'"      . js2-mode))
@@ -335,7 +335,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode)))
 
-(defun pl/init-auto-insert ()
+(defun pl--init-auto-insert ()
   "Initialize auto-insert."
   (setq auto-insert-alist
         '(((ruby-mode . "Ruby program") nil
@@ -365,20 +365,20 @@ Argument VALUE 0 = transparent, 100 = opaque."
            " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
            " # Description: " _ "\n\n"))))
 
-(defun pl/init-org-mode ()
+(defun pl--init-org-mode ()
   "Initialize Org."
   (setq org-hide-leading-stars t
         org-hide-emphasis-markers t
         org-fontify-done-headline t
         org-src-fontify-natively t
-        org-default-notes-file (pl/mkpath :name "notes.org" :create t :base org-directory)
-        org-agenda-files (list (pl/mkpath :name "agenda.org" :create t :base org-directory))))
+        org-default-notes-file (pl--mkpath :name "notes.org" :create t :base org-directory)
+        org-agenda-files (list (pl--mkpath :name "agenda.org" :create t :base org-directory))))
 
 (defun org-font-lock-ensure (beg end)
   "Org font lock ensure from BEG to END."
   (font-lock-ensure))
 
-(defun pl/init-keybindings ()
+(defun pl--init-keybindings ()
   "Initialize keybindings."
   (when (eq system-type 'darwin)
     (setq mac-option-modifier nil
@@ -393,12 +393,12 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (global-set-key (kbd "C-c C-u") 'uncomment-region)
   (global-set-key (kbd "C-S-s") 'find-grep)
   (global-set-key (kbd "C-S-f") 'imenu)
-  (global-set-key (kbd "C-S-x k") 'pl/kill-buffers-by-mode)
+  (global-set-key (kbd "C-S-x k") 'pl-kill-buffers-by-mode)
   (global-set-key (kbd "C-M-v") 'cycle-resize-window-vertically)
   (global-set-key (kbd "C-M-h") 'cycle-resize-window-horizontally)
   (global-set-key [f5] 'bookmark-bmenu-list)
   (global-set-key [f6] 'recentf-open-files)
-  (global-set-key [f12] 'pl/get-shell)
+  (global-set-key [f12] 'pl-get-shell)
   (when (display-graphic-p)
     (global-unset-key (kbd "C-z")))
   ;; Credits to emacsfodder

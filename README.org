@@ -6,46 +6,6 @@ My Emacs configuration file
 
 This is yet another step to the biggest lie in the world: a perfect Emacs configuration file.
 
-- Step 1: Use Emacs like rms just the time to realize that Emacs is amazing.
-- Step 2: Be amazed by lots of things you do not even understand.
-- Step 3: Copy & paste from everywhere in a fucking messy config file.
-- Step 4: Split your config into many files but don't figure out which part goes where.
-- Step 5: Begin to write your own 5-lines Lisp functions that are, in fact, already implemented.
-- Step 6: Try to organize the whole mess and learn some real Emacs Lisp basics.
-- Step 7: Be sick & tired of all the code you don't understand and don't use even 10% of the time.
-- Step 8: Be honest and realize that you don't know more than 60% of elisp's power.
-- Step 9: Empty your config files and try to make a single file one to figure out what's going on.
-- Step 10: Clean the code you stole elsewhere but don't use.
-- Step 11: Rewrite you config by keeping the things you understand.
-- Step 12: Be honest and realize that you don't know more than 40% of elisp's power.
-- Step 13: Read more blogs, youtube chats or reddit posts.
-- Step 14: Be honest and realize that you don't know more than 30% of elisp's power.
-- Step 15: Be honest and realize that you don't know more than 25% of elisp's power.
-- Step 16: Stick with your config but think about making it better.
-- Step 17: Buy books about Lisp or Emacs Lisp.
-- Step 18: Be honest and realize that you don't know more than 20% of elisp's power.
-- Step 19: Discover package managers and macros like use-package.
-- Step 20: Feel cool with a clean and mastered config files.
-- Step 21: Try to make it cleaner and smaller.
-- Step 22: Try to figure out what's going on behind package managers. Be mind fucked.
-- Step 23: Be honest and realize that you don't know more than 15% of elisp's power.
-- Step 24: Finally, be confident and realize that you know more than 15% of elisp's power.
-- Step 25: Write your own functions and macros to manage your packages, initializations and keybindings.
-- Step 26: Realize that you understand any line of your configuration, but it is only "configuration", not programs.
-- Step 27: Be confident and realize that you MIGHT know more than 40% of elisp's power if you read more documentation.
-- Step 28: write steps you crossed to finally be here, but know that the path is still long. But funny. But long ...
-
-** Purpose
-
-The idea is to get a single configuration file that will handle:
-
-- File system preparation (create necessary folders and files)
-- Packages with the help of macros (wrappers for =package.el=)
-- Initialization of modes and packages
-- Basic configuration
-- Set of functions
-- Keybindings
-
 ** Install
 
 Warning: You may want to save your existing configuration before installing this one.
@@ -55,6 +15,7 @@ You may also change the =$MY_SRC_DIR= value to fit your needs.
 #+begin_src sh
 export MY_SRC_DIR="~/work/src"
 mkdir -p $MY_SRC_DIR
+git clone https://github.com/pierre-lecocq/yak $MY_SRC_DIR/yak
 git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
 cd  $MY_SRC_DIR/emacs.d && make && make compile
 echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
@@ -78,34 +39,31 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 **** Internal details
 
-=Yak= is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
+[[https://github.com/pierre-lecocq/yak][Yak]] is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
 
-| Name            | Type     | Arguments       | Description                                                                                      |
-|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
-| =yak/base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory       |
-| =yak/initialize=  | Function |                 | Initialize and refresh the package manager                                                       |
-| =yak/pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager       |
-| =yak/pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                            |
-| =yak/repo=        | Macro    | =name &rest body= | Install the NAME package from its github repository and execute BODY after the package is loaded |
+| Name              | Type     | Arguments         | Description                                                                                      |
+|-------------------+----------+-------------------+--------------------------------------------------------------------------------------------------|
+| =yak-base-dir=    | Variable |                   | The base directory for the configuration and the packages. Default: the emacs.el directory       |
+| =yak-initialize=  | Function |                   | Initialize and refresh the package manager                                                       |
+| =yak-pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager       |
+| =yak-pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                            |
+| =yak-repo=        | Macro    | =name &rest body= | Install the NAME package from its github repository and execute BODY after the package is loaded |
 
 *** Packages
 
 - anzu
 - autopair
+- bonjourmadame
 - browse-kill-ring
 - company
 - cycle-resize
 - darkmine-theme
-- find-file-in-project
-- flycheck
-- flyspell
 - htmlize
 - ido, ido-hacks, ido-vertical-mode, flx-ido
 - idle-highlight-mode
 - js2-mode
 - markdown-mode
-- php-extras
-- php-mode
+- php-mode, php-extras
 - rainbow-delimiters
 - rainbow-mode
 - ruby-mode
@@ -118,47 +76,52 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 My collection of functions.
 
-| Name                    | Arguments           | Interactive | Description                                                                                                                    |
-|-------------------------+---------------------+-------------+--------------------------------------------------------------------------------------------------------------------------------|
-| =pl/mkpath=               | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
-| =pl/set-locale=           | =locale=              | Yes          | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                         |
-| =pl/set-indentation=      |                     | No          | Set indentation rules                                                                                                          |
-| =pl/get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer             |
-| =pl/transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                    |
-| =pl/rb-require=           |                     | Yes         | Insert a list of required gems (for ruby development)                                                                          |
-| =pl/google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                             |
-| =pl/kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                 |
-| =pl/cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                 |
-| =pl/force-eval=   |                     | Yes         | Forced emacs lisp buffer evaluation                                                                                 |
+| Name                      | Arguments             | Interactive | Description                                                                                                                             |
+|---------------------------+-----------------------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------|
+| =pl--mkpath=              | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
+| =pl--set-indentation=     |                       | No          | Set indentation rules                                                                                                                   |
+| =pl-set-locale=           | =locale=              | Yes         | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                                  |
+| =pl-get-shell=            |                       | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer                      |
+| =pl-transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                             |
+| =pl-rb-require=           |                       | Yes         | Insert a list of required gems (for ruby development)                                                                                   |
+| =pl-google-at-point=      |                       | Yes         | Search the word at point on Google                                                                                                      |
+| =pl-kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                          |
+| =pl-cycle-dictionaries=   |                       | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                          |
+| =pl-force-eval=           |                       | Yes         | Forced emacs lisp buffer evaluation                                                                                                     |
+
+Initializers, called as a bootstrap
+
+| Name                   |
+|------------------------|
+| =pl--init-behaviour=   |
+| =pl--init-display=     |
+| =pl--init-files=       |
+| =pl--init-auto-insert= |
+| =pl--init-org-mode=    |
+| =pl--init-keybindings= |
 
 *** Keybindings
 
-| Keys        | Function                         | Mode          |
-|-------------+----------------------------------+---------------|
-| =C-c <right>= | =hs-show-block=                    | prog-mode     |
-| =C-c <left>=  | =hs-hide-block=                    | prog-mode     |
-| =C-c <up>=    | =hs-hide-all=                      | prog-mode     |
-| =C-c <down>=  | =hs-show-all=                      | prog-mode     |
-| =C-c o=       | =ff-find-other-file=               | c-common-mode |
-| =C-c C-r=     | =pl/rb-require=                    | ruby-mode     |
-| =M-g=         | =goto-line=                        | *             |
-| =M-y=         | =browse-kill-ring=                 | *             |
-| =M-o=         | =occur=                            | *             |
-| =C-c C-c=     | =comment-region=                   | *             |
-| =C-c C-u=     | =uncomment-region=                 | *             |
-| =C-S-s=       | =find-grep=                        | *             |
-| =C-S-f=       | =imenu=                            | *             |
-| =C-S-x C-S-f= | =find-file-in-project=             | *             |
-| =C-S-x k=     | =pl/kill-buffers-by-mode=          | *             |
-| =C-M-v=       | =cycle-resize-window-vertically=   | *             |
-| =C-M-h=       | =cycle-resize-window-horizontally= | *             |
-| =f5=          | =bookmark-bmenu-list=              | *             |
-| =f6=          | =recentf-open-files=               | *             |
-| =f12=         | =pl/get-shell=                     | *             |
-| =M-x=         | =helm-M-x=                         | *             |
-| =M-y=         | =helm-show-kill-ring=              | *             |
-| =C-x b=       | =helm-mini=                        | *             |
-| =C-x C-f=     | =helm-find-file=                   | *             |
+| Keys          | Function                           | Mode      |
+|---------------+------------------------------------+-----------|
+| =C-c <right>= | =hs-show-block=                    | prog-mode |
+| =C-c <left>=  | =hs-hide-block=                    | prog-mode |
+| =C-c <up>=    | =hs-hide-all=                      | prog-mode |
+| =C-c <down>=  | =hs-show-all=                      | prog-mode |
+| =C-c C-r=     | =pl/rb-require=                    | ruby-mode |
+| =M-g=         | =goto-line=                        | *         |
+| =M-y=         | =browse-kill-ring=                 | *         |
+| =M-o=         | =occur=                            | *         |
+| =C-c C-c=     | =comment-region=                   | *         |
+| =C-c C-u=     | =uncomment-region=                 | *         |
+| =C-S-s=       | =find-grep=                        | *         |
+| =C-S-f=       | =imenu=                            | *         |
+| =C-S-x k=     | =pl-kill-buffers-by-mode=          | *         |
+| =C-M-v=       | =cycle-resize-window-vertically=   | *         |
+| =C-M-h=       | =cycle-resize-window-horizontally= | *         |
+| =f5=          | =bookmark-bmenu-list=              | *         |
+| =f6=          | =recentf-open-files=               | *         |
+| =f12=         | =pl-get-shell=                     | *         |
 
 ** Credits
 
