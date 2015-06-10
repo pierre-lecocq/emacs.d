@@ -76,52 +76,51 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 My collection of functions.
 
-| Name                      | Arguments             | Interactive | Description                                                                                                                             |
-|---------------------------+-----------------------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------|
+| Name                    | Arguments           | Interactive | Description                                                                                                                     |
+|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
 | =pl--mkpath=              | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
-| =pl--set-indentation=     |                       | No          | Set indentation rules                                                                                                                   |
-| =pl-set-locale=           | =locale=              | Yes         | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                                  |
-| =pl-get-shell=            |                       | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer                      |
-| =pl-transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                             |
-| =pl-rb-require=           |                       | Yes         | Insert a list of required gems (for ruby development)                                                                                   |
-| =pl-google-at-point=      |                       | Yes         | Search the word at point on Google                                                                                                      |
-| =pl-kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                          |
-| =pl-cycle-dictionaries=   |                       | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                          |
-| =pl-force-eval=           |                       | Yes         | Forced emacs lisp buffer evaluation                                                                                                     |
+| =pl--set-indentation=     |                     | No          | Set indentation rules                                                                                                           |
+| =pl-set-locale=           | =locale=              | Yes         | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                          |
+| =pl-get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer              |
+| =pl-transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                     |
+| =pl-rb-require=           |                     | Yes         | Insert a list of required gems (for ruby development)                                                                           |
+| =pl-google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                              |
+| =pl-kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                      |
+| =pl-cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                    |
+| =pl-force-eval=           |                     | Yes         | Forced emacs lisp buffer evaluation                                                                                             |
 
 Initializers, called as a bootstrap
 
-| Name                   |
-|------------------------|
-| =pl--init-behaviour=   |
-| =pl--init-display=     |
-| =pl--init-files=       |
-| =pl--init-auto-insert= |
-| =pl--init-org-mode=    |
-| =pl--init-keybindings= |
+| Name                 | Description                                            |
+|----------------------+--------------------------------------------------------|
+| =pl--init-behaviour=   | Initialize standard behaviour and set useful variables |
+| =pl--init-display=     | Initialize the general display                         |
+| =pl--init-files=       | Initialize file assocation with modes                  |
+| =pl--init-auto-insert= | Initialize auto-insert behaviour and templates         |
+| =pl--init-org-mode=    | Initialize org-mode behaviour                          |
+| =pl--init-keybindings= | Initialize keybindings                                 |
 
 *** Keybindings
 
-| Keys          | Function                           | Mode      |
-|---------------+------------------------------------+-----------|
+| Keys        | Function                         | Mode      |
+|-------------+----------------------------------+-----------|
 | =C-c <right>= | =hs-show-block=                    | prog-mode |
 | =C-c <left>=  | =hs-hide-block=                    | prog-mode |
 | =C-c <up>=    | =hs-hide-all=                      | prog-mode |
 | =C-c <down>=  | =hs-show-all=                      | prog-mode |
-| =C-c C-r=     | =pl/rb-require=                    | ruby-mode |
-| =M-g=         | =goto-line=                        | *         |
-| =M-y=         | =browse-kill-ring=                 | *         |
-| =M-o=         | =occur=                            | *         |
-| =C-c C-c=     | =comment-region=                   | *         |
-| =C-c C-u=     | =uncomment-region=                 | *         |
-| =C-S-s=       | =find-grep=                        | *         |
-| =C-S-f=       | =imenu=                            | *         |
-| =C-S-x k=     | =pl-kill-buffers-by-mode=          | *         |
-| =C-M-v=       | =cycle-resize-window-vertically=   | *         |
-| =C-M-h=       | =cycle-resize-window-horizontally= | *         |
-| =f5=          | =bookmark-bmenu-list=              | *         |
-| =f6=          | =recentf-open-files=               | *         |
-| =f12=         | =pl-get-shell=                     | *         |
+| =M-g=         | =goto-line=                        | All       |
+| =M-y=         | =browse-kill-ring=                 | All       |
+| =M-o=         | =occur=                            | All       |
+| =C-c C-c=     | =comment-region=                   | All       |
+| =C-c C-u=     | =uncomment-region=                 | All       |
+| =C-S-s=       | =find-grep=                        | All       |
+| =C-S-f=       | =imenu=                            | All       |
+| =C-S-x k=     | =pl-kill-buffers-by-mode=          | All       |
+| =C-M-v=       | =cycle-resize-window-vertically=   | All       |
+| =C-M-h=       | =cycle-resize-window-horizontally= | All       |
+| =f5=          | =bookmark-bmenu-list=              | All       |
+| =f6=          | =recentf-open-files=               | All       |
+| =f12=         | =pl-get-shell=                     | All       |
 
 ** Credits
 
