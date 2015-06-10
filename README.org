@@ -51,26 +51,26 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 *** Packages
 
-- anzu
-- autopair
-- bonjourmadame
-- browse-kill-ring
-- company
-- cycle-resize
-- darkmine-theme
-- htmlize
-- ido, ido-hacks, ido-vertical-mode, flx-ido
-- idle-highlight-mode
-- js2-mode
-- markdown-mode
-- php-mode, php-extras
-- rainbow-delimiters
-- rainbow-mode
-- ruby-mode
-- symon
-- web-mode
-- whitespace
-- yaml-mode
+- [[https://github.com/syohex/emacs-anzu][anzu]] - A minor mode which displays current match and total matches information
+- [[https://github.com/capitaomorte/autopair][autopair]] - Automagically pair braces and quotes in emacs
+- [[https://github.com/pierre-lecocq/bonjourmadame][bonjourmadame]] - Say "Hello ma'am!"
+- [[https://github.com/browse-kill-ring/browse-kill-ring][browse-kill-ring]] - For when 'C-y M-y M-y M-y' gets you down
+- [[https://github.com/company-mode/company-mode][company]] - Modular in-buffer completion framework for Emacs
+- [[https://github.com/pierre-lecocq/cycle-resize][cycle-resize]] - Cycle resize the current window horizontally or vertically
+- [[https://github.com/pierre-lecocq/darkmine-theme][darkmine-theme]] - Yet another emacs dark color theme
+- [[http://melpa.org/#/htmlize][htmlize]] - Convert buffer text and decorations to HTML
+- [[http://emacswiki.org/emacs/InteractivelyDoThings][ido]], ido-hacks, ido-vertical-mode, flx-ido - Interactively do things
+- [[https://github.com/nonsequitur/idle-highlight-mode][idle-highlight-mode]] - Highlight word at point on idle
+- [[https://github.com/mooz/js2-mode][js2-mode]] - Improved JavaScript editing mode
+- [[http://melpa.org/#/markdown-mode][markdown-mode]] - Emacs Major mode for Markdown-formatted text files
+- [[https://github.com/ejmr/php-mode][php-mode]], php-extras -  A PHP mode for GNU Emacs
+- [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]] - Emacs rainbow delimiters mode
+- [[https://julien.danjou.info/projects/emacs-packages][rainbow-mode]] - Colorize color strings
+- [[http://emacswiki.org/emacs/RubyMode][ruby-mode]] - Font-locking, indentation support, and navigation for Ruby code
+- [[https://github.com/zk-phi/symon][symon]] - Tiny graphical system monitor
+- [[https://github.com/fxbois/web-mode][web-mode]] - Web template editing mode for emacs
+- [[http://emacswiki.org/emacs/WhiteSpace][whitespace]] - A minor mode to visualize blanks
+- [[https://github.com/yoshiki/yaml-mode][yaml-mode]] - The emacs major mode for editing files in the YAML data serialization format
 
 *** Functions
 
