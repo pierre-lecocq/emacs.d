@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-11 00:00:15>
+;; Time-stamp:  <2015-06-11 00:12:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -152,11 +152,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (interactive)
   (if pl--custom-theme-loaded
       (progn
-        (message "Reset theme")
         (mapc #'disable-theme custom-enabled-themes)
         (setq pl--custom-theme-loaded nil))
     (progn
-      (message "Load theme")
       (setq pl--custom-theme-loaded t)
       (load-theme 'darkmine t))))
 
