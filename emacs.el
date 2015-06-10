@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-08 20:01:28>
+;; Time-stamp:  <2015-06-10 23:13:11>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,6 +31,7 @@
     column-number-mode
     global-auto-revert-mode
     global-font-lock-mode
+    global-hl-line-mode
     line-number-mode
     recentf-mode
     show-paren-mode
@@ -196,7 +197,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'ruby-mode)
 (yak-pkg 'symon
          (setq symon-delay 5)
-	 (symon-mode t))
+         (symon-mode t))
 
 (yak-pkg 'web-mode)
 
@@ -407,7 +408,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
       (interactive)
       (occur-next)
       (occur-mode-goto-occurrence-other-window)
-      (hl-line-mode 1)
       (recenter)
       (other-window 1)))
   (define-key occur-mode-map (kbd "<up>")
@@ -415,7 +415,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
       (interactive)
       (occur-prev)
       (occur-mode-goto-occurrence-other-window)
-      (hl-line-mode 1)
       (recenter)
       (other-window 1))))
 
