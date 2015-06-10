@@ -196,7 +196,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'ruby-mode)
 (yak-pkg 'symon
          (setq symon-delay 5)
-         (symon-mode t))
+	 (symon-mode t))
 
 (yak-pkg 'web-mode)
 
@@ -313,7 +313,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
                         :width 'normal))
   (when (display-graphic-p)
     (setq show-paren-style 'expression
-          x-select-enable-clipboard t)
+	  select-enable-clipboard t)
     (set-fringe-mode 10)))
 
 (defun pl--init-files ()
