@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-10 23:53:02>
+;; Time-stamp:  <2015-06-11 00:00:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -153,7 +153,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (if pl--custom-theme-loaded
       (progn
         (message "Reset theme")
-        (mapcar #'disable-theme custom-enabled-themes)
+        (mapc #'disable-theme custom-enabled-themes)
         (setq pl--custom-theme-loaded nil))
     (progn
       (message "Load theme")
@@ -176,7 +176,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'browse-kill-ring)
 
 (yak-pkg 'company
-         (setq company-auto-complete nil)
+         (setq company-auto-complete nil
+               company-tooltip-flip-when-above t
+               company-minimum-prefix-length 2
+               company-tooltip-limit 10
+               company-idle-delay 0.5)
          (global-company-mode 1))
 
 (yak-pkg 'cycle-resize)
@@ -344,6 +348,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (add-to-list 'auto-mode-alist '("Dockerfile"        . ruby-mode))
   (add-to-list 'auto-mode-alist '("Vagrantfile"       . ruby-mode))
   (add-to-list 'auto-mode-alist '("Gemfile"           . ruby-mode))
+  (add-to-list 'auto-mode-alist '("Puppetfile"        . ruby-mode))
   (add-to-list 'auto-mode-alist '("Rakefile"          . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.rake\\'"        . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.ru\\'"          . ruby-mode))
