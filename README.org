@@ -41,13 +41,15 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 [[https://github.com/pierre-lecocq/yak][Yak]] is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
 
-| Name              | Type     | Arguments         | Description                                                                                      |
-|-------------------+----------+-------------------+--------------------------------------------------------------------------------------------------|
-| =yak-base-dir=    | Variable |                   | The base directory for the configuration and the packages. Default: the emacs.el directory       |
-| =yak-initialize=  | Function |                   | Initialize and refresh the package manager                                                       |
+|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
+| Name            | Type     | Arguments       | Description                                                                                      |
+|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
+| =yak-base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory       |
+| =yak-initialize=  | Function |                 | Initialize and refresh the package manager                                                       |
 | =yak-pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager       |
 | =yak-pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                            |
 | =yak-repo=        | Macro    | =name &rest body= | Install the NAME package from its github repository and execute BODY after the package is loaded |
+|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
 
 *** Packages
 
@@ -76,6 +78,7 @@ It works for internal packages and third-party packages installed thanks to =pac
 
 My collection of functions.
 
+|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
 | Name                    | Arguments           | Interactive | Description                                                                                                                     |
 |-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
 | =pl--mkpath=              | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
@@ -88,9 +91,12 @@ My collection of functions.
 | =pl-kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                      |
 | =pl-cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                    |
 | =pl-force-eval=           |                     | Yes         | Forced emacs lisp buffer evaluation                                                                                             |
+| =pl-toggle-custom-theme=  |                     | Yes         | Switch between the default theme and a custom theme ([[https://github.com/pierre-lecocq/darkmine-theme][darkmine-theme]])                                                            |
+|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
 
 Initializers, called as a bootstrap
 
+|----------------------+--------------------------------------------------------|
 | Name                 | Description                                            |
 |----------------------+--------------------------------------------------------|
 | =pl--init-behaviour=   | Initialize standard behaviour and set useful variables |
@@ -99,9 +105,11 @@ Initializers, called as a bootstrap
 | =pl--init-auto-insert= | Initialize auto-insert behaviour and templates         |
 | =pl--init-org-mode=    | Initialize org-mode behaviour                          |
 | =pl--init-keybindings= | Initialize keybindings                                 |
+|----------------------+--------------------------------------------------------|
 
 *** Keybindings
 
+|-------------+----------------------------------+-----------|
 | Keys        | Function                         | Mode      |
 |-------------+----------------------------------+-----------|
 | =C-c <right>= | =hs-show-block=                    | prog-mode |
@@ -121,6 +129,7 @@ Initializers, called as a bootstrap
 | =f5=          | =bookmark-bmenu-list=              | All       |
 | =f6=          | =recentf-open-files=               | All       |
 | =f12=         | =pl-get-shell=                     | All       |
+|-------------+----------------------------------+-----------|
 
 ** Credits
 

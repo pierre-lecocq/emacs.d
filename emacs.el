@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-10 23:13:11>
+;; Time-stamp:  <2015-06-10 23:32:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,8 @@
 ;; a perfect Emacs configuration file.
 
 ;;; Code:
+
+(defvar pl--custom-theme-loaded nil)
 
 (defvar internal-libs
   '(autoinsert
@@ -145,6 +147,19 @@ Argument VALUE 0 = transparent, 100 = opaque."
       (forward-sexp)
       (eval-defun nil))))
 
+(defun pl-toggle-custom-theme ()
+  "Switch between default and custom theme."
+  (interactive)
+  (if pl--custom-theme-loaded
+      (progn
+        (message "Reset theme")
+        (mapcar #'disable-theme custom-enabled-themes)
+        (setq pl--custom-theme-loaded nil))
+    (progn
+      (message "Load theme")
+      (setq pl--custom-theme-loaded t)
+      (load-theme 'darkmine t))))
+
 ;;;;;;;;;;;;;;;;
 ;; + packages ;;
 ;;;;;;;;;;;;;;;;
@@ -167,7 +182,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'cycle-resize)
 
 (yak-pkg 'darkmine-theme
-         (load-theme 'darkmine t))
+         (pl-toggle-custom-theme))
 
 (yak-pkg 'flx-ido)
 (yak-pkg 'ido-hacks)
@@ -314,7 +329,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
                         :width 'normal))
   (when (display-graphic-p)
     (setq show-paren-style 'expression
-	  select-enable-clipboard t)
+          select-enable-clipboard t)
     (set-fringe-mode 10)))
 
 (defun pl--init-files ()
