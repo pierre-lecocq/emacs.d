@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-10 23:32:01>
+;; Time-stamp:  <2015-06-10 23:53:02>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -277,6 +277,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
             (time-stamp)
             (delete-trailing-whitespace)
             (whitespace-cleanup)))
+
+(add-hook 'after-save-hook
+          (lambda ()
+            (when (file-exists-p (byte-compile-dest-file buffer-file-name))
+              (emacs-lisp-byte-compile))))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; + initializers ;;
