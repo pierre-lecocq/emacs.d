@@ -230,60 +230,70 @@ Argument VALUE 0 = transparent, 100 = opaque."
 ;; + hooks ;;
 ;;;;;;;;;;;;;
 
-(add-hook 'minibuffer-setup-hook
-          (lambda ()
-            (setq show-trailing-whitespace nil)))
+(defun hook-minibuffer-setup ()
+  "Hook for Minibuffer setup."
+  (setq show-trailing-whitespace nil))
+(add-hook 'minibuffer-setup-hook #'hook-minibuffer-setup)
 
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (put 'dired-find-alternate-file 'disabled nil)))
+(defun hook-dired-mode ()
+  "Hook for Dired mode."
+  (put 'dired-find-alternate-file 'disabled nil))
+(add-hook 'dired-mode-hook #'hook-dired-mode)
 
-(add-hook 'text-mode-hook
-          (lambda ()
-            (linum-mode 1)
-            (make-local-variable 'linum-format)
-            (setq linum-format " %d ")))
+(defun hook-text-mode ()
+  "Hook  for Text mode."
+  (linum-mode 1)
+  (make-local-variable 'linum-format)
+  (setq linum-format " %d "))
+(add-hook 'text-mode-hook #'hook-text-mode)
 
-(add-hook 'prog-mode-hook
-          (lambda ()
-            (idle-highlight-mode t)
-            (local-set-key (kbd "C-c <right>") 'hs-show-block)
-            (local-set-key (kbd "C-c <left>")  'hs-hide-block)
-            (local-set-key (kbd "C-c <up>")    'hs-hide-all)
-            (local-set-key (kbd "C-c <down>")  'hs-show-all)
-            (hs-minor-mode t)
-            (rainbow-delimiters-mode)))
+(defun hook-prog-mode ()
+  "Hook for Prod mode."
+  (idle-highlight-mode t)
+  (local-set-key (kbd "C-c <right>") 'hs-show-block)
+  (local-set-key (kbd "C-c <left>")  'hs-hide-block)
+  (local-set-key (kbd "C-c <up>")    'hs-hide-all)
+  (local-set-key (kbd "C-c <down>")  'hs-show-all)
+  (hs-minor-mode t)
+  (rainbow-delimiters-mode))
+(add-hook 'prog-mode-hook #'hook-prog-mode)
 
-(add-hook 'php-mode-hook
-          (lambda ()
-            (require 'php-extras)
-            (setq comment-start "// "
-                  comment-end "")
-            (set (make-local-variable 'indent-tabs-mode) nil)))
+(defun hook-php-mode ()
+  "Hook for PHP mode."
+  (require 'php-extras)
+  (setq comment-start "// "
+	comment-end "")
+  (set (make-local-variable 'indent-tabs-mode) nil))
+(add-hook 'php-mode-hook #'hook-php-mode)
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (eldoc-mode)))
+(defun hook-emacs-lisp-mode ()
+  "Hook for Emacs Lisp mode."
+  (eldoc-mode))
+(add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 
-(add-hook 'css-mode-hook
-          (lambda ()
-            (rainbow-mode)))
+(defun hook-css-mode ()
+  "Hook for CSS mode."
+  (rainbow-mode))
+(add-hook 'css-mode-hook #'hook-css-mode)
 
-(add-hook 'makefile-mode-hook
-          (lambda ()
-            (whitespace-toggle-options '(tabs))
-            (setq indent-tabs-mode t)))
+(defun hook-makefile-mode ()
+  "Hook for Makefile mode."
+  (whitespace-toggle-options '(tabs))
+  (setq indent-tabs-mode t))
+(add-hook 'makefile-mode-hook #'hook-makefile-mode)
 
-(add-hook 'before-save-hook
-          (lambda ()
-            (time-stamp)
-            (delete-trailing-whitespace)
-            (whitespace-cleanup)))
+(defun hook-before-save ()
+  "Hook before save."
+  (time-stamp)
+  (delete-trailing-whitespace)
+  (whitespace-cleanup))
+(add-hook 'before-save-hook #'hook-before-save)
 
-(add-hook 'after-save-hook
-          (lambda ()
-            (when (file-exists-p (byte-compile-dest-file buffer-file-name))
-              (emacs-lisp-byte-compile))))
+(defun hook-after-save ()
+  "Hook after save."
+  (when (file-exists-p (byte-compile-dest-file buffer-file-name))
+    (emacs-lisp-byte-compile)))
+(add-hook 'after-save-hook #'hook-after-save)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; + initializers ;;
