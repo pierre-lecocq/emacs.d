@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-11 00:12:18>
+;; Time-stamp:  <2015-06-12 21:27:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -293,7 +293,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Hook after save."
   (when (file-exists-p (byte-compile-dest-file buffer-file-name))
     (emacs-lisp-byte-compile)))
-(add-hook 'after-save-hook #'hook-after-save)
+;; (add-hook 'after-save-hook #'hook-after-save)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; + initializers ;;
