@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-12 21:27:20>
+;; Time-stamp:  <2015-06-13 10:35:40>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -262,7 +262,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Hook for PHP mode."
   (require 'php-extras)
   (setq comment-start "// "
-	comment-end "")
+        comment-end "")
   (set (make-local-variable 'indent-tabs-mode) nil))
 (add-hook 'php-mode-hook #'hook-php-mode)
 
