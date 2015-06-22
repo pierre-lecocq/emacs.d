@@ -248,7 +248,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (add-hook 'text-mode-hook #'hook-text-mode)
 
 (defun hook-prog-mode ()
-  "Hook for Prod mode."
+  "Hook for Prog mode."
   (idle-highlight-mode t)
   (local-set-key (kbd "C-c <right>") 'hs-show-block)
   (local-set-key (kbd "C-c <left>")  'hs-hide-block)
@@ -257,6 +257,11 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (hs-minor-mode t)
   (rainbow-delimiters-mode))
 (add-hook 'prog-mode-hook #'hook-prog-mode)
+
+(defun hook-c-mode ()
+  "Hook for C mode."
+  (c-set-offset 'case-label '+))
+(add-hook 'c-mode-common-hook #'hook-c-mode)
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
