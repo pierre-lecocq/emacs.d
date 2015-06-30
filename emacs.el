@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-23 17:49:16>
+;; Time-stamp:  <2015-06-30 11:15:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -358,6 +358,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Initialize files."
   (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
   (add-to-list 'auto-mode-alist '("\\.js[on]\\'"      . js2-mode))
+  (add-to-list 'auto-mode-alist '("\\.asd\\'"         . lisp-mode))
   (add-to-list 'auto-mode-alist '("\\.cl\\'"          . lisp-mode))
   (add-to-list 'auto-mode-alist '("\\.lisp\\'"        . lisp-mode))
   (add-to-list 'auto-mode-alist '("Dockerfile"        . ruby-mode))
