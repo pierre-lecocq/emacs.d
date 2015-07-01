@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-06-30 11:15:47>
+;; Time-stamp:  <2015-07-01 08:48:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -212,6 +212,12 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'rainbow-delimiters)
 (yak-pkg 'rainbow-mode)
 (yak-pkg 'ruby-mode)
+
+(yak-pkg 'slime-company)
+(yak-pkg 'slime
+         (setq inferior-lisp-program "sbcl")
+         (slime-setup '(slime-company)))
+
 (yak-pkg 'symon
          (setq symon-delay 5)
          (symon-mode t))
