@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-07-01 08:48:42>
+;; Time-stamp:  <2015-07-01 09:09:58>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -215,7 +215,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (yak-pkg 'slime-company)
 (yak-pkg 'slime
-         (setq inferior-lisp-program "sbcl")
+         (if (eq system-type 'darwin)
+             (setq inferior-lisp-program "/usr/local/bin/sbcl")
+           (setq inferior-lisp-program "sbcl"))
          (slime-setup '(slime-company)))
 
 (yak-pkg 'symon
