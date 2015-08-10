@@ -1,6 +1,6 @@
 * emacs.el
 
-My Emacs configuration file
+My (single-file) Emacs configuration.
 
 ** Introduction
 
@@ -15,7 +15,6 @@ You may also change the =$MY_SRC_DIR= value to fit your needs.
 #+begin_src sh
 export MY_SRC_DIR="~/work/src"
 mkdir -p $MY_SRC_DIR
-git clone https://github.com/pierre-lecocq/yak $MY_SRC_DIR/yak
 git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
 cd  $MY_SRC_DIR/emacs.d && make && make compile
 echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
