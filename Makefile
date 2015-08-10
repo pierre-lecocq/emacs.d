@@ -4,16 +4,20 @@ VENDOR_DIR=$(BASE_DIR)/vendor
 
 all: build
 
-build:
+dep:
+	mkdir $(VENDOR_DIR)
+	git submodule update --recursive
+
+build: dep
 	emacs --batch -l $(BASE_FILE)
 
-compile:
+compile: build
 	emacs --batch --eval '(byte-compile-file "$(BASE_FILE)")'
 
 clean:
-	rm -f $(BASE_DIR)/*~ $(BASE_DIR)/*.elc
+	rm -f $(BASE_DIR)/*~ $(BASE_DIR)/.*~ $(BASE_DIR)/*.elc
 
 reset: clean
 	rm -rf $(VENDOR_DIR)
 
-love: reset build compile
+love: reset compile

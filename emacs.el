@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-07-01 09:09:58>
+;; Time-stamp:  <2015-08-02 18:37:06>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

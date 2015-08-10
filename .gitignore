@@ -4,3 +4,6 @@
 !emacs.el
 !Makefile
 !README.org
+!vendor/yak
+!.gitignore
+!.gitmodules
