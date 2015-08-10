@@ -13,8 +13,7 @@ Warning: You may want to save your existing configuration before installing this
 You may also change the =$MY_SRC_DIR= value to fit your needs.
 
 #+begin_src sh
-export MY_SRC_DIR="~/work/src"
-mkdir -p $MY_SRC_DIR
+export MY_SRC_DIR=$HOME"/work/src" && mkdir -p $MY_SRC_DIR
 git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
 cd  $MY_SRC_DIR/emacs.d && make && make compile
 echo "(load \"$MY_SRC_DIR/emacs.d/emacs\")" > ~/.emacs
