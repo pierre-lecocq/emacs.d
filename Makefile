@@ -5,7 +5,7 @@ VENDOR_DIR=$(BASE_DIR)/vendor
 all: build
 
 dep:
-	mkdir $(VENDOR_DIR)
+	mkdir -p $(VENDOR_DIR)
 	git submodule update --recursive
 
 build: dep
