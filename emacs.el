@@ -10,6 +10,9 @@
 
 ;;; Code:
 
+(setq yak-dir-base (file-name-directory (or load-file-name (buffer-file-name))))
+(add-to-list 'load-path (concat yak-dir-base "vendor/yak"))
+
 (defvar pl--custom-theme-loaded nil)
 
 (defvar internal-libs
@@ -47,9 +50,6 @@
     pl--init-auto-insert
     pl--init-org-mode
     pl--init-keybindings))
-
-(setq yak-dir-base (file-name-directory (or load-file-name (buffer-file-name))))
-(add-to-list 'load-path (concat yak-dir-base "vendor/yak"))
 
 (mapc #'require internal-libs)
 (mapc (lambda (mode) (when (fboundp mode) (funcall mode 1))) internal-modes-on)
@@ -207,7 +207,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 (yak-pkg 'idle-highlight-mode)
 (yak-pkg 'js2-mode)
 (yak-pkg 'markdown-mode)
-(yak-pkg 'php-extras)
+;;(yak-pkg 'php-extras)
 (yak-pkg 'php-mode)
 (yak-pkg 'rainbow-delimiters)
 (yak-pkg 'rainbow-mode)
@@ -273,7 +273,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
-  (require 'php-extras)
+;;  (require 'php-extras)
   (setq comment-start "// "
         comment-end "")
   (set (make-local-variable 'indent-tabs-mode) nil))
