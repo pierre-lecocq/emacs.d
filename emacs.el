@@ -48,8 +48,8 @@
     pl--init-org-mode
     pl--init-keybindings))
 
-(add-to-list 'load-path "~/work/src/yak")
 (setq yak-dir-base (file-name-directory (or load-file-name (buffer-file-name))))
+(add-to-list 'load-path (concat yak-dir-base "vendor/yak"))
 
 (mapc #'require internal-libs)
 (mapc (lambda (mode) (when (fboundp mode) (funcall mode 1))) internal-modes-on)
