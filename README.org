@@ -16,10 +16,10 @@ You may also change the =$MY_SRC_DIR= value to fit your needs.
 export MY_SRC_DIR=$HOME"/work/src" && mkdir -p $MY_SRC_DIR
 git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
 echo "(load-file \"$MY_SRC_DIR/emacs.d/emacs.el\")" > ~/.emacs
-cd $MY_SRC_DIR/emacs.d && make dep && make
+cd $MY_SRC_DIR/emacs.d && make
 #+end_src
 
-Note that the =make dep= command is mandatory in order to get the package manager up and running.
+Note that if you run Emacs just after the repository cloning, the command =make dep= is mandatory in order to get the package manager up and running.
 
 ** Content
 
