@@ -1,14 +1,12 @@
 BASE_DIR=$(shell pwd)
 BASE_FILE=$(BASE_DIR)/emacs.el
+YAK_DIR=$(BASE_DIR)/vendor/yak
 PACKAGES_DIR=$(BASE_DIR)/vendor/packages
 
 all: build
 
 dep:
-	git pull
-	git submodule init
-	git submodule status
-	git submodule update --recursive
+	git clone https://github.com/pierre-lecocq/yak $(YAK_DIR)
 
 build: dep
 	emacs --batch -l $(BASE_FILE)

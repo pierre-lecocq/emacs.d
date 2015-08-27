@@ -1,3 +1,0 @@
-[submodule "vendor/yak"]
-	path = vendor/yak
-	url = https://github.com/pierre-lecocq/yak
