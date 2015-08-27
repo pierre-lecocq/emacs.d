@@ -6,13 +6,10 @@ PACKAGES_DIR=$(BASE_DIR)/vendor/packages
 all: build
 
 dep:
-	git clone https://github.com/pierre-lecocq/yak $(YAK_DIR)
+	if ! [ -d $(YAK_DIR) ]; then git clone https://github.com/pierre-lecocq/yak $(YAK_DIR); fi
 
 build: dep
 	emacs --batch -l $(BASE_FILE)
-
-compile: build
-	emacs --batch --eval '(byte-compile-file "$(BASE_FILE)")'
 
 clean:
 	rm -f $(BASE_DIR)/*~ $(BASE_DIR)/.*~ $(BASE_DIR)/*.elc
@@ -20,4 +17,4 @@ clean:
 reset: clean
 	rm -rf $(PACKAGES_DIR)
 
-love: reset compile
+love: reset build
