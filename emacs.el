@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-08-20 08:57:38>
+;; Time-stamp:  <2015-09-13 23:00:06>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,8 @@
 ;; a perfect Emacs configuration file.
 
 ;;; Code:
+
+(setq gc-cons-threshold 100000000)
 
 (setq yak-dir-base (file-name-directory (or load-file-name (buffer-file-name))))
 (add-to-list 'load-path (concat yak-dir-base "vendor/yak"))
