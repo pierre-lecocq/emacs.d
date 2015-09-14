@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-09-13 23:00:06>
+;; Time-stamp:  <2015-09-14 20:48:06>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -335,7 +335,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
         kill-whole-line t
         require-final-newline t
         next-line-add-newlines nil
+        recentf-auto-cleanup 'never
         recentf-max-menu-items 50
+        recentf-keep '(file-remote-p file-readable-p)
         password-cache-expiry nil
         uniquify-buffer-name-style 'forward uniquify-separator "/"
         bookmark-default-file (pl--mkpath :name "bookmarks")
@@ -484,6 +486,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (when (file-exists-p f)
     (load f 'noerror)))
 
-(message "Config has been successfully loaded from %s" yak-dir-base)
+(message "Config has been successfully loaded from %s in %s" yak-dir-base (emacs-init-time))
 
 ;;; emacs.el ends here
