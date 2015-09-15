@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-09-14 20:48:06>
+;; Time-stamp:  <2015-09-15 20:38:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -35,6 +35,7 @@
 
 (defvar internal-modes-on
   '(auto-compression-mode
+    auto-insert-mode
     column-number-mode
     global-auto-revert-mode
     global-font-lock-mode
@@ -46,10 +47,10 @@
     which-function-mode))
 
 (defvar init-funcs
-  '(pl--init-behaviour
+  '(pl--init-auto-insert
+    pl--init-behaviour
     pl--init-display
     pl--init-files
-    pl--init-auto-insert
     pl--init-org-mode
     pl--init-keybindings))
 
