@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-09-15 20:38:46>
+;; Time-stamp:  <2015-09-24 00:02:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -250,6 +250,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Hook for Shell mode."
   (setq show-trailing-whitespace nil))
 (add-hook 'shell-mode-hook #'hook-shell-mode)
+(add-hook 'eshell-mode-hook #'hook-shell-mode)
 
 (defun hook-dired-mode ()
   "Hook for Dired mode."
