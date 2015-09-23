@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-09-24 00:02:27>
+;; Time-stamp:  <2015-09-24 00:04:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -99,12 +99,12 @@
 (defun pl-get-shell ()
   "Get a shell buffer."
   (interactive)
-  (if (eq (current-buffer) (get-buffer "*shell*"))
+  (if (eq (current-buffer) (get-buffer "*eshell*"))
       (switch-to-buffer (other-buffer (current-buffer) t))
     (progn
-      (if (member (get-buffer "*shell*") (buffer-list))
-          (switch-to-buffer "*shell*")
-        (shell)))))
+      (if (member (get-buffer "*eshell*") (buffer-list))
+          (switch-to-buffer "*eshell*")
+        (eshell)))))
 
 (defun pl-transparency (value)
   "Set the transparency of the frame window.
