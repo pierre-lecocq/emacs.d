@@ -3,6 +3,8 @@ BASE_FILE=$(BASE_DIR)/emacs.el
 YAK_DIR=$(BASE_DIR)/vendor/yak
 PACKAGES_DIR=$(BASE_DIR)/vendor/packages
 
+.PHONY: dep build clean reset love
+
 all: build
 
 dep:
