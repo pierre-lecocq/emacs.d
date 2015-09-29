@@ -1,6 +1,6 @@
 ;;; emacs.el --- Emacs config
 
-;; Time-stamp:  <2015-09-24 00:27:29>
+;; Time-stamp:  <2015-09-29 21:26:31>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -248,7 +248,9 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (defun hook-shell-mode ()
   "Hook for Shell mode."
-  (setq show-trailing-whitespace nil))
+  (setq show-trailing-whitespace nil)
+  (eshell/alias "l" "ls -l")
+  (eshell/alias "la" "ls -la"))
 (add-hook 'shell-mode-hook #'hook-shell-mode)
 (add-hook 'eshell-mode-hook #'hook-shell-mode)
 
