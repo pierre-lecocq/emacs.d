@@ -1,160 +1,532 @@
-* emacs.el
+#+TITLE: Emacs config
+#+AUTHOR: Pierre Lecocq
+#+EMAIL: pierre.lecocq@gmail.com
+#+STARTUP: content
 
-My (single-file) Emacs configuration.
+* Emacs config
 
-** Introduction
+This is yet another stop to the biggest lie in the world: a perfect Emacs configuration file.
 
-This is yet another step to the biggest lie in the world: a perfect Emacs configuration file.
+** Usage
 
-** Install
+In order to use this configuration, follow these three easy steps:
 
-Warning: You may want to save your existing configuration before installing this one.
-
-You may also change the =$MY_SRC_DIR= value to fit your needs.
+- Clone the repository
 
 #+begin_src sh
-export MY_SRC_DIR=$HOME"/work/src" && mkdir -p $MY_SRC_DIR
-git clone https://github.com/pierre-lecocq/emacs.d $MY_SRC_DIR/emacs.d
-echo "(load-file \"$MY_SRC_DIR/emacs.d/emacs.el\")" > ~/.emacs
-cd $MY_SRC_DIR/emacs.d && make
+mkdir -p ~/work/src
+git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
+cd ~/work/src
 #+end_src
 
-Note that if you run Emacs just after the repository cloning, the command =make dep= is mandatory in order to get the package manager up and running.
+- Use the makefile to build the configuration file
 
-** Content
-
-*** Yak (Yet Another Konfig-helper)
-
-The idea is just to call =yak/pkg= in order to install and initialize a package. Here is a dummy example:
-
-#+begin_src emacs-lisp
-(yak-pkg 'my-package
-          ;; The configuration for the package:
-          (setq my-package-custom-var1 t)
-          (setq my-package-custom-var2 nil)
-          (my-package-mode t))
+#+begin_src sh
+make
 #+end_src
 
-It works for internal packages and third-party packages installed thanks to =package.el=
+- Load the configuration file
 
-**** Internal details
+#+begin_src sh
+echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
+#+end_src
 
-[[https://github.com/pierre-lecocq/yak][Yak]] is based on the internal package manager =package.el= and provides 3 sources: MELPA, GNU ELPA and MARMALADE.
+** Initialization
 
-|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
-| Name            | Type     | Arguments       | Description                                                                                      |
-|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
-| =yak-base-dir=    | Variable |                 | The base directory for the configuration and the packages. Default: the emacs.el directory       |
-| =yak-initialize=  | Function |                 | Initialize and refresh the package manager                                                       |
-| =yak-pkg-install= | Function | =name=            | Install the package NAME if needed. It is also in charge to initialize the package manager       |
-| =yak-pkg=         | Macro    | =name &rest body= | Install the NAME package and execute BODY after the package is loaded                            |
-| =yak-repo=        | Macro    | =name &rest body= | Install the NAME package from its github repository and execute BODY after the package is loaded |
-|-----------------+----------+-----------------+--------------------------------------------------------------------------------------------------|
+*** Internals
 
-*** Packages
+Set the debug flag. Because we can not tolerate any error from the init file
 
-- [[https://github.com/syohex/emacs-anzu][anzu]] - A minor mode which displays current match and total matches information
-- [[https://github.com/capitaomorte/autopair][autopair]] - Automagically pair braces and quotes in emacs
-- [[https://github.com/pierre-lecocq/bonjourmadame][bonjourmadame]] - Say "Hello ma'am!"
-- [[https://github.com/browse-kill-ring/browse-kill-ring][browse-kill-ring]] - For when 'C-y M-y M-y M-y' gets you down
-- [[https://github.com/company-mode/company-mode][company]] - Modular in-buffer completion framework for Emacs
-- [[https://github.com/pierre-lecocq/cycle-resize][cycle-resize]] - Cycle resize the current window horizontally or vertically
-- [[https://github.com/pierre-lecocq/darkmine-theme][darkmine-theme]] - Yet another emacs dark color theme
-- [[http://melpa.org/#/htmlize][htmlize]] - Convert buffer text and decorations to HTML
-- [[http://emacswiki.org/emacs/InteractivelyDoThings][ido]], ido-hacks, ido-vertical-mode, flx-ido - Interactively do things
-- [[https://github.com/nonsequitur/idle-highlight-mode][idle-highlight-mode]] - Highlight word at point on idle
-- [[https://github.com/mooz/js2-mode][js2-mode]] - Improved JavaScript editing mode
-- [[http://melpa.org/#/markdown-mode][markdown-mode]] - Emacs Major mode for Markdown-formatted text files
-- [[https://github.com/ejmr/php-mode][php-mode]], php-extras -  A PHP mode for GNU Emacs
-- [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters]] - Emacs rainbow delimiters mode
-- [[https://julien.danjou.info/projects/emacs-packages][rainbow-mode]] - Colorize color strings
-- [[http://emacswiki.org/emacs/RubyMode][ruby-mode]] - Font-locking, indentation support, and navigation for Ruby code
-- [[https://github.com/zk-phi/symon][symon]] - Tiny graphical system monitor
-- [[https://github.com/fxbois/web-mode][web-mode]] - Web template editing mode for emacs
-- [[http://emacswiki.org/emacs/WhiteSpace][whitespace]] - A minor mode to visualize blanks
-- [[https://github.com/yoshiki/yaml-mode][yaml-mode]] - The emacs major mode for editing files in the YAML data serialization format
+#+begin_src emacs-lisp :tangle emacs.el
+(setq debug-on-error t)
+#+end_src
 
-*** Functions
+Set the current file directory as the main config directory
 
-My collection of functions.
+#+begin_src emacs-lisp :tangle emacs.el
+(setq config-dir "~/work/src/emacs.d/")
+#+end_src
 
-|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
-| Name                    | Arguments           | Interactive | Description                                                                                                                     |
-|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
-| =pl--mkpath=              | =&rest args=          | No          | Create a file or a directory. It takes named arguments: =:name= (string), =:base= (string), =:directory= (boolean), =:create= (boolean) |
-| =pl--set-indentation=     |                     | No          | Set indentation rules                                                                                                           |
-| =pl-set-locale=           | =locale=              | Yes         | Set a locale (i.e: 'utf-8 or 'latin-1)                                                                                          |
-| =pl-get-shell=            |                     | Yes         | Launch a shell. If a shell buffer exists, switch to it. And if we are in a shell buffer, switch to the last buffer              |
-| =pl-transparency=         | =value=               | Yes         | Set transparency to the frame. 0 is invisible and 100 is opaque. 90 is wise                                                     |
-| =pl-rb-require=           |                     | Yes         | Insert a list of required gems (for ruby development)                                                                           |
-| =pl-google-at-point=      |                     | Yes         | Search the word at point on Google                                                                                              |
-| =pl-kill-buffers-by-mode= | =&optional mode-name= | Yes         | Kill all buffers from a specific major-mode (i.e: =dired-mode= or =ruby-mode=)                                                      |
-| =pl-cycle-dictionaries=   |                     | Yes         | Cycle through my dictionaries (for =flyspell=)                                                                                    |
-| =pl-force-eval=           |                     | Yes         | Forced emacs lisp buffer evaluation                                                                                             |
-| =pl-toggle-custom-theme=  |                     | Yes         | Switch between the default theme and a custom theme ([[https://github.com/pierre-lecocq/darkmine-theme][darkmine-theme]])                                                            |
-|-------------------------+---------------------+-------------+---------------------------------------------------------------------------------------------------------------------------------|
+Set some internal Emacs variables
 
-Initializers, called as a bootstrap
+#+begin_src emacs-lisp :tangle emacs.el
+(setq gc-cons-threshold 100000000
+      ;; Identity
+      user-full-name "Pierre Lecocq"
+      user-mail-address "pierre.lecocq@gmail.com"
+      ;; Formats
+      frame-title-format "Emacs %f"
+      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
+      ;; Scratch and Splash
+      initial-scratch-message (format ";; Scratch buffer - started at %s\n\n" (current-time-string))
+      inhibit-startup-message t
+      inhibit-splash-screen t
+      ;; General behaviour
+      kill-whole-line t
+      require-final-newline t
+      next-line-add-newlines nil
+      ;; Backup
+      backup-inhibited t
+      make-backup-files nil
+      auto-save-default nil
+      ;; VC
+      vc-follow-symlinks t
+      ;; Recentf
+      recentf-auto-cleanup 'never
+      recentf-max-menu-items 50
+      recentf-keep '(file-remote-p file-readable-p)
+      ;; Password cache
+      password-cache-expiry nil
+      ;; Uniquify
+      uniquify-buffer-name-style 'forward uniquify-separator "/"
+      ;; Paths
+      packages-dir (expand-file-name (concat config-dir "packages"))
+      custom-file (expand-file-name (concat config-dir "custom.el"))
+      bookmark-default-file (expand-file-name (concat config-dir "bookmarks"))
+      org-directory (expand-file-name "~/org-files")
+      host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
+#+end_src
 
-|----------------------+--------------------------------------------------------|
-| Name                 | Description                                            |
-|----------------------+--------------------------------------------------------|
-| =pl--init-behaviour=   | Initialize standard behaviour and set useful variables |
-| =pl--init-display=     | Initialize the general display                         |
-| =pl--init-files=       | Initialize file assocation with modes                  |
-| =pl--init-auto-insert= | Initialize auto-insert behaviour and templates         |
-| =pl--init-org-mode=    | Initialize org-mode behaviour                          |
-| =pl--init-keybindings= | Initialize keybindings                                 |
-|----------------------+--------------------------------------------------------|
+*** Libraries and modes
 
-*** Keybindings
+Require some internal libraries
 
-|-------------+----------------------------------+-----------|
-| Keys        | Function                         | Mode      |
-|-------------+----------------------------------+-----------|
-| =C-c <right>= | =hs-show-block=                    | prog-mode |
-| =C-c <left>=  | =hs-hide-block=                    | prog-mode |
-| =C-c <up>=    | =hs-hide-all=                      | prog-mode |
-| =C-c <down>=  | =hs-show-all=                      | prog-mode |
-| =M-g=         | =goto-line=                        | All       |
-| =M-y=         | =browse-kill-ring=                 | All       |
-| =M-o=         | =occur=                            | All       |
-| =C-c C-c=     | =comment-region=                   | All       |
-| =C-c C-u=     | =uncomment-region=                 | All       |
-| =C-S-s=       | =find-grep=                        | All       |
-| =C-S-f=       | =imenu=                            | All       |
-| =C-S-x k=     | =pl-kill-buffers-by-mode=          | All       |
-| =C-M-v=       | =cycle-resize-window-vertically=   | All       |
-| =C-M-h=       | =cycle-resize-window-horizontally= | All       |
-| =f5=          | =bookmark-bmenu-list=              | All       |
-| =f6=          | =recentf-open-files=               | All       |
-| =f12=         | =pl-get-shell=                     | All       |
-|-------------+----------------------------------+-----------|
+#+begin_src emacs-lisp :tangle emacs.el
+(mapc #'require '(autoinsert
+                  bookmark
+                  linum
+                  org
+                  paren
+                  recentf
+                  time-stamp
+                  whitespace))
+#+end_src
 
-** Credits
+Turn on some internal modes
 
-Pierre Lecocq, version <BIGINT>
+#+begin_src emacs-lisp :tangle emacs.el
+(mapc (lambda (mode)
+        (when (fboundp mode) (funcall mode 1)))
+      '(auto-compression-mode
+        auto-insert-mode
+        column-number-mode
+        global-auto-revert-mode
+        global-font-lock-mode
+        global-hl-line-mode
+        line-number-mode
+        recentf-mode
+        show-paren-mode
+        transient-mark-mode
+        which-function-mode))
+#+end_src
 
-** Links
+Turn off some internal modes
 
-*** Official
+#+begin_src emacs-lisp :tangle emacs.el
+(mapc (lambda (mode)
+        (when (fboundp mode) (funcall mode -1)))
+      '(menu-bar-mode
+        tool-bar-mode
+        scroll-bar-mode))
+#+end_src
 
-- [[https://www.gnu.org/software/emacs/][The GNU Emacs official website]]
-- [[http://www.damtp.cam.ac.uk/user/sje30/ess11/resources/emacs-refcard.pdf][Gnu Emacs refcard (PDF)]]
-- [[https://www.gnu.org/software/emacs/manual/html_node/emacs/index.html][GNU Emacs manual]]
-- [[https://www.gnu.org/software/emacs/manual/html_node/eintr/index.html][An Introduction to Programming in Emacs Lisp]]
-- [[https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html][Emacs Lisp Reference Manual]]
-- [[https://www.gnu.org/software/emacs/manual/index.html][Other Emacs manuals]]
+*** General behaviour
 
-*** Third-party
+**** Common setup
 
-- [[http://planet.emacsen.org/][Planet Emacsen]]
-- [[http://www.reddit.com/r/emacs][Emacs subreddit]]
-- [[http://www.emacswiki.org/][Emacs Wiki]]
-- [[http://oremacs.com/][(or emacs]]
-- [[http://emacsredux.com/][Emacs Redux]]
-- [[http://emacsrocks.com/][Emacs Rocks]]
-- [[https://www.masteringemacs.org/][Mastering Emacs]]
-- [[http://sachachua.com/blog/category/emacs/][Sacha Chua - Emacs category]]
-- [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
-- [[https://github.com/pierre-lecocq/emacs4developers][Emacs for Developers tutorial]]
+Laziness ...
+
+#+begin_src emacs-lisp :tangle emacs.el
+(fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+**** Indentation
+
+Set indentation
+
+#+begin_src emacs-lisp :tangle emacs.el
+(setq-default tab-width 4
+              c-basic-offset 4
+              c-hanging-comment-ender-p nil
+              indent-tabs-mode nil)
+#+end_src
+
+**** Locale
+
+Set locale
+
+#+begin_src emacs-lisp :tangle emacs.el
+(set-language-environment 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+#+end_src
+
+**** Auto-insert
+
+Auto-insert definitions
+
+#+begin_src emacs-lisp :tangle emacs.el
+(auto-insert)
+
+(setq auto-insert-alist
+      '(((ruby-mode . "Ruby program") nil
+         "#!/usr/bin/env ruby\n\n"
+         "# File: " (file-name-nondirectory buffer-file-name) "\n"
+         "# Time-stamp: <>\n"
+         "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         "# Description: " _ "\n\n")
+        ((emacs-lisp-mode . "Emacs lisp mode") nil
+         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
+         ";; Time-stamp: <>\n"
+         ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
+         ";;; Commentary:\n\n"
+         ";;; Code:\n\n"
+         ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
+        ((c-mode . "C program") nil
+         "/*\n"
+         " * File: " (file-name-nondirectory buffer-file-name) "\n"
+         " * Time-stamp: <>\n"
+         " * Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " * Description: " _ "\n"
+         " */\n\n")
+        ((shell-mode . "Shell script") nil
+         "#!/bin/bash\n\n"
+         " # File: " (file-name-nondirectory buffer-file-name) "\n"
+         " # Time-stamp: <>\n"
+         " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " # Description: " _ "\n\n")))
+#+end_src
+
+** Packages
+
+*** Package manager
+
+Initialize the internal package manager and install =use-package=
+
+#+begin_src emacs-lisp :tangle emacs.el
+(require 'package)
+
+(setq package-user-dir packages-dir)
+(setq package-archives
+      '(("melpa"        . "http://melpa.org/packages/")
+        ("gnu"          . "http://elpa.gnu.org/packages/")
+        ("marmalade"    . "http://marmalade-repo.org/packages/")))
+
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(setq package-enable-at-startup nil)
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+#+end_src
+
+*** External packages
+
+Install external packages from Emacs repositories
+
+**** Anzu
+
+A minor mode which displays current match and total matches information
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package anzu
+             :ensure t
+             :init (progn
+                     (global-anzu-mode +1)
+                     (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+#+end_src
+
+**** Autopair
+
+Automagically pair braces and quotes in emacs
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package autopair
+             :ensure t
+             :init (autopair-global-mode t))
+#+end_src
+
+**** Bonjourmadame
+
+Say “Hello ma'am!”
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package bonjourmadame
+             :ensure t)
+#+end_src
+
+**** Browse-kill-ring
+
+For when 'C-y M-y M-y M-y' gets you down
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package browse-kill-ring
+             :ensure t)
+#+end_src
+
+**** Company
+
+Modular in-buffer completion framework for Emacs
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package company
+             :ensure t
+             :init (progn
+                     (setq company-auto-complete nil
+                           company-tooltip-flip-when-above t
+                           company-minimum-prefix-length 2
+                           company-tooltip-limit 10
+                           company-idle-delay 0.5)
+                     (global-company-mode 1)))
+#+end_src
+
+**** Darkmine-theme
+
+Yet another emacs dark color theme
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package darkmine-theme
+             :ensure t
+             :init (load-theme 'darkmine t))
+#+end_src
+
+**** HTMLize
+
+Convert buffer text and decorations to HTML
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package htmlize
+             :ensure t)
+#+end_src
+
+**** Ido
+
+Interactively do things
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package flx-ido
+             :ensure t)
+
+(use-package ido-hacks
+             :ensure t)
+
+(use-package ido-vertical-mode
+             :ensure t)
+
+(use-package ido
+             :ensure t
+             :init (progn
+                     (require 'ido)
+                     (require 'ido-hacks)
+                     (setq ido-case-fold t
+                           ido-enable-flex-matching t
+                           ido-use-filename-at-point 'guess
+                           ido-create-new-buffer 'always
+                           ido-use-virtual-buffers t)
+                     (ido-everywhere 1)
+                     (flx-ido-mode 1)
+                     (ido-mode t)
+                     (ido-hacks-mode)
+                     (ido-vertical-mode)))
+#+end_src
+
+**** Idle-highlight-mode
+
+Highlight word at point on idle
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package idle-highlight-mode
+             :ensure t)
+#+end_src
+
+**** JS2-mode
+
+Improved JavaScript editing mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package js2-mode
+             :ensure t)
+#+end_src
+
+**** Markdown-mode
+
+Emacs Major mode for Markdown-formatted text files
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package markdown-mode
+             :ensure t)
+#+end_src
+
+**** PHP-mode
+
+A PHP mode for GNU Emacs
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package php-mode
+             :ensure t)
+#+end_src
+
+**** Rainbow-delimiters-mode
+
+Emacs rainbow delimiters mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package rainbow-delimiters
+             :ensure t)
+#+end_src
+
+**** Rainbow-mode
+
+Colorize color strings
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package rainbow-mode
+             :ensure t)
+#+end_src
+
+**** Ruby-mode
+
+Font-locking, indentation support, and navigation for Ruby code
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package ruby-mode
+             :ensure t)
+#+end_src
+
+**** Slime
+
+The Superior Lisp Interaction Mode for Emacs
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package slime-company
+             :ensure t)
+
+(use-package slime
+             :ensure t
+             :init (progn
+
+                     (if (eq system-type 'darwin)
+                         (setq inferior-lisp-program "/usr/local/bin/sbcl")
+                       (setq inferior-lisp-program "sbcl"))
+                     (slime-setup '(slime-company))))
+#+end_src
+
+**** Symon
+
+Tiny graphical system monitor
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package symon
+             :ensure t
+             :init (progn
+                     (setq symon-delay 5)
+                     (symon-mode t)))
+#+end_src
+
+**** Web-mode
+
+Web template editing mode for emacs
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package web-mode
+             :ensure t)
+#+end_src
+
+**** Whitespace
+
+A minor mode to visualize blanks
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package whitespace
+             :ensure t
+             :init (progn
+                     (setq whitespace-line-column 80
+                           whitespace-style '(tabs tab-mark face)
+                           whitespace-global-modes '(not org-mode web-mode))
+                     (global-whitespace-mode)))
+#+end_src
+
+**** Yaml-mode
+
+The emacs major mode for editing files in the YAML data serialization format
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package yaml-mode
+             :ensure t)
+#+end_src
+
+** Functions
+
+Some useful functions
+
+*** Toogle a shell buffer
+
+Get an eshell buffer.
+If it has already been launched, just get it back.
+If it is the current one, switch to the previous buffer.
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun pl-get-shell ()
+  "Get a shell buffer."
+  (interactive)
+  (if (eq (current-buffer) (get-buffer "*eshell*"))
+      (switch-to-buffer (other-buffer (current-buffer) t))
+    (progn
+      (if (member (get-buffer "*eshell*") (buffer-list))
+          (switch-to-buffer "*eshell*")
+        (eshell)))))
+#+end_src
+
+*** Kill buffers by mode
+
+Kill all buffers that belongs to a given mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun pl-kill-buffers-by-mode (&optional mode-name)
+  "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
+  (interactive)
+  (unless mode-name
+    (setq mode-name (read-from-minibuffer "Mode to kill: ")))
+  (let ((killed-buffers 0)
+        (mode-to-kill (intern mode-name)))
+    (dolist (buffer (buffer-list))
+      (when (eq mode-to-kill (buffer-local-value 'major-mode buffer))
+        (setq killed-buffers (1+ killed-buffers))
+        (kill-buffer buffer)))
+    (message "%d buffer(s) killed" killed-buffers)))
+#+end_src
+
+*** Force eval buffer
+
+Force a buffer evaluation
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun pl-force-eval ()
+  "Forced Emacs Lisp buffer evaluation - stolen from SO."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (forward-sexp)
+      (eval-defun nil))))
+#+end_src
+
+*** Set frame transparency
+
+Adjust transparency of the current frame
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun pl-transparency (value)
+  "Set the transparency of the frame window.
+Argument VALUE 0 = transparent, 100 = opaque."
+  (interactive "nTransparency Value 0 - 100 opaque: ")
+  (when (display-graphic-p)
+    (set-frame-parameter (selected-frame) 'alpha value)))
+#+end_src

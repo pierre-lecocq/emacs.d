@@ -1,5 +1,5 @@
 SRC_DIR=$(shell pwd)
-SRC_FILE=$(SRC_DIR)/emacs.org
+SRC_FILE=$(SRC_DIR)/README.org
 DEST_FILE=$(SRC_DIR)/emacs.el
 DEST_COMP_FILE=$(SRC_DIR)/emacs.elc
 PACKAGES_DIR=$(SRC_DIR)/packages
@@ -11,8 +11,7 @@ all: build
 build: 
 	emacs --batch \
 		--eval "(require 'org)" \
-		--eval "(org-babel-load-file \"$(SRC_FILE)\")" \
-		--eval '(byte-compile-file "$(DEST_FILE)")'
+		--eval "(org-babel-load-file \"$(SRC_FILE)\" t)"
 
 clean:
 	rm -f $(SRC_DIR)/*~ $(SRC_DIR)/.*~ $(DEST_FILE) $(DEST_COMP_FILE)

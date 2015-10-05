@@ -1,6 +1,7 @@
 # Ignore everything ...
 *
 # ... but my files
-!emacs.org
+!emacs.el
+!README.org
 !Makefile
 !.gitignore
