@@ -3,11 +3,9 @@
 #+EMAIL: pierre.lecocq@gmail.com
 #+STARTUP: content
 
-* Emacs config
-
 This is yet another stop to the biggest lie in the world: a perfect Emacs configuration file.
 
-** Usage
+* Usage
 
 In order to use this configuration, follow these three easy steps:
 
@@ -31,9 +29,9 @@ make
 echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
 #+end_src
 
-** Initialization
+* Initialization
 
-*** Internals
+** Internals
 
 Set the debug flag. Because we can not tolerate any error from the init file
 
@@ -87,7 +85,7 @@ Set some internal Emacs variables
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 #+end_src
 
-*** Libraries and modes
+** Libraries and modes
 
 Require some internal libraries
 
@@ -130,7 +128,7 @@ Turn off some internal modes
         scroll-bar-mode))
 #+end_src
 
-*** General behaviour
+** General behaviour
 
 **** Common setup
 
@@ -151,7 +149,7 @@ Set indentation
               indent-tabs-mode nil)
 #+end_src
 
-**** Locale
+*** Locale
 
 Set locale
 
@@ -164,7 +162,7 @@ Set locale
 (prefer-coding-system 'utf-8)
 #+end_src
 
-**** Auto-insert
+*** Auto-insert
 
 Auto-insert definitions
 
@@ -200,9 +198,9 @@ Auto-insert definitions
          " # Description: " _ "\n\n")))
 #+end_src
 
-** Packages
+* Packages
 
-*** Package manager
+** Package manager
 
 Initialize the internal package manager and install =use-package=
 
@@ -227,11 +225,11 @@ Initialize the internal package manager and install =use-package=
 (require 'use-package)
 #+end_src
 
-*** External packages
+** External packages
 
 Install external packages from Emacs repositories
 
-**** Anzu
+*** Anzu
 
 A minor mode which displays current match and total matches information
 
@@ -243,7 +241,7 @@ A minor mode which displays current match and total matches information
                      (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
 #+end_src
 
-**** Autopair
+*** Autopair
 
 Automagically pair braces and quotes in emacs
 
@@ -253,7 +251,7 @@ Automagically pair braces and quotes in emacs
              :init (autopair-global-mode t))
 #+end_src
 
-**** Bonjourmadame
+*** Bonjourmadame
 
 Say “Hello ma'am!”
 
@@ -262,7 +260,7 @@ Say “Hello ma'am!”
              :ensure t)
 #+end_src
 
-**** Browse-kill-ring
+*** Browse-kill-ring
 
 For when 'C-y M-y M-y M-y' gets you down
 
@@ -271,7 +269,7 @@ For when 'C-y M-y M-y M-y' gets you down
              :ensure t)
 #+end_src
 
-**** Company
+*** Company
 
 Modular in-buffer completion framework for Emacs
 
@@ -287,7 +285,7 @@ Modular in-buffer completion framework for Emacs
                      (global-company-mode 1)))
 #+end_src
 
-**** Darkmine-theme
+*** Darkmine-theme
 
 Yet another emacs dark color theme
 
@@ -297,7 +295,7 @@ Yet another emacs dark color theme
              :init (load-theme 'darkmine t))
 #+end_src
 
-**** HTMLize
+*** HTMLize
 
 Convert buffer text and decorations to HTML
 
@@ -306,7 +304,7 @@ Convert buffer text and decorations to HTML
              :ensure t)
 #+end_src
 
-**** Ido
+*** Ido
 
 Interactively do things
 
@@ -337,7 +335,7 @@ Interactively do things
                      (ido-vertical-mode)))
 #+end_src
 
-**** Idle-highlight-mode
+*** Idle-highlight-mode
 
 Highlight word at point on idle
 
@@ -346,7 +344,7 @@ Highlight word at point on idle
              :ensure t)
 #+end_src
 
-**** JS2-mode
+*** JS2-mode
 
 Improved JavaScript editing mode
 
@@ -355,7 +353,7 @@ Improved JavaScript editing mode
              :ensure t)
 #+end_src
 
-**** Markdown-mode
+*** Markdown-mode
 
 Emacs Major mode for Markdown-formatted text files
 
@@ -364,7 +362,7 @@ Emacs Major mode for Markdown-formatted text files
              :ensure t)
 #+end_src
 
-**** PHP-mode
+*** PHP-mode
 
 A PHP mode for GNU Emacs
 
@@ -373,7 +371,7 @@ A PHP mode for GNU Emacs
              :ensure t)
 #+end_src
 
-**** Rainbow-delimiters-mode
+*** Rainbow-delimiters-mode
 
 Emacs rainbow delimiters mode
 
@@ -382,7 +380,7 @@ Emacs rainbow delimiters mode
              :ensure t)
 #+end_src
 
-**** Rainbow-mode
+*** Rainbow-mode
 
 Colorize color strings
 
@@ -391,7 +389,7 @@ Colorize color strings
              :ensure t)
 #+end_src
 
-**** Ruby-mode
+*** Ruby-mode
 
 Font-locking, indentation support, and navigation for Ruby code
 
@@ -400,7 +398,7 @@ Font-locking, indentation support, and navigation for Ruby code
              :ensure t)
 #+end_src
 
-**** Slime
+*** Slime
 
 The Superior Lisp Interaction Mode for Emacs
 
@@ -418,7 +416,7 @@ The Superior Lisp Interaction Mode for Emacs
                      (slime-setup '(slime-company))))
 #+end_src
 
-**** Symon
+*** Symon
 
 Tiny graphical system monitor
 
@@ -430,7 +428,7 @@ Tiny graphical system monitor
                      (symon-mode t)))
 #+end_src
 
-**** Web-mode
+*** Web-mode
 
 Web template editing mode for emacs
 
@@ -439,7 +437,7 @@ Web template editing mode for emacs
              :ensure t)
 #+end_src
 
-**** Whitespace
+*** Whitespace
 
 A minor mode to visualize blanks
 
@@ -453,7 +451,7 @@ A minor mode to visualize blanks
                      (global-whitespace-mode)))
 #+end_src
 
-**** Yaml-mode
+*** Yaml-mode
 
 The emacs major mode for editing files in the YAML data serialization format
 
@@ -462,11 +460,11 @@ The emacs major mode for editing files in the YAML data serialization format
              :ensure t)
 #+end_src
 
-** Functions
+* Functions
 
 Some useful functions
 
-*** Toogle a shell buffer
+** Toogle a shell buffer
 
 Get an eshell buffer.
 If it has already been launched, just get it back.
@@ -484,7 +482,7 @@ If it is the current one, switch to the previous buffer.
         (eshell)))))
 #+end_src
 
-*** Kill buffers by mode
+** Kill buffers by mode
 
 Kill all buffers that belongs to a given mode
 
@@ -503,7 +501,7 @@ Kill all buffers that belongs to a given mode
     (message "%d buffer(s) killed" killed-buffers)))
 #+end_src
 
-*** Force eval buffer
+** Force eval buffer
 
 Force a buffer evaluation
 
@@ -518,7 +516,7 @@ Force a buffer evaluation
       (eval-defun nil))))
 #+end_src
 
-*** Set frame transparency
+** Set frame transparency
 
 Adjust transparency of the current frame
 
