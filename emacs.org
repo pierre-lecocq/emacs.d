@@ -1,0 +1,532 @@
+#+TITLE: Emacs config
+#+AUTHOR: Pierre Lecocq
+#+EMAIL: pierre.lecocq@gmail.com
+#+STARTUP: content
+
+* Emacs config
+
+This is yet another stop to the biggest lie in the world: a perfect Emacs configuration file.
+
+** Usage
+
+In order to use this configuration, follow these three easy steps:
+
+- Clone the repository
+
+#+begin_src sh
+mkdir -p ~/work/src
+git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
+cd ~/work/src
+#+end_src
+
+- Use the makefile to build the configuration file
+
+#+begin_src sh
+make
+#+end_src
+
+- Load the configuration file
+
+#+begin_src sh
+echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
+#+end_src
+
+** Initialization
+
+*** Internals
+
+Set the debug flag. Because we can not tolerate any error from the init file
+
+#+begin_src emacs-lisp
+(setq debug-on-error t)
+#+end_src
+
+Set the current file directory as the main config directory
+
+#+begin_src emacs-lisp
+(setq config-dir "~/work/src/emacs.d/")
+#+end_src
+
+Set some internal Emacs variables
+
+#+begin_src emacs-lisp
+(setq gc-cons-threshold 100000000
+      ;; Identity
+      user-full-name "Pierre Lecocq"
+      user-mail-address "pierre.lecocq@gmail.com"
+      ;; Formats
+      frame-title-format "Emacs %f"
+      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
+      ;; Scratch and Splash
+      initial-scratch-message (format ";; Scratch buffer - started at %s\n\n" (current-time-string))
+      inhibit-startup-message t
+      inhibit-splash-screen t
+      ;; General behaviour
+      kill-whole-line t
+      require-final-newline t
+      next-line-add-newlines nil
+      ;; Backup
+      backup-inhibited t
+      make-backup-files nil
+      auto-save-default nil
+      ;; VC
+      vc-follow-symlinks t
+      ;; Recentf
+      recentf-auto-cleanup 'never
+      recentf-max-menu-items 50
+      recentf-keep '(file-remote-p file-readable-p)
+      ;; Password cache
+      password-cache-expiry nil
+      ;; Uniquify
+      uniquify-buffer-name-style 'forward uniquify-separator "/"
+      ;; Paths
+      packages-dir (expand-file-name (concat config-dir "packages"))
+      custom-file (expand-file-name (concat config-dir "custom.el"))
+      bookmark-default-file (expand-file-name (concat config-dir "bookmarks"))
+      org-directory (expand-file-name "~/org-files")
+      host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
+#+end_src
+
+*** Libraries and modes
+
+Require some internal libraries
+
+#+begin_src emacs-lisp
+(mapc #'require '(autoinsert
+                  bookmark
+                  linum
+                  org
+                  paren
+                  recentf
+                  time-stamp
+                  whitespace))
+#+end_src
+
+Turn on some internal modes
+
+#+begin_src emacs-lisp
+(mapc (lambda (mode)
+        (when (fboundp mode) (funcall mode 1)))
+      '(auto-compression-mode
+        auto-insert-mode
+        column-number-mode
+        global-auto-revert-mode
+        global-font-lock-mode
+        global-hl-line-mode
+        line-number-mode
+        recentf-mode
+        show-paren-mode
+        transient-mark-mode
+        which-function-mode))
+#+end_src
+
+Turn off some internal modes
+
+#+begin_src emacs-lisp
+(mapc (lambda (mode)
+        (when (fboundp mode) (funcall mode -1)))
+      '(menu-bar-mode
+        tool-bar-mode
+        scroll-bar-mode))
+#+end_src
+
+*** General behaviour
+
+**** Common setup
+
+Laziness ...
+
+#+begin_src emacs-lisp
+(fset 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+**** Indentation
+
+Set indentation
+
+#+begin_src emacs-lisp
+(setq-default tab-width 4
+              c-basic-offset 4
+              c-hanging-comment-ender-p nil
+              indent-tabs-mode nil)
+#+end_src
+
+**** Locale
+
+Set locale
+
+#+begin_src emacs-lisp
+(set-language-environment 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+#+end_src
+
+**** Auto-insert
+
+Auto-insert definitions
+
+#+begin_src emacs-lisp
+(auto-insert)
+
+(setq auto-insert-alist
+      '(((ruby-mode . "Ruby program") nil
+         "#!/usr/bin/env ruby\n\n"
+         "# File: " (file-name-nondirectory buffer-file-name) "\n"
+         "# Time-stamp: <>\n"
+         "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         "# Description: " _ "\n\n")
+        ((emacs-lisp-mode . "Emacs lisp mode") nil
+         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
+         ";; Time-stamp: <>\n"
+         ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
+         ";;; Commentary:\n\n"
+         ";;; Code:\n\n"
+         ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")
+        ((c-mode . "C program") nil
+         "/*\n"
+         " * File: " (file-name-nondirectory buffer-file-name) "\n"
+         " * Time-stamp: <>\n"
+         " * Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " * Description: " _ "\n"
+         " */\n\n")
+        ((shell-mode . "Shell script") nil
+         "#!/bin/bash\n\n"
+         " # File: " (file-name-nondirectory buffer-file-name) "\n"
+         " # Time-stamp: <>\n"
+         " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         " # Description: " _ "\n\n")))
+#+end_src
+
+** Packages
+
+*** Package manager
+
+Initialize the internal package manager and install =use-package=
+
+#+begin_src emacs-lisp
+(require 'package)
+
+(setq package-user-dir packages-dir)
+(setq package-archives
+      '(("melpa"        . "http://melpa.org/packages/")
+        ("gnu"          . "http://elpa.gnu.org/packages/")
+        ("marmalade"    . "http://marmalade-repo.org/packages/")))
+
+(package-initialize)
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(setq package-enable-at-startup nil)
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(require 'use-package)
+#+end_src
+
+*** External packages
+
+Install external packages from Emacs repositories
+
+**** Anzu
+
+A minor mode which displays current match and total matches information
+
+#+begin_src emacs-lisp
+(use-package anzu
+             :ensure t
+             :init (progn
+                     (global-anzu-mode +1)
+                     (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+#+end_src
+
+**** Autopair
+
+Automagically pair braces and quotes in emacs
+
+#+begin_src emacs-lisp
+(use-package autopair
+             :ensure t
+             :init (autopair-global-mode t))
+#+end_src
+
+**** Bonjourmadame
+
+Say “Hello ma'am!”
+
+#+begin_src emacs-lisp
+(use-package bonjourmadame
+             :ensure t)
+#+end_src
+
+**** Browse-kill-ring
+
+For when 'C-y M-y M-y M-y' gets you down
+
+#+begin_src emacs-lisp
+(use-package browse-kill-ring
+             :ensure t)
+#+end_src
+
+**** Company
+
+Modular in-buffer completion framework for Emacs
+
+#+begin_src emacs-lisp
+(use-package company
+             :ensure t
+             :init (progn
+                     (setq company-auto-complete nil
+                           company-tooltip-flip-when-above t
+                           company-minimum-prefix-length 2
+                           company-tooltip-limit 10
+                           company-idle-delay 0.5)
+                     (global-company-mode 1)))
+#+end_src
+
+**** Darkmine-theme
+
+Yet another emacs dark color theme
+
+#+begin_src emacs-lisp
+(use-package darkmine-theme
+             :ensure t
+             :init (load-theme 'darkmine t))
+#+end_src
+
+**** HTMLize
+
+Convert buffer text and decorations to HTML
+
+#+begin_src emacs-lisp
+(use-package htmlize
+             :ensure t)
+#+end_src
+
+**** Ido
+
+Interactively do things
+
+#+begin_src emacs-lisp
+(use-package flx-ido
+             :ensure t)
+
+(use-package ido-hacks
+             :ensure t)
+
+(use-package ido-vertical-mode
+             :ensure t)
+
+(use-package ido
+             :ensure t
+             :init (progn
+                     (require 'ido)
+                     (require 'ido-hacks)
+                     (setq ido-case-fold t
+                           ido-enable-flex-matching t
+                           ido-use-filename-at-point 'guess
+                           ido-create-new-buffer 'always
+                           ido-use-virtual-buffers t)
+                     (ido-everywhere 1)
+                     (flx-ido-mode 1)
+                     (ido-mode t)
+                     (ido-hacks-mode)
+                     (ido-vertical-mode)))
+#+end_src
+
+**** Idle-highlight-mode
+
+Highlight word at point on idle
+
+#+begin_src emacs-lisp
+(use-package idle-highlight-mode
+             :ensure t)
+#+end_src
+
+**** JS2-mode
+
+Improved JavaScript editing mode
+
+#+begin_src emacs-lisp
+(use-package js2-mode
+             :ensure t)
+#+end_src
+
+**** Markdown-mode
+
+Emacs Major mode for Markdown-formatted text files
+
+#+begin_src emacs-lisp
+(use-package markdown-mode
+             :ensure t)
+#+end_src
+
+**** PHP-mode
+
+A PHP mode for GNU Emacs
+
+#+begin_src emacs-lisp
+(use-package php-mode
+             :ensure t)
+#+end_src
+
+**** Rainbow-delimiters-mode
+
+Emacs rainbow delimiters mode
+
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+             :ensure t)
+#+end_src
+
+**** Rainbow-mode
+
+Colorize color strings
+
+#+begin_src emacs-lisp
+(use-package rainbow-mode
+             :ensure t)
+#+end_src
+
+**** Ruby-mode
+
+Font-locking, indentation support, and navigation for Ruby code
+
+#+begin_src emacs-lisp
+(use-package ruby-mode
+             :ensure t)
+#+end_src
+
+**** Slime
+
+The Superior Lisp Interaction Mode for Emacs
+
+#+begin_src emacs-lisp
+(use-package slime-company
+             :ensure t)
+
+(use-package slime
+             :ensure t
+             :init (progn
+
+                     (if (eq system-type 'darwin)
+                         (setq inferior-lisp-program "/usr/local/bin/sbcl")
+                       (setq inferior-lisp-program "sbcl"))
+                     (slime-setup '(slime-company))))
+#+end_src
+
+**** Symon
+
+Tiny graphical system monitor
+
+#+begin_src emacs-lisp
+(use-package symon
+             :ensure t
+             :init (progn
+                     (setq symon-delay 5)
+                     (symon-mode t)))
+#+end_src
+
+**** Web-mode
+
+Web template editing mode for emacs
+
+#+begin_src emacs-lisp
+(use-package web-mode
+             :ensure t)
+#+end_src
+
+**** Whitespace
+
+A minor mode to visualize blanks
+
+#+begin_src emacs-lisp
+(use-package whitespace
+             :ensure t
+             :init (progn
+                     (setq whitespace-line-column 80
+                           whitespace-style '(tabs tab-mark face)
+                           whitespace-global-modes '(not org-mode web-mode))
+                     (global-whitespace-mode)))
+#+end_src
+
+**** Yaml-mode
+
+The emacs major mode for editing files in the YAML data serialization format
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+             :ensure t)
+#+end_src
+
+** Functions
+
+Some useful functions
+
+*** Toogle a shell buffer
+
+Get an eshell buffer.
+If it has already been launched, just get it back.
+If it is the current one, switch to the previous buffer.
+
+#+begin_src emacs-lisp
+(defun pl-get-shell ()
+  "Get a shell buffer."
+  (interactive)
+  (if (eq (current-buffer) (get-buffer "*eshell*"))
+      (switch-to-buffer (other-buffer (current-buffer) t))
+    (progn
+      (if (member (get-buffer "*eshell*") (buffer-list))
+          (switch-to-buffer "*eshell*")
+        (eshell)))))
+#+end_src
+
+*** Kill buffers by mode
+
+Kill all buffers that belongs to a given mode
+
+#+begin_src emacs-lisp
+(defun pl-kill-buffers-by-mode (&optional mode-name)
+  "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
+  (interactive)
+  (unless mode-name
+    (setq mode-name (read-from-minibuffer "Mode to kill: ")))
+  (let ((killed-buffers 0)
+        (mode-to-kill (intern mode-name)))
+    (dolist (buffer (buffer-list))
+      (when (eq mode-to-kill (buffer-local-value 'major-mode buffer))
+        (setq killed-buffers (1+ killed-buffers))
+        (kill-buffer buffer)))
+    (message "%d buffer(s) killed" killed-buffers)))
+#+end_src
+
+*** Force eval buffer
+
+Force a buffer evaluation
+
+#+begin_src emacs-lisp
+(defun pl-force-eval ()
+  "Forced Emacs Lisp buffer evaluation - stolen from SO."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (forward-sexp)
+      (eval-defun nil))))
+#+end_src
+
+*** Set frame transparency
+
+Adjust transparency of the current frame
+
+#+begin_src emacs-lisp
+(defun pl-transparency (value)
+  "Set the transparency of the frame window.
+Argument VALUE 0 = transparent, 100 = opaque."
+  (interactive "nTransparency Value 0 - 100 opaque: ")
+  (when (display-graphic-p)
+    (set-frame-parameter (selected-frame) 'alpha value)))
+#+end_src
