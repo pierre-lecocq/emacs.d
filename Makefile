@@ -1,20 +1,21 @@
-BASE_DIR=$(shell pwd)
-BASE_FILE=$(BASE_DIR)/emacs.el
-YAK_DIR=$(BASE_DIR)/vendor/yak
-PACKAGES_DIR=$(BASE_DIR)/vendor/packages
+SRC_DIR=$(shell pwd)
+SRC_FILE=$(SRC_DIR)/README.org
+DEST_FILE=$(SRC_DIR)/emacs.el
+DEST_COMP_FILE=$(SRC_DIR)/emacs.elc
+PACKAGES_DIR=$(SRC_DIR)/packages
 
-.PHONY: dep build clean reset love
+.PHONY: build clean reset love
 
 all: build
 
-dep:
-	if ! [ -d $(YAK_DIR) ]; then git clone https://github.com/pierre-lecocq/yak $(YAK_DIR); fi
-
-build: dep
-	emacs --batch -l $(BASE_FILE)
+build:
+	emacs --batch \
+		--eval "(require 'org)" \
+		--eval "(org-babel-load-file \"$(SRC_FILE)\")" \
+		--eval "(byte-compile-file \"$(DEST_FILE)\")"
 
 clean:
-	rm -f $(BASE_DIR)/*~ $(BASE_DIR)/.*~ $(BASE_DIR)/*.elc
+	rm -f $(SRC_DIR)/*~ $(SRC_DIR)/.*~ $(DEST_FILE) $(DEST_COMP_FILE)
 
 reset: clean
 	rm -rf $(PACKAGES_DIR)
