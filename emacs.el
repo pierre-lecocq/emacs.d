@@ -49,7 +49,8 @@
                   whitespace))
 
 (mapc (lambda (mode)
-        (when (fboundp mode) (funcall mode 1)))
+        (when (fboundp mode)
+          (funcall mode 1)))
       '(auto-compression-mode
         auto-insert-mode
         column-number-mode
@@ -63,7 +64,8 @@
         which-function-mode))
 
 (mapc (lambda (mode)
-        (when (fboundp mode) (funcall mode -1)))
+        (when (fboundp mode)
+          (funcall mode -1)))
       '(menu-bar-mode
         tool-bar-mode
         scroll-bar-mode))
@@ -91,12 +93,14 @@
                          (propertize "  %b" 'face 'bold)))
                " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
                '(which-function-mode (" " which-func-format))))
+
 (when (member "Inconsolata" (font-family-list))
   (set-face-attribute 'default nil
                       :family "Inconsolata" ;; "DejaVu Sans Mono"
                       :height 120
                       :weight 'normal
                       :width 'normal))
+
 (when (display-graphic-p)
   (setq show-paren-style 'expression
         select-enable-clipboard t)
@@ -447,6 +451,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (global-unset-key (kbd "C-z")))
 
 ;; Credits to emacsfodder
+
 (define-key occur-mode-map (kbd "<down>")
   (lambda ()
     (interactive)
@@ -454,6 +459,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
     (occur-mode-goto-occurrence-other-window)
     (recenter)
     (other-window 1)))
+
 (define-key occur-mode-map (kbd "<up>")
   (lambda ()
     (interactive)
