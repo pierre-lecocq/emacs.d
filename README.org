@@ -14,7 +14,7 @@ In order to use this configuration, follow these three easy steps:
 #+begin_src sh
 mkdir -p ~/work/src
 git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
-cd ~/work/src
+cd ~/work/src/emacs.d
 #+end_src
 
 - Use the makefile to build the configuration file
