@@ -8,10 +8,11 @@ PACKAGES_DIR=$(SRC_DIR)/packages
 
 all: build
 
-build: 
+build:
 	emacs --batch \
 		--eval "(require 'org)" \
-		--eval "(org-babel-load-file \"$(SRC_FILE)\" t)"
+		--eval "(org-babel-load-file \"$(SRC_FILE)\")" \
+		--eval "(byte-compile-file \"$(DEST_FILE)\")"
 
 clean:
 	rm -f $(SRC_DIR)/*~ $(SRC_DIR)/.*~ $(DEST_FILE) $(DEST_COMP_FILE)
