@@ -56,7 +56,7 @@ Set some internal Emacs variables
       frame-title-format "Emacs %f"
       time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
       ;; Scratch and Splash
-      initial-scratch-message (format ";; Scratch buffer - started at %s\n\n" (current-time-string))
+      initial-scratch-message (format ";; Scratch buffer - started on %s\n\n" (current-time-string))
       inhibit-startup-message t
       inhibit-splash-screen t
       ;; General behaviour
@@ -81,7 +81,7 @@ Set some internal Emacs variables
       packages-dir (expand-file-name (concat config-dir "packages"))
       custom-file (expand-file-name (concat config-dir "custom.el"))
       bookmark-default-file (expand-file-name (concat config-dir "bookmarks"))
-      org-directory (expand-file-name "~/org-files")
+      org-directory (expand-file-name "~/org-files/")
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 #+end_src
 
@@ -130,7 +130,7 @@ Turn off some internal modes
 
 ** General behaviour
 
-**** Common setup
+*** Common setup
 
 Laziness ...
 
@@ -138,7 +138,7 @@ Laziness ...
 (fset 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
-**** Indentation
+*** Indentation
 
 Set indentation
 
@@ -160,6 +160,76 @@ Set locale
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+#+end_src
+
+*** Display
+
+Initialize display setup
+
+#+begin_src emacs-lisp :tangle emacs.el
+(setq-default show-trailing-whitespace t
+              highlight-tabs t
+              mode-line-format
+              (list
+               '(:eval (if (buffer-modified-p)
+                           (propertize "  %b" 'face 'bold-italic)
+                         (propertize "  %b" 'face 'bold)))
+               " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
+               '(which-function-mode (" " which-func-format))))
+(when (member "Inconsolata" (font-family-list))
+  (set-face-attribute 'default nil
+                      :family "Inconsolata" ;; "DejaVu Sans Mono"
+                      :height 120
+                      :weight 'normal
+                      :width 'normal))
+(when (display-graphic-p)
+  (setq show-paren-style 'expression
+        select-enable-clipboard t)
+  (set-fringe-mode 10))
+#+end_src
+
+*** File types
+
+Initialize file types and associate with major-mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
+(add-to-list 'auto-mode-alist '("\\.js[on]\\'"      . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.asd\\'"         . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.cl\\'"          . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.lisp\\'"        . lisp-mode))
+(add-to-list 'auto-mode-alist '("Dockerfile"        . ruby-mode))
+(add-to-list 'auto-mode-alist '("Vagrantfile"       . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile"           . ruby-mode))
+(add-to-list 'auto-mode-alist '("Puppetfile"        . ruby-mode))
+(add-to-list 'auto-mode-alist '("Rakefile"          . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake\\'"        . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru\\'"          . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec\\'"     . ruby-mode))
+(add-to-list 'auto-mode-alist '(".bashrc"           . shell-script-mode))
+(add-to-list 'auto-mode-alist '(".zshrc"            . shell-script-mode))
+(add-to-list 'auto-mode-alist '(".gnus"             . emacs-lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.html?\\'"       . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'"         . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
+(add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
+#+end_src
+
+*** Org-mode
+
+Initialize org-mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(setq org-hide-leading-stars t
+      org-hide-emphasis-markers t
+      org-fontify-done-headline t
+      org-src-fontify-natively t
+      org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
+      org-agenda-files (expand-file-name (concat org-directory "agenda.org")))
+
+(defun org-font-lock-ensure (beg end)
+  "Org font lock ensure from BEG to END."
+  (font-lock-ensure))
 #+end_src
 
 *** Auto-insert
@@ -527,4 +597,64 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (when (display-graphic-p)
     (set-frame-parameter (selected-frame) 'alpha value)))
+#+end_src
+
+* Keybindings
+
+All the keybindings
+
+#+begin_src emacs-lisp :tangle emacs.el
+(when (eq system-type 'darwin)
+  (setq mac-option-modifier nil
+        mac-command-modifier 'meta
+        select-enable-clipboard t))
+
+(global-set-key [delete] 'delete-char)
+
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-;") 'other-window)
+(global-set-key (kbd "M-y") 'browse-kill-ring)
+(global-set-key (kbd "M-o") 'occur)
+(global-set-key (kbd "C-c C-c") 'comment-region)
+(global-set-key (kbd "C-c C-u") 'uncomment-region)
+(global-set-key (kbd "C-S-s") 'find-grep)
+(global-set-key (kbd "C-S-f") 'imenu)
+
+(global-set-key [f5] 'bookmark-bmenu-list)
+(global-set-key [f6] 'recentf-open-files)
+(global-set-key [f12] 'pl-get-shell)
+
+(when (display-graphic-p)
+  (global-unset-key (kbd "C-z")))
+;; Credits to emacsfodder
+(define-key occur-mode-map (kbd "<down>")
+  (lambda ()
+    (interactive)
+    (occur-next)
+    (occur-mode-goto-occurrence-other-window)
+    (recenter)
+    (other-window 1)))
+(define-key occur-mode-map (kbd "<up>")
+  (lambda ()
+    (interactive)
+    (occur-prev)
+    (occur-mode-goto-occurrence-other-window)
+    (recenter)
+    (other-window 1)))
+#+end_src
+
+* Bootstrap
+
+Load external files
+
+#+begin_src emacs-lisp :tangle emacs.el
+(dolist (f (list host-file custom-file))
+  (when (file-exists-p f)
+    (load f 'noerror)))
+#+end_src
+
+Tell me the time spent to load the config
+
+#+begin_src emacs-lisp :tangle emacs.el
+(message "Config successfully loaded in %s" (emacs-init-time))
 #+end_src
