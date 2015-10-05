@@ -355,6 +355,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
 
 (when (display-graphic-p)
   (global-unset-key (kbd "C-z")))
+
 ;; Credits to emacsfodder
 (define-key occur-mode-map (kbd "<down>")
   (lambda ()

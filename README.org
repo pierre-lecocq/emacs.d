@@ -626,6 +626,7 @@ All the keybindings
 
 (when (display-graphic-p)
   (global-unset-key (kbd "C-z")))
+
 ;; Credits to emacsfodder
 (define-key occur-mode-map (kbd "<down>")
   (lambda ()
