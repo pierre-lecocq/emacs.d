@@ -167,6 +167,8 @@ Set locale
 
 *** Bookmarks
 
+Set bookmarks options and locations
+
 #+begin_src emacs-lisp :tangle emacs.el
 (setq bookmark-default-file (expand-file-name (concat config-dir "bookmarks")))
 (setq bookmark-sort-flag nil)
