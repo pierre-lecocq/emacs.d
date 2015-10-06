@@ -35,7 +35,6 @@
       ;; Paths
       packages-dir (expand-file-name (concat config-dir "packages"))
       custom-file (expand-file-name (concat config-dir "custom.el"))
-      bookmark-default-file (expand-file-name (concat config-dir "bookmarks"))
       org-directory (expand-file-name "~/org-files/")
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 
@@ -83,6 +82,13 @@
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
+(setq bookmark-default-file (expand-file-name (concat config-dir "bookmarks")))
+(setq bookmark-sort-flag nil)
+(setq bookmark-alist '(("Home" (filename . "~/"))
+                       ("Emacs folder" (filename . "~/work/src/emacs.d"))
+                       ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
+                       ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
 (setq-default show-trailing-whitespace t
               highlight-tabs t
