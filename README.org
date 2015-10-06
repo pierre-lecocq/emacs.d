@@ -92,6 +92,7 @@ Set some internal Emacs variables
 #+begin_src emacs-lisp :tangle emacs.el
 (mapc #'require '(autoinsert
                   bookmark
+                  em-alias
                   linum
                   paren
                   recentf
@@ -283,7 +284,8 @@ Initialize the internal package manager and install =use-package=
 (setq package-archives
       '(("melpa"        . "http://melpa.org/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
-        ("marmalade"    . "http://marmalade-repo.org/packages/")))
+        ("marmalade"    . "http://marmalade-repo.org/packages/")
+        ("org"          . "http://orgmode.org/elpa/")))
 
 (package-initialize)
 

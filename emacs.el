@@ -39,6 +39,7 @@
 
 (mapc #'require '(autoinsert
                   bookmark
+                  em-alias
                   linum
                   paren
                   recentf
@@ -170,7 +171,8 @@
 (setq package-archives
       '(("melpa"        . "http://melpa.org/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
-        ("marmalade"    . "http://marmalade-repo.org/packages/")))
+        ("marmalade"    . "http://marmalade-repo.org/packages/")
+        ("org"          . "http://orgmode.org/elpa/")))
 
 (package-initialize)
 
