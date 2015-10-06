@@ -82,7 +82,6 @@ Set some internal Emacs variables
       ;; Paths
       packages-dir (expand-file-name (concat config-dir "packages"))
       custom-file (expand-file-name (concat config-dir "custom.el"))
-      org-directory (expand-file-name "~/org-files/")
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 #+end_src
 
@@ -94,7 +93,6 @@ Set some internal Emacs variables
 (mapc #'require '(autoinsert
                   bookmark
                   linum
-                  org
                   paren
                   recentf
                   time-stamp
@@ -235,23 +233,6 @@ Associate files with major-modes. Or major-modes with files
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 #+end_src
 
-*** Org-mode
-
-Configure org-mode
-
-#+begin_src emacs-lisp :tangle emacs.el
-(setq org-hide-leading-stars t
-      org-hide-emphasis-markers t
-      org-fontify-done-headline t
-      org-src-fontify-natively t
-      org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
-      org-agenda-files (expand-file-name (concat org-directory "agenda.org")))
-
-(defun org-font-lock-ensure (beg end)
-  "Org font lock ensure from BEG to END."
-  (font-lock-ensure))
-#+end_src
-
 *** Auto-insert
 
 Configure auto-insert-mode
@@ -298,12 +279,14 @@ Initialize the internal package manager and install =use-package=
 (require 'package)
 
 (setq package-user-dir packages-dir)
+
 (setq package-archives
       '(("melpa"        . "http://melpa.org/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
         ("marmalade"    . "http://marmalade-repo.org/packages/")))
 
 (package-initialize)
+
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -450,6 +433,23 @@ Emacs Major mode for Markdown-formatted text files ([[http://jblevins.org/projec
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package markdown-mode
              :ensure t)
+#+end_src
+
+*** Org-mode
+
+Org mode is for keeping notes, maintaining TODO lists, planning projects, and authoring documents with a fast and effective plain-text system ([[http://orgmode.org/][source]])
+
+#+begin_src emacs-lisp :tangle emacs.el
+(use-package org
+  :ensure t
+  :init (progn
+          (setq org-directory (expand-file-name "~/org-files/"))
+          (setq org-hide-leading-stars t
+                org-hide-emphasis-markers t
+                org-fontify-done-headline t
+                org-src-fontify-natively t
+                org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
+                org-agenda-files (expand-file-name (concat org-directory "agenda.org")))))
 #+end_src
 
 *** PHP-mode
@@ -757,6 +757,16 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (when (display-graphic-p)
     (set-frame-parameter (selected-frame) 'alpha value)))
+#+end_src
+
+** Fix org-mode font lock
+
+Quick fix for fontification in org-mode
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun org-font-lock-ensure (beg end)
+  "Org font lock ensure from BEG to END."
+  (font-lock-ensure))
 #+end_src
 
 * Keybindings

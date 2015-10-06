@@ -35,13 +35,11 @@
       ;; Paths
       packages-dir (expand-file-name (concat config-dir "packages"))
       custom-file (expand-file-name (concat config-dir "custom.el"))
-      org-directory (expand-file-name "~/org-files/")
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 
 (mapc #'require '(autoinsert
                   bookmark
                   linum
-                  org
                   paren
                   recentf
                   time-stamp
@@ -135,17 +133,6 @@
 (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 
-(setq org-hide-leading-stars t
-      org-hide-emphasis-markers t
-      org-fontify-done-headline t
-      org-src-fontify-natively t
-      org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
-      org-agenda-files (expand-file-name (concat org-directory "agenda.org")))
-
-(defun org-font-lock-ensure (beg end)
-  "Org font lock ensure from BEG to END."
-  (font-lock-ensure))
-
 (auto-insert)
 
 (setq auto-insert-alist
@@ -179,12 +166,14 @@
 (require 'package)
 
 (setq package-user-dir packages-dir)
+
 (setq package-archives
       '(("melpa"        . "http://melpa.org/packages/")
         ("gnu"          . "http://elpa.gnu.org/packages/")
         ("marmalade"    . "http://marmalade-repo.org/packages/")))
 
 (package-initialize)
+
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -261,6 +250,17 @@
 
 (use-package markdown-mode
              :ensure t)
+
+(use-package org
+  :ensure t
+  :init (progn
+          (setq org-directory (expand-file-name "~/org-files/"))
+          (setq org-hide-leading-stars t
+                org-hide-emphasis-markers t
+                org-fontify-done-headline t
+                org-src-fontify-natively t
+                org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
+                org-agenda-files (expand-file-name (concat org-directory "agenda.org")))))
 
 (use-package php-mode
              :ensure t)
@@ -434,6 +434,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (interactive "nTransparency Value 0 - 100 opaque: ")
   (when (display-graphic-p)
     (set-frame-parameter (selected-frame) 'alpha value)))
+
+(defun org-font-lock-ensure (beg end)
+  "Org font lock ensure from BEG to END."
+  (font-lock-ensure))
 
 (when (eq system-type 'darwin)
   (setq mac-option-modifier nil
