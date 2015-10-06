@@ -81,7 +81,6 @@ Set some internal Emacs variables
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       ;; Paths
       packages-dir (expand-file-name (concat config-dir "packages"))
-      custom-file (expand-file-name (concat config-dir "custom.el"))
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 #+end_src
 
@@ -823,7 +822,7 @@ All the keybindings
 Load external files
 
 #+begin_src emacs-lisp :tangle emacs.el
-(dolist (f (list host-file custom-file))
+(dolist (f (list host-file))
   (when (file-exists-p f)
     (load f 'noerror)))
 #+end_src

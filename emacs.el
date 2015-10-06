@@ -34,7 +34,6 @@
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       ;; Paths
       packages-dir (expand-file-name (concat config-dir "packages"))
-      custom-file (expand-file-name (concat config-dir "custom.el"))
       host-file (expand-file-name (concat config-dir (format "host-%s.el" (downcase (car (split-string (system-name) "\\.")))))))
 
 (mapc #'require '(autoinsert
@@ -482,7 +481,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
     (recenter)
     (other-window 1)))
 
-(dolist (f (list host-file custom-file))
+(dolist (f (list host-file))
   (when (file-exists-p f)
     (load f 'noerror)))
 
