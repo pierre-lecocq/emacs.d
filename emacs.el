@@ -90,6 +90,8 @@
                        ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
+(toggle-frame-maximized)
+
 (setq-default show-trailing-whitespace t
               highlight-tabs t
               mode-line-format

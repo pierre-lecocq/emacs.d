@@ -181,6 +181,8 @@ Set locale
 Initialize display setup
 
 #+begin_src emacs-lisp :tangle emacs.el
+(toggle-frame-maximized)
+
 (setq-default show-trailing-whitespace t
               highlight-tabs t
               mode-line-format
