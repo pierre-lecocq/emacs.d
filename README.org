@@ -5,6 +5,8 @@
 
 This is yet another stop to the biggest lie in the world: a perfect Emacs configuration file.
 
+Note: the =emacs.el= configuration file is generated from the README.org file using [[http://orgmode.org/][org-mode]] and [[https://en.wikipedia.org/wiki/Literate_programming][literate programming]].
+
 * Usage
 
 In order to use this configuration, follow these three easy steps:
@@ -17,7 +19,7 @@ git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
 cd ~/work/src/emacs.d
 #+end_src
 
-- Use the makefile to build the configuration file
+- Use the makefile to build the configuration file from the README
 
 #+begin_src sh
 make
@@ -87,7 +89,7 @@ Set some internal Emacs variables
 
 ** Libraries and modes
 
-Require some internal libraries
+*** Require some internal libraries
 
 #+begin_src emacs-lisp :tangle emacs.el
 (mapc #'require '(autoinsert
@@ -100,7 +102,7 @@ Require some internal libraries
                   whitespace))
 #+end_src
 
-Turn on some internal modes
+*** Turn on some internal modes
 
 #+begin_src emacs-lisp :tangle emacs.el
 (mapc (lambda (mode)
@@ -119,7 +121,7 @@ Turn on some internal modes
         which-function-mode))
 #+end_src
 
-Turn off some internal modes
+*** Turn off some internal modes
 
 #+begin_src emacs-lisp :tangle emacs.el
 (mapc (lambda (mode)
@@ -132,9 +134,9 @@ Turn off some internal modes
 
 ** General behaviour
 
-*** Common setup
+*** Laziness. First.
 
-Laziness ...
+Because "yes" is way too long to type
 
 #+begin_src emacs-lisp :tangle emacs.el
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -194,7 +196,7 @@ Initialize display setup
 
 *** File types
 
-Associate files with major-mode
+Associate files with major-modes. Or major-modes with files
 
 #+begin_src emacs-lisp :tangle emacs.el
 (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
@@ -221,7 +223,7 @@ Associate files with major-mode
 
 *** Org-mode
 
-Initialize org-mode
+Configure org-mode
 
 #+begin_src emacs-lisp :tangle emacs.el
 (setq org-hide-leading-stars t
@@ -238,7 +240,7 @@ Initialize org-mode
 
 *** Auto-insert
 
-Auto-insert definitions
+Configure auto-insert-mode
 
 #+begin_src emacs-lisp :tangle emacs.el
 (auto-insert)
@@ -305,7 +307,7 @@ Install external packages from Emacs repositories
 
 *** Anzu
 
-A minor mode which displays current match and total matches information
+A minor mode which displays current match and total matches information ([[https://github.com/syohex/emacs-anzu][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package anzu
@@ -317,7 +319,7 @@ A minor mode which displays current match and total matches information
 
 *** Autopair
 
-Automagically pair braces and quotes in emacs
+Automagically pair braces and quotes in emacs ([[https://github.com/capitaomorte/autopair][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package autopair
@@ -327,7 +329,7 @@ Automagically pair braces and quotes in emacs
 
 *** Bonjourmadame
 
-Say “Hello ma'am!”
+Say “Hello ma'am!” ([[https://github.com/pierre-lecocq/bonjourmadame][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package bonjourmadame
@@ -336,7 +338,7 @@ Say “Hello ma'am!”
 
 *** Browse-kill-ring
 
-For when 'C-y M-y M-y M-y' gets you down
+For when 'C-y M-y M-y M-y' gets you down ([[https://github.com/browse-kill-ring/browse-kill-ring][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package browse-kill-ring
@@ -345,7 +347,7 @@ For when 'C-y M-y M-y M-y' gets you down
 
 *** Company
 
-Modular in-buffer completion framework for Emacs
+Modular in-buffer completion framework for Emacs ([[https://github.com/company-mode/company-mode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package company
@@ -361,7 +363,7 @@ Modular in-buffer completion framework for Emacs
 
 *** Darkmine-theme
 
-Yet another emacs dark color theme
+Yet another emacs dark color theme ([[https://github.com/pierre-lecocq/darkmine-theme][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package darkmine-theme
@@ -371,7 +373,7 @@ Yet another emacs dark color theme
 
 *** HTMLize
 
-Convert buffer text and decorations to HTML
+Convert buffer text and decorations to HTML ([[http://emacswiki.org/emacs/Htmlize][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package htmlize
@@ -380,7 +382,7 @@ Convert buffer text and decorations to HTML
 
 *** Ido
 
-Interactively do things
+Interactively do things ([[http://emacswiki.org/emacs/InteractivelyDoThings][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package flx-ido
@@ -411,7 +413,7 @@ Interactively do things
 
 *** Idle-highlight-mode
 
-Highlight word at point on idle
+Highlight word at point on idle ([[https://github.com/nonsequitur/idle-highlight-mode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package idle-highlight-mode
@@ -420,7 +422,7 @@ Highlight word at point on idle
 
 *** JS2-mode
 
-Improved JavaScript editing mode
+Improved JavaScript editing mode ([[https://github.com/mooz/js2-mode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package js2-mode
@@ -429,7 +431,7 @@ Improved JavaScript editing mode
 
 *** Markdown-mode
 
-Emacs Major mode for Markdown-formatted text files
+Emacs Major mode for Markdown-formatted text files ([[http://jblevins.org/projects/markdown-mode/][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package markdown-mode
@@ -438,7 +440,7 @@ Emacs Major mode for Markdown-formatted text files
 
 *** PHP-mode
 
-A PHP mode for GNU Emacs
+A PHP mode for GNU Emacs ([[https://github.com/ejmr/php-mode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package php-mode
@@ -447,7 +449,7 @@ A PHP mode for GNU Emacs
 
 *** Rainbow-delimiters-mode
 
-Emacs rainbow delimiters mode
+Emacs rainbow delimiters mode ([[https://github.com/Fanael/rainbow-delimiters][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package rainbow-delimiters
@@ -456,7 +458,7 @@ Emacs rainbow delimiters mode
 
 *** Rainbow-mode
 
-Colorize color strings
+Colorize color strings ([[https://julien.danjou.info/projects/emacs-packages][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package rainbow-mode
@@ -465,7 +467,7 @@ Colorize color strings
 
 *** Ruby-mode
 
-Font-locking, indentation support, and navigation for Ruby code
+Font-locking, indentation support, and navigation for Ruby code ([[http://emacswiki.org/emacs/RubyMode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package ruby-mode
@@ -474,7 +476,7 @@ Font-locking, indentation support, and navigation for Ruby code
 
 *** Slime
 
-The Superior Lisp Interaction Mode for Emacs
+The Superior Lisp Interaction Mode for Emacs ([[https://common-lisp.net/project/slime/][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package slime-company
@@ -492,7 +494,7 @@ The Superior Lisp Interaction Mode for Emacs
 
 *** Symon
 
-Tiny graphical system monitor
+Tiny graphical system monitor ([[https://github.com/zk-phi/symon/][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package symon
@@ -504,7 +506,7 @@ Tiny graphical system monitor
 
 *** Web-mode
 
-Web template editing mode for emacs
+Web template editing mode for emacs ([[http://web-mode.org/][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package web-mode
@@ -513,7 +515,7 @@ Web template editing mode for emacs
 
 *** Whitespace
 
-A minor mode to visualize blanks
+A minor mode to visualize blanks ([[http://emacswiki.org/emacs/WhiteSpace][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package whitespace
@@ -527,7 +529,7 @@ A minor mode to visualize blanks
 
 *** Yaml-mode
 
-The emacs major mode for editing files in the YAML data serialization format
+The emacs major mode for editing files in the YAML data serialization format ([[https://github.com/yoshiki/yaml-mode][source]])
 
 #+begin_src emacs-lisp :tangle emacs.el
 (use-package yaml-mode
