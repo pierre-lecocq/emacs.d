@@ -117,6 +117,7 @@
 (add-to-list 'auto-mode-alist '("\\.asd\\'"         . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.cl\\'"          . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.lisp\\'"        . lisp-mode))
+(add-to-list 'auto-mode-alist '("\\.php-dev\\'"     . php-mode))
 (add-to-list 'auto-mode-alist '("Dockerfile"        . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile"       . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile"           . ruby-mode))
