@@ -696,7 +696,7 @@ The emacs major mode for editing files in the YAML data serialization format ([[
 
 Some useful functions
 
-** Toogle a shell buffer
+** Toggle a shell buffer
 
 Get an eshell buffer.
 If it has already been launched, just get it back.
