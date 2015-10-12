@@ -85,7 +85,7 @@
 (setq bookmark-sort-flag nil)
 (setq bookmark-alist '(("Home" (filename . "~/"))
                        ("Emacs folder" (filename . "~/work/src/emacs.d"))
-                       ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
+                       ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
 (toggle-frame-maximized)
