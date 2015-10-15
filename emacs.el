@@ -345,7 +345,8 @@
   (local-set-key (kbd "C-c <up>")    'hs-hide-all)
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
   (hs-minor-mode t)
-  (rainbow-delimiters-mode))
+  (rainbow-delimiters-mode)
+  (rainbow-mode))
 
 (add-hook 'prog-mode-hook #'hook-prog-mode)
 
@@ -369,12 +370,6 @@
   (eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
-
-(defun hook-css-mode ()
-  "Hook for CSS mode."
-  (rainbow-mode))
-
-(add-hook 'css-mode-hook #'hook-css-mode)
 
 (defun hook-makefile-mode ()
   "Hook for Makefile mode."
