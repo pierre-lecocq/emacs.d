@@ -181,8 +181,6 @@ Set bookmarks options and locations
 Initialize display setup
 
 #+begin_src emacs-lisp :tangle emacs.el
-(toggle-frame-maximized)
-
 (setq-default show-trailing-whitespace t
               highlight-tabs t
               mode-line-format
@@ -201,8 +199,10 @@ Initialize display setup
                       :width 'normal))
 
 (when (display-graphic-p)
-  (setq show-paren-style 'expression
-        select-enable-clipboard t)
+  (progn
+    (toggle-frame-maximized)
+    (setq show-paren-style 'expression
+          select-enable-clipboard t))
   (set-fringe-mode 10))
 #+end_src
 
