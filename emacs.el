@@ -88,8 +88,6 @@
                        ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
-(toggle-frame-maximized)
-
 (setq-default show-trailing-whitespace t
               highlight-tabs t
               mode-line-format
@@ -108,8 +106,10 @@
                       :width 'normal))
 
 (when (display-graphic-p)
-  (setq show-paren-style 'expression
-        select-enable-clipboard t)
+  (progn
+    (toggle-frame-maximized)
+    (setq show-paren-style 'expression
+          select-enable-clipboard t))
   (set-fringe-mode 10))
 
 (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
