@@ -315,6 +315,12 @@
 
 (add-hook 'minibuffer-setup-hook #'hook-minibuffer-setup)
 
+(defun hook-mail-mode ()
+  "Hook for Mail mode."
+  (setq show-trailing-whitespace nil))
+
+(add-hook 'mail-mode-hook #'hook-mail-mode)
+
 (defun hook-shell-mode ()
   "Hook for Shell mode."
   (setq show-trailing-whitespace nil)

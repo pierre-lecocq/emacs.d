@@ -565,6 +565,15 @@ The emacs major mode for editing files in the YAML data serialization format ([[
 (add-hook 'minibuffer-setup-hook #'hook-minibuffer-setup)
 #+end_src
 
+** Mail mode hook
+
+#+begin_src emacs-lisp :tangle emacs.el
+(defun hook-mail-mode ()
+  "Hook for Mail mode."
+  (setq show-trailing-whitespace nil))
+
+(add-hook 'mail-mode-hook #'hook-mail-mode)
+#+end_src
 ** Shell mode hook
 
 #+begin_src emacs-lisp :tangle emacs.el
