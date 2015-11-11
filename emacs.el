@@ -1,7 +1,7 @@
 
 (setq debug-on-error t)
 
-(setq config-dir "~/work/src/emacs.d/")
+(setq config-dir "~/src/emacs.d/")
 
 (setq gc-cons-threshold 100000000
       ;; Identity
@@ -84,7 +84,7 @@
 (setq bookmark-default-file (expand-file-name (concat config-dir "bookmarks")))
 (setq bookmark-sort-flag nil)
 (setq bookmark-alist '(("Home" (filename . "~/"))
-                       ("Emacs folder" (filename . "~/work/src/emacs.d"))
+                       ("Emacs folder" (filename . "~/src/emacs.d"))
                        ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
