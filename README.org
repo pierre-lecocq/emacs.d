@@ -14,9 +14,9 @@ In order to use this configuration, follow these three easy steps:
 - Clone the repository
 
 #+begin_src sh
-mkdir -p ~/work/src
-git clone https://github.com/pierre-lecocq/emacs.d ~/work/src/emacs.d
-cd ~/work/src/emacs.d
+mkdir -p ~/src
+git clone https://github.com/pierre-lecocq/emacs.d ~/src/emacs.d
+cd ~/src/emacs.d
 #+end_src
 
 - Use the makefile to build the configuration file from the README
@@ -28,7 +28,7 @@ make
 - Load the configuration file
 
 #+begin_src sh
-echo "(load \"~/work/src/emacs.d/emacs\")" > ~/.emacs
+echo "(load \"~/src/emacs.d/emacs\")" > ~/.emacs
 #+end_src
 
 * Initialization
@@ -44,7 +44,7 @@ Set the debug flag. Because we can not tolerate any error from the init file
 Set the current file directory as the main config directory
 
 #+begin_src emacs-lisp :tangle emacs.el
-(setq config-dir "~/work/src/emacs.d/")
+(setq config-dir "~/src/emacs.d/")
 #+end_src
 
 Set some internal Emacs variables
@@ -171,7 +171,7 @@ Set bookmarks options and locations
 (setq bookmark-default-file (expand-file-name (concat config-dir "bookmarks")))
 (setq bookmark-sort-flag nil)
 (setq bookmark-alist '(("Home" (filename . "~/"))
-                       ("Emacs folder" (filename . "~/work/src/emacs.d"))
+                       ("Emacs folder" (filename . "~/src/emacs.d"))
                        ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 #+end_src
