@@ -165,6 +165,9 @@
          " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          " # Description: " _ "\n\n")))
 
+(add-to-list 'recentf-exclude "emacs\\.d/packages")
+(add-to-list 'recentf-exclude "ido\\.last")
+
 (require 'package)
 
 (setq package-user-dir packages-dir)

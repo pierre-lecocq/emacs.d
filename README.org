@@ -271,6 +271,15 @@ Configure auto-insert-mode
          " # Description: " _ "\n\n")))
 #+end_src
 
+*** Recentf
+
+Exclude some directories from recentf list like ~/src/emacs.d/packages/plop.el
+
+#+begin_src emacs-lisp :tangle emacs.el
+(add-to-list 'recentf-exclude "emacs\\.d/packages")
+(add-to-list 'recentf-exclude "ido\\.last")
+#+end_src
+
 * Packages
 
 ** Package manager
