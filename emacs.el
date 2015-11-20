@@ -144,7 +144,11 @@
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          "# Description: " _ "\n\n")
-        ((emacs-lisp-mode . "Emacs lisp mode") nil
+        ((lisp-mode . "Lisp program") nil
+         ";;;; " (file-name-nondirectory buffer-file-name) "\n\n"
+         ";; Time-stamp: <>\n"
+         ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+        ((emacs-lisp-mode . "Emacs lisp program") nil
          ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
          ";; Time-stamp: <>\n"
          ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
