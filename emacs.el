@@ -446,6 +446,23 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (when (display-graphic-p)
     (set-frame-parameter (selected-frame) 'alpha value)))
 
+(defun pl-join-lines ()
+  "Join lines."
+  (interactive)
+  (save-excursion
+    (move-end-of-line nil)
+    (kill-line)
+    (just-one-space)))
+
+(defun pl-join-lines-on-region (start end)
+  "Join lines on region from START to END."
+  (interactive "r")
+  (save-excursion
+    (goto-char start)
+    (while (< (point) end)
+      (funcall #'pl-join-lines)
+      (forward-line 1))))
+
 (defun org-font-lock-ensure (beg end)
   "Org font lock ensure from BEG to END."
   (font-lock-ensure))
