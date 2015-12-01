@@ -512,4 +512,5 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (when (file-exists-p f)
     (load f 'noerror)))
 
-(message "Config successfully loaded in %s" (emacs-init-time))
+(if (>= emacs-major-version 25)
+  (message "Config successfully loaded in %s" (emacs-init-time)))

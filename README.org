@@ -868,5 +868,6 @@ Load external files
 Tell me the time spent to load the config
 
 #+begin_src emacs-lisp :tangle emacs.el
-(message "Config successfully loaded in %s" (emacs-init-time))
+(if (>= emacs-major-version 25)
+  (message "Config successfully loaded in %s" (emacs-init-time)))
 #+end_src
