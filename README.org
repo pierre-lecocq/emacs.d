@@ -814,7 +814,7 @@ All the keybindings
 
 #+begin_src emacs-lisp :tangle emacs.el
 (when (eq system-type 'darwin)
-  (setq mac-option-modifier nil
+  (setq mac-option-modifier 'super
         mac-command-modifier 'meta
         select-enable-clipboard t))
 

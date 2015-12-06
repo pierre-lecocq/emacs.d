@@ -468,7 +468,7 @@ Argument VALUE 0 = transparent, 100 = opaque."
   (font-lock-ensure))
 
 (when (eq system-type 'darwin)
-  (setq mac-option-modifier nil
+  (setq mac-option-modifier 'super
         mac-command-modifier 'meta
         select-enable-clipboard t))
 
