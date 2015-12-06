@@ -1,6 +1,6 @@
 ;;; my-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-06 23:37:41>
+;; Time-stamp: <2015-12-07 00:03:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -53,10 +53,6 @@
       user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com"
 
-      ;; Formats
-      frame-title-format "Emacs %f"
-      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
-
       ;; Scratch and Splash
       initial-scratch-message (format ";; Scratch buffer - started on %s\n\n" (current-time-string))
       inhibit-startup-message t
@@ -74,11 +70,6 @@
 
       ;; VC
       vc-follow-symlinks t
-
-      ;; Recentf
-      recentf-auto-cleanup 'never
-      recentf-max-menu-items 50
-      recentf-keep '(file-remote-p file-readable-p)
 
       ;; Password cache
       password-cache-expiry nil

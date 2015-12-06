@@ -1,11 +1,14 @@
 ;;; my-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-06 22:18:10>
+;; Time-stamp: <2015-12-07 00:03:13>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(setq frame-title-format "Emacs %f"
+      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
 
 (when (member "Inconsolata" (font-family-list))
   (set-face-attribute 'default nil
