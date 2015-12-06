@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-06 23:37:25>
+;; Time-stamp: <2015-12-07 00:29:59>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,7 +16,7 @@
 
 (package-initialize)
 
-(setq config-dir (expand-file-name "~/src/emacs.d/"))
+(setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 (add-to-list 'load-path (concat config-dir "lisp/modules"))
 (add-to-list 'load-path (concat config-dir "lisp/hosts"))
 
