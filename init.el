@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 23:22:34>
+;; Time-stamp: <2015-12-07 23:59:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,12 +8,6 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
 
 (setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 
@@ -39,16 +33,17 @@
         init-functions
         init-keybindings
         ;; Modes
-        init-org-mode
+        init-autoinsert
+        init-bookmark
         init-completion
+        init-elfeed
+        init-erc
+        init-filetypes
+        init-ido
         init-indent
         init-locale
-        init-bookmark
-        init-filetypes
-        init-autoinsert
-        init-recentf
-        init-erc
-        init-elfeed))
+        init-org-mode
+        init-recentf))
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
