@@ -1,11 +1,22 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-08 00:07:15>
+;; Time-stamp: <2015-12-08 00:09:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+(use-package anzu :ensure t
+  :init (progn
+          (global-anzu-mode +1)
+          (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+
+(use-package autopair :ensure t
+  :init (autopair-global-mode t))
+
+(use-package bonjourmadame :ensure t)
+
+(use-package browse-kill-ring :ensure t)
 
 (use-package darkmine-theme :ensure t
   :init (load-theme 'darkmine t))

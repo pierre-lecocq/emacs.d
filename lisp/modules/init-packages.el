@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-08 00:07:44>
+;; Time-stamp: <2015-12-08 00:09:28>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -26,19 +26,6 @@
   (package-install 'use-package))
 
 (require 'use-package)
-
-;; Packages settings
-(use-package anzu :ensure t
-  :init (progn
-          (global-anzu-mode +1)
-          (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
-
-(use-package autopair :ensure t
-  :init (autopair-global-mode t))
-
-(use-package bonjourmadame :ensure t)
-
-(use-package browse-kill-ring :ensure t)
 
 (provide 'init-packages)
 
