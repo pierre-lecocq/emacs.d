@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-08 00:02:27>
+;; Time-stamp: <2015-12-08 00:05:48>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -40,17 +40,7 @@
 
 (use-package browse-kill-ring :ensure t)
 
-(use-package htmlize :ensure t)
-
 (use-package idle-highlight-mode :ensure t)
-
-(use-package js2-mode :ensure t)
-
-(use-package php-mode :ensure t)
-
-(use-package rainbow-delimiters :ensure t)
-
-(use-package rainbow-mode :ensure t)
 
 (use-package ruby-mode :ensure t)
 
@@ -58,9 +48,6 @@
   :init (progn
           (setq symon-delay 5)
           (symon-mode t)))
-
-(use-package web-mode :ensure t)
-
 
 (provide 'init-packages)
 

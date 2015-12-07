@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-08 00:03:12>
+;; Time-stamp: <2015-12-08 00:04:29>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -44,7 +44,8 @@
         init-lisp
         init-locale
         init-recentf
-        init-text))
+        init-text
+        init-web))
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
