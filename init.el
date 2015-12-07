@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-08 00:04:29>
+;; Time-stamp: <2015-12-08 00:08:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -44,6 +44,7 @@
         init-lisp
         init-locale
         init-recentf
+        init-ruby
         init-text
         init-web))
 

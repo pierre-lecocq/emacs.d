@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-08 00:05:48>
+;; Time-stamp: <2015-12-08 00:07:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -39,15 +39,6 @@
 (use-package bonjourmadame :ensure t)
 
 (use-package browse-kill-ring :ensure t)
-
-(use-package idle-highlight-mode :ensure t)
-
-(use-package ruby-mode :ensure t)
-
-(use-package symon :ensure t
-  :init (progn
-          (setq symon-delay 5)
-          (symon-mode t)))
 
 (provide 'init-packages)
 
