@@ -1,6 +1,6 @@
 ;;; init-elfeed.el --- Emacs configuration - elfeed
 
-;; Time-stamp: <2015-12-07 15:43:10>
+;; Time-stamp: <2015-12-07 23:17:08>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,7 +10,8 @@
 (use-package elfeed
   :ensure t
   :init (progn
-          (setq elfeed-feeds
+          (setq elfeed-db-directory (concat config-dir-files "elfeed")
+                elfeed-feeds
                 '(("http://planet.emacsen.org/atom.xml" emacs)
                   ("http://planet.debian.org/rss20.xml" debian)
                   ("http://www.securityfocus.com/rss/vulnerabilities.xml" security)
