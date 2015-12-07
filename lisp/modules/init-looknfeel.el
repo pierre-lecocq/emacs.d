@@ -1,11 +1,14 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-07 23:08:59>
+;; Time-stamp: <2015-12-07 23:20:49>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(use-package darkmine-theme :ensure t
+  :init (load-theme 'darkmine t))
 
 (setq frame-title-format "Emacs %f"
       time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"

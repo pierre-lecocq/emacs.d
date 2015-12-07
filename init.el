@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 23:11:49>
+;; Time-stamp: <2015-12-07 23:22:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -39,6 +39,8 @@
         init-functions
         init-keybindings
         ;; Modes
+        init-org-mode
+        init-completion
         init-indent
         init-locale
         init-bookmark
