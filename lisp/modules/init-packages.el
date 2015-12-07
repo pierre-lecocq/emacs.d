@@ -1,4 +1,4 @@
-;;; my-packages.el --- Emacs config - packages
+;;; init-packages.el --- Emacs config - packages
 
 ;; Time-stamp: <2015-12-07 11:31:45>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -151,6 +151,6 @@
 (use-package yaml-mode
   :ensure t)
 
-(provide 'my-packages)
+(provide 'init-packages)
 
-;;; my-packages.el ends here
+;;; init-packages.el ends here

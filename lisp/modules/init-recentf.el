@@ -1,4 +1,4 @@
-;;; my-recentf --- Emacs config - recentf
+;;; init-recentf --- Emacs config - recentf
 
 ;; Time-stamp: <2015-12-07 10:38:04>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -15,6 +15,6 @@
 (add-to-list 'recentf-exclude config-dir-packages)
 (add-to-list 'recentf-exclude config-dir-files)
 
-(provide 'my-recentf)
+(provide 'init-recentf)
 
-;;; my-recentf.el ends here
+;;; init-recentf.el ends here

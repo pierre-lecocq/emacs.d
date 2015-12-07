@@ -1,4 +1,4 @@
-;;; my-internals.el --- Emacs config - internals
+;;; init-internals.el --- Emacs config - internals
 
 ;; Time-stamp: <2015-12-07 10:30:18>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -82,6 +82,6 @@
       custom-file (concat config-dir-files "custom.el")
       host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el"))
 
-(provide 'my-internals)
+(provide 'init-internals)
 
-;;; my-internals.el ends here
+;;; init-internals.el ends here

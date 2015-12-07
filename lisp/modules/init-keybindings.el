@@ -1,4 +1,4 @@
-;;; my-keybindings.el --- Emacs config - keybindings
+;;; init-keybindings.el --- Emacs config - keybindings
 
 ;; Time-stamp: <2015-12-06 22:15:44>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -48,6 +48,6 @@
     (recenter)
     (other-window 1)))
 
-(provide 'my-keybindings)
+(provide 'init-keybindings)
 
-;;; my-keybindings.el ends here
+;;; init-keybindings.el ends here

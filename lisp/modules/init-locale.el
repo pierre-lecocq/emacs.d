@@ -1,4 +1,4 @@
-;;; my-locale --- Emacs config - locale
+;;; init-locale --- Emacs config - locale
 
 ;; Time-stamp: <2015-12-06 22:16:51>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -14,6 +14,6 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(provide 'my-locale)
+(provide 'init-locale)
 
-;;; my-locale.el ends here
+;;; init-locale.el ends here

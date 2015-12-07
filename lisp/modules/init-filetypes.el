@@ -1,4 +1,4 @@
-;;; my-filetypes.el --- Emacs config - filetypes
+;;; init-filetypes.el --- Emacs config - filetypes
 
 ;; Time-stamp: <2015-12-06 22:17:46>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -30,6 +30,6 @@
 (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 
-(provide 'my-filetypes)
+(provide 'init-filetypes)
 
-;;; my-filetypes.el ends here
+;;; init-filetypes.el ends here

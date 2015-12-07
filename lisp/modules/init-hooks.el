@@ -1,4 +1,4 @@
-;;; my-hooks.el --- Emacs config - hooks
+;;; init-hooks.el --- Emacs config - hooks
 
 ;; Time-stamp: <2015-12-07 11:51:15>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -100,6 +100,6 @@
 
 ;; (add-hook 'after-save-hook #'hook-after-save)
 
-(provide 'my-hooks)
+(provide 'init-hooks)
 
-;;; my-hooks.el ends here
+;;; init-hooks.el ends here

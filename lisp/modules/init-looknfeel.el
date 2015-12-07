@@ -1,4 +1,4 @@
-;;; my-looknfeel.el --- Emacs config - looknfeel
+;;; init-looknfeel.el --- Emacs config - looknfeel
 
 ;; Time-stamp: <2015-12-07 00:03:13>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -24,6 +24,6 @@
           select-enable-clipboard t))
   (set-fringe-mode 10))
 
-(provide 'my-looknfeel)
+(provide 'init-looknfeel)
 
-;;; my-looknfeel.el ends here
+;;; init-looknfeel.el ends here

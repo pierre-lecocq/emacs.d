@@ -1,4 +1,4 @@
-;;; my-functions.el --- Emacs config - functions
+;;; init-functions.el --- Emacs config - functions
 
 ;; Time-stamp: <2015-12-06 22:15:21>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -67,6 +67,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Org font lock ensure from BEG to END."
   (font-lock-ensure))
 
-(provide 'my-functions)
+(provide 'init-functions)
 
-;;; my-functions.el ends here
+;;; init-functions.el ends here

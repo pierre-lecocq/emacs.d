@@ -1,4 +1,4 @@
-;;; my-bookmark.el --- Emacs config - bookmark
+;;; init-bookmark.el --- Emacs config - bookmark
 
 ;; Time-stamp: <2015-12-07 10:36:39>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -14,6 +14,6 @@
                        ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
                        ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
-(provide 'my-bookmark)
+(provide 'init-bookmark)
 
-;;; my-bookmark.el ends here
+;;; init-bookmark.el ends here

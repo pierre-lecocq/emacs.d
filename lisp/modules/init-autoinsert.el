@@ -1,4 +1,4 @@
-;;; my-autoinsert.el --- Emacs config - autoinsert
+;;; init-autoinsert.el --- Emacs config - autoinsert
 
 ;; Time-stamp: <2015-12-06 22:18:39>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -41,6 +41,6 @@
          " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          " # Description: " _ "\n\n")))
 
-(provide 'my-autoinsert)
+(provide 'init-autoinsert)
 
-;;; my-autoinsert.el ends here
+;;; init-autoinsert.el ends here

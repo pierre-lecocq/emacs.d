@@ -1,4 +1,4 @@
-;;; my-indent.el --- Emacs config - indent
+;;; init-indent.el --- Emacs config - indent
 
 ;; Time-stamp: <2015-12-06 22:16:15>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -12,6 +12,6 @@
               c-hanging-comment-ender-p nil
               indent-tabs-mode nil)
 
-(provide 'my-indent)
+(provide 'init-indent)
 
-;;; my-indent.el ends here
+;;; init-indent.el ends here
