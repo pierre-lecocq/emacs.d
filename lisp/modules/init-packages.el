@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-07 23:58:37>
+;; Time-stamp: <2015-12-08 00:00:35>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -55,15 +55,6 @@
 (use-package rainbow-mode :ensure t)
 
 (use-package ruby-mode :ensure t)
-
-(use-package slime-company :ensure t)
-
-(use-package slime :ensure t
-  :init (progn
-          (if (eq system-type 'darwin)
-              (setq inferior-lisp-program "/usr/local/bin/sbcl")
-            (setq inferior-lisp-program "sbcl"))
-          (slime-setup '(slime-company))))
 
 (use-package symon :ensure t
   :init (progn
