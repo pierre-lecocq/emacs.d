@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-08 00:09:25>
+;; Time-stamp: <2015-12-08 00:30:28>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,6 +13,12 @@
 
 (use-package autopair :ensure t
   :init (autopair-global-mode t))
+
+(use-package buffer-move :ensure t
+  :bind ((global-set-key (kbd "<C-S-up>")     'buf-move-up)
+         (global-set-key (kbd "<C-S-down>")   'buf-move-down)
+         (global-set-key (kbd "<C-S-left>")   'buf-move-left)
+         (global-set-key (kbd "<C-S-right>")  'buf-move-right)))
 
 (use-package bonjourmadame :ensure t)
 
