@@ -1,6 +1,6 @@
 ;;; my-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-07 00:03:18>
+;; Time-stamp: <2015-12-07 10:30:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -78,12 +78,9 @@
       uniquify-buffer-name-style 'forward uniquify-separator "/"
 
       ;; Other paths
-      package-user-dir (concat config-dir "lisp/packages/")
-      nsm-settings-file (concat config-dir "lisp/files/network-security.data")
-      custom-file (concat config-dir "lisp/files/custom.el")
-      host-file (concat config-dir
-                        (format "lisp/hosts/%s.el"
-                                (downcase (car (split-string (system-name) "\\."))))))
+      nsm-settings-file (concat config-dir-files "network-security.data")
+      custom-file (concat config-dir-files "custom.el")
+      host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el"))
 
 (provide 'my-internals)
 

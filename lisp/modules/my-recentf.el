@@ -1,6 +1,6 @@
 ;;; my-recentf --- Emacs config - recentf
 
-;; Time-stamp: <2015-12-07 00:02:23>
+;; Time-stamp: <2015-12-07 10:38:04>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,10 +10,10 @@
 (setq recentf-auto-cleanup 'never
       recentf-max-menu-items 50
       recentf-keep '(file-remote-p file-readable-p)
-      recentf-save-file (concat config-dir "lisp/files/recentf"))
+      recentf-save-file (concat config-dir-files "recentf"))
 
-(add-to-list 'recentf-exclude "lisp/packages")
-(add-to-list 'recentf-exclude "lisp/files/ido\\.last")
+(add-to-list 'recentf-exclude config-dir-packages)
+(add-to-list 'recentf-exclude config-dir-files)
 
 (provide 'my-recentf)
 

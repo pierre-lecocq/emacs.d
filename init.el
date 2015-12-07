@@ -1,31 +1,22 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 00:34:14>
+;; Time-stamp: <2015-12-07 11:34:31>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; Set config directory and add relevant subdirectories to load-path
-
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
+;; Set directories paths (note: trailing slash is mandatory)
 (setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
-(add-to-list 'load-path (concat config-dir "lisp/modules"))
-(add-to-list 'load-path (concat config-dir "lisp/hosts"))
+(setq config-dir-files (concat config-dir "lisp/files/")
+      config-dir-hosts (concat config-dir "lisp/hosts/")
+      config-dir-modules (concat config-dir "lisp/modules/")
+      config-dir-packages (concat config-dir "lisp/packages/"))
 
-(mapc #'(lambda (name)
-          (let ((dir (format "%slisp/%s/" config-dir name)))
-            (unless (file-exists-p dir)
-              (make-directory dir))))
-      '("files"
-        "hosts"))
+;; Add some config directories to load-path
+(add-to-list 'load-path config-dir-hosts)
+(add-to-list 'load-path config-dir-modules)
 
 ;; Require modules
 (mapc #'require
@@ -38,12 +29,12 @@
         my-locale
         my-bookmark
         my-filetypes
-        my-looknfeel
         my-autoinsert
-        my-recentf))
+        my-recentf
+        my-looknfeel))
 
-;; Load host specific file
+;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
 
 ;; Compile
-(byte-recompile-directory (concat config-dir "lisp/modules") 0)
+(byte-recompile-directory config-dir-modules 0)

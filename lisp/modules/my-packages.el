@@ -1,6 +1,6 @@
 ;;; my-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-06 22:57:23>
+;; Time-stamp: <2015-12-07 11:31:45>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,18 +10,17 @@
 ;; Package manager settings
 (require 'package)
 
-(package-initialize)
+(setq package-user-dir config-dir-packages
+      package-enable-at-startup nil
+      package-archives '(("melpa"        . "http://melpa.org/packages/")
+                         ("gnu"          . "http://elpa.gnu.org/packages/")
+                         ("marmalade"    . "http://marmalade-repo.org/packages/")
+                         ("org"          . "http://orgmode.org/elpa/")))
 
-(setq package-archives
-      '(("melpa"        . "http://melpa.org/packages/")
-        ("gnu"          . "http://elpa.gnu.org/packages/")
-        ("marmalade"    . "http://marmalade-repo.org/packages/")
-        ("org"          . "http://orgmode.org/elpa/")))
+(package-initialize)
 
 (when (not package-archive-contents)
   (package-refresh-contents))
-
-(setq package-enable-at-startup nil)
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
@@ -76,7 +75,7 @@
   :init (progn
           (require 'ido)
           (require 'ido-hacks)
-          (setq ido-save-directory-list-file (concat config-dir "lisp/files/ido.last")
+          (setq ido-save-directory-list-file (concat config-dir-files "ido.last")
                 ido-case-fold t
                 ido-enable-flex-matching t
                 ido-use-filename-at-point 'guess

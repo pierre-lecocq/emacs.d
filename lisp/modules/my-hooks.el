@@ -1,6 +1,6 @@
 ;;; my-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-06 22:14:55>
+;; Time-stamp: <2015-12-07 10:52:59>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -93,10 +93,12 @@
 
 (defun hook-after-save ()
   "Hook after save."
-  (when (file-exists-p (byte-compile-dest-file buffer-file-name))
+  ;; Byte compile only my elisp files
+  (when (and (string-match (expand-file-name "~/") buffer-file-name)
+             (string= major-mode "emacs-lisp-mode"))
     (emacs-lisp-byte-compile)))
 
-;; (add-hook 'after-save-hook #'hook-after-save)
+(add-hook 'after-save-hook #'hook-after-save)
 
 (provide 'my-hooks)
 
