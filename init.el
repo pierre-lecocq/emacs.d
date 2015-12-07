@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 11:45:37>
+;; Time-stamp: <2015-12-07 11:51:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -35,7 +35,3 @@
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
-
-;; Byte compile config directories
-(byte-recompile-directory config-dir-hosts 0)
-(byte-recompile-directory config-dir-modules 0)

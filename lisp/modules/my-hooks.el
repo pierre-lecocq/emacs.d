@@ -1,6 +1,6 @@
 ;;; my-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-07 10:52:59>
+;; Time-stamp: <2015-12-07 11:51:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -98,7 +98,7 @@
              (string= major-mode "emacs-lisp-mode"))
     (emacs-lisp-byte-compile)))
 
-(add-hook 'after-save-hook #'hook-after-save)
+;; (add-hook 'after-save-hook #'hook-after-save)
 
 (provide 'my-hooks)
 
