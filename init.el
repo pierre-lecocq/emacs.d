@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 15:10:40>
+;; Time-stamp: <2015-12-07 15:43:36>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,6 +27,7 @@
 (mapc #'require
       '(init-internals
         init-packages
+        init-looknfeel
         init-hooks
         init-functions
         init-keybindings
@@ -37,7 +38,7 @@
         init-autoinsert
         init-recentf
         init-erc
-        init-looknfeel))
+        init-elfeed))
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
