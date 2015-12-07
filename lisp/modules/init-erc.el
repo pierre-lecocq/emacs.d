@@ -1,6 +1,6 @@
 ;;; init-erc.el --- Emacs configuration - ERC
 
-;; Time-stamp: <2015-12-07 14:07:15>
+;; Time-stamp: <2015-12-07 14:10:40 pierre>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -45,5 +45,7 @@
 (defun pl-erc-connect ()
   (interactive)
   (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre"))
+
+(provide 'init-erc)
 
 ;;; init-erc.el ends here
