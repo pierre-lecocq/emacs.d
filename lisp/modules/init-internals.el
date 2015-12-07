@@ -1,6 +1,6 @@
 ;;; init-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-07 14:40:20>
+;; Time-stamp: <2015-12-07 15:06:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -64,9 +64,12 @@
       next-line-add-newlines nil
 
       ;; Backup
-      backup-inhibited t
-      make-backup-files nil
-      auto-save-default nil
+      backup-directory-alist `((".*" ,config-dir-saves))
+      auto-save-file-name-transforms `((".*" ,config-dir-saves t))
+      auto-save-list-file-prefix config-dir-saves
+      ;; backup-inhibited t
+      ;; make-backup-files nil
+      ;; auto-save-default nil
 
       ;; VC
       vc-follow-symlinks t
