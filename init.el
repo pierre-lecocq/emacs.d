@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-08 00:08:12>
+;; Time-stamp: <2015-12-08 00:50:09>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,7 +8,6 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
-
 (setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 
 (setq config-dir-files      (concat config-dir "lisp/files/")
@@ -27,11 +26,6 @@
 (mapc #'require
       '(init-internals
         init-packages
-        ;; Settings
-        init-looknfeel
-        init-hooks
-        init-functions
-        init-keybindings
         ;; Modes
         init-autoinsert
         init-bookmark
@@ -45,8 +39,14 @@
         init-locale
         init-recentf
         init-ruby
+        init-spelling
         init-text
-        init-web))
+        init-web
+        ;; Settings
+        init-looknfeel
+        init-hooks
+        init-functions
+        init-keybindings))
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)

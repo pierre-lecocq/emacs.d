@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-07 13:54:37>
+;; Time-stamp: <2015-12-08 00:34:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -51,7 +51,8 @@
   (local-set-key (kbd "C-c <down>")  'hs-show-all)
   (hs-minor-mode t)
   (rainbow-delimiters-mode)
-  (rainbow-mode))
+  (rainbow-mode)
+  (global-flycheck-mode))
 
 (add-hook 'prog-mode-hook #'hook-prog-mode)
 

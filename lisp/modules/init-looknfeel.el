@@ -15,10 +15,10 @@
   :init (autopair-global-mode t))
 
 (use-package buffer-move :ensure t
-  :bind ((global-set-key (kbd "<C-S-up>")     'buf-move-up)
-         (global-set-key (kbd "<C-S-down>")   'buf-move-down)
-         (global-set-key (kbd "<C-S-left>")   'buf-move-left)
-         (global-set-key (kbd "<C-S-right>")  'buf-move-right)))
+  :bind (("<C-S-up>"    . buf-move-up)
+         ("<C-S-down>"  . buf-move-down)
+         ("<C-S-left>"  . buf-move-left)
+         ("<C-S-right>" . buf-move-right)))
 
 (use-package bonjourmadame :ensure t)
 
