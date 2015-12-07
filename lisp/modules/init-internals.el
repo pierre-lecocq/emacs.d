@@ -1,6 +1,6 @@
 ;;; init-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-07 10:30:18>
+;; Time-stamp: <2015-12-07 14:40:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -78,8 +78,9 @@
       uniquify-buffer-name-style 'forward uniquify-separator "/"
 
       ;; Other paths
-      nsm-settings-file (concat config-dir-files "network-security.data")
       custom-file (concat config-dir-files "custom.el")
+      tramp-persistency-file-name (concat config-dir-files "tramp")
+      nsm-settings-file (concat config-dir-files "network-security.data")
       host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el"))
 
 (provide 'init-internals)
