@@ -1,6 +1,6 @@
-;;; init-org-mode.el --- Emacs configuration - org-mode
+;;; init-text.el --- Emacs configuration - text
 
-;; Time-stamp: <2015-12-07 23:23:34>
+;; Time-stamp: <2015-12-08 00:03:30>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -17,6 +17,10 @@
                 org-fontify-done-headline t
                 org-src-fontify-natively t)))
 
-(provide 'init-org-mode)
+(use-package markdown-mode :ensure t)
 
-;;; init-org-mode.el ends here
+(use-package yaml-mode :ensure t)
+
+(provide 'init-text)
+
+;;; init-text.el ends here

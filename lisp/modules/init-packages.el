@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-08 00:00:35>
+;; Time-stamp: <2015-12-08 00:02:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,8 +46,6 @@
 
 (use-package js2-mode :ensure t)
 
-(use-package markdown-mode :ensure t)
-
 (use-package php-mode :ensure t)
 
 (use-package rainbow-delimiters :ensure t)
@@ -63,7 +61,6 @@
 
 (use-package web-mode :ensure t)
 
-(use-package yaml-mode :ensure t)
 
 (provide 'init-packages)
 
