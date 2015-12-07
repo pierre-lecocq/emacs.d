@@ -64,12 +64,9 @@
       next-line-add-newlines nil
 
       ;; Backup
-      backup-directory-alist `((".*" . ,config-dir-saves))
-      auto-save-file-name-transforms `((".*" ,config-dir-saves t))
-      ;; auto-save-list-file-prefix config-dir-saves
-      ;; backup-inhibited t
-      ;; make-backup-files nil
-      ;; auto-save-default nil
+      backup-inhibited t
+      make-backup-files nil
+      auto-save-default nil
 
       ;; VC
       vc-follow-symlinks t

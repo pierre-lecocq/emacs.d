@@ -17,7 +17,7 @@
                '(:eval (if (buffer-modified-p)
                            (propertize "  %b" 'face 'bold-italic)
                          (propertize "  %b" 'face 'bold)))
-               " (%l:%c) %p/%I - %m";; (format " %s" minor-mode-alist)
+               " - %l:%c %p:%I - %m";; (format " %s" minor-mode-alist)
                '(which-function-mode (" " which-func-format))))
 
 (when (display-graphic-p)

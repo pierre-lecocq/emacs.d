@@ -13,11 +13,7 @@
 (setq config-dir-files      (concat config-dir "lisp/files/")
       config-dir-hosts      (concat config-dir "lisp/hosts/")
       config-dir-modules    (concat config-dir "lisp/modules/")
-      config-dir-packages   (concat config-dir "lisp/packages/")
-      config-dir-saves      (concat config-dir "lisp/files/saves/"))
-
-(unless (file-exists-p config-dir-saves)
-  (make-directory config-dir-saves t))
+      config-dir-packages   (concat config-dir "lisp/packages/"))
 
 ;; Add some config directories to load-path
 (add-to-list 'load-path config-dir-hosts)
