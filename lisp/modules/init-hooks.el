@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-07 11:51:15>
+;; Time-stamp: <2015-12-07 13:54:37>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

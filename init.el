@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 11:51:01>
+;; Time-stamp: <2015-12-07 14:07:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,6 +31,7 @@
         init-filetypes
         init-autoinsert
         init-recentf
+        init-erc
         init-looknfeel))
 
 ;; Load host specific file at the end to eventually override defaults
