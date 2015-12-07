@@ -1,6 +1,6 @@
 ;;; init-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2015-12-06 22:15:44>
+;; Time-stamp: <2015-12-07 14:13:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,7 +8,7 @@
 ;;; Code:
 
 (when (eq system-type 'darwin)
-  (setq mac-option-modifier 'super
+  (setq mac-option-modifier nil
         mac-command-modifier 'meta
         select-enable-clipboard t))
 
