@@ -20,18 +20,18 @@
 
 ;; Require modules
 (mapc #'require
-      '(my-internals
-        my-packages
-        my-hooks
-        my-functions
-        my-keybindings
-        my-indent
-        my-locale
-        my-bookmark
-        my-filetypes
-        my-autoinsert
-        my-recentf
-        my-looknfeel))
+      '(init-internals
+        init-packages
+        init-hooks
+        init-functions
+        init-keybindings
+        init-indent
+        init-locale
+        init-bookmark
+        init-filetypes
+        init-autoinsert
+        init-recentf
+        init-looknfeel))
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
