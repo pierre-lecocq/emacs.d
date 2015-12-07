@@ -1,6 +1,6 @@
 ;;; init-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2015-12-07 10:36:39>
+;; Time-stamp: <2015-12-07 22:53:16>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,10 +9,9 @@
 
 (setq bookmark-default-file (concat config-dir-files "bookmarks")
       bookmark-sort-flag nil
-      bookmark-alist '(("Home" (filename . "~/"))
-                       ("Emacs folder" (filename . "~/src/emacs.d"))
-                       ;; ("Qsdfgh home" (filename . "/scp:pierre@qsdfgh.com#38170:~/"))
-                       ("Fotolia dev" (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
+      bookmark-alist '(("Home"          (filename . "~/"))
+                       ("Emacs folder"  (filename . "~/src/emacs.d"))
+                       ("Fotolia dev"   (filename . "/scp:eqx-dev1:/home/plecocq/www/fotolia"))))
 
 (provide 'init-bookmark)
 

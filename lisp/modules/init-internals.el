@@ -1,6 +1,6 @@
 ;;; init-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-07 15:06:50>
+;; Time-stamp: <2015-12-07 23:01:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -48,35 +48,9 @@
 ;; Define internal variables
 (setq debug-on-error t
       gc-cons-threshold 100000000
-
       ;; Identity
       user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com"
-
-      ;; Scratch and Splash
-      initial-scratch-message (format ";; Scratch buffer - started on %s\n\n" (current-time-string))
-      inhibit-startup-message t
-      inhibit-splash-screen t
-
-      ;; General behaviour
-      kill-whole-line t
-      require-final-newline t
-      next-line-add-newlines nil
-
-      ;; Backup
-      backup-inhibited t
-      make-backup-files nil
-      auto-save-default nil
-
-      ;; VC
-      vc-follow-symlinks t
-
-      ;; Password cache
-      password-cache-expiry nil
-
-      ;; Uniquify
-      uniquify-buffer-name-style 'forward uniquify-separator "/"
-
       ;; Other paths
       custom-file (concat config-dir-files "custom.el")
       tramp-persistency-file-name (concat config-dir-files "tramp")

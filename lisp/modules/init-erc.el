@@ -1,14 +1,13 @@
 ;;; init-erc.el --- Emacs configuration - ERC
 
-;; Time-stamp: <2015-12-07 14:10:40 pierre>
+;; Time-stamp: <2015-12-07 22:35:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package erc
-  :ensure t
+(use-package erc :ensure t
   :init (progn
           (defvar erc-insert-post-hook)
           (setq erc-nick "pierre404"
@@ -40,11 +39,11 @@
                         (auto-fill-mode 0)))
           (add-hook 'erc-after-connect
                     #'(lambda (SERVER NICK)
-                        (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC Password: ")))))))
+                        (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC NickServ Password: ")))))))
 
 (defun pl-erc-connect ()
   (interactive)
-  (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre"))
+  (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre Lecocq"))
 
 (provide 'init-erc)
 

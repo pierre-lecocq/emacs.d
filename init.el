@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-07 16:43:21>
+;; Time-stamp: <2015-12-07 23:11:49>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,6 +15,9 @@
       config-dir-modules    (concat config-dir "lisp/modules/")
       config-dir-packages   (concat config-dir "lisp/packages/"))
 
+(unless (file-exists-p config-dir-files)
+  (make-directory config-dir-files))
+
 ;; Add some config directories to load-path
 (add-to-list 'load-path config-dir-hosts)
 (add-to-list 'load-path config-dir-modules)
@@ -23,10 +26,12 @@
 (mapc #'require
       '(init-internals
         init-packages
+        ;; Settings
         init-looknfeel
         init-hooks
         init-functions
         init-keybindings
+        ;; Modes
         init-indent
         init-locale
         init-bookmark

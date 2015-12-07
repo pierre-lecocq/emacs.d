@@ -1,6 +1,6 @@
 ;;; init-packages.el --- Emacs config - packages
 
-;; Time-stamp: <2015-12-07 11:31:45>
+;; Time-stamp: <2015-12-07 21:50:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,24 +28,19 @@
 (require 'use-package)
 
 ;; Packages settings
-(use-package anzu
-  :ensure t
+(use-package anzu :ensure t
   :init (progn
           (global-anzu-mode +1)
           (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
 
-(use-package autopair
-  :ensure t
+(use-package autopair :ensure t
   :init (autopair-global-mode t))
 
-(use-package bonjourmadame
-  :ensure t)
+(use-package bonjourmadame :ensure t)
 
-(use-package browse-kill-ring
-  :ensure t)
+(use-package browse-kill-ring :ensure t)
 
-(use-package company
-  :ensure t
+(use-package company :ensure t
   :init (progn
           (setq company-auto-complete nil
                 company-tooltip-flip-when-above t
@@ -54,24 +49,18 @@
                 company-idle-delay 0.5)
           (global-company-mode 1)))
 
-(use-package darkmine-theme
-  :ensure t
+(use-package darkmine-theme :ensure t
   :init (load-theme 'darkmine t))
 
-(use-package htmlize
-  :ensure t)
+(use-package htmlize :ensure t)
 
-(use-package flx-ido
-  :ensure t)
+(use-package flx-ido :ensure t)
 
-(use-package ido-hacks
-  :ensure t)
+(use-package ido-hacks :ensure t)
 
-(use-package ido-vertical-mode
-  :ensure t)
+(use-package ido-vertical-mode :ensure t)
 
-(use-package ido
-  :ensure t
+(use-package ido :ensure t
   :init (progn
           (require 'ido)
           (require 'ido-hacks)
@@ -87,17 +76,13 @@
           (ido-hacks-mode)
           (ido-vertical-mode)))
 
-(use-package idle-highlight-mode
-  :ensure t)
+(use-package idle-highlight-mode :ensure t)
 
-(use-package js2-mode
-  :ensure t)
+(use-package js2-mode :ensure t)
 
-(use-package markdown-mode
-  :ensure t)
+(use-package markdown-mode :ensure t)
 
-(use-package org
-  :ensure t
+(use-package org :ensure t
   :init (progn
           ;; (setq org-directory (expand-file-name "~/org-files/")
           ;;       org-default-notes-file (expand-file-name (concat org-directory "notes.org"))
@@ -107,23 +92,17 @@
                 org-fontify-done-headline t
                 org-src-fontify-natively t)))
 
-(use-package php-mode
-  :ensure t)
+(use-package php-mode :ensure t)
 
-(use-package rainbow-delimiters
-  :ensure t)
+(use-package rainbow-delimiters :ensure t)
 
-(use-package rainbow-mode
-  :ensure t)
+(use-package rainbow-mode :ensure t)
 
-(use-package ruby-mode
-  :ensure t)
+(use-package ruby-mode :ensure t)
 
-(use-package slime-company
-  :ensure t)
+(use-package slime-company :ensure t)
 
-(use-package slime
-  :ensure t
+(use-package slime :ensure t
   :init (progn
 
           (if (eq system-type 'darwin)
@@ -131,25 +110,14 @@
             (setq inferior-lisp-program "sbcl"))
           (slime-setup '(slime-company))))
 
-(use-package symon
-  :ensure t
+(use-package symon :ensure t
   :init (progn
           (setq symon-delay 5)
           (symon-mode t)))
 
-(use-package web-mode
-  :ensure t)
+(use-package web-mode :ensure t)
 
-(use-package whitespace
-  :ensure t
-  :init (progn
-          (setq whitespace-line-column 80
-                whitespace-style '(tabs tab-mark face)
-                whitespace-global-modes '(not org-mode web-mode))
-          (global-whitespace-mode)))
-
-(use-package yaml-mode
-  :ensure t)
+(use-package yaml-mode :ensure t)
 
 (provide 'init-packages)
 

@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-07 13:09:49>
+;; Time-stamp: <2015-12-07 23:08:59>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,17 +8,33 @@
 ;;; Code:
 
 (setq frame-title-format "Emacs %f"
-      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
+      time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
+      ;; Scratch and Splash
+      initial-scratch-message (format ";; Scratch buffer - started on %s\n\n" (current-time-string))
+      inhibit-startup-message t
+      inhibit-splash-screen t
+      ;; General behaviour
+      kill-whole-line t
+      require-final-newline t
+      next-line-add-newlines nil
+      ;; Backup
+      backup-inhibited t
+      make-backup-files nil
+      auto-save-default nil
+      ;; VC
+      vc-follow-symlinks t
+      ;; Password cache
+      password-cache-expiry nil
+      ;; Uniquify
+      uniquify-buffer-name-style 'forward uniquify-separator "/")
 
-(setq-default show-trailing-whitespace t
-              highlight-tabs t
-              mode-line-format
-              (list
-               '(:eval (if (buffer-modified-p)
-                           (propertize "  %b" 'face 'bold-italic)
-                         (propertize "  %b" 'face 'bold)))
-               " - %l:%c %p:%I - %m";; (format " %s" minor-mode-alist)
-               '(which-function-mode (" " which-func-format))))
+(setq-default mode-line-format (list
+                                '(:eval (if (buffer-modified-p)
+                                            (propertize " %b" 'face 'bold-italic)
+                                          (propertize " %b" 'face 'bold)))
+                                " | %l:%c %p:%I | %m";; (format " %s" minor-mode-alist)
+                                '(which-function-mode (" " which-func-format))
+                                '(vc-mode vc-mode)))
 
 (when (display-graphic-p)
   (progn
