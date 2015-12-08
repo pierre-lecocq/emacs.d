@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-09 00:13:30>
+;; Time-stamp: <2015-12-09 00:43:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -37,29 +37,11 @@
 (add-to-list 'load-path config-dir-hosts)
 (add-to-list 'load-path config-dir-modules)
 
-;; Activate internal modes
-(auto-compression-mode 1)
-(column-number-mode 1)
-(global-auto-revert-mode 1)
-(global-font-lock-mode 1)
-(global-hl-line-mode 1)
-(line-number-mode 1)
-(show-paren-mode 1)
-(transient-mark-mode 1)
-(which-function-mode 1)
+;; Early requires
+(require 'init-bootstrap)
+(require 'init-looknfeel)
 
-;; Deactivate internal modes
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(tooltip-mode -1)
-
-;; Require modules
-(require 'linum)
-(require 'paren)
-(require 'time-stamp)
-
-(require 'init-package)
+;; Standard requires
 (require 'init-autoinsert)
 (require 'init-bookmark)
 (require 'init-completion)
@@ -70,7 +52,6 @@
 (require 'init-indent)
 (require 'init-lisp)
 (require 'init-locale)
-(require 'init-mode-line)
 (require 'init-recentf)
 (require 'init-ruby)
 (require 'init-shell)
@@ -78,22 +59,10 @@
 (require 'init-text)
 (require 'init-web)
 
-(require 'init-looknfeel)
+;; Late requires
 (require 'init-hooks)
 (require 'init-functions)
 (require 'init-keybindings)
-
-;; Define internal variables
-(setq debug-on-error t
-      gc-cons-threshold 100000000
-      sentence-end-double-space nil
-      user-full-name "Pierre Lecocq"
-      user-mail-address "pierre.lecocq@gmail.com"
-      custom-file (concat config-dir-files "custom.el")
-      tramp-persistency-file-name (concat config-dir-files "tramp")
-      host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el"))
-
-(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Load host specific file at the end to eventually override defaults
 (load host-file 'noerror)
