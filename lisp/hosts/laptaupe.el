@@ -1,6 +1,6 @@
 ;;; laptaupe.el --- Emacs config - laptaupe
 
-;; Time-stamp: <2015-12-06 23:18:08>
+;; Time-stamp: <2015-12-09 00:57:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
