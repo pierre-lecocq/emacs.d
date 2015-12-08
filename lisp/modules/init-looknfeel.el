@@ -48,6 +48,7 @@
       backup-inhibited t
       make-backup-files nil
       auto-save-default nil
+      auto-save-list-file-prefix nil
       ;; VC
       vc-follow-symlinks t
       ;; Password cache

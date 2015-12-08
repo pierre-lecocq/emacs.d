@@ -8,6 +8,7 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
+
 (setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 
 (setq config-dir-files      (concat config-dir "lisp/files/")
