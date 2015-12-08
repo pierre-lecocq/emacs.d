@@ -1,6 +1,6 @@
-;;; init-packages.el --- Emacs config - packages
+;;; init-package.el --- Emacs configuration - package
 
-;; Time-stamp: <2015-12-08 00:09:28>
+;; Time-stamp: <2015-12-09 00:08:56>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,8 +9,10 @@
 
 ;; Package manager settings
 (require 'package)
+(require 'nsm)
 
-(setq package-user-dir config-dir-packages
+(setq nsm-settings-file (concat config-dir-files "network-security.data")
+      package-user-dir config-dir-packages
       package-enable-at-startup nil
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -27,6 +29,6 @@
 
 (require 'use-package)
 
-(provide 'init-packages)
+(provide 'init-package)
 
-;;; init-packages.el ends here
+;;; init-package.el ends here

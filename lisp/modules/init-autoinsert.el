@@ -1,11 +1,15 @@
 ;;; init-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2015-12-06 22:18:39>
+;; Time-stamp: <2015-12-08 23:00:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(require 'autoinsert)
+
+(auto-insert-mode 1)
 
 (auto-insert)
 

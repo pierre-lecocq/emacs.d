@@ -1,11 +1,13 @@
 ;;; init-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2015-12-07 22:53:16>
+;; Time-stamp: <2015-12-08 23:00:54>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(require 'bookmark)
 
 (setq bookmark-default-file (concat config-dir-files "bookmarks")
       bookmark-sort-flag nil

@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-08 00:34:12>
+;; Time-stamp: <2015-12-08 23:53:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,28 +19,11 @@
 
 (add-hook 'mail-mode-hook #'hook-mail-mode)
 
-(defun hook-shell-mode ()
-  "Hook for Shell mode."
-  (setq show-trailing-whitespace nil)
-  (eshell/alias "l" "ls -l")
-  (eshell/alias "la" "ls -la"))
-
-(add-hook 'shell-mode-hook #'hook-shell-mode)
-(add-hook 'eshell-mode-hook #'hook-shell-mode)
-
 (defun hook-dired-mode ()
   "Hook for Dired mode."
   (put 'dired-find-alternate-file 'disabled nil))
 
 (add-hook 'dired-mode-hook #'hook-dired-mode)
-
-(defun hook-text-mode ()
-  "Hook  for Text mode."
-  (linum-mode 1)
-  (make-local-variable 'linum-format)
-  (setq linum-format " %d "))
-
-(add-hook 'text-mode-hook #'hook-text-mode)
 
 (defun hook-prog-mode ()
   "Hook for Prog mode."

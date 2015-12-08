@@ -1,11 +1,12 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-08 00:30:28>
+;; Time-stamp: <2015-12-08 23:05:31>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
 (use-package anzu :ensure t
   :init (progn
           (global-anzu-mode +1)
@@ -56,20 +57,11 @@
       ;; Uniquify
       uniquify-buffer-name-style 'forward uniquify-separator "/")
 
-(setq-default mode-line-format (list
-                                '(:eval (if (buffer-modified-p)
-                                            (propertize " %b" 'face 'bold-italic)
-                                          (propertize " %b" 'face 'bold)))
-                                " | %l:%c %p:%I | %m";; (format " %s" minor-mode-alist)
-                                '(which-function-mode (" " which-func-format))
-                                '(vc-mode vc-mode)))
-
 (when (display-graphic-p)
-  (progn
-    (toggle-frame-maximized)
-    (setq show-paren-style 'expression
-          select-enable-clipboard t))
-  (set-fringe-mode 10))
+  (set-fringe-mode 10)
+  (toggle-frame-maximized)
+  (setq show-paren-style 'expression
+        select-enable-clipboard t))
 
 (when (member "Inconsolata" (font-family-list))
   (set-face-attribute 'default nil

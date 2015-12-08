@@ -1,21 +1,11 @@
 ;;; init-functions.el --- Emacs config - functions
 
-;; Time-stamp: <2015-12-06 22:15:21>
+;; Time-stamp: <2015-12-08 23:52:30>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
-
-(defun pl-get-shell ()
-  "Get a shell buffer."
-  (interactive)
-  (if (eq (current-buffer) (get-buffer "*eshell*"))
-      (switch-to-buffer (other-buffer (current-buffer) t))
-    (progn
-      (if (member (get-buffer "*eshell*") (buffer-list))
-          (switch-to-buffer "*eshell*")
-        (eshell)))))
 
 (defun pl-kill-buffers-by-mode (&optional mode-name)
   "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
