@@ -1,6 +1,6 @@
 ;;; init-internals.el --- Emacs config - internals
 
-;; Time-stamp: <2015-12-07 23:01:47>
+;; Time-stamp: <2015-12-08 22:03:40>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

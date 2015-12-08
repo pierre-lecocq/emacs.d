@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-08 00:50:09>
+;; Time-stamp: <2015-12-08 22:05:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,12 +9,20 @@
 
 ;; Set directories paths (note: trailing slash is mandatory)
 
-(setq config-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
+(defvar config-dir
+  (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 
-(setq config-dir-files      (concat config-dir "lisp/files/")
-      config-dir-hosts      (concat config-dir "lisp/hosts/")
-      config-dir-modules    (concat config-dir "lisp/modules/")
-      config-dir-packages   (concat config-dir "lisp/packages/"))
+(defvar config-dir-files
+  (concat config-dir "lisp/files/"))
+
+(defvar config-dir-hosts
+  (concat config-dir "lisp/hosts/"))
+
+(defvar config-dir-modules
+  (concat config-dir "lisp/modules/"))
+
+(defvar config-dir-packages
+  (concat config-dir "lisp/packages/"))
 
 (unless (file-exists-p config-dir-files)
   (make-directory config-dir-files))
