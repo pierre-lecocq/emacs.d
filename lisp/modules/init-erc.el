@@ -1,6 +1,6 @@
 ;;; init-erc.el --- Emacs configuration - ERC
 
-;; Time-stamp: <2015-12-07 22:35:47>
+;; Time-stamp: <2015-12-09 22:28:26>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,9 +11,10 @@
   :init (progn
           (defvar erc-insert-post-hook)
           (setq erc-nick "pierre404"
+                erc-input-line-position -2
                 erc-log-insert-log-on-open nil
                 erc-log-channels t
-                erc-log-channels-directory "~/.irclogs/"
+                erc-log-channels-directory (concat config-dir-files "erc")
                 erc-save-buffer-on-part t
                 erc-hide-timestamps nil
                 erc-hide-list '("JOIN" "PART" "QUIT")
