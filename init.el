@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-09 00:56:45>
+;; Time-stamp: <2015-12-09 01:09:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,13 +8,6 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
-
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (defvar config-dir
   (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 
