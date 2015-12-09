@@ -48,8 +48,6 @@
                '(which-function-mode (" " which-func-format))
                '(vc-mode vc-mode)))
 
-;;; init-mode-line.el ends here
-
 (use-package autopair :ensure t
   :init (autopair-global-mode t))
 
