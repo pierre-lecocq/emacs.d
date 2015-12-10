@@ -19,14 +19,16 @@
 (defvar files-dir (concat root-dir "lisp/files/"))
 (defvar hosts-dir (concat root-dir "lisp/hosts/"))
 (defvar versions-dir (concat root-dir "lisp/versions/"))
-(defvar init-dir (concat root-dir "lisp/init/"))
+(defvar config-dir (concat root-dir "lisp/config/"))
 (defvar packages-dir (concat root-dir "lisp/packages/"))
+
 (unless (file-exists-p files-dir)
   (make-directory files-dir))
 
 ;; Add some config directories to load-path
-(add-to-list 'load-path init-dir)
+(add-to-list 'load-path config-dir)
 (add-to-list 'load-path hosts-dir)
+(add-to-list 'load-path versions-dir)
 
 ;; Early requires
 (require 'init-bootstrap)
