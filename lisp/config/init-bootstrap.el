@@ -1,6 +1,6 @@
 ;;; init-bootstrap.el --- Emacs configuration - bootstrap
 
-;; Time-stamp: <2015-12-09 00:43:55>
+;; Time-stamp: <2015-12-10 23:06:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -25,7 +25,8 @@
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-(require 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 ;; Define internal variables
 (setq debug-on-error t
