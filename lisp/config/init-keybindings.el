@@ -1,6 +1,6 @@
 ;;; init-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2015-12-07 14:13:01>
+;; Time-stamp: <2015-12-10 19:48:05>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
