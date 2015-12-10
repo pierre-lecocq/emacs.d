@@ -8,6 +8,13 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defvar root-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
 (defvar files-dir (concat root-dir "lisp/files/"))
 (defvar hosts-dir (concat root-dir "lisp/hosts/"))
