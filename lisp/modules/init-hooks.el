@@ -35,7 +35,8 @@
   (hs-minor-mode t)
   (rainbow-delimiters-mode)
   (rainbow-mode)
-  (global-flycheck-mode))
+  ;; (global-flycheck-mode)
+)
 
 (add-hook 'prog-mode-hook #'hook-prog-mode)
 

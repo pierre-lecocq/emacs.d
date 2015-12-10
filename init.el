@@ -17,6 +17,9 @@
 (defvar config-dir-hosts
   (concat config-dir "lisp/hosts/"))
 
+(defvar config-dir-versions
+  (concat config-dir "lisp/versions/"))
+
 (defvar config-dir-modules
   (concat config-dir "lisp/modules/"))
 
@@ -57,5 +60,11 @@
 (require 'init-functions)
 (require 'init-keybindings)
 
-;; Load host specific file at the end to eventually override defaults
-(load host-file 'noerror)
+;; Load host and version specific file at the end to eventually override defaults
+(when (file-exists-p host-file)
+  (load host-file 'noerror))
+
+(when (file-exists-p version-file)
+  (load version-file 'noerror))
+
+;;; init.el ends here

@@ -9,10 +9,8 @@
 
 ;; Package manager settings
 (require 'package)
-(require 'nsm)
 
-(setq nsm-settings-file (concat config-dir-files "network-security.data")
-      package-user-dir config-dir-packages
+(setq package-user-dir config-dir-packages
       package-enable-at-startup nil
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -52,7 +50,8 @@
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       custom-file (concat config-dir-files "custom.el")
       tramp-persistency-file-name (concat config-dir-files "tramp")
-      host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el"))
+      host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el")
+      version-file (concat config-dir-versions (number-to-string emacs-major-version) ".el"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
