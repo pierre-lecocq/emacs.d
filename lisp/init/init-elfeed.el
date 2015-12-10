@@ -10,7 +10,7 @@
 (use-package elfeed
   :ensure t
   :init (progn
-          (setq elfeed-db-directory (concat config-dir-files "elfeed")
+          (setq elfeed-db-directory (concat files-dir "elfeed")
                 elfeed-feeds
                 '(("http://planet.emacsen.org/atom.xml" emacs)
                   ("http://planet.debian.org/rss20.xml" debian)

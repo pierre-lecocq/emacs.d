@@ -14,10 +14,10 @@
 (setq recentf-auto-cleanup 'never
       recentf-max-menu-items 50
       recentf-keep '(file-remote-p file-readable-p)
-      recentf-save-file (concat config-dir-files "recentf"))
+      recentf-save-file (concat files-dir "recentf"))
 
-(add-to-list 'recentf-exclude config-dir-packages)
-(add-to-list 'recentf-exclude config-dir-files)
+(add-to-list 'recentf-exclude packages-dir)
+(add-to-list 'recentf-exclude files-dir)
 
 (provide 'init-recentf)
 

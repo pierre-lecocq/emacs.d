@@ -9,7 +9,7 @@
 
 (require 'bookmark)
 
-(setq bookmark-default-file (concat config-dir-files "bookmarks")
+(setq bookmark-default-file (concat files-dir "bookmarks")
       bookmark-sort-flag nil
       bookmark-alist '(("Home"          (filename . "~/"))
                        ("Emacs folder"  (filename . "~/src/emacs.d"))

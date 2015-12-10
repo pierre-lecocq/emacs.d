@@ -10,7 +10,7 @@
 ;; Package manager settings
 (require 'package)
 
-(setq package-user-dir config-dir-packages
+(setq package-user-dir packages-dir
       package-enable-at-startup nil
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -48,10 +48,10 @@
       vc-follow-symlinks t
       password-cache-expiry nil
       uniquify-buffer-name-style 'forward uniquify-separator "/"
-      custom-file (concat config-dir-files "custom.el")
-      tramp-persistency-file-name (concat config-dir-files "tramp")
-      host-file (concat config-dir-hosts (downcase (car (split-string (system-name) "\\."))) ".el")
-      version-file (concat config-dir-versions (number-to-string emacs-major-version) ".el"))
+      custom-file (concat files-dir "custom.el")
+      tramp-persistency-file-name (concat files-dir "tramp")
+      host-file (concat hosts-dir (downcase (car (split-string (system-name) "\\."))) ".el")
+      version-file (concat versions-dir (number-to-string emacs-major-version) ".el"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 

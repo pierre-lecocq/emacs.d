@@ -8,30 +8,18 @@
 ;;; Code:
 
 ;; Set directories paths (note: trailing slash is mandatory)
-(defvar config-dir
-  (file-name-as-directory (file-truename (file-name-directory load-file-name))))
-
-(defvar config-dir-files
-  (concat config-dir "lisp/files/"))
-
-(defvar config-dir-hosts
-  (concat config-dir "lisp/hosts/"))
-
-(defvar config-dir-versions
-  (concat config-dir "lisp/versions/"))
-
-(defvar config-dir-modules
-  (concat config-dir "lisp/modules/"))
-
-(defvar config-dir-packages
-  (concat config-dir "lisp/packages/"))
-
-(unless (file-exists-p config-dir-files)
-  (make-directory config-dir-files))
+(defvar root-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
+(defvar files-dir (concat root-dir "lisp/files/"))
+(defvar hosts-dir (concat root-dir "lisp/hosts/"))
+(defvar versions-dir (concat root-dir "lisp/versions/"))
+(defvar init-dir (concat root-dir "lisp/init/"))
+(defvar packages-dir (concat root-dir "lisp/packages/"))
+(unless (file-exists-p files-dir)
+  (make-directory files-dir))
 
 ;; Add some config directories to load-path
-(add-to-list 'load-path config-dir-hosts)
-(add-to-list 'load-path config-dir-modules)
+(add-to-list 'load-path init-dir)
+(add-to-list 'load-path hosts-dir)
 
 ;; Early requires
 (require 'init-bootstrap)

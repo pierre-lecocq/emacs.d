@@ -14,7 +14,7 @@
                 erc-input-line-position -2
                 erc-log-insert-log-on-open nil
                 erc-log-channels t
-                erc-log-channels-directory (concat config-dir-files "erc")
+                erc-log-channels-directory (concat files-dir "erc")
                 erc-save-buffer-on-part t
                 erc-hide-timestamps nil
                 erc-hide-list '("JOIN" "PART" "QUIT")
