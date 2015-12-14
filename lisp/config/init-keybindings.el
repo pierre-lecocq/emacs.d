@@ -1,6 +1,6 @@
 ;;; init-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2015-12-10 19:48:05>
+;; Time-stamp: <2015-12-14 20:23:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,7 @@
 
 (global-set-key [delete] 'delete-char)
 
+(global-set-key (kbd "M-*") 'pop-tag-mark)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-y") 'browse-kill-ring)
