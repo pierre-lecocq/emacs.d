@@ -1,6 +1,6 @@
 ;;; init-bootstrap.el --- Emacs configuration - bootstrap
 
-;; Time-stamp: <2015-12-10 23:06:34>
+;; Time-stamp: <2015-12-14 14:53:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -51,7 +51,7 @@
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       custom-file (concat files-dir "custom.el")
       tramp-persistency-file-name (concat files-dir "tramp")
-      host-file (concat hosts-dir (downcase (car (split-string (system-name) "\\."))) ".el")
+      host-file (concat hosts-dir (replace-regexp-in-string "[^A-Za-z0-9_-]" "-" (downcase (car (split-string (system-name) "\\.")))) ".el")
       version-file (concat versions-dir (number-to-string emacs-major-version) ".el"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
