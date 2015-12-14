@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-09 01:09:44>
+;; Time-stamp: <2015-12-14 14:59:33>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,14 +9,16 @@
 
 ;; Set directories paths (note: trailing slash is mandatory)
 (defvar root-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
-(defvar files-dir (concat root-dir "lisp/files/"))
+
 (defvar hosts-dir (concat root-dir "lisp/hosts/"))
 (defvar versions-dir (concat root-dir "lisp/versions/"))
 (defvar config-dir (concat root-dir "lisp/config/"))
-(defvar packages-dir (concat root-dir "lisp/packages/"))
+
+(defvar files-dir (concat root-dir "vendor/files/"))
+(defvar packages-dir (concat root-dir "vendor/packages/"))
 
 (unless (file-exists-p files-dir)
-  (make-directory files-dir))
+  (make-directory files-dir t))
 
 ;; Add some config directories to load-path
 (add-to-list 'load-path config-dir)
