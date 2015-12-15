@@ -64,11 +64,11 @@
           (global-anzu-mode +1)
           (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
 
-(use-package buffer-move :ensure t
-  :bind (("<C-S-up>"    . buf-move-up)
-         ("<C-S-down>"  . buf-move-down)
-         ("<C-S-left>"  . buf-move-left)
-         ("<C-S-right>" . buf-move-right)))
+;; (use-package buffer-move :ensure t
+;;   :bind (("<C-S-up>"    . buf-move-up)
+;;          ("<C-S-down>"  . buf-move-down)
+;;          ("<C-S-left>"  . buf-move-left)
+;;          ("<C-S-right>" . buf-move-right)))
 
 (use-package bonjourmadame :ensure t)
 

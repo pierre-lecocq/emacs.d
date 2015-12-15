@@ -1,23 +1,28 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-14 14:59:33>
+;; Time-stamp: <2015-12-15 09:09:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; Set directories paths (note: trailing slash is mandatory)
-(defvar root-dir (file-name-as-directory (file-truename (file-name-directory load-file-name))))
+(defvar please-compile-lisp nil)
 
-(defvar hosts-dir (concat root-dir "lisp/hosts/"))
-(defvar versions-dir (concat root-dir "lisp/versions/"))
-(defvar config-dir (concat root-dir "lisp/config/"))
+;; Directories
+(defvar root-dir    (file-name-as-directory (file-truename (file-name-directory load-file-name))))
+(defvar lisp-dir    (concat root-dir "lisp/"))
+(defvar vendor-dir  (concat root-dir "vendor/"))
 
-(defvar files-dir (concat root-dir "vendor/files/"))
-(defvar packages-dir (concat root-dir "vendor/packages/"))
+(defvar hosts-dir (concat lisp-dir "hosts/"))
+(defvar versions-dir (concat lisp-dir "versions/"))
+(defvar config-dir (concat lisp-dir "config/"))
+
+(defvar files-dir (concat vendor-dir "files/"))
+(defvar packages-dir (concat vendor-dir "packages/"))
 
 (unless (file-exists-p files-dir)
+  (setq please-compile-lisp t)
   (make-directory files-dir t))
 
 ;; Add some config directories to load-path
@@ -58,5 +63,9 @@
 
 (when (file-exists-p version-file)
   (load version-file 'noerror))
+
+;; Compile if needed
+(when please-compile-lisp
+  (byte-recompile-directory lisp-dir 0))
 
 ;;; init.el ends here
