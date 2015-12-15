@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-15 09:09:01>
+;; Time-stamp: <2015-12-15 16:26:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,6 +29,13 @@
 (add-to-list 'load-path config-dir)
 (add-to-list 'load-path hosts-dir)
 (add-to-list 'load-path versions-dir)
+
+;; Secret file
+(defvar secret-file (concat lisp-dir "secret.el"))
+
+(if (file-exists-p secret-file)
+    (load-file secret-file)
+  (error "%s not found" secret-file))
 
 ;; Early requires
 (require 'init-bootstrap)
@@ -65,7 +72,7 @@
   (load version-file 'noerror))
 
 ;; Compile if needed
-(when please-compile-lisp
-  (byte-recompile-directory lisp-dir 0))
+;; (when please-compile-lisp
+;;   (byte-recompile-directory lisp-dir 0))
 
 ;;; init.el ends here
