@@ -10,7 +10,7 @@
 (defvar please-compile-lisp nil)
 
 ;; Directories
-(defvar root-dir    (file-name-as-directory (file-truename (file-name-directory load-file-name))))
+(defvar root-dir   "~/src/emacs.d/") ;; (file-name-as-directory (file-truename (file-name-directory load-file-name)))
 (defvar lisp-dir    (concat root-dir "lisp/"))
 (defvar vendor-dir  (concat root-dir "vendor/"))
 
