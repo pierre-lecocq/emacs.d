@@ -1,9 +1,13 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-15 17:06:16>
+;; Time-stamp: <2015-12-16 11:49:06>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
+
+;;; Install:
+
+;; ln -s ~/src/emacs.d ~/.emacs.d
 
 ;;; Code:
 
@@ -28,11 +32,10 @@
 (add-to-list 'load-path versions-dir)
 
 ;; Secret file
-(defvar secret-file (concat config-dir "secret.el"))
-
-(if (file-exists-p secret-file)
-    (require 'secret)
-  (error "%s not found" secret-file))
+(let ((secret-file (concat config-dir "secret.el")))
+  (if (file-exists-p secret-file)
+      (require 'secret)
+    (error "%s not found" secret-file)))
 
 ;; Early requires
 (require 'init-bootstrap)
@@ -43,6 +46,7 @@
 (require 'init-bookmark)
 (require 'init-completion)
 (require 'init-elfeed)
+(require 'init-encrypt)
 (require 'init-erc)
 (require 'init-filetypes)
 (require 'init-ido)

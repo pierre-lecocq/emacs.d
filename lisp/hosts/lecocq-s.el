@@ -1,6 +1,6 @@
 ;;; lecocq-s.el --- Emacs configuration - lecocq-s host
 
-;; Time-stamp: <2015-12-15 16:20:57>
+;; Time-stamp: <2015-12-16 13:18:29>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,10 +31,10 @@
 
 (setq projects-tags-bin "xargs ctags -e -R -a")
 
-(setq projects-tags-alist `(("fotolia" . ((root . ,(ftl-secret-path "/www/fotolia"))
-                                          (directories . (,(ftl-secret-path "/www/fotolia/include/Fotolia")
-                                                          ,(ftl-secret-path "/www/fotolia/app/controllers")
-                                                          ,(ftl-secret-path "/www/fotolia/app/controllersV4")))
+(setq projects-tags-alist `(("fotolia" . ((root . ,(-secret-path-ftl "/www/fotolia"))
+                                          (directories . (,(-secret-path-ftl "/www/fotolia/include/Fotolia")
+                                                          ,(-secret-path-ftl "/www/fotolia/app/controllers")
+                                                          ,(-secret-path-ftl "/www/fotolia/app/controllersV4")))
                                          (files . ("*.php"))))))
 
 ;;; lecocq-s.el ends here
