@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-16 19:54:08>
+;; Time-stamp: <2015-12-16 22:32:56>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -45,7 +45,8 @@
                                             ((gnus-seconds-year) . "%d %B")
                                             (t . "%d/%m/%Y %H:%M"))
 
-              gnus-group-line-format " %S [%5y] | %-10s | %G\n"
+              ;; gnus-group-line-format " %S [%5y] | %-10s | %G\n"
+              gnus-group-line-format " %S %3y: %G\n"
               gnus-summary-line-format " %R%U%z %4k | %(%~(pad-right 16)&user-date; | %-25,25f | %B%s%)\n")
 
 ;; Vars
@@ -66,6 +67,27 @@
 
 ;; Auto-refresh
 (gnus-demon-add-handler 'gnus-demon-scan-news 1 nil)
+
+;; Topics
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
+(setq gnus-topic-topology '(("Gnus" visible nil nil)
+                            (("Gmail" visible nil nil))
+                            (("Qsdfgh" visible nil nil))
+                            (("misc" visible nil nil)))
+      gnus-topic-alist '(("Gmail"
+                          "nnimap+Gmail:Cosmo"
+                          "nnimap+Gmail:Github"
+                          "nnimap+Gmail:INBOX"
+                          "nnimap+Gmail:Rugby"
+                          "nnimap+Gmail:Security"
+                          "nnimap+Gmail:Emacs")
+                         ("Qsdfgh"
+                          "nnimap+Qsdfgh:Debug"
+                          "nnimap+Qsdfgh:INBOX"
+                          "nnimap+Qsdfgh:Misc"
+                          "nnimap+Qsdfgh:Trash")
+                         ("misc"
+                          "nndraft:drafts"))
 
 ;; PGP
 (setq epg-debug t ;;  *epg-debug*" buffer
@@ -109,8 +131,6 @@
    (horizontal 1.0
                (vertical 55 (group 1.0))
                (vertical 1.0 (summary 1.0 point)))))
-
-(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ;; Split
 (setq nnimap-split-inbox '("INBOX")
