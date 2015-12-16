@@ -1,6 +1,6 @@
 ;;; init-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2015-12-16 10:24:37>
+;; Time-stamp: <2015-12-16 10:39:04>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,8 +12,9 @@
 (setq bookmark-default-file (concat files-dir "bookmarks")
       bookmark-sort-flag nil
       bookmark-alist `(("Home"          (filename . "~/"))
-                       ("Emacs folder"  (filename . "~/src/emacs.d"))
-                       ("Fotolia dev"   (filename . ,(ftl-secret-path "/www/fotolia")))))
+                       ("Sources"       (filename . "~/src"))
+                       ("Emacs"         (filename . "~/src/emacs.d"))
+                       ("Fotolia"       (filename . ,(ftl-secret-path "/www/fotolia")))))
 
 (provide 'init-bookmark)
 
