@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-15 16:26:20>
+;; Time-stamp: <2015-12-15 17:06:16>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
