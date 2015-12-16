@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2015-12-16 22:35:00>
+;; Time-stamp: <2015-12-16 22:46:39>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,6 +30,7 @@
 (add-to-list 'load-path config-dir)
 (add-to-list 'load-path hosts-dir)
 (add-to-list 'load-path versions-dir)
+(add-to-list 'load-path files-dir)
 
 ;; Secret file
 (let ((secret-file (concat files-dir "secret.el")))
