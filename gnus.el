@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-16 17:08:09>
+;; Time-stamp: <2015-12-16 19:54:08>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -142,25 +142,11 @@
                                               (nnir-search-engine imap))))
 
 ;; SMTP
-(defun set-smtp-server1 ()
-  (let ((addr (-secret-gnus-addr "server1"))
-        (server (-secret-gnus-smtp "server1"))
-        (domain "qsdfgh.com"))
-    (setq user-mail-address addr)
-    (setq message-send-mail-function 'smtpmail-send-it
-          smtpmail-starttls-credentials `((,server 25 nil nil))
-          smtpmail-auth-credentials `((,server 25 ,addr nil))
-          smtpmail-default-smtp-server server
-          smtpmail-smtp-server server
-          smtpmail-smtp-service 25
-          smtpmail-local-domain domain)))
-
-(defun set-smtp-server2 ()
-  (let ((addr (-secret-gnus-addr "server2"))
-        (server (-secret-gnus-smtp "server2"))
-        (domain "gmail.com"))
-    (setq user-mail-address addr)
-    (setq message-send-mail-function 'smtpmail-send-it
+(defun set-smtp-server (name domain)
+  (let ((addr (-secret-gnus-addr name))
+        (server (-secret-gnus-smtp name)))
+    (setq user-mail-address addr
+          message-send-mail-function 'smtpmail-send-it
           smtpmail-starttls-credentials `((,server 25 nil nil))
           smtpmail-auth-credentials `((,server 25 ,addr nil))
           smtpmail-default-smtp-server server
@@ -171,8 +157,8 @@
 (add-hook 'message-mode-hook
           '(lambda ()
              (cond
-              ((string-match "Qsdfgh" gnus-newsgroup-name) (set-smtp-server1))
-              ((string-match "Gmail" gnus-newsgroup-name) (set-smtp-server2))
+              ((string-match "Qsdfgh" gnus-newsgroup-name) (set-smtp-server "server1" "qsdfgh.com"))
+              ((string-match "Gmail" gnus-newsgroup-name) (set-smtp-server "server2" "gmail.com"))
               ((t (error "No SMTP server to select"))))))
 
 ;;; gnus.el ends here
