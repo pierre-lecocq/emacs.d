@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-16 14:37:40>
+;; Time-stamp: <2015-12-16 15:35:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -123,16 +123,16 @@
                              ("Inbox" "")))
 
 ;; IMAP
-(setq gnus-secondary-select-methods `((nnimap "qsdfgh"
+(setq gnus-secondary-select-methods `((nnimap "Qsdfgh"
                                               (nnimap-stream ssl)
-                                              (nnimap-address ,(-secret-gnus-imap "qsdfgh"))
+                                              (nnimap-address ,(-secret-gnus-imap "server1"))
                                               (nnimap-inbox "INBOX")
                                               (nnimap-split-methods default)
                                               (nnimap-expunge-on-close 'always)
                                               (nnir-search-engine imap))
-                                      (nnimap "gmail"
+                                      (nnimap "Gmail"
                                               (nnimap-stream ssl)
-                                              (nnimap-address ,(-secret-gnus-imap "gmail"))
+                                              (nnimap-address ,(-secret-gnus-imap "server2"))
                                               (nnimap-server-port 993)
                                               (nnimap-inbox "INBOX")
                                               (nnimap-split-methods default)
@@ -140,9 +140,9 @@
                                               (nnir-search-engine imap))))
 
 ;; SMTP
-(defun set-smtp-qsdfgh ()
-  (let ((addr (-secret-gnus-addr "qsdfgh"))
-        (server (-secret-gnus-smtp "qsdfgh"))
+(defun set-smtp-server1 ()
+  (let ((addr (-secret-gnus-addr "server1"))
+        (server (-secret-gnus-smtp "server1"))
         (domain "qsdfgh.com"))
     (setq user-mail-address addr)
     (setq message-send-mail-function 'smtpmail-send-it
@@ -153,9 +153,9 @@
           smtpmail-smtp-service 25
           smtpmail-local-domain domain)))
 
-(defun set-smtp-gmail ()
-  (let ((addr (-secret-gnus-addr "gmail"))
-        (server (-secret-gnus-smtp "gmail"))
+(defun set-smtp-server2 ()
+  (let ((addr (-secret-gnus-addr "server2"))
+        (server (-secret-gnus-smtp "server2"))
         (domain "gmail.com"))
     (setq user-mail-address addr)
     (setq message-send-mail-function 'smtpmail-send-it
@@ -169,8 +169,8 @@
 (add-hook 'message-mode-hook
           '(lambda ()
              (cond
-              ((string-match "qsdfgh" gnus-newsgroup-name) (set-smtp-qsdfgh))
-              ((string-match "gmail" gnus-newsgroup-name) (set-smtp-gmail))
+              ((string-match "Qsdfgh" gnus-newsgroup-name) (set-smtp-server1))
+              ((string-match "Gmail" gnus-newsgroup-name) (set-smtp-server2))
               ((t (error "No SMTP server to select"))))))
 
 ;;; gnus.el ends here
