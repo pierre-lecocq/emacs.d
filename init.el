@@ -7,8 +7,6 @@
 
 ;;; Code:
 
-(defvar please-compile-lisp nil)
-
 ;; Directories
 (defvar root-dir   "~/src/emacs.d/") ;; (file-name-as-directory (file-truename (file-name-directory load-file-name)))
 (defvar lisp-dir    (concat root-dir "lisp/"))
@@ -22,7 +20,6 @@
 (defvar packages-dir (concat vendor-dir "packages/"))
 
 (unless (file-exists-p files-dir)
-  (setq please-compile-lisp t)
   (make-directory files-dir t))
 
 ;; Add some config directories to load-path
@@ -70,9 +67,5 @@
 
 (when (file-exists-p version-file)
   (load version-file 'noerror))
-
-;; Compile if needed
-;; (when please-compile-lisp
-;;   (byte-recompile-directory lisp-dir 0))
 
 ;;; init.el ends here
