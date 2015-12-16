@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-16 15:35:42>
+;; Time-stamp: <2015-12-16 17:08:09>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -24,10 +24,10 @@
 (setq-default read-mail-command 'gnus
               gnus-select-method '(nnml "")
               gnus-large-newsgroup 'nil ;; No expiration
-              gnus-fetch-old-headers 'some ;; Load read messages
+              gnus-fetch-old-headers t ;; Load read messages
               mm-text-html-renderer 'w3m
               gnus-inhibit-images nil
-              gnus-ignored-newsgroups ""
+              gnus-read-newsrc-file nil
               gnus-topic-display-empty-topics nil
               gnus-summary-thread-gathering-function 'gnus-gather-threads-by-references
               gnus-thread-sort-functions '(gnus-thread-sort-by-most-recent-date)
@@ -109,6 +109,8 @@
    (horizontal 1.0
                (vertical 55 (group 1.0))
                (vertical 1.0 (summary 1.0 point)))))
+
+(add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ;; Split
 (setq nnimap-split-inbox '("INBOX")
