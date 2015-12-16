@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-16 15:38:15>
+;; Time-stamp: <2015-12-16 23:06:31>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
