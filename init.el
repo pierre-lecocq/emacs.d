@@ -14,9 +14,9 @@
 (defvar lisp-dir    (concat root-dir "lisp/"))
 (defvar vendor-dir  (concat root-dir "vendor/"))
 
+(defvar config-dir (concat lisp-dir "config/"))
 (defvar hosts-dir (concat lisp-dir "hosts/"))
 (defvar versions-dir (concat lisp-dir "versions/"))
-(defvar config-dir (concat lisp-dir "config/"))
 
 (defvar files-dir (concat vendor-dir "files/"))
 (defvar packages-dir (concat vendor-dir "packages/"))
@@ -31,10 +31,10 @@
 (add-to-list 'load-path versions-dir)
 
 ;; Secret file
-(defvar secret-file (concat lisp-dir "secret.el"))
+(defvar secret-file (concat config-dir "secret.el"))
 
 (if (file-exists-p secret-file)
-    (load-file secret-file)
+    (require 'secret)
   (error "%s not found" secret-file))
 
 ;; Early requires

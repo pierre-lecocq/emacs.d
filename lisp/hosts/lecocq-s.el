@@ -31,10 +31,10 @@
 
 (setq projects-tags-bin "xargs ctags -e -R -a")
 
-(setq projects-tags-alist '(("fotolia" . ((root . (concat ftl-path-prefix "/www/fotolia"))
-                                          (directories . ((concat ftl-path-prefix "/www/fotolia/include/Fotolia")
-                                                          (concat ftl-path-prefix "/www/fotolia/app/controllers")
-                                                          (concat ftl-path-prefix "/www/fotolia/app/controllersV4")))
+(setq projects-tags-alist `(("fotolia" . ((root . ,(ftl-secret-path "/www/fotolia"))
+                                          (directories . (,(ftl-secret-path "/www/fotolia/include/Fotolia")
+                                                          ,(ftl-secret-path "/www/fotolia/app/controllers")
+                                                          ,(ftl-secret-path "/www/fotolia/app/controllersV4")))
                                          (files . ("*.php"))))))
 
 ;;; lecocq-s.el ends here
