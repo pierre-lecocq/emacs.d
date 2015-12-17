@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-17 21:27:47>
+;; Time-stamp: <2015-12-17 21:35:10>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -179,7 +179,6 @@
           '(lambda ()
              (cond
               ((string-match "Qsdfgh" gnus-newsgroup-name) (set-smtp-server "server1" "qsdfgh.com"))
-              ((string-match "Gmail" gnus-newsgroup-name) (set-smtp-server "server2" "gmail.com"))
-              ((t (error "No SMTP server to select"))))))
+              ((string-match "Gmail" gnus-newsgroup-name) (set-smtp-server "server2" "gmail.com")))))
 
 ;;; gnus.el ends here
