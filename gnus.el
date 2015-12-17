@@ -1,6 +1,6 @@
 ;;; gnus.el --- Gnus init file
 
-;; Time-stamp: <2015-12-16 22:32:56>
+;; Time-stamp: <2015-12-17 21:27:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -87,7 +87,7 @@
                           "nnimap+Qsdfgh:Misc"
                           "nnimap+Qsdfgh:Trash")
                          ("misc"
-                          "nndraft:drafts"))
+                          "nndraft:drafts")))
 
 ;; PGP
 (setq epg-debug t ;;  *epg-debug*" buffer
@@ -105,8 +105,9 @@
       mm-verify-option 'always
       mm-decrypt-option 'always
       mm-sign-option nil ;; mm-sign-option 'guided
-      gnus-buttonized-mime-types
-      '("multipart/alternative" "multipart/encrypted" "multipart/signed"))
+      gnus-buttonized-mime-types '("multipart/alternative"
+                                   "multipart/encrypted"
+                                   "multipart/signed"))
 
 (defadvice mml2015-sign (after mml2015-sign-rename (cont) act)
   (save-excursion
