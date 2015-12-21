@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2015-12-08 23:53:01>
+;; Time-stamp: <2015-12-21 16:56:22>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -36,7 +36,8 @@
   (rainbow-delimiters-mode)
   (rainbow-mode)
   ;; (global-flycheck-mode)
-  )
+  (set-face-underline 'font-lock-warning-face "red")
+  (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook #'hook-prog-mode)
 
