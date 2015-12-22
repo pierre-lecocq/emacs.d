@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-16 23:06:31>
+;; Time-stamp: <2015-12-22 17:34:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -51,10 +51,11 @@
                             (vc-mode vc-mode)
                             ;; ERC
                             " "
-                            (:eval (let ((chans '()))
-                                     (dolist (buf (erc-channel-list erc-process))
-                                       (add-to-list 'chans (buffer-name buf)))
-                                     (mapconcat 'identity chans ", ")))))))
+                            (:eval (when (fboundp 'erc-channel-list)
+                                     (let ((chans '()))
+                                       (dolist (buf (erc-channel-list erc-process))
+                                         (add-to-list 'chans (buffer-name buf)))
+                                       (mapconcat 'identity chans ", "))))))))
 
 (use-package autopair :ensure t
   :init (autopair-global-mode t))
