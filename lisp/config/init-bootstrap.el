@@ -50,7 +50,7 @@
       password-cache-expiry nil
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       custom-file (concat files-dir "custom.el")
-      tramp-persistency-file-name (concat files-dir "tramp")
+;;      tramp-persistency-file-name (concat files-dir "tramp")
       host-file (concat hosts-dir (replace-regexp-in-string "[^A-Za-z0-9_-]" "-" (downcase (car (split-string (system-name) "\\.")))) ".el")
       version-file (concat versions-dir (number-to-string emacs-major-version) ".el"))
 
