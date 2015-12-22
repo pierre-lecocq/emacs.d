@@ -35,7 +35,6 @@
   (hs-minor-mode t)
   (rainbow-delimiters-mode)
   (rainbow-mode)
-  ;; (global-flycheck-mode)
   (set-face-underline 'font-lock-warning-face "red")
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t))))
 
@@ -77,14 +76,7 @@
 
 (add-hook 'before-save-hook #'hook-before-save)
 
-(defun hook-after-save ()
-  "Hook after save."
-  ;; Byte compile only my elisp files
-  (when (and (string-match (expand-file-name "~/") buffer-file-name)
-             (string= major-mode "emacs-lisp-mode"))
-    (emacs-lisp-byte-compile)))
-
-;; (add-hook 'after-save-hook #'hook-after-save)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 (provide 'init-hooks)
 
