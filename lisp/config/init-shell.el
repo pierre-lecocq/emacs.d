@@ -1,6 +1,6 @@
 ;;; init-shell.el --- Emacs configuration - shell
 
-;; Time-stamp: <2015-12-08 23:52:36>
+;; Time-stamp: <2016-01-04 20:50:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,8 @@
 
 (require 'eshell)
 (require 'em-alias)
+
+(setq eshell-directory-name (concat files-dir "eshell"))
 
 (defun pl-get-shell ()
   "Get a shell buffer."
@@ -19,6 +21,11 @@
       (if (member (get-buffer "*eshell*") (buffer-list))
           (switch-to-buffer "*eshell*")
         (eshell)))))
+
+(defun pl-clear-shell ()
+  "Clear shell."
+  (interactive)
+  (recenter-top-bottom 0))
 
 (defun hook-shell-mode ()
   "Hook for Shell mode."
