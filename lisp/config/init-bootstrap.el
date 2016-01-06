@@ -1,6 +1,6 @@
 ;;; init-bootstrap.el --- Emacs configuration - bootstrap
 
-;; Time-stamp: <2015-12-23 10:18:12>
+;; Time-stamp: <2016-01-06 08:38:02>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -50,9 +50,7 @@
       password-cache-expiry nil
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       custom-file (concat files-dir "custom.el")
-      tramp-persistency-file-name (concat files-dir "remote")
-      host-file (concat hosts-dir (replace-regexp-in-string "[^A-Za-z0-9_-]" "-" (downcase (car (split-string (system-name) "\\.")))) ".el")
-      version-file (concat versions-dir (number-to-string emacs-major-version) ".el"))
+      tramp-persistency-file-name (concat files-dir "remote"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 

@@ -1,6 +1,6 @@
 ;;; init-functions.el --- Emacs config - functions
 
-;; Time-stamp: <2015-12-08 23:52:30>
+;; Time-stamp: <2016-01-06 08:45:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -52,6 +52,10 @@ Argument VALUE 0 = transparent, 100 = opaque."
     (while (< (point) end)
       (funcall #'pl-join-lines)
       (forward-line 1))))
+
+(defun pl-clean-system-name ()
+  "Get a clean system name."
+  (replace-regexp-in-string "[^A-Za-z0-9_-]" "-" (downcase (car (split-string (system-name) "\\.")))))
 
 (defun org-font-lock-ensure (beg end)
   "Org font lock ensure from BEG to END."
