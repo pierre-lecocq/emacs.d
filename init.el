@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-06 08:45:19>
+;; Time-stamp: <2016-01-06 08:48:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -65,9 +65,7 @@
 ;; Load host and version specific file at the end to eventually override defaults
 (let ((host-file (concat hosts-dir (pl-clean-system-name) ".el"))
       (version-file (concat versions-dir (number-to-string emacs-major-version) ".el")))
-  (when (file-exists-p host-file)
-    (load host-file 'noerror))
-  (when (file-exists-p version-file)
-    (load version-file 'noerror)))
+  (load host-file 'noerror)
+  (load version-file 'noerror))
 
 ;;; init.el ends here
