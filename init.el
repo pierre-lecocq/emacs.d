@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-06 08:48:50>
+;; Time-stamp: <2016-01-12 10:15:11>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,7 +46,7 @@
 (require 'init-completion)
 (require 'init-encrypt)
 (require 'init-filetypes)
-(require 'init-ido)
+;; (require 'init-ido)
 (require 'init-indent)
 (require 'init-lisp)
 (require 'init-locale)
@@ -54,6 +54,7 @@
 (require 'init-ruby)
 (require 'init-shell)
 (require 'init-spelling)
+(require 'init-swiper)
 (require 'init-text)
 (require 'init-web)
 
