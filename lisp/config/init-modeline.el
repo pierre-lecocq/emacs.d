@@ -1,15 +1,20 @@
 ;;; init-mode-line.el --- Emacs configuration - modeline
 
-;; Time-stamp: <2016-01-18 15:38:55>
+;; Time-stamp: <2016-01-18 21:39:31>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(defvar original-mode-line-format   mode-line-format)
-(defvar is-custom-mode-line-loaded  t)
+;; Add modes that require the default mode-line
 (defvar default-mode-line-modes     '(erc-mode))
+
+;; Do not edit this
+(defvar original-mode-line-format   mode-line-format)
+(defvar is-custom-mode-line-loaded  nil)
+(defvar useless-modes               '(fundamental-mode
+                                      minibuffer-inactive-mode))
 
 (defun pl-set-custom-mode-line ()
   "Set custom mode-line format."
@@ -29,15 +34,15 @@
 
 (defun hook-after-change-major-mode ()
   "Hook for after-change-major."
-  (if (member major-mode default-mode-line-modes)
-      (when is-custom-mode-line-loaded
-        (pl-set-default-mode-line))
-    (unless is-custom-mode-line-loaded
-      (pl-set-custom-mode-line))))
+  (unless (member major-mode useless-modes)
+    (if (member major-mode default-mode-line-modes)
+        (when is-custom-mode-line-loaded
+          (pl-set-default-mode-line))
+      (unless is-custom-mode-line-loaded
+        (pl-set-custom-mode-line)))))
 
+;; BUG: not called when switching to existing buffers, even if in the required modes
 (add-hook 'after-change-major-mode-hook #'hook-after-change-major-mode)
-
-(pl-set-custom-mode-line)
 
 (provide 'init-modeline)
 
