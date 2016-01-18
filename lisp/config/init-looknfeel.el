@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2015-12-22 17:34:12>
+;; Time-stamp: <2016-01-18 14:23:17>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -38,24 +38,6 @@
                       :height 120
                       :weight 'normal
                       :width 'normal))
-
-(setq-default mode-line-format
-              (list (quote ((:eval (if (buffer-modified-p)
-                                       (propertize " %b" 'face 'bold-italic)
-                                     (propertize " %b" 'face 'bold)))
-                            ;; Position and major mode
-                            " | %l:%c %p:%I | %m" ;; (format " %s" minor-mode-alist)
-                            ;; Which function
-                            (which-function-mode (" " which-func-format))
-                            ;; VC
-                            (vc-mode vc-mode)
-                            ;; ERC
-                            " "
-                            (:eval (when (fboundp 'erc-channel-list)
-                                     (let ((chans '()))
-                                       (dolist (buf (erc-channel-list erc-process))
-                                         (add-to-list 'chans (buffer-name buf)))
-                                       (mapconcat 'identity chans ", "))))))))
 
 (use-package autopair :ensure t
   :init (autopair-global-mode t))

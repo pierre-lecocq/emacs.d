@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-12 14:25:43>
+;; Time-stamp: <2016-01-18 14:19:04>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -39,6 +39,7 @@
 ;; Early requires
 (require 'init-bootstrap)
 (require 'init-looknfeel)
+(require 'init-modeline)
 
 ;; Standard requires
 (require 'init-autoinsert)
