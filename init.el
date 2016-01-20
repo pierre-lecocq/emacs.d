@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-18 14:19:04>
+;; Time-stamp: <2016-01-20 09:20:40>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,60 +14,54 @@
 ;; Directories
 (defvar root-dir        "~/src/emacs.d/") ;; (file-name-as-directory (file-truename (file-name-directory load-file-name)))
 (defvar lisp-dir        (concat root-dir "lisp/"))
-(defvar vendor-dir      (concat root-dir "vendor/"))
-(defvar config-dir      (concat lisp-dir "config/"))
-(defvar hosts-dir       (concat lisp-dir "hosts/"))
-(defvar versions-dir    (concat lisp-dir "versions/"))
-(defvar files-dir       (concat vendor-dir "files/"))
-(defvar packages-dir    (concat vendor-dir "packages/"))
+(defvar files-dir       (concat root-dir "files/"))
+(defvar packages-dir    (concat root-dir "packages/"))
 
 (unless (file-exists-p files-dir)
   (make-directory files-dir t))
 
 ;; Add some config directories to load-path
-(add-to-list 'load-path config-dir)
-(add-to-list 'load-path hosts-dir)
-(add-to-list 'load-path versions-dir)
+(add-to-list 'load-path lisp-dir)
 (add-to-list 'load-path files-dir)
 
 ;; Secret file
 (let ((secret-file (concat files-dir "secret.el")))
   (if (file-exists-p secret-file)
       (require 'secret)
-    (error "%s not found.  Please copy and adapt it from %ssecret.el-sample" secret-file config-dir)))
+    (error "%s not found.  Please copy and adapt it from %s_secret.el-sample" secret-file lisp-dir)))
 
 ;; Early requires
-(require 'init-bootstrap)
-(require 'init-looknfeel)
-(require 'init-modeline)
+(require 'config-bootstrap)
+(require 'config-looknfeel)
+(require 'config-modeline)
 
 ;; Standard requires
-(require 'init-autoinsert)
-(require 'init-bookmark)
-(require 'init-completion)
-(require 'init-encrypt)
-(require 'init-ffip)
-(require 'init-filetypes)
-;; (require 'init-ido)
-(require 'init-indent)
-(require 'init-lisp)
-(require 'init-locale)
-(require 'init-recentf)
-(require 'init-ruby)
-(require 'init-shell)
-(require 'init-spelling)
-(require 'init-swiper)
-(require 'init-text)
-(require 'init-web)
+(require 'config-autoinsert)
+(require 'config-bookmark)
+(require 'config-completion)
+(require 'config-encrypt)
+(require 'config-ffip)
+(require 'config-filetypes)
+;; (require 'config-ido)
+(require 'config-indent)
+(require 'config-lisp)
+(require 'config-locale)
+(require 'config-recentf)
+(require 'config-ruby)
+(require 'config-shell)
+(require 'config-spelling)
+(require 'config-swiper)
+(require 'config-text)
+(require 'config-web)
 
 ;; Late requires
-(require 'init-hooks)
-(require 'init-functions)
-(require 'init-keybindings)
+(require 'config-hooks)
+(require 'config-functions)
+(require 'config-keybindings)
 
 ;; Load host and version specific file at the end to eventually override defaults
-(let ((host-file (concat hosts-dir (pl-clean-system-name) ".el"))
-      (version-file (concat versions-dir (number-to-string emacs-major-version) ".el")))
+(let ((host-file (concat lisp-dir (pl-clean-system-name) ".el"))
+      (version-file (concat lisp-dir (number-to-string emacs-major-version) ".el")))
   (load host-file 'noerror)
   (load version-file 'noerror))
 
