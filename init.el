@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-20 09:20:40>
+;; Time-stamp: <2016-01-20 22:44:56>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,7 +28,7 @@
 (let ((secret-file (concat files-dir "secret.el")))
   (if (file-exists-p secret-file)
       (require 'secret)
-    (error "%s not found.  Please copy and adapt it from %s_secret.el-sample" secret-file lisp-dir)))
+    (error "%s not found.  Please copy and adapt it from %ssecret.el-sample" secret-file lisp-dir)))
 
 ;; Early requires
 (require 'config-bootstrap)
