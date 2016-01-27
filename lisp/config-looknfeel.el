@@ -1,11 +1,13 @@
 ;;; config-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-01-20 09:07:39>
+;; Time-stamp: <2016-01-27 14:18:32>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(defvar pl-current-theme-name)
 
 (require 'linum)
 (require 'paren)
@@ -52,7 +54,9 @@
 (use-package browse-kill-ring :ensure t)
 
 (use-package darkmine-theme :ensure t
-  :init (load-theme 'darkmine t))
+  :init (progn
+          (setq pl-current-theme-name "darkmine")
+          (load-theme 'darkmine t)))
 
 (use-package idle-highlight-mode :ensure t)
 

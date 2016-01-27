@@ -1,6 +1,6 @@
 ;;; config-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2016-01-20 09:06:40>
+;; Time-stamp: <2016-01-21 16:07:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

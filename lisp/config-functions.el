@@ -1,11 +1,28 @@
 ;;; config-functions.el --- Emacs config - functions
 
-;; Time-stamp: <2016-01-20 09:06:15>
+;; Time-stamp: <2016-01-27 14:14:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(defun pl-switch-theme ()
+  "Switch theme between dark and light ones."
+  (interactive)
+  (if (string-match pl-current-theme-name "darkmine")
+      (progn
+        (disable-theme 'darkmine)
+        (load-theme 'dichromacy t)
+        (global-hl-line-mode -1)
+        (setq show-paren-style 'parenthesis)
+        (setq pl-current-theme-name "dichromacy"))
+    (progn
+      (disable-theme 'dichromacy)
+      (load-theme 'darkmine t)
+      (global-hl-line-mode 1)
+      (setq show-paren-style 'expression)
+      (setq pl-current-theme-name "darkmine"))))
 
 (defun pl-kill-buffers-by-mode (&optional mode-name)
   "Kill buffers by mode.  Ask which mode if MODE-NAME is not provided."
