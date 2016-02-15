@@ -1,6 +1,6 @@
 ;;; config-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2016-01-20 09:03:18>
+;; Time-stamp: <2016-02-15 11:54:35>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -44,7 +44,7 @@
          " * Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          " * Description: " _ "\n"
          " */\n\n")
-        ((shell-mode . "Shell script") nil
+        ((sh-mode . "Shell script") nil
          "#!/bin/bash\n\n"
          " # File: " (file-name-nondirectory buffer-file-name) "\n"
          " # Time-stamp: <>\n"
