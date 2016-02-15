@@ -1,6 +1,6 @@
 ;;; config-functions.el --- Emacs config - functions
 
-;; Time-stamp: <2016-01-27 14:14:15>
+;; Time-stamp: <2016-02-15 10:43:33>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

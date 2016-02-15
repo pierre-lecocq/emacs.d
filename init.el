@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-01-20 22:44:56>
+;; Time-stamp: <2016-02-15 11:03:23>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -40,6 +40,7 @@
 (require 'config-bookmark)
 (require 'config-completion)
 (require 'config-encrypt)
+(require 'config-execute)
 (require 'config-ffip)
 (require 'config-filetypes)
 ;; (require 'config-ido)
