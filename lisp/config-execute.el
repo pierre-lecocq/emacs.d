@@ -1,18 +1,18 @@
 ;;; config-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-15 22:00:34>
+;; Time-stamp: <2016-02-15 22:17:13>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; ("extention" . ("lint command" "execute command"))
-(defvar pl-execute-info '(("lisp"   . (nil "sbcl --noinform --load"))
-                          ("sh"     . (nil "bash"))
-                          ("rb"     . ("ruby -c" "ruby"))
-                          ("php"    . ("php -l" "php"))
-                          ("py"     . ("pylint" "python"))))
+;; ("extention" . ("execute command" "lint command"))
+(defvar pl-execute-info '(("lisp"   . ("sbcl --noinform --load" nil))
+                          ("sh"     . ("bash"                   nil))
+                          ("rb"     . ("ruby"                   "ruby -c"))
+                          ("php"    . ("php"                    "php -l"))
+                          ("py"     . ("python"                 "pylint"))))
 
 (defun pl-lint-or-execute (action)
   "Lint or execute the current file according to ACTION."
@@ -24,7 +24,7 @@
                      (buffer-file-name))))
     (let* ((ext (file-name-extension file-name))
            (fileinfo (cdr (assoc ext pl-execute-info)))
-           (cmd-index (if (string-equal "lint" action) 0 1)))
+           (cmd-index (if (string-equal "lint" action) 1 0)))
       (unless fileinfo
         (error "Unsupported file type \"%s\"" ext))
       (let ((cmd (nth cmd-index fileinfo)))
