@@ -1,6 +1,6 @@
 ;;; config-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-15 13:40:22>
+;; Time-stamp: <2016-02-15 22:00:34>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,19 +15,22 @@
                           ("py"     . ("pylint" "python"))))
 
 (defun pl-lint-or-execute (action)
-  "Lint or execute the current file."
+  "Lint or execute the current file according to ACTION."
   (when (or (null (buffer-file-name))
             (buffer-modified-p))
     (save-buffer))
-  (let* ((ext (file-name-extension (buffer-file-name)))
-         (fileinfo (cdr (assoc ext pl-execute-info)))
-         (cmd-index (if (string-equal "lint" action) 0 1)))
-    (unless fileinfo
-      (error "Unsupported file type"))
-    (let ((cmd (nth cmd-index fileinfo)))
-      (unless cmd
-        (error "Unsupported action on this file type"))
-      (compile (concat cmd " " (buffer-file-name))))))
+  (let ((file-name (if (file-remote-p (buffer-file-name))
+                       (aref (tramp-dissect-file-name (buffer-file-name)) 3)
+                     (buffer-file-name))))
+    (let* ((ext (file-name-extension file-name))
+           (fileinfo (cdr (assoc ext pl-execute-info)))
+           (cmd-index (if (string-equal "lint" action) 0 1)))
+      (unless fileinfo
+        (error "Unsupported file type \"%s\"" ext))
+      (let ((cmd (nth cmd-index fileinfo)))
+        (unless cmd
+          (error "Unsupported action \"%s\" on this file type" action))
+        (compile (concat cmd " " file-name))))))
 
 (defun pl-lint ()
   "Lint the current file."
@@ -41,4 +44,4 @@
 
 (provide 'config-execute)
 
-;;; lisp-execute.el ends here
+;;; config-execute.el ends here
