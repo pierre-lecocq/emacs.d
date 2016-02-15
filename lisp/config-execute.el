@@ -1,16 +1,18 @@
 ;;; config-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-15 11:51:47>
+;; Time-stamp: <2016-02-15 13:40:22>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(defvar pl-execute-info '(("rb"  . ("ruby -c" "ruby"))
-                          ("py"  . ("pylint" "python"))
-                          ("sh"  . (nil "bash"))
-                          ("php" . ("php -l" "php"))))
+;; ("extention" . ("lint command" "execute command"))
+(defvar pl-execute-info '(("lisp"   . (nil "sbcl --noinform --load"))
+                          ("sh"     . (nil "bash"))
+                          ("rb"     . ("ruby -c" "ruby"))
+                          ("php"    . ("php -l" "php"))
+                          ("py"     . ("pylint" "python"))))
 
 (defun pl-lint-or-execute (action)
   "Lint or execute the current file."
