@@ -1,6 +1,6 @@
 ;;; config-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-15 22:17:13>
+;; Time-stamp: <2016-02-15 22:22:08>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,18 +19,18 @@
   (when (or (null (buffer-file-name))
             (buffer-modified-p))
     (save-buffer))
-  (let ((file-name (if (file-remote-p (buffer-file-name))
-                       (aref (tramp-dissect-file-name (buffer-file-name)) 3)
-                     (buffer-file-name))))
-    (let* ((ext (file-name-extension file-name))
-           (fileinfo (cdr (assoc ext pl-execute-info)))
-           (cmd-index (if (string-equal "lint" action) 1 0)))
-      (unless fileinfo
-        (error "Unsupported file type \"%s\"" ext))
-      (let ((cmd (nth cmd-index fileinfo)))
-        (unless cmd
-          (error "Unsupported action \"%s\" on this file type" action))
-        (compile (concat cmd " " file-name))))))
+  (let* ((file-name (if (file-remote-p (buffer-file-name))
+                        (aref (tramp-dissect-file-name (buffer-file-name)) 3)
+                      (buffer-file-name)))
+         (ext (file-name-extension file-name))
+         (fileinfo (cdr (assoc ext pl-execute-info)))
+         (cmd-index (if (string-equal "lint" action) 1 0)))
+    (unless fileinfo
+      (error "Unsupported file type \"%s\"" ext))
+    (let ((cmd (nth cmd-index fileinfo)))
+      (unless cmd
+        (error "Unsupported action \"%s\" on this file type" action))
+      (compile (concat cmd " " file-name)))))
 
 (defun pl-lint ()
   "Lint the current file."
