@@ -1,6 +1,6 @@
 ;;; config-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-01-27 14:18:32>
+;; Time-stamp: <2016-02-17 17:54:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -40,6 +40,10 @@
                       :height 120
                       :weight 'normal
                       :width 'normal))
+
+(use-package ace-window :ensure t
+  :bind (("C-x o" . ace-window)
+         ("C-;" . ace-window)))
 
 (use-package autopair :ensure t
   :init (autopair-global-mode t))
