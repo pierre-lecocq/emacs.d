@@ -1,6 +1,6 @@
 ;;; config-mode-line.el --- Emacs configuration - modeline
 
-;; Time-stamp: <2016-02-17 19:09:30>
+;; Time-stamp: <2016-02-17 19:24:23>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -20,7 +20,9 @@
   (interactive)
   (setq custom-mode-line-p t)
   (setq-default mode-line-format
-                (list (quote ((:eval (if (buffer-modified-p) (propertize " %b" 'face 'bold-italic) (propertize " %b" 'face 'bold)))
+                (list (quote ((:eval (let ((foreground-value (if (and (buffer-file-name) (file-remote-p (buffer-file-name))) "yellow" "white"))
+                                           (slant-value (if (buffer-modified-p) 'italic 'normal)))
+                                       (propertize " %b" 'font-lock-face `(:weight bold :slant ,slant-value :foreground ,foreground-value))))
                               " | %l:%c %p:%I | %m" ;; (format " %s" minor-mode-alist)
                               (which-function-mode (" " which-func-format))
                               (vc-mode vc-mode))))))
