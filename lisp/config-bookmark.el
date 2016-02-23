@@ -1,6 +1,6 @@
 ;;; config-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2016-02-15 22:02:22>
+;; Time-stamp: <2016-02-16 14:37:52>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,7 @@
       bookmark-alist `(("Home"          (filename . "~/"))
                        ("Sources"       (filename . "~/src"))
                        ("Emacs"         (filename . "~/src/emacs.d"))
+                       ("Kenny"         (filename . "/scp:kenny:/home/pi"))
                        ("Qsdfgh"        (filename . ,(-secret-path-qsd "/home/www")))
                        ("Fotolia"       (filename . ,(-secret-path-ftl "/www/fotolia")))
                        ("AdobeStock"    (filename . ,(-secret-path-adb "/www/adobestock")))))
