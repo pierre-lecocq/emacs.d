@@ -1,6 +1,6 @@
 ;;; config-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-15 22:22:08>
+;; Time-stamp: <2016-02-17 17:48:43>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,7 +30,8 @@
     (let ((cmd (nth cmd-index fileinfo)))
       (unless cmd
         (error "Unsupported action \"%s\" on this file type" action))
-      (compile (concat cmd " " file-name)))))
+      (compile (concat cmd " " file-name))
+      (select-window (get-buffer-window "*compilation*")))))
 
 (defun pl-lint ()
   "Lint the current file."
