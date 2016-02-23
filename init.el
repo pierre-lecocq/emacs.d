@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-02-23 22:37:03>
+;; Time-stamp: <2016-02-23 23:04:54>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -48,6 +48,7 @@
 (require 'config-indent)
 (require 'config-lisp)
 (require 'config-locale)
+(require 'config-newsticker)
 (require 'config-recentf)
 (require 'config-ruby)
 (require 'config-shell)
