@@ -1,6 +1,6 @@
 ;;; config-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2016-02-17 17:55:42>
+;; Time-stamp: <2016-02-24 08:40:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,7 +16,7 @@
 
 (global-set-key (kbd "M-*") 'pop-tag-mark)
 (global-set-key (kbd "M-g") 'goto-line)
-;; (global-set-key (kbd "C-;") 'other-window)
+(global-set-key (kbd "C-;") 'other-window)
 (global-set-key (kbd "M-y") 'browse-kill-ring)
 (global-set-key (kbd "M-o") 'occur)
 (global-set-key (kbd "C-c C-c") 'comment-region)

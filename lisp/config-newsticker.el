@@ -1,18 +1,16 @@
 ;;; config-newsticker.el --- Emacs configuration - newsticker
 
-;; Time-stamp: <2016-02-23 23:03:48>
+;; Time-stamp: <2016-02-24 08:39:18>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package w3m
-  :ensure t
+(use-package w3m :ensure t
   :commands w3m-region)
 
-(use-package newsticker
-  :ensure t
+(use-package newsticker :ensure t
   :init (progn
           (setq newsticker-retrieval-interval 600 ;; 10mins
                 newsticker-html-renderer 'w3m-region
