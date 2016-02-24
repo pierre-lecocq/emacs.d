@@ -9,7 +9,7 @@
 
 (require 'bookmark)
 
-(setq bookmark-default-file (concat files-dir "bookmarks")
+(setq bookmark-default-file (concat vendor-dir "bookmarks")
       bookmark-sort-flag nil
       bookmark-alist `(("Home"          (filename . "~/"))
                        ("Sources"       (filename . "~/src"))

@@ -9,6 +9,6 @@
 
 (require 'nsm)
 
-(setq nsm-settings-file (concat files-dir "network-security.data"))
+(setq nsm-settings-file (concat vendor-dir "network-security.data"))
 
 ;;; version-25.el ends here

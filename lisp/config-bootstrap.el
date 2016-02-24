@@ -49,8 +49,8 @@
       vc-follow-symlinks t
       password-cache-expiry nil
       uniquify-buffer-name-style 'forward uniquify-separator "/"
-      custom-file (concat files-dir "custom.el")
-      tramp-persistency-file-name (concat files-dir "remote"))
+      custom-file (concat vendor-dir "custom.el")
+      tramp-persistency-file-name (concat vendor-dir "remote"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 

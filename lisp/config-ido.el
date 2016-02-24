@@ -17,7 +17,7 @@
   :init (progn
           (require 'ido)
           (require 'ido-hacks)
-          (setq ido-save-directory-list-file (concat files-dir "ido.last")
+          (setq ido-save-directory-list-file (concat vendor-dir "ido.last")
                 ido-case-fold t
                 ido-enable-flex-matching t
                 ido-use-filename-at-point 'guess

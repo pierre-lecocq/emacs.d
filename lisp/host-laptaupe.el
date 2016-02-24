@@ -10,7 +10,6 @@
 (when (display-graphic-p)
   (pl-transparency 90))
 
-(require 'init-elfeed)
 (require 'init-erc)
 
 ;;; host-laptaupe.el ends here

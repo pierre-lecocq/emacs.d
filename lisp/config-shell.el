@@ -10,7 +10,7 @@
 (require 'eshell)
 (require 'em-alias)
 
-(setq eshell-directory-name (concat files-dir "eshell"))
+(setq eshell-directory-name (concat vendor-dir "eshell"))
 
 (defun pl-get-shell ()
   "Get a shell buffer."
