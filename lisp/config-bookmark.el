@@ -1,6 +1,6 @@
 ;;; config-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2016-02-16 14:37:52>
+;; Time-stamp: <2016-02-24 10:39:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 
 (require 'bookmark)
 
-(setq bookmark-default-file (concat vendor-dir "bookmarks")
+(setq bookmark-default-file (concat files-dir "bookmarks")
       bookmark-sort-flag nil
       bookmark-alist `(("Home"          (filename . "~/"))
                        ("Sources"       (filename . "~/src"))

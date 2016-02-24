@@ -1,6 +1,6 @@
 ;;; config-erc.el --- Emacs configuration - ERC
 
-;; Time-stamp: <2016-01-20 09:04:55>
+;; Time-stamp: <2016-02-24 10:39:51>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,7 +15,7 @@
                 erc-input-line-position -2
                 erc-log-insert-log-on-open nil
                 erc-log-channels t
-                erc-log-channels-directory (concat vendor-dir "erc")
+                erc-log-channels-directory (concat files-dir "erc")
                 erc-save-buffer-on-part t
                 erc-hide-timestamps nil
                 erc-hide-list '("JOIN" "PART" "QUIT")

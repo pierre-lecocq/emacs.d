@@ -1,6 +1,6 @@
 ;;; config-recentf --- Emacs config - recentf
 
-;; Time-stamp: <2016-01-20 09:08:03>
+;; Time-stamp: <2016-02-24 10:40:09>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,10 +14,10 @@
 (setq recentf-auto-cleanup 'never
       recentf-max-menu-items 50
       recentf-keep '(file-remote-p file-readable-p)
-      recentf-save-file (concat vendor-dir "recentf"))
+      recentf-save-file (concat files-dir "recentf"))
 
 (add-to-list 'recentf-exclude packages-dir)
-(add-to-list 'recentf-exclude vendor-dir)
+(add-to-list 'recentf-exclude files-dir)
 
 (provide 'config-recentf)
 

@@ -1,6 +1,6 @@
 ;;; config-bootstrap.el --- Emacs configuration - bootstrap
 
-;; Time-stamp: <2016-01-20 09:04:02>
+;; Time-stamp: <2016-02-24 10:39:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -49,8 +49,8 @@
       vc-follow-symlinks t
       password-cache-expiry nil
       uniquify-buffer-name-style 'forward uniquify-separator "/"
-      custom-file (concat vendor-dir "custom.el")
-      tramp-persistency-file-name (concat vendor-dir "remote"))
+      custom-file (concat files-dir "custom.el")
+      tramp-persistency-file-name (concat files-dir "remote"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 

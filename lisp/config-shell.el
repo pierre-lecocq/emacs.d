@@ -1,6 +1,6 @@
 ;;; config-shell.el --- Emacs configuration - shell
 
-;; Time-stamp: <2016-01-20 09:08:21>
+;; Time-stamp: <2016-02-24 10:40:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,7 +10,7 @@
 (require 'eshell)
 (require 'em-alias)
 
-(setq eshell-directory-name (concat vendor-dir "eshell"))
+(setq eshell-directory-name (concat files-dir "eshell"))
 
 (defun pl-get-shell ()
   "Get a shell buffer."

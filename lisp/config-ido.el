@@ -1,6 +1,6 @@
 ;;; config-ido.el --- Emacs configuration - ido
 
-;; Time-stamp: <2016-01-20 09:06:57>
+;; Time-stamp: <2016-02-24 10:39:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -17,7 +17,7 @@
   :init (progn
           (require 'ido)
           (require 'ido-hacks)
-          (setq ido-save-directory-list-file (concat vendor-dir "ido.last")
+          (setq ido-save-directory-list-file (concat files-dir "ido.last")
                 ido-case-fold t
                 ido-enable-flex-matching t
                 ido-use-filename-at-point 'guess

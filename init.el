@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-02-24 10:01:47>
+;; Time-stamp: <2016-02-24 10:38:57>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,17 +15,18 @@
 (defvar root-dir        "~/src/emacs.d/") ;; (file-name-as-directory (file-truename (file-name-directory load-file-name)))
 (defvar lisp-dir        (concat root-dir "lisp/"))
 (defvar vendor-dir      (concat root-dir "vendor/"))
-(defvar packages-dir    (concat root-dir "packages/"))
+(defvar files-dir       (concat vendor-dir "files/"))
+(defvar packages-dir    (concat vendor-dir "packages/"))
 
-(unless (file-exists-p vendor-dir)
-  (make-directory vendor-dir t))
+(unless (file-exists-p files-dir)
+  (make-directory files-dir t))
 
 ;; Add some config directories to load-path
 (add-to-list 'load-path lisp-dir)
-(add-to-list 'load-path vendor-dir)
+(add-to-list 'load-path files-dir)
 
 ;; Secret file
-(let ((secret-file (concat vendor-dir "secret.el")))
+(let ((secret-file (concat files-dir "secret.el")))
   (if (file-exists-p secret-file)
       (require 'secret)
     (error "%s not found.  Please copy and adapt it from %ssecret.el-sample" secret-file lisp-dir)))
