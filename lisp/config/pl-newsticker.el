@@ -1,6 +1,6 @@
-;;; config-newsticker.el --- Emacs configuration - newsticker
+;;; pl-newsticker.el --- Emacs configuration - newsticker
 
-;; Time-stamp: <2016-02-24 10:40:02>
+;; Time-stamp: <2016-02-29 00:02:44>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -41,6 +41,6 @@
                                     ("Other" "xkcd" "commit-strip"))))
   :bind (("C-c r" . pl-launch-newsticker)))
 
-(provide 'config-newsticker)
+(provide 'pl-newsticker)
 
-;;; config-newsticker.el ends here
+;;; pl-newsticker.el ends here

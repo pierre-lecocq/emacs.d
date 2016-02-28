@@ -1,6 +1,6 @@
-;;; config-recentf --- Emacs config - recentf
+;;; pl-recentf --- Emacs config - recentf
 
-;; Time-stamp: <2016-02-24 10:40:09>
+;; Time-stamp: <2016-02-29 00:02:51>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,6 @@
 (add-to-list 'recentf-exclude packages-dir)
 (add-to-list 'recentf-exclude files-dir)
 
-(provide 'config-recentf)
+(provide 'pl-recentf)
 
-;;; config-recentf.el ends here
+;;; pl-recentf.el ends here

@@ -1,6 +1,6 @@
-;;; config-ffip.el --- Emacs configuration - ffip
+;;; pl-ffip.el --- Emacs configuration - ffip
 
-;; Time-stamp: <2016-01-20 09:05:47>
+;; Time-stamp: <2016-02-28 23:59:30>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,6 +28,6 @@
 
 (add-hook 'prog-mode-hook 'ffip-environment)
 
-(provide 'config-ffip)
+(provide 'pl-ffip)
 
-;;; config-ffip.el ends here
+;;; pl-ffip.el ends here

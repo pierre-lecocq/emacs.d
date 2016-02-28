@@ -1,6 +1,6 @@
-;;; config-keybindings.el --- Emacs config - keybindings
+;;; pl-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2016-02-24 08:40:44>
+;; Time-stamp: <2016-02-29 00:01:53>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -49,6 +49,6 @@
     (recenter)
     (other-window 1)))
 
-(provide 'config-keybindings)
+(provide 'pl-keybindings)
 
-;;; config-keybindings.el ends here
+;;; pl-keybindings.el ends here

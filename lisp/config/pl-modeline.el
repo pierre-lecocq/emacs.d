@@ -1,6 +1,6 @@
-;;; config-mode-line.el --- Emacs configuration - modeline
+;;; pl-mode-line.el --- Emacs configuration - modeline
 
-;; Time-stamp: <2016-02-17 19:24:23>
+;; Time-stamp: <2016-02-29 00:02:37>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -45,6 +45,6 @@
 ;; BUG: not called when switching to existing buffers, even if in the required modes
 (add-hook 'after-change-major-mode-hook #'hook-after-change-major-mode)
 
-(provide 'config-modeline)
+(provide 'pl-modeline)
 
-;;; config-modeline.el ends here
+;;; pl-modeline.el ends here

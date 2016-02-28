@@ -1,6 +1,6 @@
-;;; config-shell.el --- Emacs configuration - shell
+;;; pl-shell.el --- Emacs configuration - shell
 
-;; Time-stamp: <2016-02-24 10:40:18>
+;; Time-stamp: <2016-02-29 00:03:05>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -36,6 +36,6 @@
 (add-hook 'shell-mode-hook #'hook-shell-mode)
 (add-hook 'eshell-mode-hook #'hook-shell-mode)
 
-(provide 'config-shell)
+(provide 'pl-shell)
 
-;;; config-shell.el ends here
+;;; pl-shell.el ends here

@@ -1,6 +1,6 @@
-;;; config-bootstrap.el --- Emacs configuration - bootstrap
+;;; pl-bootstrap.el --- Emacs configuration - bootstrap
 
-;; Time-stamp: <2016-02-24 10:39:42>
+;; Time-stamp: <2016-02-28 23:58:10>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -54,6 +54,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(provide 'config-bootstrap)
+(provide 'pl-bootstrap)
 
-;;; config-bootstrap.el ends here
+;;; pl-bootstrap.el ends here

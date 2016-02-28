@@ -1,6 +1,6 @@
-;;; config-erc.el --- Emacs configuration - ERC
+;;; pl-erc.el --- Emacs configuration - ERC
 
-;; Time-stamp: <2016-02-24 10:39:51>
+;; Time-stamp: <2016-02-28 23:58:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -48,6 +48,6 @@
   (interactive)
   (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre Lecocq"))
 
-(provide 'config-erc)
+(provide 'pl-erc)
 
-;;; config-erc.el ends here
+;;; pl-erc.el ends here

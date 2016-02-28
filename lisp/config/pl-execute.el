@@ -1,6 +1,6 @@
-;;; config-execute.el --- Emacs configuration - execute
+;;; pl-execute.el --- Emacs configuration - execute
 
-;; Time-stamp: <2016-02-17 17:48:43>
+;; Time-stamp: <2016-02-28 23:58:50>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -43,6 +43,6 @@
   (interactive)
   (pl-lint-or-execute "execute"))
 
-(provide 'config-execute)
+(provide 'pl-execute)
 
-;;; config-execute.el ends here
+;;; pl-execute.el ends here

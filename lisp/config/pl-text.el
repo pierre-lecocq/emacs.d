@@ -1,6 +1,6 @@
-;;; config-text.el --- Emacs configuration - text
+;;; pl-text.el --- Emacs configuration - text
 
-;; Time-stamp: <2016-01-20 09:08:43>
+;; Time-stamp: <2016-02-29 00:03:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -26,6 +26,6 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
-(provide 'config-text)
+(provide 'pl-text)
 
-;;; config-text.el ends here
+;;; pl-text.el ends here

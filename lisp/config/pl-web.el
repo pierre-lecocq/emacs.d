@@ -1,6 +1,6 @@
-;;; config-web.el --- Emacs configuration - web
+;;; pl-web.el --- Emacs configuration - web
 
-;; Time-stamp: <2016-01-20 09:08:51>
+;; Time-stamp: <2016-02-29 00:03:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,6 @@
 
 (use-package web-mode :ensure t)
 
-(provide 'config-web)
+(provide 'pl-web)
 
-;;; config-web.el ends here
+;;; pl-web.el ends here

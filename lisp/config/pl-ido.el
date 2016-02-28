@@ -1,6 +1,6 @@
-;;; config-ido.el --- Emacs configuration - ido
+;;; pl-ido.el --- Emacs configuration - ido
 
-;; Time-stamp: <2016-02-24 10:39:55>
+;; Time-stamp: <2016-02-29 00:01:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,6 +29,6 @@
           (ido-hacks-mode)
           (ido-vertical-mode)))
 
-(provide 'config-ido)
+(provide 'pl-ido)
 
-;;; config-ido.el ends here
+;;; pl-ido.el ends here

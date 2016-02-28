@@ -1,6 +1,6 @@
-;;; config-swiper.el --- Emacs configuration - swiper
+;;; pl-swiper.el --- Emacs configuration - swiper
 
-;; Time-stamp: <2016-01-20 09:08:37>
+;; Time-stamp: <2016-02-29 00:03:20>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,6 @@
           (setq ivy-height 30))
   :bind (("C-s" . swiper)))
 
-(provide 'config-swiper)
+(provide 'pl-swiper)
 
-;;; config-swiper.el ends here
+;;; pl-swiper.el ends here

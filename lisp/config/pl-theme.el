@@ -1,6 +1,6 @@
-;;; config-theme.el --- Emacs configuration - theme
+;;; pl-theme.el --- Emacs configuration - theme
 
-;; Time-stamp: <2016-02-23 22:36:22>
+;; Time-stamp: <2016-02-29 00:03:32>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,6 +27,6 @@
           (setq pl-themes-list '("tao-yin" "tao-yang"))
           (pl-switch-theme)))
 
-(provide 'config-theme)
+(provide 'pl-theme)
 
-;;; config-theme.el ends here
+;;; pl-theme.el ends here

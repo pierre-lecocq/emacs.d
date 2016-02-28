@@ -1,6 +1,6 @@
-;;; config-looknfeel.el --- Emacs config - looknfeel
+;;; pl-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-02-24 08:40:33>
+;; Time-stamp: <2016-02-29 00:02:30>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -65,6 +65,6 @@
           (setq symon-delay 5)
           (symon-mode t)))
 
-(provide 'config-looknfeel)
+(provide 'pl-looknfeel)
 
-;;; config-looknfeel.el ends here
+;;; pl-looknfeel.el ends here

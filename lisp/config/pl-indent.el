@@ -1,6 +1,6 @@
-;;; config-indent.el --- Emacs config - indent
+;;; pl-indent.el --- Emacs config - indent
 
-;; Time-stamp: <2016-01-20 09:07:05>
+;; Time-stamp: <2016-02-29 00:01:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,6 +12,6 @@
               c-hanging-comment-ender-p nil
               indent-tabs-mode nil)
 
-(provide 'config-indent)
+(provide 'pl-indent)
 
-;;; config-indent.el ends here
+;;; pl-indent.el ends here

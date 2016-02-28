@@ -1,6 +1,6 @@
-;;; config-hooks.el --- Emacs config - hooks
+;;; pl-hooks.el --- Emacs config - hooks
 
-;; Time-stamp: <2016-01-21 16:07:46>
+;; Time-stamp: <2016-02-29 00:01:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -78,6 +78,6 @@
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-(provide 'config-hooks)
+(provide 'pl-hooks)
 
-;;; config-hooks.el ends here
+;;; pl-hooks.el ends here

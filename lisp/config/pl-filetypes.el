@@ -1,6 +1,6 @@
-;;; config-filetypes.el --- Emacs config - filetypes
+;;; pl-filetypes.el --- Emacs config - filetypes
 
-;; Time-stamp: <2016-01-20 09:06:08>
+;; Time-stamp: <2016-02-29 00:00:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,6 +30,6 @@
 (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 
-(provide 'config-filetypes)
+(provide 'pl-filetypes)
 
-;;; config-filetypes.el ends here
+;;; pl-filetypes.el ends here

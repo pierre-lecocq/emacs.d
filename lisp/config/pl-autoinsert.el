@@ -1,6 +1,6 @@
-;;; config-autoinsert.el --- Emacs config - autoinsert
+;;; pl-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2016-02-15 11:54:35>
+;; Time-stamp: <2016-02-28 23:57:48>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -51,6 +51,6 @@
          " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          " # Description: " _ "\n\n")))
 
-(provide 'config-autoinsert)
+(provide 'pl-autoinsert)
 
-;;; config-autoinsert.el ends here
+;;; pl-autoinsert.el ends here

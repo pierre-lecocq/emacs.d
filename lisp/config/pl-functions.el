@@ -1,6 +1,6 @@
-;;; config-functions.el --- Emacs config - functions
+;;; pl-functions.el --- Emacs config - functions
 
-;; Time-stamp: <2016-02-23 22:36:30>
+;; Time-stamp: <2016-02-29 00:01:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -61,6 +61,6 @@ Argument VALUE 0 = transparent, 100 = opaque."
   "Org font lock ensure from BEG to END."
   (font-lock-ensure))
 
-(provide 'config-functions)
+(provide 'pl-functions)
 
-;;; config-functions.el ends here
+;;; pl-functions.el ends here

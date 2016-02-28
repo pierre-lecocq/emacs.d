@@ -1,6 +1,6 @@
-;;; config-locale --- Emacs config - locale
+;;; pl-locale --- Emacs config - locale
 
-;; Time-stamp: <2016-01-20 09:07:31>
+;; Time-stamp: <2016-02-29 00:02:23>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,6 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-(provide 'config-locale)
+(provide 'pl-locale)
 
-;;; config-locale.el ends here
+;;; pl-locale.el ends here

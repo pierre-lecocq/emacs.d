@@ -1,6 +1,6 @@
-;;; config-completion.el --- Emacs configuration - completion
+;;; pl-completion.el --- Emacs configuration - completion
 
-;; Time-stamp: <2016-01-20 09:04:10>
+;; Time-stamp: <2016-02-28 23:58:20>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,6 +16,6 @@
                 company-idle-delay 0.5)
           (global-company-mode 1)))
 
-(provide 'config-completion)
+(provide 'pl-completion)
 
-;;; config-completion.el ends here
+;;; pl-completion.el ends here

@@ -1,6 +1,6 @@
-;;; config-encrypt.el --- Emacs configuration - encrypt
+;;; pl-encrypt.el --- Emacs configuration - encrypt
 
-;; Time-stamp: <2016-01-20 09:04:40>
+;; Time-stamp: <2016-02-28 23:58:28>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,6 +16,6 @@
 
 (epa-file-enable)
 
-(provide 'config-encrypt)
+(provide 'pl-encrypt)
 
-;;; config-encrypt.el ends here
+;;; pl-encrypt.el ends here

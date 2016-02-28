@@ -1,6 +1,6 @@
-;;; config-bookmark.el --- Emacs config - bookmark
+;;; pl-bookmark.el --- Emacs config - bookmark
 
-;; Time-stamp: <2016-02-24 10:39:34>
+;; Time-stamp: <2016-02-28 23:58:02>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,6 @@
                        ("Fotolia"       (filename . ,(-secret-path-ftl "/www/fotolia")))
                        ("AdobeStock"    (filename . ,(-secret-path-adb "/www/adobestock")))))
 
-(provide 'config-bookmark)
+(provide 'pl-bookmark)
 
-;;; config-bookmark.el ends here
+;;; pl-bookmark.el ends here
