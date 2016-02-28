@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-02-24 10:38:57>
+;; Time-stamp: <2016-02-28 23:23:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
 ;;; Code:
 
 ;; Directories
-(defvar root-dir        "~/src/emacs.d/") ;; (file-name-as-directory (file-truename (file-name-directory load-file-name)))
+(defvar root-dir        "~/src/emacs.d/")
 (defvar lisp-dir        (concat root-dir "lisp/"))
 (defvar vendor-dir      (concat root-dir "vendor/"))
 (defvar files-dir       (concat vendor-dir "files/"))
@@ -45,7 +45,6 @@
 (require 'config-execute)
 (require 'config-ffip)
 (require 'config-filetypes)
-;; (require 'config-ido)
 (require 'config-indent)
 (require 'config-lisp)
 (require 'config-locale)
