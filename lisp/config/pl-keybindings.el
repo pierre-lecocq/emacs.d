@@ -1,6 +1,6 @@
 ;;; pl-keybindings.el --- Emacs config - keybindings
 
-;; Time-stamp: <2016-02-29 00:01:53>
+;; Time-stamp: <2016-02-29 09:29:54>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,7 @@
 
 (when (eq system-type 'darwin)
   (setq mac-option-modifier nil
+        mac-right-alternate-modifier nil
         mac-command-modifier 'meta
         select-enable-clipboard t))
 
