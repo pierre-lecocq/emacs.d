@@ -10,6 +10,6 @@
 (when (display-graphic-p)
   (pl-transparency 90))
 
-(require 'init-erc)
+(require 'pl-erc)
 
 ;;; host-fritebsd.el ends here
