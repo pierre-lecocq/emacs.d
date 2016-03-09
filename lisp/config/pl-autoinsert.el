@@ -1,6 +1,6 @@
 ;;; pl-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2016-02-28 23:57:48>
+;; Time-stamp: <2016-03-09 07:56:34>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,10 +46,10 @@
          " */\n\n")
         ((sh-mode . "Shell script") nil
          "#!/bin/bash\n\n"
-         " # File: " (file-name-nondirectory buffer-file-name) "\n"
-         " # Time-stamp: <>\n"
-         " # Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
-         " # Description: " _ "\n\n")))
+         "# File: " (file-name-nondirectory buffer-file-name) "\n"
+         "# Time-stamp: <>\n"
+         "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
+         "# Description: " _ "\n\n")))
 
 (provide 'pl-autoinsert)
 
