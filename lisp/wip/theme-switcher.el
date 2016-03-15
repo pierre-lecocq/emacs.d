@@ -15,7 +15,7 @@
       (when pl-resource-cache-filename
         (if (file-readable-p pl-resource-cache-filename)
             (setq index (string-to-number (insert-file-contents pl-resource-cache-filename)))
-          (write-region "" nil pl-resource-cache-filename)))
+          (write-region (number-to-string index) nil pl-resource-cache-filename)))
       (setq pl-resource-index index)))
   pl-resource-index)
 
