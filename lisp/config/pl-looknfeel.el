@@ -1,6 +1,6 @@
 ;;; pl-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-03-17 15:41:24>
+;; Time-stamp: <2016-03-17 21:41:48>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -17,7 +17,7 @@
 (column-number-mode 1)
 (global-auto-revert-mode 1)
 (global-font-lock-mode 1)
-(global-hl-line-mode 1)
+;; (global-hl-line-mode 1)
 (line-number-mode 1)
 (show-paren-mode 1)
 (transient-mark-mode 1)
