@@ -1,6 +1,6 @@
 ;;; pl-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-02-29 00:02:30>
+;; Time-stamp: <2016-03-17 15:41:24>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -52,11 +52,6 @@
 (use-package bonjourmadame :ensure t)
 
 (use-package browse-kill-ring :ensure t)
-
-(use-package darkmine-theme :ensure t
-  :init (progn
-          (setq pl-current-theme-name "darkmine")
-          (load-theme 'darkmine t)))
 
 (use-package idle-highlight-mode :ensure t)
 

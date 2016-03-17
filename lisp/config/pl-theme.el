@@ -1,31 +1,21 @@
 ;;; pl-theme.el --- Emacs configuration - theme
 
-;; Time-stamp: <2016-02-29 00:03:32>
+;; Time-stamp: <2016-03-17 15:45:38>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(defvar pl-theme-index 1)
-(defvar pl-themes-list '("tango-dark" "tango"))
+(use-package darkmine-theme :ensure t)
 
-(defun pl-switch-theme ()
-  "Switch theme between dark and light ones."
-  (interactive)
-  (disable-theme (intern (nth pl-theme-index pl-themes-list)))
-  (setq pl-theme-index (if (= pl-theme-index 0) 1 0))
-  (load-theme (intern (nth pl-theme-index pl-themes-list)) t))
+(load-file "~/src/switch-theme/switch-theme.el")
+(require 'switch-theme)
 
-;; (use-package darkmine-theme :ensure t
-;;   :init (progn
-;;           (setq pl-themes-list '("darkmine" "dichromacy"))
-;;           (pl-switch-theme)))
+(setq switch-theme-list '(("darkmine")
+                          ("whiteboard")))
 
-(use-package tao-theme :ensure t
-  :init (progn
-          (setq pl-themes-list '("tao-yin" "tao-yang"))
-          (pl-switch-theme)))
+(switch-theme)
 
 (provide 'pl-theme)
 
