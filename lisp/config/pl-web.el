@@ -1,6 +1,6 @@
 ;;; pl-web.el --- Emacs configuration - web
 
-;; Time-stamp: <2016-02-29 00:03:44>
+;; Time-stamp: <2016-03-17 10:07:09>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,6 +10,8 @@
 (use-package htmlize :ensure t)
 
 (use-package js2-mode :ensure t)
+
+(use-package json-mode :ensure t)
 
 (use-package php-mode :ensure t)
 
