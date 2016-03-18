@@ -1,6 +1,6 @@
 ;;; pl-mode-line.el --- Emacs configuration - modeline
 
-;; Time-stamp: <2016-02-29 00:02:37>
+;; Time-stamp: <2016-03-18 08:21:33>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -20,9 +20,8 @@
   (interactive)
   (setq custom-mode-line-p t)
   (setq-default mode-line-format
-                (list (quote ((:eval (let ((foreground-value (if (and (buffer-file-name) (file-remote-p (buffer-file-name))) "yellow" "white"))
-                                           (slant-value (if (buffer-modified-p) 'italic 'normal)))
-                                       (propertize " %b" 'font-lock-face `(:weight bold :slant ,slant-value :foreground ,foreground-value))))
+                (list (quote ((:eval (let ((slant-value (if (buffer-modified-p) 'italic 'normal)))
+                                       (propertize " %b" 'font-lock-face `(:weight bold :slant ,slant-value))))
                               " | %l:%c %p:%I | %m" ;; (format " %s" minor-mode-alist)
                               (which-function-mode (" " which-func-format))
                               (vc-mode vc-mode))))))

@@ -1,6 +1,6 @@
 ;;; pl-looknfeel.el --- Emacs config - looknfeel
 
-;; Time-stamp: <2016-03-17 21:41:48>
+;; Time-stamp: <2016-03-18 08:18:33>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,8 +31,8 @@
 (when (display-graphic-p)
   (set-fringe-mode 10)
   (toggle-frame-maximized)
-  (setq show-paren-style 'expression
-        select-enable-clipboard t))
+  ;; (setq show-paren-style 'expression)
+  (setq select-enable-clipboard t))
 
 (when (member "Inconsolata" (font-family-list))
   (set-face-attribute 'default nil
