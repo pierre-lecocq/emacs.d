@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file
 
-;; Time-stamp: <2016-02-29 00:04:33>
+;; Time-stamp: <2016-04-05 11:42:22>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -48,6 +48,7 @@
 (require 'pl-execute)
 (require 'pl-ffip)
 (require 'pl-filetypes)
+(require 'pl-ido)
 (require 'pl-indent)
 (require 'pl-lisp)
 (require 'pl-locale)
@@ -56,7 +57,7 @@
 (require 'pl-ruby)
 (require 'pl-shell)
 (require 'pl-spelling)
-(require 'pl-swiper)
+;; (require 'pl-swiper)
 (require 'pl-text)
 (require 'pl-web)
 
