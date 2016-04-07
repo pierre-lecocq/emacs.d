@@ -1,6 +1,6 @@
 ;;; pl-ffip.el --- Emacs configuration - ffip
 
-;; Time-stamp: <2016-02-28 23:59:30>
+;; Time-stamp: <2016-04-07 10:57:22>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,6 +13,7 @@
 (defun ffip-environment ()
   "Setup FFIP environment."
   (interactive)
+  (setq ffip-prefer-ido-mode t)
   (when (or (ffip-current-full-filename-match-pattern-p "\\(/www/fotolia\\)")
             (ffip-current-full-filename-match-pattern-p "\\(/www/adobestock\\)"))
     (setq-local ffip-find-options "-not -size +64k")
