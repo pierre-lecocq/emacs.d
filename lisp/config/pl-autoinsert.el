@@ -1,6 +1,6 @@
 ;;; pl-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2016-04-05 11:42:04>
+;; Time-stamp: <2016-04-09 20:34:28>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,11 +28,11 @@
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          "# Description: " _ "\n\n")
         ((lisp-mode . "Lisp program") nil
-         ";;;; " (file-name-nondirectory buffer-file-name) "\n"
+         ";;;; " (file-name-nondirectory buffer-file-name) "\n\n"
          ";; Time-stamp: <>\n"
          ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
         ((emacs-lisp-mode . "Emacs lisp program") nil
-         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n"
+         ";;; " (file-name-nondirectory buffer-file-name) " --- " _ "\n\n"
          ";; Time-stamp: <>\n"
          ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
          ";;; Commentary:\n\n"
