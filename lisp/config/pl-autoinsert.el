@@ -1,6 +1,6 @@
 ;;; pl-autoinsert.el --- Emacs config - autoinsert
 
-;; Time-stamp: <2016-04-09 20:34:28>
+;; Time-stamp: <2016-05-10 12:51:23>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,14 +15,14 @@
 (setq auto-insert-alist
       '(((ruby-mode . "Ruby program") nil
          "#!/usr/bin/env ruby\n"
-         "# -*- mode: ruby-mode; -*-\n\n"
+         "# -*- mode: ruby; -*-\n\n"
          "# File: " (file-name-nondirectory buffer-file-name) "\n"
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          "# Description: " _ "\n\n")
         ((python-mode . "Python program") nil
          "#!/usr/bin/env python\n"
-         "# -*- mode: python-mode; -*-\n\n"
+         "# -*- mode: python; -*-\n\n"
          "# File: " (file-name-nondirectory buffer-file-name) "\n"
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
@@ -47,7 +47,7 @@
          " */\n\n")
         ((sh-mode . "Shell script") nil
          "#!/bin/bash\n"
-         "# -*- mode: sh-mode; -*-\n\n"
+         "# -*- mode: sh; -*-\n\n"
          "# File: " (file-name-nondirectory buffer-file-name) "\n"
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
