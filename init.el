@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-01 16:02:14>
+;; Time-stamp: <2016-06-01 16:08:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -109,8 +109,10 @@
 (defun enable-lisp-file ()
   "Enable a lisp file."
   (interactive)
-  (unless (file-exists-p lisp-available-dir) (error "%s not found" lisp-available-dir))
-  (unless (file-exists-p lisp-enabled-dir) (error "%s not found" lisp-enabled-dir))
+  (unless (file-exists-p lisp-available-dir)
+    (error "%s not found" lisp-available-dir))
+  (unless (file-exists-p lisp-enabled-dir)
+    (error "%s not found" lisp-enabled-dir))
   (let ((file (ido-completing-read "Select a file: " (directory-files lisp-available-dir nil "\\.el"))))
     (shell-command (format "ln -s %s/%s %s/%s" lisp-available-dir file lisp-enabled-dir file))))
 
