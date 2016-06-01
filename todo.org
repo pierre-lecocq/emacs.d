@@ -1,4 +1,3 @@
-- bookmarks
 - encrypt (?)
 - erc (?)
 - execute
@@ -14,5 +13,3 @@
 
 - versions
 - hosts
-
-- hooks

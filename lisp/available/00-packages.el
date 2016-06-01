@@ -27,4 +27,14 @@
 (eval-when-compile
   (require 'use-package))
 
+(use-package autopair :ensure t
+  :init (autopair-global-mode t))
+
+(use-package anzu :ensure t
+  :init (progn
+          (global-anzu-mode +1)
+          (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+
+(use-package idle-highlight-mode :ensure t)
+
 ;;; 00-packages.el ends here
