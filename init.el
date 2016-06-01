@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-01 16:08:44>
+;; Time-stamp: <2016-06-01 16:16:45>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -88,6 +88,8 @@
                     :overline "#444444"
                     :underline "#444444"
                     :box nil)
+
+(custom-set-faces '(which-func ((t (:foreground "selectedMenuItemColor")))))
 
 (mapcar (lambda (mode) (funcall mode -1))
         '(abbrev-mode
