@@ -1,4 +1,4 @@
-;;; packages.el --- Packages
+;;; 00-packages.el --- Packages
 
 ;; Time-stamp: <2016-03-18 08:18:33>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -9,7 +9,7 @@
 
 (require 'package)
 
-(setq package-user-dir packages-dir
+(setq package-user-dir "~/.emacs.d/lisp/packages"
       package-enable-at-startup nil
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -27,4 +27,4 @@
 (eval-when-compile
   (require 'use-package))
 
-;;; packages.el ends here
+;;; 00-packages.el ends here

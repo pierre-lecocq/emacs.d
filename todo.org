@@ -1,0 +1,18 @@
+- bookmarks
+- encrypt (?)
+- erc (?)
+- execute
+- functions
+- looknfeel
+- modeline (?)
+- newsticker
+- recentf
+- shell
+- spelling
+- text
+- theme
+
+- versions
+- hosts
+
+- hooks
