@@ -1,6 +1,6 @@
 ;;; 20-web.el --- Web
 
-;; Time-stamp: <2016-03-17 10:07:09>
+;; Time-stamp: <2016-06-02 20:12:56>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,8 @@
 (use-package json-mode :ensure t)
 
 (use-package php-mode :ensure t)
+
+(use-package php-extras :ensure t)
 
 (use-package rainbow-delimiters :ensure t)
 
