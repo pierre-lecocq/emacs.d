@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-01 16:16:45>
+;; Time-stamp: <2016-06-02 20:20:24>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -71,25 +71,7 @@
 (set-background-color "#222222")
 (set-foreground-color "#e5e5e5")
 (set-face-background 'region "#444444")
-
-(set-face-attribute 'fringe nil
-                    :background "#222222")
-
-(set-face-attribute 'mode-line nil
-                    :foreground "#d5d5d5"
-                    :background "#333333"
-                    :overline "#666666"
-                    :underline "#666666"
-                    :box nil)
-
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "#a5a5a5"
-                    :background "#222222"
-                    :overline "#444444"
-                    :underline "#444444"
-                    :box nil)
-
-(custom-set-faces '(which-func ((t (:foreground "selectedMenuItemColor")))))
+(set-face-attribute 'fringe nil :background "#222222")
 
 (mapcar (lambda (mode) (funcall mode -1))
         '(abbrev-mode
