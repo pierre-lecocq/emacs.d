@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-03 13:21:40>
+;; Time-stamp: <2016-06-03 15:03:57>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -76,10 +76,7 @@
 (set-face-attribute 'fringe nil :background "grey13")
 
 (mapcar (lambda (mode) (funcall mode -1))
-        '(menu-bar-mode
-          scroll-bar-mode
-          tool-bar-mode
-          tooltip-mode))
+        '(menu-bar-mode scroll-bar-mode tool-bar-mode tooltip-mode))
 
 (when (display-graphic-p)
   (set-fringe-mode 10)
@@ -91,7 +88,7 @@
 (defvar lisp-available-dir "~/.emacs.d/lisp/available")
 (defvar lisp-enabled-dir "~/.emacs.d/lisp/enabled")
 
-(defun enable-lisp-file ()
+(defun pl-enable-lisp-file ()
   "Enable a lisp file."
   (interactive)
   (unless (file-exists-p lisp-available-dir)

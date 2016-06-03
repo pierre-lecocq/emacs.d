@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-03 13:34:29>
+;; Time-stamp: <2016-06-03 15:27:22>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -17,17 +17,19 @@
   (set-face-attribute 'mode-line nil
                       :foreground (color-darken-name fg 20)
                       :background (color-lighten-name bg 5)
-                      :overline (color-lighten-name bg 20)
-                      :underline (color-lighten-name bg 20)
+                      :overline (color-lighten-name bg 15)
+                      :underline (color-lighten-name bg 15)
                       :box nil)
   ;; mode-line-inactive
   (set-face-attribute 'mode-line-inactive nil
                       :foreground (color-lighten-name bg 20)
                       :background bg
-                      :overline (color-lighten-name bg 10)
-                      :underline (color-lighten-name bg 10)
+                      :overline (color-lighten-name bg 15)
+                      :underline (color-lighten-name bg 15)
                       :box nil)
   (custom-set-faces
+   ;; separator
+   `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
    ;; which-func
    `(which-func ((t (:foreground "cornflower blue"))))
    ;; company
@@ -46,8 +48,19 @@
                       :weight 'normal
                       :width 'normal))
 
+;; Transparency
+
+(defun pl-transparency (value)
+  "Set the transparency of the frame window.
+Argument VALUE 0 is transparent, 100 is opaque."
+  (interactive "nTransparency Value (0 - 100): ")
+  (when (display-graphic-p)
+    (set-frame-parameter (selected-frame) 'alpha value)))
+
 ;; Packages
 
 (use-package idle-highlight-mode :ensure t)
+
+(use-package rainbow-delimiters :ensure t)
 
 ;;; 01-looknfeel.el ends here

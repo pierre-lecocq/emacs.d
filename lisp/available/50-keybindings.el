@@ -1,6 +1,6 @@
 ;;; 50-keybindings.el --- Keybindings
 
-;; Time-stamp: <2016-03-18 08:26:39>
+;; Time-stamp: <2016-06-03 14:48:13>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,17 +27,17 @@
 
 (global-set-key [f5] 'bookmark-bmenu-list)
 ;; (global-set-key [f6] 'recentf-open-files)
-;; (global-set-key [f12] 'pl-get-shell)
+(global-set-key [f12] 'pl-get-shell)
 
 (global-set-key (kbd "C-x 2")
-		(lambda ()
-		  (interactive)(split-window-vertically)
-		  (other-window 1)))
+                (lambda ()
+                  (interactive)(split-window-vertically)
+                  (other-window 1)))
 
 (global-set-key (kbd "C-x 3")
-		(lambda ()
-		  (interactive)(split-window-horizontally)
-		  (other-window 1)))
+                (lambda ()
+                  (interactive)(split-window-horizontally)
+                  (other-window 1)))
 
 (when (display-graphic-p)
   (global-unset-key (kbd "C-z")))

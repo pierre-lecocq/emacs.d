@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <>
+;; Time-stamp: <2016-06-03 15:20:46>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -44,10 +44,10 @@
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
-  ;;  (require 'php-extras)
   (setq comment-start "// "
         comment-end "")
   (set (make-local-variable 'indent-tabs-mode) nil))
+
 (add-hook 'php-mode-hook #'hook-php-mode)
 
 (defun hook-emacs-lisp-mode ()

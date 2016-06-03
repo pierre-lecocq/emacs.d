@@ -6,7 +6,6 @@
 - modeline (?)
 - newsticker
 - recentf
-- shell
 - spelling
 - text
 - theme

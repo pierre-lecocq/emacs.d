@@ -1,6 +1,6 @@
 ;;; 20-lisp.el --- Lisp
 
-;; Time-stamp: <2016-04-10 17:33:04>
+;; Time-stamp: <2016-06-03 14:42:36>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,5 +22,14 @@
             (setq inferior-lisp-program "sbcl"))
 
           (slime-setup '(slime-company))))
+
+(defun pl-force-eval ()
+  "Forced Emacs Lisp buffer evaluation - stolen from SO."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (forward-sexp)
+      (eval-defun nil))))
 
 ;;; 20-lisp.el ends here

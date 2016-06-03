@@ -1,6 +1,6 @@
 ;;; 01-completion.el --- Completion
 
-;; Time-stamp: <2016-02-28 23:58:20>
+;; Time-stamp: <2016-06-03 14:29:59>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,7 +12,7 @@
           (setq company-auto-complete nil
                 company-tooltip-flip-when-above t
                 company-minimum-prefix-length 2
-                company-tooltip-limit 10
+                company-tooltip-limit 20
                 company-idle-delay 0.5)
           (global-company-mode 1)))
 
