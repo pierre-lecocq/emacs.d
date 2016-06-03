@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-03 09:10:18>
+;; Time-stamp: <2016-06-03 11:19:02>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -55,7 +55,9 @@
       whitespace-line-column 80
       whitespace-style '(tabs tab-mark face lines-tail)
       whitespace-global-modes '(not org-mode web-mode)
-      uniquify-buffer-name-style 'forward uniquify-separator "/")
+      uniquify-buffer-name-style 'forward uniquify-separator "/"
+      custom-file "~/.emacs.d/lisp/files/custom.el"
+      tramp-persistency-file-name "~/.emacs.d/lisp/files/tramp")
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
