@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-03 09:08:24>
+;; Time-stamp: <2016-06-03 13:34:29>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,23 +11,26 @@
 
 (require 'color)
 
-(set-face-attribute 'mode-line nil
-                    :foreground "#d5d5d5"
-                    :background "#333333"
-                    :overline "#666666"
-                    :underline "#666666"
-                    :box nil)
-
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "#a5a5a5"
-                    :background "#222222"
-                    :overline "#444444"
-                    :underline "#444444"
-                    :box nil)
-
-(let ((bg (face-attribute 'default :background)))
+(let ((bg (face-attribute 'default :background))
+      (fg (face-attribute 'default :foreground)))
+  ;; mode-line
+  (set-face-attribute 'mode-line nil
+                      :foreground (color-darken-name fg 20)
+                      :background (color-lighten-name bg 5)
+                      :overline (color-lighten-name bg 20)
+                      :underline (color-lighten-name bg 20)
+                      :box nil)
+  ;; mode-line-inactive
+  (set-face-attribute 'mode-line-inactive nil
+                      :foreground (color-lighten-name bg 20)
+                      :background bg
+                      :overline (color-lighten-name bg 10)
+                      :underline (color-lighten-name bg 10)
+                      :box nil)
   (custom-set-faces
+   ;; which-func
    `(which-func ((t (:foreground "cornflower blue"))))
+   ;; company
    `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
    `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
    `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))

@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-03 11:19:02>
+;; Time-stamp: <2016-06-03 13:21:40>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -76,8 +76,7 @@
 (set-face-attribute 'fringe nil :background "grey13")
 
 (mapcar (lambda (mode) (funcall mode -1))
-        '(abbrev-mode
-          menu-bar-mode
+        '(menu-bar-mode
           scroll-bar-mode
           tool-bar-mode
           tooltip-mode))
