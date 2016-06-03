@@ -1,11 +1,15 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-02 20:21:59>
+;; Time-stamp: <2016-06-03 09:08:24>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; Colors
+
+(require 'color)
 
 (set-face-attribute 'mode-line nil
                     :foreground "#d5d5d5"
@@ -21,7 +25,16 @@
                     :underline "#444444"
                     :box nil)
 
-(custom-set-faces '(which-func ((t (:foreground "selectedMenuItemColor")))))
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(which-func ((t (:foreground "cornflower blue"))))
+   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+   `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
+
+;; Fonts
 
 (when (member "Inconsolata" (font-family-list))
   (set-face-attribute 'default nil
@@ -29,6 +42,8 @@
                       :height 120
                       :weight 'normal
                       :width 'normal))
+
+;; Packages
 
 (use-package idle-highlight-mode :ensure t)
 

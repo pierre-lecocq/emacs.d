@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-02 20:20:24>
+;; Time-stamp: <2016-06-03 09:10:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -68,10 +68,10 @@
 
 ;; Look'n'feel
 
-(set-background-color "#222222")
-(set-foreground-color "#e5e5e5")
-(set-face-background 'region "#444444")
-(set-face-attribute 'fringe nil :background "#222222")
+(set-background-color "grey13")
+(set-foreground-color "grey93")
+(set-face-background 'region "grey27")
+(set-face-attribute 'fringe nil :background "grey13")
 
 (mapcar (lambda (mode) (funcall mode -1))
         '(abbrev-mode
