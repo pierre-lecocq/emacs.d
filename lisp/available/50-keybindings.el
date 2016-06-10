@@ -1,6 +1,6 @@
 ;;; 50-keybindings.el --- Keybindings
 
-;; Time-stamp: <2016-06-03 14:48:13>
+;; Time-stamp: <2016-06-10 10:30:07>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -26,7 +26,7 @@
 (global-set-key (kbd "C-S-f") 'imenu)
 
 (global-set-key [f5] 'bookmark-bmenu-list)
-;; (global-set-key [f6] 'recentf-open-files)
+(global-set-key [f6] 'pl-compile-tags)
 (global-set-key [f12] 'pl-get-shell)
 
 (global-set-key (kbd "C-x 2")
