@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-10 09:10:28>
+;; Time-stamp: <2016-06-10 09:44:49>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,6 +30,8 @@
                       :underline (color-lighten-name bg 15)
                       :box nil)
   (custom-set-faces
+   ;; string
+   `(font-lock-string-face ((t (:foreground "IndianRed"))))
 
    ;; separator
    `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
