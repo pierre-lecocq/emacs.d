@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-03 15:27:22>
+;; Time-stamp: <2016-06-10 09:07:54>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,6 +13,7 @@
 
 (let ((bg (face-attribute 'default :background))
       (fg (face-attribute 'default :foreground)))
+
   ;; mode-line
   (set-face-attribute 'mode-line nil
                       :foreground (color-darken-name fg 20)
@@ -20,6 +21,7 @@
                       :overline (color-lighten-name bg 15)
                       :underline (color-lighten-name bg 15)
                       :box nil)
+
   ;; mode-line-inactive
   (set-face-attribute 'mode-line-inactive nil
                       :foreground (color-lighten-name bg 20)
@@ -28,10 +30,19 @@
                       :underline (color-lighten-name bg 15)
                       :box nil)
   (custom-set-faces
+
    ;; separator
    `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
+
    ;; which-func
    `(which-func ((t (:foreground "cornflower blue"))))
+
+   ;; search
+   `(isearch ((t (:background "cornflower blue" :foreground "white"))))
+
+   ;; idle-highlight
+   `(idle-highlight ((t (:inherit isearch))))
+
    ;; company
    `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
    `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
