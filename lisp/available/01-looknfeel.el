@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-10 09:07:54>
+;; Time-stamp: <2016-06-10 09:10:28>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -35,10 +35,10 @@
    `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
 
    ;; which-func
-   `(which-func ((t (:foreground "cornflower blue"))))
+   `(which-func ((t (:foreground "DodgerBlue"))))
 
    ;; search
-   `(isearch ((t (:background "cornflower blue" :foreground "white"))))
+   `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
 
    ;; idle-highlight
    `(idle-highlight ((t (:inherit isearch))))
