@@ -1,6 +1,6 @@
 ;;; 01-tags.el --- Tags
 
-;; Time-stamp: <2016-06-10 16:24:46>
+;; Time-stamp: <2016-06-10 17:41:33>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,11 +23,11 @@
   "Compile etags for a given DIRECTORY."
   (interactive "DRoot directory: ")
   (let* ((dir (expand-file-name (file-name-as-directory directory)))
-         (dir-local (replace-regexp-in-string "/[^/]+:[^/]+:/" "/" dir)))
+         (dir-local (replace-regexp-in-string "/[^/]+:[^/]+:/" "/" dir))
+         (file (concat dir "/TAGS")))
     (cd dir)
     (compile (format "%s -e -h \"%s\" -R ." tags-bin-path (pl-files-regexp-by-mode)))
-    (let ((file (concat dir "/TAGS")))
-      (setq tags-file-name file)
-      (visit-tags-table file))))
+    (setq tags-file-name file)
+    (visit-tags-table file)))
 
 ;;; 01-tags.el ends here
