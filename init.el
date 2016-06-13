@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-13 16:40:49>
+;; Time-stamp: <2016-06-13 17:38:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -12,6 +12,9 @@
 ;; but can load some extensions from a given directory by creating symlinks
 ;; from `lisp-available-dir' to `lisp-enabled-dir'.
 ;;
+;; Can be compiled with:
+;;
+;;     cat lisp/enabled/*.el | grep -v "^;;" | grep -v "^$" > all.el && emacs --batch --eval '(byte-compile-file "all.el") && rm all.el'
 
 ;;; Code:
 
@@ -98,18 +101,21 @@
 
 ;; Autoload config
 
-(defun pl-enable-lisp-file ()
-  "Enable a lisp file."
-  (interactive)
-  (unless (file-exists-p lisp-available-dir)
-    (error "%s not found" lisp-available-dir))
-  (unless (file-exists-p lisp-enabled-dir)
-    (error "%s not found" lisp-enabled-dir))
-  (let ((file (ido-completing-read "Select a file: " (directory-files lisp-available-dir nil "\\.el"))))
-    (shell-command (format "ln -s %s/%s %s/%s" lisp-available-dir file lisp-enabled-dir file))))
-
-(if (file-exists-p lisp-enabled-dir)
-    (mapcar 'load-file (directory-files lisp-enabled-dir t "\\.el"))
-  (message "No lisp files enabled in %s" lisp-enabled-dir))
+(let ((compiled-file (concat (file-name-as-directory user-emacs-directory) "all.elc")))
+  (if (file-exists-p compiled-file)
+      (load-file compiled-file)
+    (progn
+      (defun pl-enable-lisp-file ()
+        "Enable a lisp file."
+        (interactive)
+        (unless (file-exists-p lisp-available-dir)
+          (error "%s not found" lisp-available-dir))
+        (unless (file-exists-p lisp-enabled-dir)
+          (error "%s not found" lisp-enabled-dir))
+        (let ((file (ido-completing-read "Select a file: " (directory-files lisp-available-dir nil "\\.el"))))
+          (shell-command (format "ln -s %s/%s %s/%s" lisp-available-dir file lisp-enabled-dir file))))
+      (if (file-exists-p lisp-enabled-dir)
+          (mapcar 'load-file (directory-files lisp-enabled-dir t "\\.el"))
+        (warn "No lisp files enabled in %s" lisp-enabled-dir)))))
 
 ;;; init.el ends here
