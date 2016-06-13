@@ -1,6 +1,6 @@
 ;;; 50-bookmark.el --- Bookmark
 
-;; Time-stamp: <2016-02-28 23:58:02>
+;; Time-stamp: <2016-06-13 09:49:22>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,8 +9,7 @@
 
 (require 'bookmark)
 
-(setq bookmark-default-file "~/.emacs.d/lisp/files/bookmarks"
-      bookmark-sort-flag nil
+(setq bookmark-sort-flag nil
       bookmark-alist `(("Home"          (filename . "~/"))
                        ("Sources"       (filename . "~/src"))
                        ("Emacs"         (filename . "~/src/emacs.d"))

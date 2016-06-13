@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-03 15:03:57>
+;; Time-stamp: <2016-06-13 09:56:18>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -14,6 +14,11 @@
 ;;
 
 ;;; Code:
+
+(defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
+(defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
+(defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
+(defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
 
 ;; Internals
 
@@ -55,9 +60,15 @@
       whitespace-line-column 80
       whitespace-style '(tabs tab-mark face lines-tail)
       whitespace-global-modes '(not org-mode web-mode)
-      uniquify-buffer-name-style 'forward uniquify-separator "/"
-      custom-file "~/.emacs.d/lisp/files/custom.el"
-      tramp-persistency-file-name "~/.emacs.d/lisp/files/tramp")
+      uniquify-buffer-name-style 'forward uniquify-separator "/")
+
+(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
+      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
+      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
+      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
+      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
+      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
+      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -84,9 +95,6 @@
   (setq select-enable-clipboard t))
 
 ;; Autoload config
-
-(defvar lisp-available-dir "~/.emacs.d/lisp/available")
-(defvar lisp-enabled-dir "~/.emacs.d/lisp/enabled")
 
 (defun pl-enable-lisp-file ()
   "Enable a lisp file."

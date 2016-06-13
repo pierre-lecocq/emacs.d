@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-10 09:44:49>
+;; Time-stamp: <2016-06-13 10:27:45>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -37,13 +37,18 @@
    `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
 
    ;; which-func
-   `(which-func ((t (:foreground "DodgerBlue"))))
+   `(which-func ((t (:inherit font-lock-function-name-face))))
 
    ;; search
    `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
 
    ;; idle-highlight
    `(idle-highlight ((t (:inherit isearch))))
+
+   ;; ido
+   '(ido-subdir ((t (:inherit font-lock-function-name-face))))
+   '(ido-first-match ((t (:inherit font-lock-variable-name-face))))
+   '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
 
    ;; company
    `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))

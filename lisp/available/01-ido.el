@@ -1,6 +1,6 @@
 ;;; 01-ido.el --- Ido
 
-;; Time-stamp: <2016-03-18 08:18:33>
+;; Time-stamp: <2016-06-13 09:49:54>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,8 +15,7 @@
   :init (progn
           (require 'ido)
           (require 'ido-hacks)
-          (setq ido-save-directory-list-file "~/.emacs.d/lisp/files/ido.last"
-                ido-case-fold t
+          (setq ido-case-fold t
                 ido-enable-flex-matching t
                 ido-use-filename-at-point 'guess
                 ido-create-new-buffer 'always
