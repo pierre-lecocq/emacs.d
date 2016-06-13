@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-13 09:56:18>
+;; Time-stamp: <2016-06-13 16:40:49>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -62,14 +62,6 @@
       whitespace-global-modes '(not org-mode web-mode)
       uniquify-buffer-name-style 'forward uniquify-separator "/")
 
-(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
-      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
-      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
-      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
-      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
-      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
-      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
-
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (set-language-environment 'utf-8)
@@ -78,6 +70,16 @@
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;; Generated files
+
+(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
+      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
+      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
+      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
+      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
+      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
+      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
 
 ;; Look'n'feel
 
