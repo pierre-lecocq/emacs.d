@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-14 09:14:56>
+;; Time-stamp: <2016-06-14 09:15:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -19,7 +19,7 @@
 ;;; Code:
 
 (defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
-(defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
+(defvar var-dir (concat (file-name-as-directory lisp-dir) "files"))
 (defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
 (defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
 
@@ -76,13 +76,13 @@
 
 ;; Generated files
 
-(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
-      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
-      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
-      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
-      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
-      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
-      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
+(setq custom-file (concat (file-name-as-directory var-dir) "pl-custom.el")
+      abbrev-file-name (concat (file-name-as-directory var-dir) "pl-abbrev.el")
+      bookmark-default-file (concat (file-name-as-directory var-dir) "pl-bookmarks.el")
+      nsm-settings-file (concat (file-name-as-directory var-dir) "pl-nsm-settings.el")
+      recentf-save-file (concat (file-name-as-directory var-dir) "pl-recentf.el")
+      ido-save-directory-list-file (concat (file-name-as-directory var-dir) "pl-ido.el")
+      tramp-persistency-file-name (concat (file-name-as-directory var-dir) "pl-tramp.el"))
 
 ;; Look'n'feel
 
