@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-14 12:06:17>
+;; Time-stamp: <2016-06-15 17:10:19>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -12,7 +12,7 @@
 ;; but can load some extensions from a given directory by creating symlinks
 ;; from `lisp-available-dir' to `lisp-enabled-dir'.
 ;;
-;; Can be compiled with `pl-compile-config'
+;; Can be compiled with `pl-compile-config' which generates `~/.emacs.elc'
 
 ;;; Code:
 
@@ -104,6 +104,7 @@
 ;; Autoload config
 
 (defun pl-compile-config ()
+  "Compile config in ~/.emacs.elc."
   (interactive)
   (let ((files (directory-files lisp-enabled-dir t "\\.el")))
     (add-to-list 'files init-file)
@@ -117,7 +118,7 @@
   (delete-file compiled-file))
 
 (defun pl-enable-lisp-file ()
-  "Enable a lisp file."
+  "Enable a Lisp file."
   (interactive)
   (unless (file-exists-p lisp-available-dir)
     (error "%s not found" lisp-available-dir))
