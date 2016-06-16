@@ -1,6 +1,6 @@
 ;;; 00-packages.el --- Packages
 
-;; Time-stamp: <2016-06-15 16:33:00>
+;; Time-stamp: <2016-06-16 16:35:06>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -26,18 +26,5 @@
 
 (eval-when-compile
   (require 'use-package))
-
-(use-package autopair :ensure t
-  :init (autopair-global-mode t))
-
-(use-package anzu :ensure t
-  :init (progn
-          (global-anzu-mode +1)
-          (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
-
-(use-package flycheck :ensure t
-  :init (global-flycheck-mode t))
-
-(use-package idle-highlight-mode :ensure t)
 
 ;;; 00-packages.el ends here

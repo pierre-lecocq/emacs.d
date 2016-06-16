@@ -1,6 +1,6 @@
 ;;; 20-lisp.el --- Lisp
 
-;; Time-stamp: <2016-06-03 14:42:36>
+;; Time-stamp: <2016-06-16 16:34:07>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,18 +10,18 @@
 (use-package slime-company :ensure t)
 
 (use-package slime :ensure t
-  :init (progn
-          ;; Assuming (ql:quickload "quicklisp-slime-helper") has be ran in quicklisp before
-          (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
-            (if (file-exists-p helper-file)
-                (load helper-file)
-              (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
+             :init (progn
+                     ;; Assuming (ql:quickload "quicklisp-slime-helper") has be ran in quicklisp before
+                     (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
+                       (if (file-exists-p helper-file)
+                           (load helper-file)
+                         (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
 
-          (if (eq system-type 'darwin)
-              (setq inferior-lisp-program "/usr/local/bin/sbcl")
-            (setq inferior-lisp-program "sbcl"))
+                     (if (eq system-type 'darwin)
+                         (setq inferior-lisp-program "/usr/local/bin/sbcl")
+                       (setq inferior-lisp-program "sbcl"))
 
-          (slime-setup '(slime-company))))
+                     (slime-setup '(slime-company))))
 
 (defun pl-force-eval ()
   "Forced Emacs Lisp buffer evaluation - stolen from SO."

@@ -1,6 +1,6 @@
 ;;; 01-ffip.el --- Find file in project
 
-;; Time-stamp: <2016-04-07 10:57:22>
+;; Time-stamp: <2016-06-16 16:33:39>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package find-file-in-project :ensure t
-  :bind (("C-S-x C-S-f" . find-file-in-project)))
+             :bind (("C-S-x C-S-f" . find-file-in-project)))
 
 (defun ffip-environment ()
   "Setup FFIP environment."

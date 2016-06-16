@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-13 10:27:45>
+;; Time-stamp: <2016-06-16 16:35:16>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -76,6 +76,17 @@ Argument VALUE 0 is transparent, 100 is opaque."
     (set-frame-parameter (selected-frame) 'alpha value)))
 
 ;; Packages
+
+(use-package autopair :ensure t
+             :init (autopair-global-mode t))
+
+(use-package anzu :ensure t
+             :init (progn
+                     (global-anzu-mode +1)
+                     (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+
+(use-package flycheck :ensure t
+             :init (global-flycheck-mode t))
 
 (use-package idle-highlight-mode :ensure t)
 
