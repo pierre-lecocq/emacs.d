@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-15 17:10:19>
+;; Time-stamp: <2016-06-16 08:38:01>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -47,7 +47,7 @@
       user-mail-address "pierre.lecocq@gmail.com"
       frame-title-format "Emacs - %b"
       time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"
-      initial-scratch-message (format ";; Emacs - Started on %s\n\n" (current-time-string))
+      initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
       inhibit-startup-message t
       inhibit-splash-screen t
       case-fold-search t
