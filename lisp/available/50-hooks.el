@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-06-03 15:20:46>
+;; Time-stamp: <2016-06-16 16:11:05>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -44,6 +44,7 @@
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
+  (set (make-local-variable 'company-backends) '((php-extras-company company-dabbrev-code) company-capf company-files))
   (setq comment-start "// "
         comment-end "")
   (set (make-local-variable 'indent-tabs-mode) nil))
