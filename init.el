@@ -1,18 +1,21 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-16 08:38:01>
+;; Time-stamp: <2016-06-27 14:22:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
 ;;; Commentary:
 ;;
+;;
 ;; A return to a minimal Emacs config
 ;;
-;; This file is made to be used as a fast and standalone minimal config file
-;; but can load some extensions from a given directory by creating symlinks
+;;
+;; This `init.el' file is made to be used as a fast and standalone minimal config
+;; file but can load some extensions from a given directory by creating symlinks
 ;; from `lisp-available-dir' to `lisp-enabled-dir'.
 ;;
-;; Can be compiled with `pl-compile-config' which generates `~/.emacs.elc'
+;; It can also be compiled with `(pl-compile-config)' which generates a standalone
+;; file `.emacs.elc' placed in the home directory
 
 ;;; Code:
 
