@@ -1,10 +1,13 @@
-## Minimal Emacs config file
+Minimal Emacs config file
+-------------------------
 
-;; Time-stamp: <2016-06-27 14:16:59>
+;; Time-stamp: <2016-06-27 14:18:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
+
 A return to a minimal Emacs config
+
 
 This file is made to be used as a fast and standalone minimal config file
 but can load some extensions from a given directory by creating symlinks
