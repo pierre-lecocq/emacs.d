@@ -1,6 +1,6 @@
 ;;; 00-packages.el --- Packages
 
-;; Time-stamp: <2016-06-16 16:35:06>
+;; Time-stamp: <2016-06-28 13:24:44>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
