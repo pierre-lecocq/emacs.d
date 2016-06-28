@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-16 16:35:16>
+;; Time-stamp: <2016-06-28 11:03:57>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,6 +8,9 @@
 ;;; Code:
 
 ;; Colors
+
+;; (use-package darkmine-theme :ensure t)
+;; (use-package tao-theme :ensure t)
 
 (when (display-graphic-p)
   (require 'color)
