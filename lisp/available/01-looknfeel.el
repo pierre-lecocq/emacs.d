@@ -9,53 +9,54 @@
 
 ;; Colors
 
-(require 'color)
+(when (display-graphic-p)
+  (require 'color)
 
-(let ((bg (face-attribute 'default :background))
-      (fg (face-attribute 'default :foreground)))
+  (let ((bg (face-attribute 'default :background))
+        (fg (face-attribute 'default :foreground)))
 
-  ;; mode-line
-  (set-face-attribute 'mode-line nil
-                      :foreground (color-darken-name fg 20)
-                      :background (color-lighten-name bg 5)
-                      :overline (color-lighten-name bg 15)
-                      :underline (color-lighten-name bg 15)
-                      :box nil)
+    ;; mode-line
+    (set-face-attribute 'mode-line nil
+                        :foreground (color-darken-name fg 20)
+                        :background (color-lighten-name bg 5)
+                        :overline (color-lighten-name bg 15)
+                        :underline (color-lighten-name bg 15)
+                        :box nil)
 
-  ;; mode-line-inactive
-  (set-face-attribute 'mode-line-inactive nil
-                      :foreground (color-lighten-name bg 20)
-                      :background bg
-                      :overline (color-lighten-name bg 15)
-                      :underline (color-lighten-name bg 15)
-                      :box nil)
-  (custom-set-faces
-   ;; string
-   `(font-lock-string-face ((t (:foreground "IndianRed"))))
+    ;; mode-line-inactive
+    (set-face-attribute 'mode-line-inactive nil
+                        :foreground (color-lighten-name bg 20)
+                        :background bg
+                        :overline (color-lighten-name bg 15)
+                        :underline (color-lighten-name bg 15)
+                        :box nil)
+    (custom-set-faces
+     ;; string
+     `(font-lock-string-face ((t (:foreground "IndianRed"))))
 
-   ;; separator
-   `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
+     ;; separator
+     `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
 
-   ;; which-func
-   `(which-func ((t (:inherit font-lock-function-name-face))))
+     ;; which-func
+     `(which-func ((t (:inherit font-lock-function-name-face))))
 
-   ;; search
-   `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
+     ;; search
+     `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
 
-   ;; idle-highlight
-   `(idle-highlight ((t (:inherit isearch))))
+     ;; idle-highlight
+     `(idle-highlight ((t (:inherit isearch))))
 
-   ;; ido
-   '(ido-subdir ((t (:inherit font-lock-function-name-face))))
-   '(ido-first-match ((t (:inherit font-lock-variable-name-face))))
-   '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
+     ;; ido
+     '(ido-subdir ((t (:inherit font-lock-function-name-face))))
+     '(ido-first-match ((t (:inherit font-lock-variable-name-face))))
+     '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
 
-   ;; company
-   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
-   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-   `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
+     ;; company
+     `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+     `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+     `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+     `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;; Fonts
 

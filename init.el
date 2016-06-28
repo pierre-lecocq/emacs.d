@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-27 14:22:27>
+;; Time-stamp: <2016-06-28 10:51:25>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -91,18 +91,19 @@
 
 ;; Look'n'feel
 
-(set-background-color "grey13")
-(set-foreground-color "grey93")
-(set-face-background 'region "grey27")
-(set-face-attribute 'fringe nil :background "grey13")
-
 (mapc (lambda (mode) (funcall mode -1))
       '(menu-bar-mode scroll-bar-mode tool-bar-mode tooltip-mode))
 
-(when (display-graphic-p)
-  (set-fringe-mode 10)
-  (toggle-frame-maximized)
-  (setq select-enable-clipboard t))
+(if (display-graphic-p)
+    (progn
+      (set-background-color "grey13")
+      (set-foreground-color "grey93")
+      (set-face-background 'region "grey27")
+      (set-face-attribute 'fringe nil :background "grey13")
+      (set-fringe-mode 10)
+      (toggle-frame-maximized)
+      (setq select-enable-clipboard t))
+  (setq frame-background-mode 'dark))
 
 ;; Autoload config
 
