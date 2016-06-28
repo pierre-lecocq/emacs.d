@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-28 11:03:57>
+;; Time-stamp: <2016-06-28 13:11:09>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,47 +14,21 @@
 
 (when (display-graphic-p)
   (require 'color)
-
+  (set-face-attribute 'fringe nil :background "grey13")
+  (set-fringe-mode 10)
+  (set-face-attribute 'mode-line nil :box nil)
+  (set-face-attribute 'mode-line-inactive nil :box nil)
   (let ((bg (face-attribute 'default :background))
         (fg (face-attribute 'default :foreground)))
-
-    ;; mode-line
-    (set-face-attribute 'mode-line nil
-                        :foreground (color-darken-name fg 20)
-                        :background (color-lighten-name bg 5)
-                        :overline (color-lighten-name bg 15)
-                        :underline (color-lighten-name bg 15)
-                        :box nil)
-
-    ;; mode-line-inactive
-    (set-face-attribute 'mode-line-inactive nil
-                        :foreground (color-lighten-name bg 20)
-                        :background bg
-                        :overline (color-lighten-name bg 15)
-                        :underline (color-lighten-name bg 15)
-                        :box nil)
     (custom-set-faces
-     ;; string
      `(font-lock-string-face ((t (:foreground "IndianRed"))))
-
-     ;; separator
      `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
-
-     ;; which-func
      `(which-func ((t (:inherit font-lock-function-name-face))))
-
-     ;; search
      `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
-
-     ;; idle-highlight
      `(idle-highlight ((t (:inherit isearch))))
-
-     ;; ido
-     '(ido-subdir ((t (:inherit font-lock-function-name-face))))
-     '(ido-first-match ((t (:inherit font-lock-variable-name-face))))
-     '(ido-only-match ((t (:inherit font-lock-variable-name-face))))
-
-     ;; company
+     `(ido-subdir ((t (:inherit font-lock-function-name-face))))
+     `(ido-first-match ((t (:inherit font-lock-variable-name-face))))
+     `(ido-only-match ((t (:inherit font-lock-variable-name-face))))
      `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
      `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
      `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
