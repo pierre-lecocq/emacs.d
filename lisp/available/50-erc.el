@@ -1,6 +1,6 @@
 ;;; 50-erc.el --- ERC
 
-;; Time-stamp: <2016-06-28 10:58:18>
+;; Time-stamp: <2016-06-29 11:07:38>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,18 +30,19 @@
                 erc-kill-buffer-on-part t
                 erc-kill-queries-on-quit t
                 erc-kill-server-buffer-on-quit t
-                erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs")))
-          (erc-netsplit-mode 1)
-          (erc-match-mode 1)
-          (add-hook 'erc-insert-post-hook
-                    #'erc-truncate-buffer)
-          (add-hook 'erc-mode-hook
-                    #'(lambda ()
-                        (setq show-trailing-whitespace nil)
-                        (auto-fill-mode 0)))
-          (add-hook 'erc-after-connect
-                    #'(lambda (SERVER NICK)
-                        (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC NickServ Password: ")))))))
+                erc-autojoin-channels-alist '(("freenode.net" "#debian" "#emacs"))))
+  :config (progn
+            (erc-netsplit-mode 1)
+            (erc-match-mode 1)
+            (add-hook 'erc-insert-post-hook
+                      #'erc-truncate-buffer)
+            (add-hook 'erc-mode-hook
+                      #'(lambda ()
+                          (setq show-trailing-whitespace nil)
+                          (auto-fill-mode 0)))
+            (add-hook 'erc-after-connect
+                      #'(lambda (SERVER NICK)
+                          (erc-message "PRIVMSG" (format "NickServ identify %s" (read-passwd "IRC NickServ Password: ")))))))
 
 (defun pl-erc-connect ()
   "Connect to ERC."

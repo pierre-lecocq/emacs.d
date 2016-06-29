@@ -1,6 +1,6 @@
-;;; 20-web.el --- Web
+;;; 10-web.el --- Web
 
-;; Time-stamp: <2016-06-03 15:10:21>
+;; Time-stamp: <2016-06-29 11:05:10>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,4 +21,4 @@
 
 (use-package web-mode :ensure t)
 
-;;; 20-web.el ends here
+;;; 10-web.el ends here

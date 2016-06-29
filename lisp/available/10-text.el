@@ -1,6 +1,6 @@
 ;;; 10-text.el --- Text
 
-;; Time-stamp: <2016-06-29 09:43:11>
+;; Time-stamp: <2016-06-29 11:02:56>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package flycheck :ensure t
-  :init (global-flycheck-mode t))
+  :config (global-flycheck-mode t))
 
 (use-package org :ensure t
   :init (progn

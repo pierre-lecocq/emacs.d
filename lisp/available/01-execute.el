@@ -1,13 +1,13 @@
 ;;; 01-execute.el --- Execute command on a buffer
 
-;; Time-stamp: <2016-06-28 10:59:30>
+;; Time-stamp: <2016-06-29 10:55:00>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; ("extention" . ("execute command" "lint command"))
+;; Syntax: ("extention" . ("execute command" "lint command"))
 (defvar pl-execute-info '(("lisp"   . ("sbcl --noinform --load" nil))
                           ("sh"     . ("bash"                   nil))
                           ("rb"     . ("ruby"                   "ruby -c"))
