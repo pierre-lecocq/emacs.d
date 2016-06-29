@@ -19,10 +19,20 @@
 
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
-(defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
-(defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
-(defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
+(defvar lisp-dir-etc (concat (file-name-as-directory lisp-dir) "etc"))
+(defvar lisp-dir-var (concat (file-name-as-directory lisp-dir) "var"))
+
+(defvar lisp-available-dir (concat (file-name-as-directory lisp-dir-etc) "available"))
+(defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir-etc) "enabled"))
+(defvar files-dir (concat (file-name-as-directory lisp-dir-var) "files"))
 
 (defvar init-file (expand-file-name (concat (file-name-as-directory user-emacs-directory) "init.el")))
 (defvar compiled-file (expand-file-name  "~/.emacs.el"))

@@ -9,7 +9,7 @@
 
 (require 'package)
 
-(setq package-user-dir "~/.emacs.d/lisp/packages"
+(setq package-user-dir (concat (file-name-as-directory lisp-dir-var) "packages")
       package-enable-at-startup nil
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
