@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-28 13:27:28>
+;; Time-stamp: <2016-06-29 09:43:50>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,8 +23,8 @@
     (custom-set-faces
      `(font-lock-string-face ((t (:foreground "IndianRed"))))
      `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
-     `(which-func ((t (:inherit font-lock-string-face))))
      `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
+     `(which-func ((t (:inherit isearch))))
      `(idle-highlight ((t (:inherit isearch))))
      `(ido-subdir ((t (:inherit font-lock-function-name-face))))
      `(ido-first-match ((t (:inherit font-lock-variable-name-face))))
@@ -62,9 +62,6 @@ Argument VALUE 0 is transparent, 100 is opaque."
   :init (progn
           (global-anzu-mode +1)
           (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
-
-(use-package flycheck :ensure t
-  :init (global-flycheck-mode t))
 
 (use-package idle-highlight-mode :ensure t)
 
