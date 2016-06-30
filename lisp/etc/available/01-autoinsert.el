@@ -1,6 +1,6 @@
 ;;; 01-autoinsert.el --- Autoinsert
 
-;; Time-stamp: <2016-06-30 09:14:27>
+;; Time-stamp: <2016-06-30 09:22:56>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -55,6 +55,9 @@
          "# set -o xtrace\n"
          "set -o nounset\n"
          "set -o errexit\n"
-         "set -o pipefail\n\n")))
+         "set -o pipefail\n\n"
+         "__dir=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)\"\n"
+         "__file=\"${__dir}/$(basename \"${BASH_SOURCE[0]}\")\"\n"
+         "__base=\"$(basename ${__file} .sh)\"\n\n")))
 
 ;;; 01-autoinsert.el ends here
