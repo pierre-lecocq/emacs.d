@@ -1,6 +1,6 @@
 ;;; 01-autoinsert.el --- Autoinsert
 
-;; Time-stamp: <2016-05-10 12:51:23>
+;; Time-stamp: <2016-06-30 09:14:27>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,11 +46,15 @@
          " * Description: " _ "\n"
          " */\n\n")
         ((sh-mode . "Shell script") nil
-         "#!/bin/bash\n"
+         "#!/usr/bin/env bash\n"
          "# -*- mode: sh; -*-\n\n"
          "# File: " (file-name-nondirectory buffer-file-name) "\n"
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
-         "# Description: " _ "\n\n")))
+         "# Description: " _ "\n\n"
+         "# set -o xtrace\n"
+         "set -o nounset\n"
+         "set -o errexit\n"
+         "set -o pipefail\n\n")))
 
 ;;; 01-autoinsert.el ends here
