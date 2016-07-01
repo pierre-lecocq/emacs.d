@@ -73,12 +73,21 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Locale
+
 (set-language-environment 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (setq locale-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;; Indentation
+
+(setq-default indent-tabs-mode nil
+              tab-width 4
+              c-basic-offset 4
+              c-hanging-comment-ender-p nil)
 
 ;; Generated files
 
@@ -93,7 +102,10 @@
 ;; Look'n'feel
 
 (mapc (lambda (mode) (funcall mode -1))
-      '(menu-bar-mode scroll-bar-mode tool-bar-mode tooltip-mode))
+      '(menu-bar-mode
+	scroll-bar-mode
+	tool-bar-mode
+	tooltip-mode))
 
 (setq select-enable-clipboard t)
 
