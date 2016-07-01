@@ -71,6 +71,16 @@
       whitespace-global-modes '(not org-mode web-mode)
       uniquify-buffer-name-style 'forward uniquify-separator "/")
 
+;; Generated files
+
+(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
+      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
+      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
+      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
+      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
+      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
+      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Locale
@@ -88,16 +98,6 @@
               tab-width 4
               c-basic-offset 4
               c-hanging-comment-ender-p nil)
-
-;; Generated files
-
-(setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
-      abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
-      bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
-      nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
-      recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
-      ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
-      tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
 
 ;; Look'n'feel
 
