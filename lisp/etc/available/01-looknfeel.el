@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-06-29 15:48:34>
+;; Time-stamp: <2016-07-01 09:44:44>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -61,7 +61,7 @@ Argument VALUE 0 is transparent, 100 is opaque."
 (use-package anzu :ensure t
   :config (progn
             (global-anzu-mode +1)
-            (set-face-attribute 'anzu-mode-line nil :foreground "yellow")))
+            (set-face-attribute 'anzu-mode-line nil :foreground "grey13")))
 
 (use-package idle-highlight-mode :ensure t)
 
