@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-06-28 13:28:42>
+;; Time-stamp: <2016-07-01 10:41:54>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -32,8 +32,6 @@
 (defvar byte-compiled-file (concat compiled-file  "c"))
 
 ;; Internals
-
-(mapc 'require '(linum paren time-stamp whitespace))
 
 (mapc (lambda (mode) (funcall mode 1))
       '(auto-compression-mode
