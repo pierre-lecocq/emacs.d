@@ -20,12 +20,9 @@
 ;;; Code:
 
 (defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
-(defvar lisp-dir-etc (concat (file-name-as-directory lisp-dir) "etc"))
-(defvar lisp-dir-var (concat (file-name-as-directory lisp-dir) "var"))
-
-(defvar lisp-available-dir (concat (file-name-as-directory lisp-dir-etc) "available"))
-(defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir-etc) "enabled"))
-(defvar files-dir (concat (file-name-as-directory lisp-dir-var) "files"))
+(defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
+(defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
+(defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
 
 (defvar init-file (expand-file-name (concat (file-name-as-directory user-emacs-directory) "init.el")))
 (defvar compiled-file (expand-file-name  "~/.emacs.el"))
@@ -147,7 +144,7 @@
 (unless (file-exists-p byte-compiled-file)
   (if (file-exists-p lisp-enabled-dir)
       (mapc 'load-file (directory-files lisp-enabled-dir t "\\.el"))
-    (warn "No lisp files enabled in %s" lisp-enabled-dir)))
+    (message "No lisp files enabled in %s" lisp-enabled-dir)))
 
 (defun display-startup-echo-area-message ()
   "Display startup echo area message."
