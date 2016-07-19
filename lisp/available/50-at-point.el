@@ -1,6 +1,6 @@
 ;;; 50-at-point.el --- At point actions
 
-;; Time-stamp: <2016-06-24 11:31:34>
+;; Time-stamp: <2016-07-12 13:07:00>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -33,5 +33,7 @@
                    ((string= major-mode "php-mode") "http://php.net/%s")
                    (t se-url-fmt))))
     (browse-url (format fmt (pl-thing-at-point-or-region 'word)))))
+
+(global-set-key (kbd "C-x x") 'pl-browse-at-point)
 
 ;;; 50-at-point.el ends here
