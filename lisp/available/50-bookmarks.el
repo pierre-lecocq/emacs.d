@@ -1,6 +1,6 @@
 ;;; 50-bookmark.el --- Bookmark
 
-;; Time-stamp: <2016-06-13 09:49:22>
+;; Time-stamp: <2016-07-21 08:37:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,10 +12,6 @@
 (setq bookmark-sort-flag nil
       bookmark-alist `(("Home"          (filename . "~/"))
                        ("Sources"       (filename . "~/src"))
-                       ("Emacs"         (filename . "~/src/emacs.d"))
-                       ("Raspberry"     (filename . "/scp:kenny:~/"))
-                       ("Qsdfgh"        (filename . "/scp:qsdfgh:~/"))
-                       ("Fotolia"       (filename . "/scp:eqx-dev1:~/www/fotolia"))
-                       ("AdobeStock"    (filename . "/scp:eqx-dev2:~/www/adobestock"))))
+                       ("Emacs.d"         (filename . "~/src/emacs.d"))))
 
 ;;; 50-bookmark.el ends here

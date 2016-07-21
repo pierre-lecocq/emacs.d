@@ -1,6 +1,6 @@
 ;;; 90-host.el --- Host specific file
 
-;; Time-stamp: <2016-06-28 11:09:24>
+;; Time-stamp: <2016-07-21 08:38:31>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,7 +19,20 @@
 
 (let ((host (pl-clean-system-name)))
   (cond
-   ((string= host "beastro" ) (progn (when (display-graphic-p) (pl-transparency 90))))
+
+   ((or (string= host "beastro" )
+        (string= host "laptaupe" ))
+    (progn
+      (when (display-graphic-p)
+        (pl-transparency 90))
+      (add-to-list 'bookmark-alist '("Raspberry"     (filename . "/scp:kenny:~/")))
+      (add-to-list 'bookmark-alist '("Qsdfgh"     (filename . "/scp:qsdfgh:~/")))))
+
+   ((string= host "lecocq-s")
+    (progn
+      (add-to-list 'bookmark-alist '("AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
+      (add-to-list 'bookmark-alist '("Fotolia" (filename . "/scp:eqx-dev1:~/www/fotolia")))))
+
    (t (message "No host specific configuration loaded"))))
 
 ;;; 90-host.el ends here
