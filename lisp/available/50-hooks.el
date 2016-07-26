@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-06-16 16:11:05>
+;; Time-stamp: <2016-07-26 08:54:04>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,7 +28,6 @@
 (defun hook-prog-mode ()
   "Hook for Prog mode."
   (idle-highlight-mode t)
-  (hs-minor-mode t)
   (rainbow-delimiters-mode)
   (rainbow-mode)
   (set-face-underline 'font-lock-warning-face "red")

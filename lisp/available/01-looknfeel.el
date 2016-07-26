@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-07-12 13:05:49>
+;; Time-stamp: <2016-07-26 11:44:16>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -65,6 +65,16 @@ Argument VALUE 0 is transparent, 100 is opaque."
 
 (use-package centered-window-mode :ensure t
   :bind (("C-x c" . centered-window-mode)))
+
+(use-package delight :ensure t
+  :config (delight '((abbrev-mode nil "abbrev")
+                     (rainbow-qmode nil)
+                     (anzu-mode nil "anzu")
+                     (company-mode nil "company")
+                     (eldoc-mode nil "eldoc")
+                     (autopair-mode nil "autopair")
+                     (php-mode "php")
+                     (emacs-lisp-mode "elisp" :major))))
 
 (use-package idle-highlight-mode :ensure t)
 
