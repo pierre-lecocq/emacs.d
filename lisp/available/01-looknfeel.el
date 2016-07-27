@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-07-26 11:47:24>
+;; Time-stamp: <2016-07-27 08:46:14>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -68,14 +68,12 @@ Argument VALUE 0 is transparent, 100 is opaque."
 
 (use-package delight :ensure t
   :config (delight '((abbrev-mode nil "abbrev")
-                     (rainbow-qmode)
+                     (rainbow-mode)
                      (anzu-mode nil "anzu")
                      (company-mode nil "company")
                      (eldoc-mode nil "eldoc")
                      (autopair-mode nil "autopair")
-                     (idle-highlight-mode)
-                     (php-mode "php")
-                     (emacs-lisp-mode "elisp" :major))))
+                     (idle-highlight-mode nil))))
 
 (use-package idle-highlight-mode :ensure t)
 
