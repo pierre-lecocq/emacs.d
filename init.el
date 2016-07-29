@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-07-19 18:14:10>
+;; Time-stamp: <2016-07-29 11:19:21>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -143,13 +143,13 @@
   (let ((file (ido-completing-read "Select a file: " (directory-files lisp-available-dir nil "\\.el"))))
     (shell-command (format "ln -s %s/%s %s/%s" lisp-available-dir file lisp-enabled-dir file))))
 
+(defun display-startup-echo-area-message ()
+  "Display startup echo area message."
+  (message "Initialized in %s" (emacs-init-time)))
+
 (unless (file-exists-p byte-compiled-file)
   (if (file-exists-p lisp-enabled-dir)
       (mapc 'load-file (directory-files lisp-enabled-dir t "\\.el"))
     (message "No lisp files enabled in %s" lisp-enabled-dir)))
-
-(defun display-startup-echo-area-message ()
-  "Display startup echo area message."
-  (message "Initialized in %s" (emacs-init-time)))
 
 ;;; init.el ends here
