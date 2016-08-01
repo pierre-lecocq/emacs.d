@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-08-01 23:09:50>
+;; Time-stamp: <2016-08-01 23:33:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -15,7 +15,7 @@
 ;; from `lisp-available-dir' to `lisp-enabled-dir'.
 ;;
 ;; It can also be compiled with `(pl-compile-config)' which generates a standalone
-;; file `.emacs.elc' placed in the home directory
+;; file `.emacs.elc' located in the home directory
 
 ;;; Code:
 

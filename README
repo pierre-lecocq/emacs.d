@@ -1,7 +1,7 @@
 Minimal Emacs config file
 -------------------------
 
-;; Time-stamp: <2016-06-27 14:21:58>
+;; Time-stamp: <2016-08-01 23:33:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -14,4 +14,4 @@ file but can load some extensions from a given directory by creating symlinks
 from `lisp-available-dir' to `lisp-enabled-dir'.
 
 It can also be compiled with `(pl-compile-config)' which generates a standalone
-file `.emacs.elc' placed in the home directory
+file `.emacs.elc' located in the home directory
