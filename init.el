@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-08-01 22:31:55>
+;; Time-stamp: <2016-08-01 23:09:50>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -18,6 +18,8 @@
 ;; file `.emacs.elc' placed in the home directory
 
 ;;; Code:
+
+;; (package-initialize)
 
 (defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
 (defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))

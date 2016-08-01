@@ -1,11 +1,14 @@
 ;;; 50-shell.el --- Shell
 
-;; Time-stamp: <2016-06-03 14:49:12>
+;; Time-stamp: <2016-08-01 22:48:19>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(use-package multi-term :ensure t
+  :config (setq multi-term-program "/bin/bash"))
 
 (defun pl-get-shell ()
   "Get a shell buffer."

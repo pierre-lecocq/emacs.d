@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-08-01 22:27:41>
+;; Time-stamp: <2016-08-01 22:49:52>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,7 +31,6 @@
   (rainbow-delimiters-mode)
   (rainbow-mode)
   (set-face-underline 'font-lock-warning-face "red")
-  (linum-mode (if (< (buffer-size) (* 9999 80)) 1 -1))
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t))))
 
 (add-hook 'prog-mode-hook #'hook-prog-mode)
