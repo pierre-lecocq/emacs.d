@@ -1,8 +1,8 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-08-01 23:33:55>
+;; Time-stamp: <2016-08-01 23:35:31>
 ;; Copyright (C) 2015 Pierre Lecocq
-;; Version: <insert a bigint here>
+;; Version: <insert your bigint here>
 
 ;;; Commentary:
 ;;
