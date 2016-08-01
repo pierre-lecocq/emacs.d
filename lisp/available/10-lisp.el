@@ -1,11 +1,35 @@
 ;;; 10-lisp.el --- Lisp
 
-;; Time-stamp: <2016-06-29 11:04:50>
+;; Time-stamp: <2016-08-01 22:29:21>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
+
+(defun hook-emacs-lisp-mode ()
+  "Hook for Emacs Lisp mode."
+  (eldoc-mode)
+  (global-prettify-symbols-mode 1))
+
+(add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
+
+(defun hook-lisp-mode ()
+  "Hook for Lisp mode."
+  (global-prettify-symbols-mode 1))
+
+(add-hook 'lisp-mode-hook #'hook-lisp-mode)
+
+(defun pl-force-eval ()
+  "Forced Emacs Lisp buffer evaluation - stolen from SO."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (not (eobp))
+      (forward-sexp)
+      (eval-defun nil))))
 
 (use-package slime-company :ensure t)
 
@@ -18,14 +42,5 @@
                   (load helper-file)
                 (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
             (slime-setup '(slime-company))))
-
-(defun pl-force-eval ()
-  "Forced Emacs Lisp buffer evaluation - stolen from SO."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (while (not (eobp))
-      (forward-sexp)
-      (eval-defun nil))))
 
 ;;; 10-lisp.el ends here

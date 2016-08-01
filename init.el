@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-07-29 11:19:21>
+;; Time-stamp: <2016-08-01 22:31:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert a bigint here>
 
@@ -43,6 +43,7 @@
 
 (setq debug-on-error t
       gc-cons-threshold 100000000
+      load-prefer-newer t
       sentence-end-double-space nil
       user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com"
@@ -82,9 +83,9 @@
 
 ;; Locale
 
+(setq locale-coding-system 'utf-8)
 (set-language-environment 'utf-8)
 (set-terminal-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)

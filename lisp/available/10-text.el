@@ -1,6 +1,6 @@
 ;;; 10-text.el --- Text
 
-;; Time-stamp: <2016-06-29 11:02:56>
+;; Time-stamp: <2016-08-01 22:19:32>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,8 +23,9 @@
 
 (defun hook-text-mode ()
   "Hook  for Text mode."
-  (linum-mode 1)
   (make-local-variable 'linum-format)
+  (linum-mode (if (< (buffer-size) (* 9999 80)) 1 -1))
+  (electric-indent-local-mode -1)
   (setq linum-format " %d "))
 
 (add-hook 'text-mode-hook #'hook-text-mode)
