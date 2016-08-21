@@ -116,7 +116,6 @@
       ;; (set-face-background 'region "grey27")
       (set-face-background 'region "DodgerBlue")
       (set-face-foreground 'region "white")
-      (toggle-frame-maximized)
       (setq x-select-enable-clipboard t))
   (setq frame-background-mode 'dark))
 
