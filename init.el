@@ -102,7 +102,7 @@
 ;; Look'n'feel
 
 (mapc (lambda (mode) (funcall mode -1))
-      '(menu-bar-mode
+      '(;;menu-bar-mode
 	scroll-bar-mode
 	tool-bar-mode
 	tooltip-mode))
