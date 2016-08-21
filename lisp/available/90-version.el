@@ -7,4 +7,8 @@
 
 ;;; Code:
 
+(when (display-graphic-p)
+  (unless (version< emacs-version "24.4")
+    (toggle-frame-maximized)))
+
 ;;; 90-version.el ends here
