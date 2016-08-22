@@ -1,6 +1,6 @@
 ;;; 50-newsticker.el --- Newsticker
 
-;; Time-stamp: <2016-08-22 15:49:32>
+;; Time-stamp: <2016-08-22 18:33:44>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,8 +21,8 @@
   :init (progn
           (setq newsticker-retrieval-interval 600 ;; 10mins
                 newsticker-html-renderer 'w3m-region
-                newsticker-dir (concat files-dir "newsticker")
-                newsticker-cache-filename (concat files-dir "newsticker" "/.cache")
+                newsticker-dir (concat (file-name-as-directory files-dir) "newsticker")
+                newsticker-cache-filename (concat (file-name-as-directory files-dir) "newsticker" "/.cache")
                 newsticker-url-list-defaults nil
                 newsticker-url-list '(("p-emacsen" "http://planet.emacsen.org/atom.xml")
                                       ("r-lisp" "http://www.reddit.com/r/lisp.rss")
@@ -34,7 +34,7 @@
                                       ("xkcd" "http://xkcd.com/rss.xml")
                                       ("commit-strip" "http://www.commitstrip.com/fr/feed/")
                                       ("bonjour" "http://dites.bonjourmadame.fr/rss")))
-          (setq newsticker-groups-filename (concat files-dir "newsticker" "/.groups")
+          (setq newsticker-groups-filename (concat (file-name-as-directory files-dir) "newsticker" "/.groups")
                 newsticker-groups '("Feeds"
                                     ("System" "r-linux" "r-debian" "r-netsec")
                                     ("Emacs" "p-emacsen" "r-emacs")
