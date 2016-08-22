@@ -1,0 +1,28 @@
+Setup
+-----
+
+1. Insert passwords in ~/.mailpass-<account_name>.gpg
+2. ln -s ~/src/emacs.d/mail/mbsyncrc ~/.mbsyncrc && chmod 600 ~/.mbsyncrc
+3. ln -s ~/src/emacs.d/mail/notmuch-config ~/.notmuch-config && chmod 600 ~/.notmuch-config
+4. ln -s ~/src/emacs.d/mail/notmuch-run ~/bin/notmuch-run && chmod 700 ~/bin/notmuch-run
+
+Run
+---
+
+mbsync gmail && notmuch-run
+
+
+
+
+
+
+
+
+
+
+mbsync + mu + mu4e + notmuch
+
+https://wiki.archlinux.org/index.php/Isync
+https://el-tramo.be/blog/gmail-mbsync/
+http://www.ict4g.net/adolfo/notes/2014/12/27/EmacsIMAP.html
+http://chrisdone.com/posts/emacs-mail

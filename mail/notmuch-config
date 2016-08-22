@@ -1,0 +1,15 @@
+[database]
+path=/Users/lecocq/.mail
+
+[new]
+tags=unread;inbox;
+ignore=
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]
+synchronize_flags=true
+
+[crypto]
+gpg_path=gpg

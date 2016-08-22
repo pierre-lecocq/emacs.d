@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# -*- mode: sh; -*-
+
+# File: notmuch-run
+# Time-stamp: <2016-08-22 17:53:50>
+# Copyright (C) 2016 Pierre Lecocq
+# Description:
+
+notmuch new
+
+notmuch tag -inbox +tag1 from:pemacsmail1@gmail.com tag:inbox
+notmuch tag -inbox +tag2 from:pemacsmail2@gmail.com tag:inbox
