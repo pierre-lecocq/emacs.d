@@ -1,6 +1,6 @@
 ;;; 50-newsticker.el --- Newsticker
 
-;; Time-stamp: <2016-06-29 11:06:56>
+;; Time-stamp: <2016-08-22 15:49:32>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -32,13 +32,14 @@
                                       ("r-linux" "http://www.reddit.com/r/linux.rss")
                                       ("r-ruby" "http://www.reddit.com/r/ruby.rss")
                                       ("xkcd" "http://xkcd.com/rss.xml")
-                                      ("commit-strip" "http://www.commitstrip.com/fr/feed/")))
+                                      ("commit-strip" "http://www.commitstrip.com/fr/feed/")
+                                      ("bonjour" "http://dites.bonjourmadame.fr/rss")))
           (setq newsticker-groups-filename (concat files-dir "newsticker" "/.groups")
                 newsticker-groups '("Feeds"
                                     ("System" "r-linux" "r-debian" "r-netsec")
                                     ("Emacs" "p-emacsen" "r-emacs")
                                     ("Dev" "r-lisp" "r-ruby")
-                                    ("Other" "xkcd" "commit-strip"))))
+                                    ("Other" "xkcd" "commit-strip" "bonjour"))))
   :bind (("C-c r" . pl-launch-newsticker)))
 
 ;;; 50-newsticker.el ends here

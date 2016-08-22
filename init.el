@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-08-01 23:35:31>
+;; Time-stamp: <2016-08-22 16:10:13>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -40,6 +40,7 @@
         ido-mode
         line-number-mode
         show-paren-mode
+        subword-mode
         transient-mark-mode
         which-function-mode))
 
