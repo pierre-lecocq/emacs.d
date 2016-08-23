@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# -*- mode: sh; -*-
+
+# File: mailfetcher
+# Time-stamp: <2016-08-23 17:02:51>
+# Copyright (C) 2016 Pierre Lecocq
+# Description:
+
+# Check internet connection
+echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    echo "Not connected to the internetz"
+    exit 1
+fi
+
+# Fetch emails from smtp
+mbsync gmail
+
+# Insert in notmuch DB
+notmuch new
+
+# Add tags
+notmuch tag -inbox +tag1 from:pemacsmail1@gmail.com tag:inbox
+notmuch tag -inbox +tag2 from:pemacsmail2@gmail.com tag:inbox
+
+# Notification
+res=$(notmuch count tag:unread tag:inbox)
+if [ $res != "0" ]; then
+    arch=`uname`
+
+    if [ $arch = "Darwin" ]; then
+        terminal-notifier -title "MailFetcher" -message "$res unread messages"
+    elif [ $arch = "Linux" ]; then
+        notify-send "$res unread messages"
+    else
+        echo "$res unread messages"
+    fi
+fi
