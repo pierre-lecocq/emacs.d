@@ -1,18 +1,29 @@
 Setup
 -----
 
-install isync notmuch
+Install isync notmuch msmtp
 
-1. Insert passwords in ~/.mailpass-<account_name>.gpg
-2. ln -s ~/src/emacs.d/mail/conf/mbsyncrc ~/.mbsyncrc && chmod 600 ~/.mbsyncrc
-3. ln -s ~/src/emacs.d/mail/conf/notmuch-config ~/.notmuch-config && chmod 600 ~/.notmuch-config
-4. ln -s ~/src/emacs.d/mail/lisp/90-notmuch.el ~/src/emacs.d/lisp/enabled/90-notmuch.el
-5. ln -s ~/src/emacs.d/mail/bin/mailfetcher ~/bin/mailfetcher && chmod 700 ~/bin/mailfetcher
+Insert passwords in ~/.mailpass-<account_name>.gpg
+chmod 600 ~/.mailpass-*.gpg
+
+ln -s ~/src/emacs.d/mail/conf/mbsyncrc ~/.mbsyncrc && chmod 600 ~/.mbsyncrc
+ln -s ~/src/emacs.d/mail/conf/msmtprc ~/.msmtprc && chmod 600 ~/.msmtprc
+ln -s ~/src/emacs.d/mail/conf/notmuch-config ~/.notmuch-config && chmod 600 ~/.notmuch-config
+ln -s ~/src/emacs.d/mail/lisp/90-notmuch.el ~/src/emacs.d/lisp/enabled/90-notmuch.el
+ln -s ~/src/emacs.d/mail/bin/mailfetcher ~/bin/mailfetcher && chmod 700 ~/bin/mailfetcher
+
 
 Run
 ---
 
 mailfetcher
+
+echo -e "This is a test mail" | msmtp -d blabla@gmail.com
+
+Troubelshootings
+----------------
+
+Import certs: openssl s_client -starttls imap -connect some.imap.server:port -showcerts
 
 
 
@@ -21,11 +32,12 @@ mailfetcher
 BUGS & feats
 ------------
 - multiple account
-- SMTP setup
+- MSMTP setup :: https://wiki.archlinux.org/index.php/msmtp
 
 
 
 
+https://bostonenginerd.com/posts/notmuch-of-a-mail-setup-part-2-notmuch-and-emacs/
 
 http://www.holgerschurig.de/en/notmuch-polling-with-mbsync/
 

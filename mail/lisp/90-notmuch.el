@@ -1,6 +1,6 @@
 ;;; 90-notmuch.el --- Notmuch config
 
-;; Time-stamp: <2016-08-23 17:06:08>
+;; Time-stamp: <2016-08-24 14:15:28>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -24,6 +24,14 @@
                                          (:name "flagged" :query "tag:flagged" :key "f")
                                          (:name "sent" :query "tag:sent" :key "t")
                                          (:name "drafts" :query "tag:draft" :key "d")
-                                         (:name "all mail" :query "*" :key "a")))))
+                                         (:name "all mail" :query "*" :key "a")))
+
+          ;; (define-key notmuch-show-mode-map "F" (lambda () (notmuch-show-tag (list "+flagged"))))
+          ;; (define-key notmuch-search-mode-map "F" (lambda () (notmuch-show-tag (list "+flagged"))))
+
+          ;; (define-key notmuch-show-mode-map "S" (lambda () (notmuch-show-tag (list "+spam" "-inbox"))))
+          ;; (define-key notmuch-search-mode-map "S" (lambda () (notmuch-show-tag (list "+spam" "-inbox"))))
+          )
+  :bind (("C-c m" . notmuch)))
 
 ;;; 90-notmuch.el ends here
