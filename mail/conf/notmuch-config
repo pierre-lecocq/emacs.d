@@ -1,6 +1,11 @@
 [database]
 path=/Users/lecocq/.mail
 
+[user]
+name="Pierre Lecocq"
+primary_email=pemacsmail1@gmail.com
+other_email=pemacsmail2@gmail.com
+
 [new]
 tags=unread;inbox;
 ignore=

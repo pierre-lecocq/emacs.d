@@ -2,26 +2,31 @@
 # -*- mode: sh; -*-
 
 # File: mailfetcher
-# Time-stamp: <2016-08-23 17:02:51>
+# Time-stamp: <2016-08-26 11:40:54>
 # Copyright (C) 2016 Pierre Lecocq
 # Description:
 
 # Check internet connection
 echo -e "GET http://google.com HTTP/1.0\n\n" | nc google.com 80 > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "Not connected to the internetz"
+    echo "Not connected to the internetz."
     exit 1
 fi
 
-# Fetch emails from smtp
-mbsync gmail
+mkdir -p ~/.mail/{gmail,qsdfgh}
+
+# Remove deleted emails from disk
+notmuch search --output=files tag:deleted | xargs rm
+
+# Fetch emails from all imap accounts
+mbsync -a
 
 # Insert in notmuch DB
 notmuch new
 
 # Add tags
-notmuch tag -inbox +tag1 from:pemacsmail1@gmail.com tag:inbox
-notmuch tag -inbox +tag2 from:pemacsmail2@gmail.com tag:inbox
+notmuch tag -inbox +gmail to:pemacsmail1@gmail.com tag:inbox
+notmuch tag -inbox +qsdfgh to:pemacsmail2@gmail.com tag:inbox
 
 # Notification
 res=$(notmuch count tag:unread tag:inbox)

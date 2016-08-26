@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-08-01 22:49:52>
+;; Time-stamp: <2016-08-26 12:31:14>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,12 +12,6 @@
   (setq show-trailing-whitespace nil))
 
 (add-hook 'minibuffer-setup-hook #'hook-minibuffer-setup)
-
-(defun hook-mail-mode ()
-  "Hook for Mail mode."
-  (setq show-trailing-whitespace nil))
-
-(add-hook 'mail-mode-hook #'hook-mail-mode)
 
 (defun hook-dired-mode ()
   "Hook for Dired mode."
