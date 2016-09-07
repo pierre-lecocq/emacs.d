@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-08-26 12:31:14>
+;; Time-stamp: <2016-09-07 08:37:07>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -24,6 +24,7 @@
   (idle-highlight-mode t)
   (rainbow-delimiters-mode)
   (rainbow-mode)
+  (git-gutter-mode)
   (set-face-underline 'font-lock-warning-face "red")
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t))))
 
