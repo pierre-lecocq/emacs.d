@@ -1,6 +1,6 @@
 ;;; 50-email.el --- Email configuraton
 
-;; Time-stamp: <2016-08-26 16:22:28>
+;; Time-stamp: <2016-09-08 07:58:25>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -72,8 +72,8 @@
         message-citation-line-function 'message-insert-formatted-citation-line)
   (let ((smtp (ido-completing-read "Select a SMTP server: " '("gmail" "qsdfgh"))))
     (cond
-     ((string= smtp "qsdfgh") (setSMTPServer "qsdfgh" "pemacsmail1@gmail.com"))
-     ((string= smtp "gmail") (setSMTPServer "gmail" "pemacsmail2@gmail.com"))
+     ((string= smtp "qsdfgh") (setSMTPServer "qsdfgh" "blabla1@gmail.com"))
+     ((string= smtp "gmail") (setSMTPServer "gmail" "blabla2@gmail.com"))
      (t (error "Unknown SMTP server")))))
 
 (add-hook 'message-mode-hook #'hook-message-mode)

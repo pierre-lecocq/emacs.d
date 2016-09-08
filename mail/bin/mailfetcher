@@ -2,7 +2,7 @@
 # -*- mode: sh; -*-
 
 # File: mailfetcher
-# Time-stamp: <2016-08-26 11:40:54>
+# Time-stamp: <2016-09-08 07:56:49>
 # Copyright (C) 2016 Pierre Lecocq
 # Description:
 
@@ -25,8 +25,8 @@ mbsync -a
 notmuch new
 
 # Add tags
-notmuch tag -inbox +gmail to:pemacsmail1@gmail.com tag:inbox
-notmuch tag -inbox +qsdfgh to:pemacsmail2@gmail.com tag:inbox
+notmuch tag -inbox +gmail to:blabla1@gmail.com tag:inbox
+notmuch tag -inbox +qsdfgh to:blabla2@gmail.com tag:inbox
 
 # Notification
 res=$(notmuch count tag:unread tag:inbox)

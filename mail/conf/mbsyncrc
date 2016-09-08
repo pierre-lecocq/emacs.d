@@ -2,7 +2,7 @@
 
 IMAPAccount gmail
 Host imap.gmail.com
-User pemacsmail1@gmail.com
+User blabla1@gmail.com
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
@@ -30,7 +30,7 @@ SyncState *
 
 IMAPAccount qsdfgh
 Host imap.gmail.com
-User pemacsmail2@gmail.com
+User blabla2@gmail.com
 PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-qsdfgh.gpg"
 AuthMechs LOGIN
 SSLType IMAPS
