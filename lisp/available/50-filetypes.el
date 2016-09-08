@@ -1,6 +1,6 @@
 ;;; 01-filetypes.el --- Filetypes
 
-;; Time-stamp: <2016-02-29 00:00:50>
+;; Time-stamp: <2016-09-07 01:35:30>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,7 @@
 (add-to-list 'auto-mode-alist '("\\.lisp\\'"        . lisp-mode))
 (add-to-list 'auto-mode-alist '("/tmp/mutt.*\\'"    . mail-mode))
 (add-to-list 'auto-mode-alist '("\\.php-dev\\'"     . php-mode))
+(add-to-list 'auto-mode-alist '("\\.http\\'"        . restclient-mode))
 (add-to-list 'auto-mode-alist '("Dockerfile"        . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile"       . ruby-mode))
 (add-to-list 'auto-mode-alist '("Gemfile"           . ruby-mode))

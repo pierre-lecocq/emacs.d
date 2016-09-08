@@ -1,0 +1,55 @@
+# Gmail
+
+IMAPAccount gmail
+Host imap.gmail.com
+User blabla1@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-gmail.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /usr/local/etc/openssl/certs/gmail.crt
+CertificateFile /usr/local/etc/openssl/certs/google.crt
+CertificateFile /usr/local/etc/openssl/certs/Equifax.crt
+
+IMAPStore gmail-remote
+Account gmail
+
+MaildirStore gmail-local
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+Channel gmail
+Master :gmail-remote:
+Slave :gmail-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Gmail]* "[Gmail]/All Mail"
+Create Both
+SyncState *
+
+# Qsdfgh
+
+IMAPAccount qsdfgh
+Host imap.gmail.com
+User blabla2@gmail.com
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass-qsdfgh.gpg"
+AuthMechs LOGIN
+SSLType IMAPS
+SSLVersions TLSv1.2
+CertificateFile /usr/local/etc/openssl/certs/gmail.crt
+CertificateFile /usr/local/etc/openssl/certs/google.crt
+CertificateFile /usr/local/etc/openssl/certs/Equifax.crt
+
+IMAPStore qsdfgh-remote
+Account qsdfgh
+
+MaildirStore qsdfgh-local
+Path ~/.mail/qsdfgh/
+Inbox ~/.mail/qsdfgh/Inbox
+
+Channel qsdfgh
+Master :qsdfgh-remote:
+Slave :qsdfgh-local:
+# Exclude everything under the internal [Gmail] folder, except the interesting folders
+Patterns * ![Gmail]* "[Gmail]/All Mail"
+Create Both
+SyncState *

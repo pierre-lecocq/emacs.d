@@ -1,6 +1,6 @@
 ;;; 10-web.el --- Web
 
-;; Time-stamp: <2016-06-29 11:05:10>
+;; Time-stamp: <2016-09-07 01:34:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -18,6 +18,8 @@
 (use-package php-extras :ensure t)
 
 (use-package rainbow-mode :ensure t)
+
+(use-package restclient :ensure t)
 
 (use-package web-mode :ensure t)
 
