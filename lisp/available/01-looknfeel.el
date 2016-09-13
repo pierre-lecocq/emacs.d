@@ -1,6 +1,6 @@
 ;;; 01-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-08-25 11:38:37>
+;; Time-stamp: <2016-09-13 23:31:09>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -55,24 +55,21 @@ Argument VALUE 0 is transparent, 100 is opaque."
 
 ;; Packages
 
+(use-package abbrev
+  :diminish abbrev-mode)
+
 (use-package autopair :ensure t
-  :config (autopair-global-mode t))
+  :config (autopair-global-mode t)
+  :diminish autopair-mode)
 
 (use-package anzu :ensure t
   :config (progn
             (global-anzu-mode +1)
-            (set-face-attribute 'anzu-mode-line nil :foreground "grey13")))
+            (set-face-attribute 'anzu-mode-line nil :foreground "grey13"))
+  :diminish anzu-mode)
 
-(use-package delight :ensure t
-  :config (delight '((abbrev-mode nil "abbrev")
-                     (rainbow-mode)
-                     (anzu-mode nil "anzu")
-                     (company-mode nil "company")
-                     (eldoc-mode nil "eldoc")
-                     (autopair-mode nil "autopair")
-                     (idle-highlight-mode nil))))
-
-(use-package idle-highlight-mode :ensure t)
+(use-package idle-highlight-mode :ensure t
+  :diminish idle-highlight-mode)
 
 (use-package rainbow-delimiters :ensure t)
 

@@ -1,6 +1,6 @@
 ;;; 10-lisp.el --- Lisp
 
-;; Time-stamp: <2016-08-01 22:29:21>
+;; Time-stamp: <2016-09-13 23:31:55>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,6 +30,9 @@
     (while (not (eobp))
       (forward-sexp)
       (eval-defun nil))))
+
+(use-package eldoc-mode
+  :diminish eldoc-mode)
 
 (use-package slime-company :ensure t)
 
