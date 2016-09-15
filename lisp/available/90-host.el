@@ -1,6 +1,6 @@
 ;;; 90-host.el --- Host specific file
 
-;; Time-stamp: <2016-07-21 08:38:31>
+;; Time-stamp: <2016-09-15 13:32:32>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:

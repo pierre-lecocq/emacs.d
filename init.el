@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-09-13 23:02:48>
+;; Time-stamp: <2016-09-15 13:33:12>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -86,12 +86,17 @@
 
 ;; Locale
 
-(setq locale-coding-system 'utf-8)
-(set-language-environment 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-selection-coding-system 'utf-8)
-(prefer-coding-system 'utf-8)
+(defun pl-set-locale (locale)
+  "Set locale to LOCALE."
+  (interactive)
+  (setq locale-coding-system locale)
+  (set-language-environment locale)
+  (set-terminal-coding-system locale)
+  (set-default-coding-systems locale)
+  (set-selection-coding-system locale)
+  (prefer-coding-system locale))
+
+(pl-set-locale 'utf-8)
 
 ;; Indentation
 

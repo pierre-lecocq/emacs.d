@@ -1,6 +1,6 @@
 ;;; 50-hooks.el --- Hooks
 
-;; Time-stamp: <2016-09-08 23:31:51>
+;; Time-stamp: <2016-09-15 13:32:14>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -38,6 +38,8 @@
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
+  (when (string= (pl-clean-system-name) "lecocq-s")
+    (pl-set-locale 'latin-1)) ;; don't ask
   (set (make-local-variable 'company-backends) '((php-extras-company company-dabbrev-code) company-capf company-files))
   (setq comment-start "// "
         comment-end "")
