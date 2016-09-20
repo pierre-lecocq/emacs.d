@@ -1,4 +1,4 @@
-;;; 01-ido.el --- Ido
+;;; init-ido.el --- Ido
 
 ;; Time-stamp: <2016-06-29 10:58:13>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -24,4 +24,6 @@
             (ido-hacks-mode)
             (ido-vertical-mode)))
 
-;;; 01-ido.el ends here
+(provide 'init-ido)
+
+;;; init-ido.el ends here

@@ -1,4 +1,4 @@
-;;; 50-newsticker.el --- Newsticker
+;;; init-newsticker.el --- Newsticker
 
 ;; Time-stamp: <2016-08-22 18:33:44>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -42,4 +42,6 @@
                                     ("Other" "xkcd" "commit-strip" "bonjour"))))
   :bind (("C-c r" . pl-launch-newsticker)))
 
-;;; 50-newsticker.el ends here
+(provide 'init-newsticker)
+
+;;; init-newsticker.el ends here

@@ -1,4 +1,4 @@
-;;; 01-filetypes.el --- Filetypes
+;;; init-filetypes.el --- Filetypes
 
 ;; Time-stamp: <2016-09-07 01:35:30>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -8,6 +8,7 @@
 ;;; Code:
 
 (add-to-list 'auto-mode-alist '("\\.log\\'"         . auto-revert-mode))
+(add-to-list 'auto-mode-alist '("\\.scss]\\'"       . css-mode))
 (add-to-list 'auto-mode-alist '("\\.js[on]\\'"      . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.asd\\'"         . lisp-mode))
 (add-to-list 'auto-mode-alist '("\\.cl\\'"          . lisp-mode))
@@ -31,4 +32,6 @@
 (add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 
-;;; 01-filetypes.el ends here
+(provide 'init-filetypes)
+
+;;; init-filetypes.el ends here

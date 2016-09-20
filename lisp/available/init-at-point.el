@@ -1,4 +1,4 @@
-;;; 50-at-point.el --- At point actions
+;;; init-at-point.el --- At point actions
 
 ;; Time-stamp: <2016-07-12 13:07:00>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -36,4 +36,6 @@
 
 (global-set-key (kbd "C-x x") 'pl-browse-at-point)
 
-;;; 50-at-point.el ends here
+(provide 'init-at-point)
+
+;;; init-at-point.el ends here

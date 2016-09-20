@@ -1,4 +1,4 @@
-;;; 50-shell.el --- Shell
+;;; init-shell.el --- Shell
 
 ;; Time-stamp: <2016-09-01 11:16:22>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -26,4 +26,6 @@
   :bind (("<f12>" . better-shell-shell)
          ("C-<f12>" . better-shell-remote-open)))
 
-;;; 50-shell.el ends here
+(provide 'init-shell)
+
+;;; init-shell.el ends here

@@ -1,4 +1,4 @@
-;;; 50-bookmark.el --- Bookmark
+;;; init-bookmarks.el --- Bookmark
 
 ;; Time-stamp: <2016-07-21 08:37:46>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -14,4 +14,6 @@
                        ("Sources"       (filename . "~/src"))
                        ("Emacs.d"         (filename . "~/src/emacs.d"))))
 
-;;; 50-bookmark.el ends here
+(provide 'init-bookmarks)
+
+;;; init-bookmarks.el ends here

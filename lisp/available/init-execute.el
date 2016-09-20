@@ -1,4 +1,4 @@
-;;; 01-execute.el --- Execute command on a buffer
+;;; init-execute.el --- Execute command on a buffer
 
 ;; Time-stamp: <2016-06-29 10:55:00>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -43,4 +43,6 @@
   (interactive)
   (pl-lint-or-execute "execute"))
 
-;;; 01-execute.el ends here
+(provide 'init-execute)
+
+;;; init-execute.el ends here

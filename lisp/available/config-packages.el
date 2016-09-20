@@ -1,4 +1,4 @@
-;;; 00-packages.el --- Packages
+;;; config-packages.el --- Packages
 
 ;; Time-stamp: <2016-06-28 13:24:44>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -27,4 +27,6 @@
 (eval-when-compile
   (require 'use-package))
 
-;;; 00-packages.el ends here
+(provide 'config-packages)
+
+;;; config-packages.el ends here

@@ -1,4 +1,4 @@
-;;; 01-tags.el --- Tags
+;;; init-tags.el --- Tags
 
 ;; Time-stamp: <2016-06-10 17:41:33>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -30,4 +30,6 @@
     (setq tags-file-name file)
     (visit-tags-table file)))
 
-;;; 01-tags.el ends here
+(provide 'init-tags)
+
+;;; init-tags.el ends here

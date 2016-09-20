@@ -1,4 +1,4 @@
-;;; 01-autoinsert.el --- Autoinsert
+;;; init-autoinsert.el --- Autoinsert
 
 ;; Time-stamp: <2016-07-11 12:07:18>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -64,4 +64,6 @@
          "#+DATE: " (current-time-string) "\n"
          "#+STARTUP: showall\n\n")))
 
-;;; 01-autoinsert.el ends here
+(provide 'init-autoinsert)
+
+;;; init-autoinsert.el ends here

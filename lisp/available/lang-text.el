@@ -1,4 +1,4 @@
-;;; 10-text.el --- Text
+;;; lang-text.el --- Text
 
 ;; Time-stamp: <2016-08-26 11:03:29>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -27,4 +27,6 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
-;;; 10-text.el ends here
+(provide 'lang-text)
+
+;;; lang-text.el ends here

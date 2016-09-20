@@ -1,4 +1,4 @@
-;;; 01-completion.el --- Completion
+;;; init-completion.el --- Completion
 
 ;; Time-stamp: <2016-09-13 23:12:22>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -16,4 +16,6 @@
   :config (global-company-mode 1)
   :diminish company-mode)
 
-;;; 01-completion.el ends here
+(provide 'init-completion)
+
+;;; init-completion.el ends here

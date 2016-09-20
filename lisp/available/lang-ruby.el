@@ -1,4 +1,4 @@
-;;; 10-ruby.el --- Ruby
+;;; lang-ruby.el --- Ruby
 
 ;; Time-stamp: <2016-06-29 11:10:32>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -11,4 +11,6 @@
 
 (use-package inf-ruby :ensure t)
 
-;;; 10-ruby.el ends here
+(provide 'lang-ruby)
+
+;;; lang-ruby.el ends here

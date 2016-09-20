@@ -1,4 +1,4 @@
-;;; 10-web.el --- Web
+;;; lang-web.el --- Web
 
 ;; Time-stamp: <2016-09-13 23:13:24>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -24,4 +24,6 @@
 
 (use-package web-mode :ensure t)
 
-;;; 10-web.el ends here
+(provide 'lang-web)
+
+;;; lang-web.el ends here

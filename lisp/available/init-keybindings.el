@@ -1,4 +1,4 @@
-;;; 50-keybindings.el --- Keybindings
+;;; init-keybindings.el --- Keybindings
 
 ;; Time-stamp: <2016-09-01 11:16:32>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -42,4 +42,6 @@
 (when (display-graphic-p)
   (global-unset-key (kbd "C-z")))
 
-;;; 50-keybindings.el ends here
+(provide 'init-keybindings)
+
+;;; init-keybindings.el ends here

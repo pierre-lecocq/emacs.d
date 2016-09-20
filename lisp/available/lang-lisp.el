@@ -1,4 +1,4 @@
-;;; 10-lisp.el --- Lisp
+;;; lang-lisp.el --- Lisp
 
 ;; Time-stamp: <2016-09-13 23:31:55>
 ;; Copyright (C) 2015 Pierre Lecocq
@@ -46,4 +46,6 @@
                 (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
             (slime-setup '(slime-company))))
 
-;;; 10-lisp.el ends here
+(provide 'lang-lisp)
+
+;;; lang-lisp.el ends here

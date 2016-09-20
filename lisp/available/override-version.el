@@ -1,4 +1,4 @@
-;;; 90-version.el --- Version specific file
+;;; override-version.el --- Version specific file
 
 ;; Time-stamp: <2016-06-28 11:09:39>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -11,4 +11,6 @@
   (unless (version< emacs-version "24.4")
     (toggle-frame-maximized)))
 
-;;; 90-version.el ends here
+(provide 'override-version)
+
+;;; override-version.el ends here

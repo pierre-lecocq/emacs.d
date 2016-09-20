@@ -1,4 +1,4 @@
-;;; 50-git.el --- Git
+;;; init-git.el --- Git
 
 ;; Time-stamp: <2016-09-13 23:32:46>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -18,4 +18,6 @@
             (set-face-foreground 'git-gutter:deleted "red"))
   :diminish git-gutter-mode)
 
-;;; 50-git.el ends here
+(provide 'init-git)
+
+;;; init-git.el ends here

@@ -1,4 +1,4 @@
-;;; 01-looknfeel.el --- Look'n'feel
+;;; init-looknfeel.el --- Look'n'feel
 
 ;; Time-stamp: <2016-09-13 23:31:09>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -73,4 +73,6 @@ Argument VALUE 0 is transparent, 100 is opaque."
 
 (use-package rainbow-delimiters :ensure t)
 
-;;; 01-looknfeel.el ends here
+(provide 'init-looknfeel)
+
+;;; init-looknfeel.el ends here

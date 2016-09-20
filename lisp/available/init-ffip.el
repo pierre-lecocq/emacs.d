@@ -1,4 +1,4 @@
-;;; 01-ffip.el --- Find file in project
+;;; init-ffip.el --- Find file in project
 
 ;; Time-stamp: <2016-06-30 09:05:23>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -29,4 +29,6 @@
 
 (add-hook 'prog-mode-hook 'ffip-environment)
 
-;;; 01-ffip.el ends here
+(provide 'init-ffip)
+
+;;; init-ffip.el ends here

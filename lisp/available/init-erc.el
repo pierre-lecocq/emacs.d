@@ -1,4 +1,4 @@
-;;; 50-erc.el --- ERC
+;;; init-erc.el --- ERC
 
 ;; Time-stamp: <2016-06-29 11:07:38>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -49,4 +49,6 @@
   (interactive)
   (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre Lecocq"))
 
-;;; 50-erc.el ends here
+(provide 'init-erc)
+
+;;; init-erc.el ends here

@@ -1,4 +1,4 @@
-;;; 50-hooks.el --- Hooks
+;;; init-hooks.el --- Hooks
 
 ;; Time-stamp: <2016-09-15 13:32:14>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -62,4 +62,6 @@
 
 (add-hook 'before-save-hook #'hook-before-save)
 
-;;; 50-hooks.el ends here
+(provide 'init-hooks)
+
+;;; init-hooks.el ends here

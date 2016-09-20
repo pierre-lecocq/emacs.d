@@ -1,4 +1,4 @@
-;;; 50-recentf.el --- Recentf
+;;; init-recentf.el --- Recentf
 
 ;; Time-stamp: <2016-06-29 10:32:13>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -18,4 +18,6 @@
 (add-to-list 'recentf-exclude package-user-dir)
 (add-to-list 'recentf-exclude files-dir)
 
-;;; 50-recentf.el ends here
+(provide 'init-recentf)
+
+;;; init-recentf.el ends here

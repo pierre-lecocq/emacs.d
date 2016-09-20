@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-09-20 15:49:42>
+;; Time-stamp: <2016-09-21 17:34:47>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -21,16 +21,14 @@
 
 ;; (package-initialize)
 
-(defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
+(defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") "~/src/emacs.d"))
 (defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
 (defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
 (defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
 
-(defvar init-file (expand-file-name (concat (file-name-as-directory user-emacs-directory) "init.el")))
-(defvar compiled-file (expand-file-name  "~/.emacs.el"))
-(defvar byte-compiled-file (concat compiled-file  "c"))
-
 ;; Internals
+
+(fset 'yes-or-no-p 'y-or-n-p)
 
 (mapc (lambda (mode) (funcall mode 1))
       '(auto-compression-mode
@@ -72,8 +70,6 @@
       whitespace-global-modes '(not org-mode web-mode)
       uniquify-buffer-name-style 'forward uniquify-separator "/")
 
-;; Generated files
-
 (setq custom-file (concat (file-name-as-directory files-dir) "pl-custom.el")
       abbrev-file-name (concat (file-name-as-directory files-dir) "pl-abbrev.el")
       bookmark-default-file (concat (file-name-as-directory files-dir) "pl-bookmarks.el")
@@ -82,8 +78,6 @@
       ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
       url-configuration-directory (concat (file-name-as-directory files-dir) "url")
       tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
-
-(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; Locale
 
@@ -109,7 +103,7 @@
 ;; Look'n'feel
 
 (mapc (lambda (mode) (funcall mode -1))
-      '(menu-bar-mode
+      '(;;menu-bar-mode
         scroll-bar-mode
         tool-bar-mode
         tooltip-mode))
@@ -125,39 +119,23 @@
       (setq x-select-enable-clipboard t))
   (setq frame-background-mode 'dark))
 
-;; Autoload config
-
-(defun pl-compile-config ()
-  "Compile config in ~/.emacs.elc."
-  (interactive)
-  (let ((files (directory-files lisp-enabled-dir t "\\.el")))
-    (add-to-list 'files init-file)
-    (write-region (format "(message \" ** Loading file %s - Compiled on %s **\")" byte-compiled-file (current-time-string)) nil compiled-file)
-    (mapc (lambda (src)
-            (with-temp-buffer
-              (insert-file-contents src)
-              (write-region (buffer-string) nil compiled-file 'append)))
-          files))
-  (byte-compile-file compiled-file)
-  (delete-file compiled-file))
-
-(defun pl-enable-lisp-file ()
-  "Enable a Lisp file."
-  (interactive)
-  (unless (file-exists-p lisp-available-dir)
-    (error "%s not found" lisp-available-dir))
-  (unless (file-exists-p lisp-enabled-dir)
-    (error "%s not found" lisp-enabled-dir))
-  (let ((file (ido-completing-read "Select a file: " (directory-files lisp-available-dir nil "\\.el"))))
-    (shell-command (format "ln -s %s/%s %s/%s" lisp-available-dir file lisp-enabled-dir file))))
-
 (defun display-startup-echo-area-message ()
   "Display startup echo area message."
   (message "Initialized in %s" (emacs-init-time)))
 
-(unless (file-exists-p byte-compiled-file)
-  (if (file-exists-p lisp-enabled-dir)
-      (mapc 'load-file (directory-files lisp-enabled-dir t "\\.el"))
-    (message "No lisp files enabled in %s" lisp-enabled-dir)))
+;; Autoload config
+
+(if (file-exists-p lisp-enabled-dir)
+    (progn
+      (when init-file-debug
+        (require 'benchmark))
+      (add-to-list 'load-path lisp-enabled-dir)
+      (mapc (lambda (fname)
+              (let ((feat (intern (file-name-base fname)) ))
+                (if init-file-debug
+                    (message "Feature '%s' loaded in %.2fs" feat (benchmark-elapse (require feat fname)))
+                  (require feat fname))))
+            (directory-files lisp-enabled-dir t "\\.el")))
+  (message "Directory \"%s\" not found. No extension have been loaded." lisp-enabled-dir))
 
 ;;; init.el ends here

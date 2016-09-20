@@ -1,4 +1,4 @@
-;;; 90-host.el --- Host specific file
+;;; override-host.el --- Host specific file
 
 ;; Time-stamp: <2016-09-15 13:32:32>
 ;; Copyright (C) 2016 Pierre Lecocq
@@ -35,4 +35,6 @@
 
    (t (message "No host specific configuration loaded"))))
 
-;;; 90-host.el ends here
+(provide 'override-host)
+
+;;; override-host.el ends here
