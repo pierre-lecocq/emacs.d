@@ -11,4 +11,6 @@
 
 (use-package inf-ruby :ensure t)
 
+(provide '10-ruby)
+
 ;;; 10-ruby.el ends here

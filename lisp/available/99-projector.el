@@ -62,4 +62,6 @@
 
 (add-hook 'find-file-hook 'projector--hook)
 
+(provide '99-projector)
+
 ;;; 99-projector.el ends here

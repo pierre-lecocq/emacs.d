@@ -64,4 +64,6 @@
          "#+DATE: " (current-time-string) "\n"
          "#+STARTUP: showall\n\n")))
 
+(provide '01-autoinsert)
+
 ;;; 01-autoinsert.el ends here

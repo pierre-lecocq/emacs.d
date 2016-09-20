@@ -36,4 +36,6 @@
 
 (global-set-key (kbd "C-x x") 'pl-browse-at-point)
 
+(provide '50-at-point)
+
 ;;; 50-at-point.el ends here

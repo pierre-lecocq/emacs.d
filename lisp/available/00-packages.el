@@ -27,4 +27,6 @@
 (eval-when-compile
   (require 'use-package))
 
+(provide '00-packages)
+
 ;;; 00-packages.el ends here

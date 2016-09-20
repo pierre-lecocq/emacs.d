@@ -42,4 +42,6 @@
 (when (display-graphic-p)
   (global-unset-key (kbd "C-z")))
 
+(provide '50-keybindings)
+
 ;;; 50-keybindings.el ends here

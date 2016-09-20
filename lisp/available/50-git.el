@@ -18,4 +18,6 @@
             (set-face-foreground 'git-gutter:deleted "red"))
   :diminish git-gutter-mode)
 
+(provide '50-git)
+
 ;;; 50-git.el ends here

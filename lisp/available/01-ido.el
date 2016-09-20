@@ -24,4 +24,6 @@
             (ido-hacks-mode)
             (ido-vertical-mode)))
 
+(provide '01-ido)
+
 ;;; 01-ido.el ends here

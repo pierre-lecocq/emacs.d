@@ -73,4 +73,6 @@ Argument VALUE 0 is transparent, 100 is opaque."
 
 (use-package rainbow-delimiters :ensure t)
 
+(provide '01-looknfeel)
+
 ;;; 01-looknfeel.el ends here

@@ -14,4 +14,6 @@
                        ("Sources"       (filename . "~/src"))
                        ("Emacs.d"         (filename . "~/src/emacs.d"))))
 
+(provide '50-bookmark)
+
 ;;; 50-bookmark.el ends here

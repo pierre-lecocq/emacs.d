@@ -43,4 +43,6 @@
   (interactive)
   (pl-lint-or-execute "execute"))
 
+(provide '01-execute)
+
 ;;; 01-execute.el ends here

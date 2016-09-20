@@ -35,4 +35,6 @@
 
    (t (message "No host specific configuration loaded"))))
 
+(provide '90-host)
+
 ;;; 90-host.el ends here

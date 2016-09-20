@@ -24,4 +24,6 @@
 
 (use-package web-mode :ensure t)
 
+(provide '10-web)
+
 ;;; 10-web.el ends here

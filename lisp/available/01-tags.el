@@ -30,4 +30,6 @@
     (setq tags-file-name file)
     (visit-tags-table file)))
 
+(provide '01-tags)
+
 ;;; 01-tags.el ends here

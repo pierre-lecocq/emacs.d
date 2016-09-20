@@ -62,4 +62,6 @@
 
 (add-hook 'before-save-hook #'hook-before-save)
 
+(provide '50-hooks)
+
 ;;; 50-hooks.el ends here

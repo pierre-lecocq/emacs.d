@@ -27,4 +27,6 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
+(provide '10-text)
+
 ;;; 10-text.el ends here

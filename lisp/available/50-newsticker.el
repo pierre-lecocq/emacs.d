@@ -42,4 +42,6 @@
                                     ("Other" "xkcd" "commit-strip" "bonjour"))))
   :bind (("C-c r" . pl-launch-newsticker)))
 
+(provide '50-newsticker)
+
 ;;; 50-newsticker.el ends here

@@ -18,4 +18,6 @@
 (add-to-list 'recentf-exclude package-user-dir)
 (add-to-list 'recentf-exclude files-dir)
 
+(provide '50-recentf)
+
 ;;; 50-recentf.el ends here

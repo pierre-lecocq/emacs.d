@@ -29,4 +29,6 @@
 
 (add-hook 'prog-mode-hook 'ffip-environment)
 
+(provide '01-ffip)
+
 ;;; 01-ffip.el ends here

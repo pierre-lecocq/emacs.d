@@ -49,4 +49,6 @@
   (interactive)
   (erc :server "irc.freenode.net" :port 6666 :nick "pierre404" :full-name "Pierre Lecocq"))
 
+(provide '50-erc)
+
 ;;; 50-erc.el ends here

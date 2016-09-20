@@ -46,4 +46,6 @@
                 (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
             (slime-setup '(slime-company))))
 
+(provide '10-lisp)
+
 ;;; 10-lisp.el ends here

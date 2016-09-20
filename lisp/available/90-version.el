@@ -11,4 +11,6 @@
   (unless (version< emacs-version "24.4")
     (toggle-frame-maximized)))
 
+(provide '90-version)
+
 ;;; 90-version.el ends here

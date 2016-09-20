@@ -16,4 +16,6 @@
   :config (global-company-mode 1)
   :diminish company-mode)
 
+(provide '01-completion)
+
 ;;; 01-completion.el ends here

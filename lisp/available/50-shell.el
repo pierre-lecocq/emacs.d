@@ -26,4 +26,6 @@
   :bind (("<f12>" . better-shell-shell)
          ("C-<f12>" . better-shell-remote-open)))
 
+(provide '50-shell)
+
 ;;; 50-shell.el ends here
