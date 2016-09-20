@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-09-20 15:47:16>
+;; Time-stamp: <2016-09-20 15:49:42>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -120,7 +120,6 @@
     (progn
       (set-background-color "grey13")
       (set-foreground-color "grey93")
-      ;; (set-face-background 'region "grey27")
       (set-face-background 'region "DodgerBlue")
       (set-face-foreground 'region "white")
       (setq x-select-enable-clipboard t))
