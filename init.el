@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-09-15 13:33:12>
+;; Time-stamp: <2016-09-20 15:47:16>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -80,6 +80,7 @@
       nsm-settings-file (concat (file-name-as-directory files-dir) "pl-nsm-settings.el")
       recentf-save-file (concat (file-name-as-directory files-dir) "pl-recentf.el")
       ido-save-directory-list-file (concat (file-name-as-directory files-dir) "pl-ido.el")
+      url-configuration-directory (concat (file-name-as-directory files-dir) "url")
       tramp-persistency-file-name (concat (file-name-as-directory files-dir) "pl-tramp.el"))
 
 (fset 'yes-or-no-p 'y-or-n-p)
