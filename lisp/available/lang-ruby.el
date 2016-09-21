@@ -1,6 +1,6 @@
 ;;; lang-ruby.el --- Ruby
 
-;; Time-stamp: <2016-06-29 11:10:32>
+;; Time-stamp: <2016-09-21 17:50:05>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

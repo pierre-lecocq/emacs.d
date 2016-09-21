@@ -1,6 +1,6 @@
 ;;; lang-lisp.el --- Lisp
 
-;; Time-stamp: <2016-09-13 23:31:55>
+;; Time-stamp: <2016-09-21 17:49:32>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

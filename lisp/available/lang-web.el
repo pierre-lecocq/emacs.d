@@ -1,6 +1,6 @@
 ;;; lang-web.el --- Web
 
-;; Time-stamp: <2016-09-13 23:13:24>
+;; Time-stamp: <2016-09-21 17:49:43>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:

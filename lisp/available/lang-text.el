@@ -1,6 +1,6 @@
 ;;; lang-text.el --- Text
 
-;; Time-stamp: <2016-08-26 11:03:29>
+;; Time-stamp: <2016-09-21 17:49:54>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
