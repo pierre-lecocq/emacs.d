@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Hooks
 
-;; Time-stamp: <2016-09-15 13:32:14>
+;; Time-stamp: <2016-09-21 17:53:32>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,7 +23,7 @@
   "Hook for Prog mode."
   (idle-highlight-mode t)
   (rainbow-delimiters-mode)
-  (rainbow-mode)
+  ;; (rainbow-mode)
   ;; (git-gutter-mode)
   (set-face-underline 'font-lock-warning-face "red")
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t))))

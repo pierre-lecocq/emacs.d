@@ -1,6 +1,6 @@
 ;;; init-keybindings.el --- Keybindings
 
-;; Time-stamp: <2016-09-01 11:16:32>
+;; Time-stamp: <2016-09-23 08:19:08>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,7 +11,8 @@
   (setq mac-option-modifier nil
         mac-right-alternate-modifier nil
         mac-command-modifier 'meta
-        select-enable-clipboard t))
+        select-enable-clipboard t)
+  (global-set-key (kbd "M-h") 'ns-do-hide-emacs))
 
 (global-set-key [delete] 'delete-char)
 
