@@ -1,6 +1,6 @@
 ;;; init-autoinsert.el --- Autoinsert
 
-;; Time-stamp: <2016-07-11 12:07:18>
+;; Time-stamp: <2016-10-03 17:45:26>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -59,6 +59,8 @@
          "__dir=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)\"\n"
          "__file=\"${__dir}/$(basename \"${BASH_SOURCE[0]}\")\"\n"
          "__base=\"$(basename ${__file} .sh)\"\n\n")
+        ((restclient-mode . "REST client") nil
+         "# -*- restclient -*-\n\n")
         ((org-mode . "Org mode") nil
          "#+AUTHOR: " (user-full-name) "\n"
          "#+DATE: " (current-time-string) "\n"
