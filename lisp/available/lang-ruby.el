@@ -1,6 +1,6 @@
 ;;; lang-ruby.el --- Ruby
 
-;; Time-stamp: <2016-09-21 17:50:05>
+;; Time-stamp: <2016-10-14 08:47:58>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,6 +10,10 @@
 (use-package ruby-mode :ensure t)
 
 (use-package inf-ruby :ensure t)
+
+(use-package rubocop :ensure t)
+
+(add-hook 'ruby-mode-hook #'rubocop-mode)
 
 (provide 'lang-ruby)
 

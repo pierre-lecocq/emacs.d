@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Hooks
 
-;; Time-stamp: <2016-09-21 17:53:32>
+;; Time-stamp: <2016-10-14 08:47:54>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:

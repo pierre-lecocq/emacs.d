@@ -9,12 +9,6 @@
 
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
-(defun hook-emacs-lisp-mode ()
-  "Hook for Emacs Lisp mode."
-  (eldoc-mode)
-  (global-prettify-symbols-mode 1))
-
-(add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 
 (defun hook-lisp-mode ()
   "Hook for Lisp mode."
@@ -32,19 +26,19 @@
       (eval-defun nil))))
 
 (use-package eldoc-mode
-  :diminish eldoc-mode)
+             :diminish eldoc-mode)
 
 (use-package slime-company :ensure t)
 
 (use-package slime :ensure t
-  :init (setq inferior-lisp-program (if (eq system-type 'darwin) "/usr/local/bin/sbcl" "sbcl"))
-  :config (progn
-            ;; Assuming (ql:quickload "quicklisp-slime-helper") has be ran in quicklisp before
-            (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
-              (if (file-exists-p helper-file)
-                  (load helper-file)
-                (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
-            (slime-setup '(slime-company))))
+             :init (setq inferior-lisp-program (if (eq system-type 'darwin) "/usr/local/bin/sbcl" "sbcl"))
+             :config (progn
+                       ;; Assuming (ql:quickload "quicklisp-slime-helper") has be ran in quicklisp before
+                       (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
+                         (if (file-exists-p helper-file)
+                             (load helper-file)
+                           (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
+                       (slime-setup '(slime-company))))
 
 (provide 'lang-lisp)
 
