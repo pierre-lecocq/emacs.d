@@ -1,6 +1,6 @@
 ;;; init-recentf.el --- Recentf
 
-;; Time-stamp: <2016-06-29 10:32:13>
+;; Time-stamp: <2016-11-24 10:04:49>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,7 +13,8 @@
 
 (setq recentf-auto-cleanup 'never
       recentf-max-menu-items 50
-      recentf-keep '(file-remote-p file-readable-p))
+      ;; recentf-keep '(file-remote-p file-readable-p)
+      )
 
 (add-to-list 'recentf-exclude package-user-dir)
 (add-to-list 'recentf-exclude files-dir)
