@@ -1,6 +1,6 @@
 ;;; init-tabbar.el --- Tabbar
 
-;; Time-stamp: <2016-12-01 18:42:15>
+;; Time-stamp: <2016-12-02 11:37:30>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,7 +10,10 @@
 (use-package tabbar-mode
   :init (progn
           (tabbar-mode 1)
-          (setq tabbar-use-images nil)
+          (setq tabbar-scroll-left-help-function nil
+                tabbar-scroll-right-help-function nil
+                tabbar-scroll-left-button (quote (("") ""))
+                tabbar-scroll-right-button (quote (("") "")))
           (set-face-attribute 'tabbar-default nil
                               :background "grey22"
                               :foreground "grey50"
