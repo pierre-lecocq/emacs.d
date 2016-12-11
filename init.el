@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-12-11 17:36:22>
+;; Time-stamp: <2016-12-11 17:38:35>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -100,7 +100,7 @@
 ;; Look'n'feel
 
 (mapc (lambda (mode) (funcall mode -1))
-      '(;;menu-bar-mode
+      '(menu-bar-mode
         scroll-bar-mode
         tool-bar-mode
         tooltip-mode))
