@@ -1,14 +1,12 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-12-11 17:38:35>
+;; Time-stamp: <2016-12-11 18:01:11>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
 ;;; Commentary:
 ;;
-;;
 ;; A return to a minimal Emacs config
-;;
 ;;
 ;; This `init.el' file is made to be used as a fast and standalone minimal config
 ;; file but can load some extensions from a given directory by creating symlinks
@@ -18,7 +16,7 @@
 
 ;; (package-initialize)
 
-(defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") "~/src/emacs.d"))
+(defvar lisp-dir (expand-file-name (convert-standard-filename "lisp") user-emacs-directory))
 (defvar lisp-available-dir (concat (file-name-as-directory lisp-dir) "available"))
 (defvar lisp-enabled-dir (concat (file-name-as-directory lisp-dir) "enabled"))
 (defvar files-dir (concat (file-name-as-directory lisp-dir) "files"))
