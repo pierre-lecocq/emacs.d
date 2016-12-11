@@ -1,6 +1,6 @@
 ;;; init.el --- Minimal Emacs config file
 
-;; Time-stamp: <2016-12-11 18:01:11>
+;; Time-stamp: <2016-12-11 18:05:10>
 ;; Copyright (C) 2015 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -79,6 +79,7 @@
 (defun pl-set-locale (locale)
   "Set locale to LOCALE."
   (interactive)
+  (set-charset-priority 'unicode)
   (setq locale-coding-system locale)
   (set-language-environment locale)
   (set-terminal-coding-system locale)
