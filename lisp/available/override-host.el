@@ -1,6 +1,6 @@
 ;;; override-host.el --- Host specific file
 
-;; Time-stamp: <2016-12-14 12:16:22>
+;; Time-stamp: <2016-12-14 17:59:25>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,12 +30,6 @@
 
    ((string= host "lecocq-s")
     (progn
-      ;; tags
-      (setq tags-bin-path "/usr/bin/ctags")
-      (add-to-list 'tags-options-by-mode '(php-mode . ((files . ".php")
-                                                       (path . "include/Fotolia.php include/Fotolia/ app/ bin/"))))
-
-      ;; bookmarks
       (add-to-list 'bookmark-alist '("AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
       (add-to-list 'bookmark-alist '("Fotolia" (filename . "/scp:eqx-dev1:~/www/fotolia")))))
 
