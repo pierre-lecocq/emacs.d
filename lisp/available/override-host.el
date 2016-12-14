@@ -1,6 +1,6 @@
 ;;; override-host.el --- Host specific file
 
-;; Time-stamp: <2016-09-15 13:32:32>
+;; Time-stamp: <2016-12-14 11:16:02>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -30,6 +30,7 @@
 
    ((string= host "lecocq-s")
     (progn
+      (setq tags-bin-path "/usr/bin/ctags")
       (add-to-list 'bookmark-alist '("AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
       (add-to-list 'bookmark-alist '("Fotolia" (filename . "/scp:eqx-dev1:~/www/fotolia")))))
 
