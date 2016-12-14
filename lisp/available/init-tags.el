@@ -1,6 +1,6 @@
 ;;; init-tags.el --- Tags
 
-;; Time-stamp: <2016-06-10 17:41:33>
+;; Time-stamp: <2016-12-14 12:13:48>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,26 +9,30 @@
 
 (defvar tags-bin-path "/usr/local/bin/ctags")
 
-(defun pl-files-regexp-by-mode ()
-  "Get files regexp by mode."
-  (cond
-   ((string= major-mode "common-lisp-mode") ".cl")
-   ((string= major-mode "emacs-lisp-mode") ".el")
-   ((string= major-mode "c-mode") ".c.h")
-   ((string= major-mode "ruby-mode") ".rb")
-   ((string= major-mode "pythome-mode") ".py")
-   ((string= major-mode "php-mode") ".php.css.js")))
+(defvar tags-options-by-mode '((c-mode .            ((files . ".c.h")))
+                               (common-lisp-mode .  ((files . ".cl")))
+                               (emacs-lisp-mode .   ((files . ".el")))
+                               (ruby-mode .         ((files . ".rb")))
+                               (python-mode .       ((files . ".py")))
+                               (php-mode .          ((files . ".php.css.js")))))
 
 (defun pl-compile-tags (directory)
   "Compile etags for a given DIRECTORY."
   (interactive "DRoot directory: ")
   (let* ((dir (expand-file-name (file-name-as-directory directory)))
          (dir-local (replace-regexp-in-string "/[^/]+:[^/]+:/" "/" dir))
-         (file (concat dir "/TAGS")))
-    (cd dir)
-    (compile (format "%s -e -h \"%s\" -R ." tags-bin-path (pl-files-regexp-by-mode)))
-    (setq tags-file-name file)
-    (visit-tags-table file)))
+         (file (concat dir "/TAGS"))
+         (options (assoc major-mode tags-options-by-mode)))
+    (if options
+        (let ((files-path (cdr (assoc 'path options)))
+              (files-types (cdr (assoc 'files options))))
+          (unless files-path
+            (setq files-path "."))
+          (cd dir)
+          (compile (format "%s -e -h \"%s\" -R %s" tags-bin-path files-types files-path))
+          (setq tags-file-name file)
+          (visit-tags-table file))
+      (warn "No tag options for mode %s" major-mode))))
 
 (provide 'init-tags)
 
