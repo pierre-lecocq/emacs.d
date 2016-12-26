@@ -1,13 +1,13 @@
 ;;; init-tabbar.el --- Tabbar
 
-;; Time-stamp: <2016-12-02 11:37:30>
+;; Time-stamp: <2016-12-26 21:08:20>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package tabbar-mode
+(use-package tabbar :ensure t
   :init (progn
           (tabbar-mode 1)
           (setq tabbar-scroll-left-help-function nil

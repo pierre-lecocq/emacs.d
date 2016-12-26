@@ -1,6 +1,6 @@
 ;;; lang-web.el --- Web
 
-;; Time-stamp: <2016-09-21 17:49:43>
+;; Time-stamp: <2016-12-26 21:10:46>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,7 +22,7 @@
 
 (use-package restclient :ensure t)
 
-(use-package web-mode :ensure t)
+(use-package web-mode)
 
 (provide 'lang-web)
 
