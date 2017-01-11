@@ -1,6 +1,6 @@
 ;;; init-looknfeel.el --- Look'n'feel
 
-;; Time-stamp: <2016-09-13 23:31:09>
+;; Time-stamp: <2017-01-04 11:27:42>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,38 +11,30 @@
 
 ;; (use-package darkmine-theme :ensure t)
 ;; (use-package tao-theme :ensure t)
+(use-package gruvbox-theme :ensure t)
 
-(when (display-graphic-p)
-  (require 'color)
-  (set-face-attribute 'fringe nil :background "grey13")
-  (set-fringe-mode 10)
-  (set-face-attribute 'mode-line nil :box nil)
-  (set-face-attribute 'mode-line-inactive nil :box nil)
-  (let ((bg (face-attribute 'default :background))
-        (fg (face-attribute 'default :foreground)))
-    (custom-set-faces
-     `(font-lock-string-face ((t (:foreground "IndianRed"))))
-     `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
-     `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
-     `(which-func ((t (:inherit mode-line))))
-     `(idle-highlight ((t (:inherit isearch))))
-     `(ido-subdir ((t (:inherit font-lock-function-name-face))))
-     `(ido-first-match ((t (:inherit font-lock-variable-name-face))))
-     `(ido-only-match ((t (:inherit font-lock-variable-name-face))))
-     `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
-     `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-     `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-     `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
-
-;; Fonts
-
-(when (member "Inconsolata" (font-family-list))
-  (set-face-attribute 'default nil
-                      :family "Inconsolata" ;; "DejaVu Sans Mono"
-                      :height 120
-                      :weight 'normal
-                      :width 'normal))
+;; (when (display-graphic-p)
+;;   (require 'color)
+;;   (set-face-attribute 'fringe nil :background "grey13")
+;;   (set-fringe-mode 10)
+;;   (set-face-attribute 'mode-line nil :box nil)
+;;   (set-face-attribute 'mode-line-inactive nil :box nil)
+;;   (let ((bg (face-attribute 'default :background))
+;;         (fg (face-attribute 'default :foreground)))
+;;     (custom-set-faces
+;;      `(font-lock-string-face ((t (:foreground "IndianRed"))))
+;;      `(vertical-border ((t (:foreground ,(color-lighten-name bg 15)))))
+;;      `(isearch ((t (:background "DodgerBlue" :foreground "white"))))
+;;      `(which-func ((t (:inherit mode-line))))
+;;      `(idle-highlight ((t (:inherit isearch))))
+;;      `(ido-subdir ((t (:inherit font-lock-function-name-face))))
+;;      `(ido-first-match ((t (:inherit font-lock-variable-name-face))))
+;;      `(ido-only-match ((t (:inherit font-lock-variable-name-face))))
+;;      `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+;;      `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+;;      `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+;;      `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+;;      `(company-tooltip-common ((t (:inherit font-lock-constant-face)))))))
 
 ;; Transparency
 
