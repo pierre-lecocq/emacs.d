@@ -1,6 +1,6 @@
 ;;; override-host.el --- Host specific file
 
-;; Time-stamp: <2016-12-14 17:59:25>
+;; Time-stamp: <2017-03-02 22:16:17>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,14 +19,6 @@
 
 (let ((host (pl-clean-system-name)))
   (cond
-
-   ((or (string= host "beastro" )
-        (string= host "laptaupe" ))
-    (progn
-      (when (display-graphic-p)
-        (pl-transparency 90))
-      (add-to-list 'bookmark-alist '("Raspberry"     (filename . "/scp:kenny:~/")))
-      (add-to-list 'bookmark-alist '("Qsdfgh"     (filename . "/scp:qsdfgh:~/")))))
 
    ((string= host "lecocq-s")
     (progn
