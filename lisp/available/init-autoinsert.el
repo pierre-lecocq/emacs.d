@@ -1,6 +1,6 @@
 ;;; init-autoinsert.el --- Autoinsert
 
-;; Time-stamp: <2016-10-03 17:45:26>
+;; Time-stamp: <2017-03-02 23:03:52>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -52,13 +52,9 @@
          "# Time-stamp: <>\n"
          "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
          "# Description: " _ "\n\n"
-         "# set -o xtrace\n"
-         "set -o nounset\n"
-         "set -o errexit\n"
-         "set -o pipefail\n\n"
-         "__dir=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)\"\n"
-         "__file=\"${__dir}/$(basename \"${BASH_SOURCE[0]}\")\"\n"
-         "__base=\"$(basename ${__file} .sh)\"\n\n")
+         "set -o errexit\n\n"
+         "[ -z $BASH ] && (echo \"Not in a BASH sub process\"; exit 1)\n"
+         "BASE_DIR=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)\n\n")
         ((restclient-mode . "REST client") nil
          "# -*- restclient -*-\n\n")
         ((org-mode . "Org mode") nil

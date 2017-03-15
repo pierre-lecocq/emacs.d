@@ -1,6 +1,6 @@
 ;;; override-host.el --- Host specific file
 
-;; Time-stamp: <2017-02-27 09:24:18>
+;; Time-stamp: <2017-03-15 11:45:43>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,19 +19,6 @@
 
 (let ((host (pl-clean-system-name)))
   (cond
-
-   ((or (string= host "beastro" )
-        (string= host "laptaupe" ))
-    (progn
-      (when (display-graphic-p)
-        (pl-transparency 90))
-      (when (member "Inconsolata" (font-family-list))
-        (set-face-attribute 'default nil
-                            :family "Inconsolata" ;; "DejaVu Sans Mono"
-                            :height 120
-                            :weight 'normal
-                            :width 'normal))))
-
    ((string= host "lecocq-s")
     (progn
       (add-to-list 'bookmark-alist '("Remote AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
