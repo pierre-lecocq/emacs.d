@@ -1,6 +1,6 @@
 ;;; init-filetypes.el --- Filetypes
 
-;; Time-stamp: <2016-09-07 01:35:30>
+;; Time-stamp: <2017-03-15 11:55:15>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,9 +27,6 @@
 (add-to-list 'auto-mode-alist '(".bashrc"           . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".zshrc"            . shell-script-mode))
 (add-to-list 'auto-mode-alist '(".gnus"             . emacs-lisp-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'"       . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb\\'"         . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erubis\\'"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'"       . yaml-mode))
 
 (provide 'init-filetypes)
