@@ -1,6 +1,6 @@
 ;;; override-host.el --- Host specific file
 
-;; Time-stamp: <2016-12-14 17:59:25>
+;; Time-stamp: <2017-02-27 09:24:18>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -25,13 +25,20 @@
     (progn
       (when (display-graphic-p)
         (pl-transparency 90))
-      (add-to-list 'bookmark-alist '("Raspberry"     (filename . "/scp:kenny:~/")))
-      (add-to-list 'bookmark-alist '("Qsdfgh"     (filename . "/scp:qsdfgh:~/")))))
+      (when (member "Inconsolata" (font-family-list))
+        (set-face-attribute 'default nil
+                            :family "Inconsolata" ;; "DejaVu Sans Mono"
+                            :height 120
+                            :weight 'normal
+                            :width 'normal))))
 
    ((string= host "lecocq-s")
     (progn
-      (add-to-list 'bookmark-alist '("AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
-      (add-to-list 'bookmark-alist '("Fotolia" (filename . "/scp:eqx-dev1:~/www/fotolia")))))
+      (add-to-list 'bookmark-alist '("Remote AdobeStock" (filename . "/scp:eqx-dev2:~/www/adobestock")))
+      (add-to-list 'bookmark-alist '("Remote Fotolia" (filename . "/scp:eqx-dev1:~/www/fotolia")))
+      (add-to-list 'bookmark-alist '("Local AdobeStock" (filename . "~/src/stock-web")))
+      (add-to-list 'bookmark-alist '("Local Docker" (filename . "~/src/docker-stack")))
+      (add-to-list 'bookmark-alist '("Local Fotolia" (filename . "~/src/fotolia-web")))))
 
    (t (message "No host specific configuration loaded"))))
 
