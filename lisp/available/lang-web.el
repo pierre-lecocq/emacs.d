@@ -1,6 +1,6 @@
 ;;; lang-web.el --- Web
 
-;; Time-stamp: <2017-03-15 12:01:18>
+;; Time-stamp: <2017-03-15 14:39:33>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,7 +22,7 @@
 
 (use-package restclient :ensure t)
 
-(use-package web-mode
+(use-package web-mode :ensure t
   :mode (("\\.html?\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
          ("\\.erubis\\'" . web-mode)))
