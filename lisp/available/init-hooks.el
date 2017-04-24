@@ -1,6 +1,6 @@
 ;;; init-hooks.el --- Hooks
 
-;; Time-stamp: <2016-10-14 08:47:54>
+;; Time-stamp: <2017-04-24 14:11:22>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:
@@ -12,12 +12,6 @@
   (setq show-trailing-whitespace nil))
 
 (add-hook 'minibuffer-setup-hook #'hook-minibuffer-setup)
-
-(defun hook-dired-mode ()
-  "Hook for Dired mode."
-  (put 'dired-find-alternate-file 'disabled nil))
-
-(add-hook 'dired-mode-hook #'hook-dired-mode)
 
 (defun hook-prog-mode ()
   "Hook for Prog mode."
