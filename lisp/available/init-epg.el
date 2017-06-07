@@ -1,6 +1,6 @@
 ;;; init-epg.el --- EasyPG
 
-;; Time-stamp: <2017-01-11 10:02:10>
+;; Time-stamp: <2017-05-15 09:08:34>
 ;; Copyright (C) 2017 Pierre Lecocq
 
 ;;; Commentary:

@@ -1,6 +1,6 @@
 ;;; init-tags.el --- Tags
 
-;; Time-stamp: <2016-12-14 18:02:45>
+;; Time-stamp: <2017-05-30 10:43:21 lecocq>
 ;; Copyright (C) 2016 Pierre Lecocq
 
 ;;; Commentary:

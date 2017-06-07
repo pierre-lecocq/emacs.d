@@ -1,6 +1,6 @@
 ;;; init-autoinsert.el --- Autoinsert
 
-;; Time-stamp: <2017-03-02 23:03:52>
+;; Time-stamp: <2017-05-24 15:00:45 lecocq>
 ;; Copyright (C) 2015 Pierre Lecocq
 
 ;;; Commentary:
