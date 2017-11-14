@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-11-14 23:54:21>
+;; Time-stamp: <2017-11-15 00:29:57>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -67,7 +67,8 @@
 
 ;; Default variables
 
-(setq debug-on-error t
+(setq user-full-name "Pierre Lecocq"
+      debug-on-error t
       gc-cons-threshold 100000000
       backup-inhibited t
       make-backup-files nil
