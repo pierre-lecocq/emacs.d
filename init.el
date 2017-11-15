@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-11-15 00:29:57>
+;; Time-stamp: <2017-11-15 00:59:07>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -141,11 +141,16 @@
 (use-package editorconfig :ensure t
   :config (editorconfig-mode 1))
 
-;; No littering
+;; Local data files
 
-(use-package no-littering :ensure t
-  :init (setq no-littering-etc-directory (concat (file-name-directory load-file-name) "local/etc")
-              no-littering-var-directory (concat (file-name-directory load-file-name) "local/var")))
+(setq custom-file (concat (file-name-directory load-file-name) "local/my-custom.el")
+      abbrev-file-name (concat (file-name-directory load-file-name) "local/my-abbrev.el")
+      bookmark-default-file (concat (file-name-directory load-file-name) "local/my-bookmarks.el")
+      nsm-settings-file (concat (file-name-directory load-file-name) "local/my-nsm-settings.el")
+      recentf-save-file (concat (file-name-directory load-file-name) "local/my-recentf.el")
+      ido-save-directory-list-file (concat (file-name-directory load-file-name) "local/my-ido.el")
+      url-configuration-directory (concat (file-name-directory load-file-name) "local/url")
+      tramp-persistency-file-name (concat (file-name-directory load-file-name) "local/my-tramp.el"))
 
 ;;;;;;;;;;;;;;;
 ;; Interface ;;
