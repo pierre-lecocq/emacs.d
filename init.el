@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-11-15 00:59:07>
+;; Time-stamp: <2017-11-15 01:05:36>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -10,6 +10,8 @@
 
 ;;; Code:
 
+(defvar that-directory (file-name-directory load-file-name))
+
 ;;;;;;;;;;;;;;;;;;;;;
 ;; Package manager ;;
 ;;;;;;;;;;;;;;;;;;;;;
@@ -17,7 +19,7 @@
 (require 'package)
 
 (setq package-enable-at-startup nil
-      package-user-dir (concat (file-name-directory load-file-name) "packages")
+      package-user-dir (concat that-directory "packages")
       package-archives '(("melpa"        . "http://melpa.org/packages/")
                          ("marmalade"    . "http://marmalade-repo.org/packages/")
                          ("gnu"          . "http://elpa.gnu.org/packages/")
@@ -143,14 +145,14 @@
 
 ;; Local data files
 
-(setq custom-file (concat (file-name-directory load-file-name) "local/my-custom.el")
-      abbrev-file-name (concat (file-name-directory load-file-name) "local/my-abbrev.el")
-      bookmark-default-file (concat (file-name-directory load-file-name) "local/my-bookmarks.el")
-      nsm-settings-file (concat (file-name-directory load-file-name) "local/my-nsm-settings.el")
-      recentf-save-file (concat (file-name-directory load-file-name) "local/my-recentf.el")
-      ido-save-directory-list-file (concat (file-name-directory load-file-name) "local/my-ido.el")
-      url-configuration-directory (concat (file-name-directory load-file-name) "local/url")
-      tramp-persistency-file-name (concat (file-name-directory load-file-name) "local/my-tramp.el"))
+(setq custom-file (concat that-directory "local/my-custom.el")
+      abbrev-file-name (concat that-directory "local/my-abbrev.el")
+      bookmark-default-file (concat that-directory "local/my-bookmarks.el")
+      nsm-settings-file (concat that-directory "local/my-nsm-settings.el")
+      recentf-save-file (concat that-directory "local/my-recentf.el")
+      ido-save-directory-list-file (concat that-directory "local/my-ido.el")
+      url-configuration-directory (concat that-directory "local/url")
+      tramp-persistency-file-name (concat that-directory "local/my-tramp.el"))
 
 ;;;;;;;;;;;;;;;
 ;; Interface ;;
@@ -279,7 +281,7 @@
 
 ;; Yasnippets
 
-(let ((snippets-dir (concat (file-name-directory load-file-name) "snippets")))
+(let ((snippets-dir (concat that-directory "snippets")))
   (use-package yasnippet :ensure t
     :if (file-accessible-directory-p snippets-dir)
     :diminish yas-minor-mode
