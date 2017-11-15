@@ -1,12 +1,12 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-11-15 01:05:36>
+;; Time-stamp: <2017-11-15 13:22:35>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
 ;;; Commentary:
 
-;; Once again. A rewrite.
+;; Code name: "Yet another rewrite"
 
 ;;; Code:
 
@@ -339,6 +339,18 @@
   (delete-trailing-whitespace))
 
 (add-hook 'before-save-hook #'hook-before-save)
+
+(defun hook-after-save ()
+  "Hook after save."
+  ;; Auto byte compile init.el
+  (let* ((raw-file (file-truename user-init-file))
+         (compiled-file (concat raw-file "c")))
+    (when (string= buffer-file-name raw-file)
+      (when (file-exists-p compiled-file)
+        (delete-file compiled-file))
+      (byte-compile-file raw-file))))
+
+(add-hook 'after-save-hook #'hook-after-save)
 
 (defun hook-prog-mode ()
   "Hook for prog mode."

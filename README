@@ -1,6 +1,8 @@
 Emacs configuration
 -------------------
 
-;; Time-stamp: <2017-11-14 23:57:40>
+;; Time-stamp: <2017-11-15 13:23:18>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
+
+;; Code name: "Yet another rewrite"
