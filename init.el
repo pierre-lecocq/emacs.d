@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-11-15 13:22:35>
+;; Time-stamp: <2017-12-05 14:50:06>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -207,6 +207,8 @@
                  (set-face-foreground 'git-gutter:deleted "red")
                  (global-git-gutter-mode +1)))
 
+;; (use-package magit :ensure t)
+
 ;; Idle highlight
 
 (use-package idle-highlight-mode :ensure t :diminish idle-highlight-mode)
@@ -313,6 +315,7 @@
 (global-set-key (kbd "<f11>") 'recentf-open-files)
 (global-set-key (kbd "C-S-f") 'imenu)
 (global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "C-c r") 'comment-or-uncomment-region)
 
 (global-set-key (kbd "C-;") 'other-window)
 
@@ -358,8 +361,6 @@
   (idle-highlight-mode t)
   (rainbow-delimiters-mode)
   (rainbow-turn-on)
-  ;; (when (display-graphic-p)
-  ;;   (hideshowvis-enable))
   (set-face-underline 'font-lock-warning-face "red")
   (font-lock-add-keywords nil '(("\\<\\(FIXME\\|TODO\\|BUG\\)" 1 font-lock-warning-face t))))
 
@@ -400,17 +401,18 @@
 
 ;; Packages
 
-(use-package lisp-mode
-  :mode (("\\.lisp'"    . lisp-mode)
-         ("\\.lsp'"     . lisp-mode)
-         ("\\.cl'"      . lisp-mode)
-         ("\\.asd'"     . lisp-mode)
-         ("\\.fasl'"    . lisp-mode)))
-
 (use-package slime-company :ensure t)
 
 (use-package slime :ensure t
-  :init (setq inferior-lisp-program (if (eq system-type 'darwin) "/usr/local/bin/sbcl" "sbcl"))
+  :mode (("\\.lisp'"    . lisp-mode) ;; enables lazy loading in place of :defer
+         ("\\.lsp'"     . lisp-mode)
+         ("\\.cl'"      . lisp-mode)
+         ("\\.asd'"     . lisp-mode)
+         ("\\.fasl'"    . lisp-mode))
+  :init (setq inferior-lisp-program
+              (if (eq system-type 'darwin)
+                  "/usr/local/bin/sbcl"
+                "sbcl"))
   :config (progn
             (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
               (if (file-exists-p helper-file)
