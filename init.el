@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-12-05 14:50:06>
+;; Time-stamp: <2017-12-07 22:13:35>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -20,10 +20,16 @@
 
 (setq package-enable-at-startup nil
       package-user-dir (concat that-directory "packages")
-      package-archives '(("melpa"        . "http://melpa.org/packages/")
-                         ("marmalade"    . "http://marmalade-repo.org/packages/")
-                         ("gnu"          . "http://elpa.gnu.org/packages/")
-                         ("org"          . "http://orgmode.org/elpa/")))
+      package-archives '(("org"          . "https://orgmode.org/elpa/")
+                         ("melpa"        . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("marmalade"    . "https://marmalade-repo.org/packages/")
+                         ("gnu"          . "https://elpa.gnu.org/packages/"))
+      package-archive-priorities '(("org"           . 20)
+                                   ("melpa"         . 15)
+                                   ("melpa-stable"  . 12)
+                                   ("marmalade"     . 10)
+                                   ("gnu"           . 5)))
 
 (package-initialize)
 
@@ -35,7 +41,7 @@
 
 (eval-when-compile
   (require 'use-package))
-(require 'diminish)
+;; (require 'diminish)
 (require 'bind-key)
 
 ;;;;;;;;;;;;;;
@@ -658,7 +664,7 @@
 
 (use-package json-mode :ensure t)
 
-(use-package org :ensure t
+(use-package org :ensure t :defer t :pin "org"
   :init (setq org-hide-leading-stars t
               org-hide-emphasis-markers t
               org-fontify-done-headline t
