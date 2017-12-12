@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-12-07 22:13:35>
+;; Time-stamp: <2017-12-12 17:05:38>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -417,8 +417,8 @@
          ("\\.fasl'"    . lisp-mode))
   :init (setq inferior-lisp-program
               (if (eq system-type 'darwin)
-                  "/usr/local/bin/sbcl"
-                "sbcl"))
+                  "/usr/local/bin/sbcl --noinform"
+                "sbcl --noinform"))
   :config (progn
             (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
               (if (file-exists-p helper-file)
