@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-12-14 14:05:57>
+;; Time-stamp: <2017-12-14 14:14:28>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -183,8 +183,10 @@
 
 ;; Autopair
 
-(use-package autopair :ensure t :diminish autopair-mode
-  :config (autopair-global-mode t))
+;; (use-package autopair :ensure t :diminish autopair-mode
+;;   :config (autopair-global-mode t))
+
+(use-package paredit :ensure t :diminish paredit-mode)
 
 ;; Anzu
 
@@ -363,6 +365,7 @@
 
 (defun hook-prog-mode ()
   "Hook for prog mode."
+  (enable-paredit-mode)
   (flycheck-mode 1)
   (idle-highlight-mode t)
   (rainbow-delimiters-mode)
