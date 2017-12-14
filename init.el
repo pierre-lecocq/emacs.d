@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-12-12 17:05:38>
+;; Time-stamp: <2017-12-14 14:05:57>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -619,7 +619,8 @@
 (use-package htmlize :ensure t)
 
 (use-package restclient :ensure t
-  :mode "\\.http\\'")
+  :mode (("\\.http\\'" . restclient-mode)
+         ("\\.rest\\'" . restclient-mode)))
 
 (use-package scss-mode :ensure t)
 
