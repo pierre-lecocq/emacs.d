@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2017-12-14 14:14:28>
+;; Time-stamp: <2018-01-08 11:54:52>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -133,7 +133,7 @@
 (use-package bookmark :demand t :ensure nil
   :init (setq bookmark-sort-flag nil
               bookmark-alist '(("home"     (filename . "~/"))
-                               ("emacs.d"  (filename . "~/.emacs.d/"))
+                               ("emacs.d"  (filename . "~/src/emacs.d/"))
                                ("sources"  (filename . "~/src/")))))
 
 ;; Recent files
@@ -151,7 +151,8 @@
 
 ;; Local data files
 
-(setq custom-file (concat that-directory "local/my-custom.el")
+(setq host-file (concat that-directory "host.el") ;; placed at root level since it is host-related file written by the user, not by a package
+      custom-file (concat that-directory "local/my-custom.el")
       abbrev-file-name (concat that-directory "local/my-abbrev.el")
       bookmark-default-file (concat that-directory "local/my-bookmarks.el")
       nsm-settings-file (concat that-directory "local/my-nsm-settings.el")
@@ -183,10 +184,8 @@
 
 ;; Autopair
 
-;; (use-package autopair :ensure t :diminish autopair-mode
-;;   :config (autopair-global-mode t))
-
-(use-package paredit :ensure t :diminish paredit-mode)
+(use-package autopair :ensure t :diminish autopair-mode
+  :config (autopair-global-mode t))
 
 ;; Anzu
 
@@ -365,7 +364,6 @@
 
 (defun hook-prog-mode ()
   "Hook for prog mode."
-  (enable-paredit-mode)
   (flycheck-mode 1)
   (idle-highlight-mode t)
   (rainbow-delimiters-mode)
@@ -695,5 +693,12 @@
   (electric-indent-local-mode -1))
 
 (add-hook 'text-mode-hook #'hook-text-mode)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load host specific file ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(when (file-exists-p host-file)
+  (load host-file))
 
 ;;; init.el ends here
