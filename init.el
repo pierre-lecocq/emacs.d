@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-01-08 11:54:52>
+;; Time-stamp: <2018-01-08 16:33:51>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -279,10 +279,11 @@
 
 (use-package find-file-in-project :ensure t
   :bind (("C-S-x C-S-f" . find-file-in-project))
-  :init (progn (setq ffip-prefer-ido-mode t)
-               ;; (setq-local ffip-patterns ...
-               ;; (setq-local ffip-prune-patterns ...
-               ))
+  :init (setq ffip-prefer-ido-mode t
+              ffip-prune-patterns '("*/.git/*"
+                                    "*/packages/*"
+                                    "*/vendor/*"
+                                    "*/node_modules/*")))
 
 ;;;;;;;;;;;;;;
 ;; Snippets ;;
