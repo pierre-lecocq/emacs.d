@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-01-08 16:33:51>
+;; Time-stamp: <2018-01-15 09:52:19>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -309,7 +309,8 @@
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
 
-(when (eq system-type 'darwin)
+(when (and window-system
+           (eq system-type 'darwin))
   (setq mac-option-modifier nil
         mac-command-modifier 'meta
         select-enable-clipboard t)
