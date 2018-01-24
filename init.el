@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-01-15 09:52:19>
+;; Time-stamp: <2018-01-23 23:46:51>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -41,6 +41,7 @@
 
 (eval-when-compile
   (require 'use-package))
+
 ;; (require 'diminish)
 (require 'bind-key)
 
@@ -285,6 +286,29 @@
                                     "*/vendor/*"
                                     "*/node_modules/*")))
 
+;;;;;;;;;;;;;
+;; Project ;;
+;;;;;;;;;;;;;
+
+(defun neotree-project-dir ()
+  "Open NeoTree using the git root."
+  (interactive)
+  (let ((project-dir (ffip-project-root))
+        (file-name (buffer-file-name)))
+    (if project-dir
+        (progn
+          (neotree-dir project-dir)
+          (neotree-find file-name))
+      (message "Could not find git project root."))))
+
+(use-package neotree :ensure t
+  :bind (("C-c t" . neotree-toggle)
+         ("C-c p" . neotree-project-dir)
+         ("C-c h" . neotree-hidden-file-toggle))
+  :init (setq neo-smart-open t
+              neo-window-fixed-size nil
+              neo-theme 'nerd))
+
 ;;;;;;;;;;;;;;
 ;; Snippets ;;
 ;;;;;;;;;;;;;;
@@ -362,7 +386,7 @@
         (delete-file compiled-file))
       (byte-compile-file raw-file))))
 
-(add-hook 'after-save-hook #'hook-after-save)
+;; (add-hook 'after-save-hook #'hook-after-save)
 
 (defun hook-prog-mode ()
   "Hook for prog mode."
@@ -582,6 +606,7 @@
 
 (defun hook-php-mode ()
   "Hook for PHP mode."
+  (php-enable-default-coding-style)
   (set (make-local-variable 'company-backends)
        '((php-extras-company company-dabbrev-code) company-capf company-files))
   (setq comment-start "// "
