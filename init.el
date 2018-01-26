@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-01-23 23:46:51>
+;; Time-stamp: <2018-01-26 10:59:00>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -160,7 +160,8 @@
       recentf-save-file (concat that-directory "local/my-recentf.el")
       ido-save-directory-list-file (concat that-directory "local/my-ido.el")
       url-configuration-directory (concat that-directory "local/url")
-      tramp-persistency-file-name (concat that-directory "local/my-tramp.el"))
+      tramp-persistency-file-name (concat that-directory "local/my-tramp.el")
+      eshell-directory-name (file-name-as-directory "~/.eshell"))
 
 ;;;;;;;;;;;;;;;
 ;; Interface ;;
@@ -169,8 +170,7 @@
 ;; Full screen
 
 (when (display-graphic-p)
-  (unless (version< emacs-version "24.4")
-    (toggle-frame-maximized)))
+  (toggle-frame-maximized))
 
 ;; Theme
 
@@ -329,6 +329,39 @@
 (use-package flycheck :ensure t :diminish flycheck-mode
   :bind (("<f8>" . flycheck-list-errors)))
 
+;;;;;;;;;;;;
+;; Eshell ;;
+;;;;;;;;;;;;
+
+;; Functions
+
+(defun eshell-other-frame ()
+  "Open eshell in another maximized frame."
+  (interactive)
+  (with-selected-frame (make-frame)
+    (eshell)
+    (when (display-graphic-p)
+      (toggle-frame-maximized))))
+
+(defun eshell-window-vertical ()
+  "Open eshell in another vertically splitted window."
+  (interactive)
+  (split-window-right)
+  (other-window 1)
+  (eshell (string-to-number (format-time-string "%s"))))
+
+(defun eshell-window-horizontal ()
+  "Open eshell in another horizontally splitted window."
+  (interactive)
+  (split-window-bottom)
+  (other-window 1)
+  (eshell (string-to-number (format-time-string "%s"))))
+
+;; Packages
+
+(use-package eshell :demand t :ensure nil
+  :bind (("<f9>" . eshell-other-frame)))
+
 ;;;;;;;;;;;;;;;;;
 ;; Keybindings ;;
 ;;;;;;;;;;;;;;;;;
@@ -348,9 +381,12 @@
 (global-set-key (kbd "<f11>") 'recentf-open-files)
 (global-set-key (kbd "C-S-f") 'imenu)
 (global-set-key (kbd "M-g") 'goto-line)
-(global-set-key (kbd "C-c r") 'comment-or-uncomment-region)
+
+;; (global-set-key (kbd "C-c r") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c r") 'comment-dwim)
 
 (global-set-key (kbd "C-;") 'other-window)
+(global-set-key (kbd "M-;") 'other-frame)
 
 (global-set-key (kbd "C-x 2")
                 (lambda ()
