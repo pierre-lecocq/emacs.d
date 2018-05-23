@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-01-26 10:59:00>
+;; Time-stamp: <2018-05-23 11:36:33>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -85,7 +85,7 @@
       auto-save-list-file-prefix nil
       load-prefer-newer t
       sentence-end-double-space nil
-      frame-title-format "Emacs - %b"
+      frame-title-format "%b (%m) - %F"
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
       inhibit-startup-message t
       inhibit-splash-screen t
@@ -178,7 +178,12 @@
   :config (load-theme 'darkokai t)
   :init (progn (setq darkokai-mode-line-padding 1)
                (setq-default left-fringe-width 10
-                             right-fringe-width 10)))
+                             right-fringe-width 10)
+               (when (and window-system
+                          (eq system-type 'darwin)
+                          (not (version< emacs-version "26.1")))
+                 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+                 (add-to-list 'default-frame-alist '(ns-appearance . dark)))))
 
 (set-face-background 'region "DodgerBlue")
 (set-face-foreground 'region "white")
@@ -301,13 +306,15 @@
           (neotree-find file-name))
       (message "Could not find git project root."))))
 
+(use-package all-the-icons :ensure t) ;; Run `M-x all-the-icons-install-fonts'
+
 (use-package neotree :ensure t
   :bind (("C-c t" . neotree-toggle)
          ("C-c p" . neotree-project-dir)
          ("C-c h" . neotree-hidden-file-toggle))
   :init (setq neo-smart-open t
               neo-window-fixed-size nil
-              neo-theme 'nerd))
+              neo-theme (if (display-graphic-p) 'icons 'nerd)))
 
 ;;;;;;;;;;;;;;
 ;; Snippets ;;
@@ -544,6 +551,28 @@
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
 
+;;;;;;;;;;;;;;;;
+;; Lang :: Go ;;
+;;;;;;;;;;;;;;;;
+
+(use-package exec-path-from-shell :ensure t
+  :if (memq window-system '(mac ns))
+  :init (progn (exec-path-from-shell-initialize)
+               (exec-path-from-shell-copy-env "GOPATH")))
+
+(use-package go-mode :ensure t)
+
+(use-package go-eldoc :ensure t)
+
+(defun hook-go-mode ()
+  "Hook for Go mode."
+  (go-eldoc-setup)
+  (add-hook 'before-save-hook 'gofmt-before-save)
+  (set (make-local-variable 'company-backends) '(company-go))
+  (setq whitespace-style '(spaces space-mark face)))
+
+(add-hook 'go-mode-hook #'hook-go-mode)
+
 ;;;;;;;;;;;;;;;;;;
 ;; Lang :: Ruby ;;
 ;;;;;;;;;;;;;;;;;;
@@ -566,6 +595,8 @@
   :init (push 'company-robe company-backends))
 
 (use-package rubocop :ensure t)
+
+(use-package ruby-tools :ensure t)
 
 ;; Auto insert
 
@@ -604,7 +635,8 @@
 (defun hook-ruby-mode ()
   "Hook for ruby mode."
   (robe-mode)
-  (rubocop-mode))
+  (rubocop-mode)
+  (ruby-tools-mode))
 
 (add-hook 'ruby-mode-hook #'hook-ruby-mode)
 
