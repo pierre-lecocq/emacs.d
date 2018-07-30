@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-07-30 12:58:11>
+;; Time-stamp: <2018-07-30 13:50:10>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -664,6 +664,12 @@
 ;;;;;;;;;;;;;;;;;
 ;; Lang :: PHP ;;
 ;;;;;;;;;;;;;;;;;
+
+;; Auto insert
+
+(add-to-list 'auto-insert-alist
+             '((php-mode . "PHP script") nil
+               "<?php\n\n"))
 
 ;; Packages
 
