@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-05-23 11:36:33>
+;; Time-stamp: <2018-07-30 12:58:11>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -42,7 +42,6 @@
 (eval-when-compile
   (require 'use-package))
 
-;; (require 'diminish)
 (require 'bind-key)
 
 ;;;;;;;;;;;;;;
@@ -187,6 +186,10 @@
 
 (set-face-background 'region "DodgerBlue")
 (set-face-foreground 'region "white")
+
+;; Diminish
+
+(use-package diminish :ensure t)
 
 ;; Autopair
 
@@ -758,6 +761,8 @@
 ;; Packages
 
 (use-package dockerfile-mode :ensure t)
+
+(use-package terraform-mode :ensure t)
 
 (use-package json-mode :ensure t)
 
