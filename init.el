@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-07-31 10:36:45>
+;; Time-stamp: <2018-07-31 10:57:07>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -112,6 +112,18 @@
 (set-selection-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+;; Local data files
+
+(setq host-file (concat that-directory "host.el") ;; placed at root level since it is host-related file written by the user, not by a package
+      custom-file (concat that-directory "local/my-custom.el")
+      abbrev-file-name (concat that-directory "local/my-abbrev.el")
+      bookmark-default-file (concat that-directory "local/my-bookmarks.el")
+      nsm-settings-file (concat that-directory "local/my-nsm-settings.el")
+      ido-save-directory-list-file (concat that-directory "local/my-ido.el")
+      url-configuration-directory (concat that-directory "local/url")
+      tramp-persistency-file-name (concat that-directory "local/my-tramp.el")
+      eshell-directory-name (file-name-as-directory "~/.eshell"))
+
 ;;;;;;;;;;;;;;;
 ;; Behaviour ;;
 ;;;;;;;;;;;;;;;
@@ -138,29 +150,24 @@
 
 ;; Recent files
 
-(use-package recentf :demand t :ensure nil
-  :init (setq recentf-auto-cleanup 'never
-              recentf-max-menu-items 20)
-  :config (progn (add-to-list 'recentf-exclude package-user-dir)
-                 (recentf-mode 1)))
+(defun deferred-recentf ()
+  "Defer recentd installation and loading to shorten the Emacs loading time."
+  (interactive)
+  (unless (boundp 'recentf-save-file)
+    (message "Recentf!!")
+    (setq recentf-save-file (concat that-directory "local/my-recentf.el"))
+    (use-package recentf :demand t :ensure nil
+      :init (setq recentf-auto-cleanup 'never
+                  recentf-max-menu-items 20)
+      :config (progn (add-to-list 'recentf-exclude package-user-dir)
+                     (recentf-mode 1))))
+  ;; Launch
+  (recentf-open-files))
 
 ;; Editor config
 
 (use-package editorconfig :ensure t
   :config (editorconfig-mode 1))
-
-;; Local data files
-
-(setq host-file (concat that-directory "host.el") ;; placed at root level since it is host-related file written by the user, not by a package
-      custom-file (concat that-directory "local/my-custom.el")
-      abbrev-file-name (concat that-directory "local/my-abbrev.el")
-      bookmark-default-file (concat that-directory "local/my-bookmarks.el")
-      nsm-settings-file (concat that-directory "local/my-nsm-settings.el")
-      recentf-save-file (concat that-directory "local/my-recentf.el")
-      ido-save-directory-list-file (concat that-directory "local/my-ido.el")
-      url-configuration-directory (concat that-directory "local/url")
-      tramp-persistency-file-name (concat that-directory "local/my-tramp.el")
-      eshell-directory-name (file-name-as-directory "~/.eshell"))
 
 ;;;;;;;;;;;;;;;
 ;; Interface ;;
@@ -388,7 +395,7 @@
 
 (global-set-key [delete] 'delete-char)
 (global-set-key (kbd "<f10>") 'bookmark-bmenu-list)
-(global-set-key (kbd "<f11>") 'recentf-open-files)
+(global-set-key (kbd "<f11>") 'deferred-recentf)
 (global-set-key (kbd "C-S-f") 'imenu)
 (global-set-key (kbd "M-g") 'goto-line)
 
