@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-07-30 13:50:10>
+;; Time-stamp: <2018-07-31 10:36:45>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -492,12 +492,7 @@
               (if (eq system-type 'darwin)
                   "/usr/local/bin/sbcl --noinform"
                 "sbcl --noinform"))
-  :config (progn
-            (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
-              (if (file-exists-p helper-file)
-                  (load helper-file)
-                (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
-            (slime-setup '(slime-company))))
+  :config (slime-setup '(slime-company)))
 
 ;; Auto insert
 
@@ -511,9 +506,21 @@
 
 (defun hook-lisp-mode ()
   "Hook for Lisp mode."
-  (global-prettify-symbols-mode 1))
+  (message "LISP MODE hook!")
+  (global-prettify-symbols-mode 1)
+  (slime-mode t)
+  (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
+    (if (file-exists-p helper-file)
+        (load helper-file)
+      (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before"))))
 
 (add-hook 'lisp-mode-hook #'hook-lisp-mode)
+
+(defun hook-inferior-lisp-mode ()
+  "Hook for inferior Lisp  mode."
+  (inferior-slime-mode t))
+
+(add-hook 'inferior-lisp-mode-hook #'hook-inferior-lisp-mode)
 
 ;;;;;;;;;;;;;;;
 ;; Lang :: C ;;
