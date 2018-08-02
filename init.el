@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration
 
-;; Time-stamp: <2018-07-31 10:57:07>
+;; Time-stamp: <2018-08-02 22:06:25>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -177,6 +177,15 @@
 
 (when (display-graphic-p)
   (toggle-frame-maximized))
+
+;; Font size
+
+(defun set-font-size (size)
+  "Change font SIZE."
+  (interactive "nFont size: ")
+  (set-frame-font (format "Source Code Pro %d" size) nil t))
+
+(set-font-size 12)
 
 ;; Theme
 
