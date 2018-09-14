@@ -1,0 +1,38 @@
+;;; feat-navigation.el --- Navigation support -*- lexical-binding: t; -*-
+
+;; Time-stamp: <2018-09-12 23:15:22>
+;; Copyright (C) 2018 Pierre Lecocq
+
+;;; Commentary:
+
+;;; Code:
+
+(use-package flx-ido :ensure t)
+
+(use-package ido-hacks :ensure t)
+
+(use-package ido-vertical-mode :ensure t)
+
+(use-package ido :ensure t
+  :after (:all flx-ido ido-hacks ido-vertical-mode)
+  :config (progn
+            (ido-everywhere 1)
+            (flx-ido-mode 1)
+            (ido-mode t)
+            (ido-hacks-mode)
+            (ido-vertical-mode))
+  :init (setq ido-save-directory-list-file (concat (file-name-directory load-file-name) "../local/my-ido.el")
+              ido-case-fold t
+              ido-enable-flex-matching t
+              ido-use-filename-at-point 'guess
+              ido-create-new-buffer 'always))
+
+(use-package find-file-in-project :ensure t
+  :bind (("C-S-x C-S-f" . find-file-in-project))
+  :init (setq ffip-prefer-ido-mode t
+              ffip-prune-patterns '("*/.git/*"
+                                    "*/packages/*"
+                                    "*/vendor/*"
+                                    "*/node_modules/*")))
+
+;;; feat-navigation.el ends here
