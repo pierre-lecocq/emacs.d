@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-12 21:52:51>
+;; Time-stamp: <2018-09-18 21:32:56>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -68,6 +68,7 @@
       next-line-add-newlines nil
       select-enable-clipboard t
       show-trailing-whitespace t
+      custom-file (concat (file-name-directory load-file-name) "local/my-custom.el")
       uniquify-buffer-name-style 'forward uniquify-separator "/")
 
 ;; Indentation
