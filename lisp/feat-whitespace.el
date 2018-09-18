@@ -1,6 +1,6 @@
 ;;; feat-whitepace.el --- Whitepace support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-12 21:20:38>
+;; Time-stamp: <2018-09-18 10:22:23>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
@@ -26,7 +26,7 @@
       (setq whitespace-font-lock-keywords
             `((whitespace-point--flush-used)
               ,@(when (memq 'character whitespace-active-style)
-                  `((,(format "\\(.\\)\\{%d\\}" (+ whitespace-line-column 1)) 1 whitespace-character t)))))
+                  `((,(format "^\\(.\\)\\{%d\\}" (+ whitespace-line-column 1)) 1 whitespace-character t)))))
       (font-lock-add-keywords nil whitespace-font-lock-keywords t)
       (font-lock-flush)))
 
