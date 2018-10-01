@@ -1,14 +1,14 @@
 ;;; feat-shell.el --- Shell support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-20 00:07:52>
+;; Time-stamp: <2018-10-01 14:53:03>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(defvar shell-buffer-name "*ansi-term*")
 (defvar shell-func 'ansi-term)
+(defvar shell-buffer-name "*ansi-term*")
 (defvar shell-program "/bin/bash")
 
 (defun toggle-shell ()
@@ -27,6 +27,15 @@
     (funcall shell-func shell-program)
     (when (display-graphic-p)
       (toggle-frame-maximized))))
+
+(defadvice term-sentinel (around my-advice-term-sentinel (proc msg))
+  "Close buffer when term exits. Stolen from http://echosa.github.io/blog/2012/06/06/improving-ansi-term/ ."
+  (if (memq (process-status proc) '(signal exit))
+      (let ((buffer (process-buffer proc)))
+        ad-do-it
+        (kill-buffer buffer))
+    ad-do-it))
+(ad-activate 'term-sentinel)
 
 (use-package ansi-term
   :bind (("<f9>" . toggle-shell)
