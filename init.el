@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-18 21:32:56>
+;; Time-stamp: <2018-10-28 11:28:38>
 ;; Copyright (C) 2017 Pierre Lecocq
 ;; Version: <insert your bigint here>
 
@@ -96,6 +96,7 @@
   (toggle-frame-maximized))
 
 ;; Load host file.
+
 ;; This file should load other files from the `lisp' folder.
 ;;
 ;; Sample content:
@@ -104,9 +105,9 @@
 ;;       (load-file (concat dir "lisp/defaults.el"))
 ;;       (load-file (concat dir "lisp/feat-theme.el")))
 
-
 (let ((host-file (concat (file-name-directory load-file-name) "host.el")))
-  (when (file-exists-p host-file)
-    (load-file host-file)))
+  (if (file-exists-p host-file)
+      (load-file host-file)
+    (message "WARNING: %s file not found, no extention will be loaded" host-file)))
 
 ;;; init.el ends here
