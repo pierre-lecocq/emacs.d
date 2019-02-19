@@ -1,6 +1,6 @@
 ;;; feat-whitepace.el --- Whitepace support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-18 10:22:23>
+;; Time-stamp: <2019-01-17 11:57:52>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
@@ -36,15 +36,16 @@
 ;; Config
 
 (use-package whitespace :demand t :ensure nil :diminish whitespace-mode
-  :config (when (display-graphic-p)
-            (let ((color (face-attribute 'default :background)))
-              (set-face-attribute 'whitespace-space nil
-                                  :background color
-                                  :foreground color)))
+  ;; :config (when (display-graphic-p)
+  ;;           (let ((color (face-attribute 'default :background)))
+  ;;             (set-face-attribute 'whitespace-space nil
+  ;;                                 :background color
+  ;;                                 :foreground color)))
   :init (progn
           (load-whitespace-character-hack)
           (setq whitespace-line-column 80
-                whitespace-style '(character spaces space-mark tabs tab-mark face trailing)))
+                ;;                whitespace-style '(character spaces space-mark tabs tab-mark face trailing)))
+                whitespace-style '(tabs tab-mark face trailing)))
   :hook ((prog-mode . whitespace-mode)
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))

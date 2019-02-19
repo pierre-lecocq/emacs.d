@@ -1,6 +1,6 @@
 ;;; lang-lisp.el --- Lisp language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-10-15 22:34:27>
+;; Time-stamp: <2019-02-13 23:34:51>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
@@ -20,7 +20,7 @@
 
 (defun hook-lisp-mode ()
   "Hook for Lisp mode."
-  (global-prettify-symbols-mode 1)
+  ;; (global-prettify-symbols-mode 1)
   (slime-mode t)
   (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
     (if (file-exists-p helper-file)
@@ -41,6 +41,7 @@
          ("\\.asd'"     . lisp-mode)
          ("\\.fasl'"    . lisp-mode))
   :config (slime-setup '(slime-company))
+  :init (setq slime-contribs '(slime-fancy))
   :hook ((lisp-mode . hook-lisp-mode)
          (inferior-lisp-mode . hook-inferior-lisp-mode)))
 

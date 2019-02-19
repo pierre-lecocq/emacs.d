@@ -1,6 +1,6 @@
 ;;; feat-navigation.el --- Navigation support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-12 23:15:22>
+;; Time-stamp: <2019-02-19 08:00:51>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
@@ -25,7 +25,8 @@
               ido-case-fold t
               ido-enable-flex-matching t
               ido-use-filename-at-point 'guess
-              ido-create-new-buffer 'always))
+              ido-create-new-buffer 'always
+              ido-vertical-show-count t))
 
 (use-package find-file-in-project :ensure t
   :bind (("C-S-x C-S-f" . find-file-in-project))
@@ -34,5 +35,10 @@
                                     "*/packages/*"
                                     "*/vendor/*"
                                     "*/node_modules/*")))
+
+(use-package dumb-jump
+  :config (dumb-jump-mode)
+  :bind (("C-M-g" . dumb-jump-quick-look)
+         ("C-M-o" . dumb-jump-go-other-window)))
 
 ;;; feat-navigation.el ends here

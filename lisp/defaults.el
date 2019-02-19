@@ -1,6 +1,6 @@
 ;;; defaults.el --- Defaults -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2018-09-12 10:53:35>
+;; Time-stamp: <2019-01-04 10:45:26>
 ;; Copyright (C) 2018 Pierre Lecocq
 
 ;;; Commentary:
@@ -55,6 +55,9 @@
   :config (progn (which-function-mode 1)
                  (set-face-attribute 'which-func nil :foreground "red")))
 
+(use-package which-key :demand t
+  :config (which-key-mode 1))
+
 ;; Key bindings
 
 (require 'bind-key)
@@ -77,15 +80,5 @@
 (global-set-key (kbd "M-;") 'other-frame)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
-(global-set-key (kbd "C-x 2") (lambda ()
-                                (interactive)
-                                (split-window-vertically)
-                                (other-window 1)))
-
-(global-set-key (kbd "C-x 3") (lambda ()
-                                (interactive)
-                                (split-window-horizontally)
-                                (other-window 1)))
 
 ;;; defaults.el ends here
