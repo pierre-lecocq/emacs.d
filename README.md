@@ -1,7 +1,9 @@
 # Emacs configuration
 
+![logo](https://www.gnu.org/software/emacs/images/emacs.png)
+
 - Version: _insert your big int here_
-- Time-stamp: <2019-03-12 15:47:12>
+- Time-stamp: <2019-03-12 15:56:36>
 
 ## Packages
 
