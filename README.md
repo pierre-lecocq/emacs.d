@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: /<insert your big int here>/
-- Time-stamp: <2019-03-12 14:44:17>
+- Time-stamp: <2019-03-12 15:45:28>
 
 ## Packages
 
@@ -85,6 +85,8 @@
 
 ### Common
 
+| **Key**   | **Function**           | **Description**                            |
+|-----------|------------------------|--------------------------------------------|
 | `C-S-f`   | `imenu`                | Jump to a place in the buffer              |
 | `C-x C-b` | `ibuffer`              | Edit a list of buffers                     |
 | `M-g`     | `goto-line`            | Go to LINE                                 |
@@ -94,13 +96,17 @@
 
 ### Window
 
-| `C-x 2` | `split-window-and-switch` | Split window horizontally and switch to the new one |
-| `C-x 3` | `split-window-and-switch` | Split window vertically and switch to the new one   |
-| `C-;`   | `other-window`            | Select another window in cyclic ordering of windows |
+| **Key** | **Function**              | **Description**                                                           |
+|---------|---------------------------|---------------------------------------------------------------------------|
+| `C-x 2` | `split-window-and-switch` | Split window horizontally and switch to the new one                       |
+| `C-x 3` | `split-window-and-switch` | Split window vertically and switch to the new one                         |
+| `C-;`   | `other-window`            | Select another window in cyclic ordering of windows                       |
 | `M-;`   | `other-frame`             | Select the ARGth different visible frame on current display, and raise it |
 
 ### Search
 
+| **Key**       | **Function**           | **Description**                                                                   |
+|---------------|------------------------|-----------------------------------------------------------------------------------|
 | `C-S-x C-S-f` | `find-file-in-project` | Prompt with a completing list of all files in the project to find one             |
 | `C-c s g`     | `vc-git-grep`          | Run git grep, searching for REGEXP in FILES in directory DIR                      |
 | `C-c s r`     | `rgrep`                | Recursively grep for REGEXP in FILES in directory tree rooted at DIR              |
@@ -109,6 +115,8 @@
 
 ### Quick jump
 
+| **Key**   | **Function**             | **Description**                                                             |
+|-----------|--------------------------|-----------------------------------------------------------------------------|
 | `C-c q l` | `dumb-jump-quick-look`   | Show a tooltip of where it would jump instead of jumping                    |
 | `C-c q g` | `dumb-jump-go`           | Go to the function/variable declaration for thing at point                  |
 | `C-c q b` | `dumb-jump-back`         | Jump back to where the last jump was done                                   |
@@ -117,11 +125,15 @@
 
 ### Tags
 
+| **Key**   | **Function**            | **Description**                              |
+|-----------|-------------------------|----------------------------------------------|
 | `C-c t r` | `refresh-tags`          | Refresh tags table of the current project    |
 | `C-c t s` | `etags-select-find-tag` | Do a find-tag, and display all exact matches |
 
 ### File tree
 
+| **Key**   | **Function**                 | **Description**                                        |
+|-----------|------------------------------|--------------------------------------------------------|
 | `C-c t t` | `neotree-toggle`             | Toggle show the NeoTree window                         |
 | `C-c t p` | `neotree-project-dir`        | Open NeoTree using the git root of the current project |
 | `C-c t h` | `neotree-hidden-file-toggle` | Toggle show hidden files                               |
