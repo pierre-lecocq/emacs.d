@@ -1,6 +1,6 @@
 ;;; init.el --- Init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-03-12 15:51:57>
+;; Time-stamp: <2019-03-12 16:02:01>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -258,9 +258,9 @@
 
 (use-package neotree
   :after (:all all-the-icons)
-  :bind (("C-c t t" . neotree-toggle)
-         ("C-c t p" . neotree-project-dir)
-         ("C-c t h" . neotree-hidden-file-toggle))
+  :bind (("C-c f t" . neotree-toggle)
+         ("C-c f p" . neotree-project-dir)
+         ("C-c f h" . neotree-hidden-file-toggle))
   :init (setq neo-smart-open t
               neo-window-fixed-size nil
               neo-theme (if (display-graphic-p) 'icons 'nerd)))

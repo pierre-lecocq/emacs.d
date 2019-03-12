@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-03-12 15:59:06>
+- Time-stamp: <2019-03-12 16:02:23>
 
 ## Packages
 
@@ -134,6 +134,6 @@
 
 | **Key**   | **Function**                 | **Description**                                        |
 |-----------|------------------------------|--------------------------------------------------------|
-| `C-c t t` | `neotree-toggle`             | Toggle show the NeoTree window                         |
-| `C-c t p` | `neotree-project-dir`        | Open NeoTree using the git root of the current project |
-| `C-c t h` | `neotree-hidden-file-toggle` | Toggle show hidden files                               |
+| `C-c f t` | `neotree-toggle`             | Toggle show the NeoTree window                         |
+| `C-c f p` | `neotree-project-dir`        | Open NeoTree using the git root of the current project |
+| `C-c f h` | `neotree-hidden-file-toggle` | Toggle show hidden files                               |
