@@ -1,7 +1,7 @@
 # Emacs configuration
 
-- Version: /<insert your big int here>/
-- Time-stamp: <2019-03-12 15:45:28>
+- Version: <insert your big int here>
+- Time-stamp: <2019-03-12 15:46:01>
 
 ## Packages
 
