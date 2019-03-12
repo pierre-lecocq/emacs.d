@@ -1,6 +1,6 @@
 ;;; init.el --- Init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-03-12 15:40:12>
+;; Time-stamp: <2019-03-12 15:51:57>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -142,7 +142,7 @@
           (auto-insert-mode 1)
           (auto-insert)))
 
-(use-package autopair :diminish autopair-mode
+(use-package autopair :diminish
   :config (autopair-global-mode t))
 
 (use-package editorconfig
@@ -152,10 +152,10 @@
   :init (setq epa-gpg-program "gpg2")
   :config (epa-file-enable))
 
-(use-package idle-highlight-mode :diminish idle-highlight-mode
+(use-package idle-highlight-mode :diminish
   :hook (prog-mode . idle-highlight-mode))
 
-(use-package rainbow-mode :diminish rainbow-mode
+(use-package rainbow-mode :diminish
   :hook (prog-mode . rainbow-turn-on))
 
 (use-package rainbow-delimiters
@@ -182,7 +182,7 @@
               electric-indent-inhibit t
               backward-delete-char-untabify-method 'hungry)
 
-(use-package aggressive-indent :diminish aggressive-indent-mode
+(use-package aggressive-indent :diminish
   :config (progn
             (global-aggressive-indent-mode)
             (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
@@ -233,7 +233,7 @@
 
 ;; -- Whitespace ---------------------------------------------------------------
 
-(use-package whitespace :demand t :ensure nil :diminish whitespace-mode
+(use-package whitespace :demand t :ensure nil :diminish
   ;; :config (when (display-graphic-p)
   ;;           (let ((color (face-attribute 'default :background)))
   ;;             (set-face-attribute 'whitespace-space nil
@@ -266,13 +266,13 @@
               neo-theme (if (display-graphic-p) 'icons 'nerd)))
 ;; -- Syntax -------------------------------------------------------------------
 
-(use-package flycheck :diminish flycheck-mode
+(use-package flycheck :diminish
   :bind (("<f8>" . flycheck-list-errors))
   :hook (prog-mode . flycheck-mode))
 
 ;; -- Completion ---------------------------------------------------------------
 
-(use-package company :diminish company-mode
+(use-package company :diminish
   :config (global-company-mode 1)
   :init (setq company-auto-complete nil
               company-tooltip-flip-when-above t
@@ -320,7 +320,7 @@
 
 ;; -- Search -------------------------------------------------------------------
 
-(use-package anzu :diminish anzu-mode
+(use-package anzu :diminish
   :config (global-anzu-mode +1)
   :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
 
@@ -376,7 +376,7 @@
 
 ;; -- Version Control ----------------------------------------------------------
 
-(use-package git-gutter :diminish git-gutter-mode
+(use-package git-gutter :diminish
   :config (progn
             (set-face-background 'git-gutter:added nil)
             (set-face-foreground 'git-gutter:added "green")
