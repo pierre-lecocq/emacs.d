@@ -1,6 +1,6 @@
 ;;; init.el --- Init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-03-12 16:02:01>
+;; Time-stamp: <2019-04-19 17:02:49>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -65,6 +65,8 @@
       custom-file (concat (file-name-directory load-file-name) ".local/files/my-custom.el")
       uniquify-buffer-name-style 'forward uniquify-separator "/"
       use-dialog-box nil)
+
+(setq-default fill-column 80)
 
 ;; -- Charset ------------------------------------------------------------------
 
@@ -170,7 +172,7 @@
             (which-function-mode 1)
             (set-face-attribute 'which-func nil :foreground "green")))
 
-(use-package which-key :demand t
+(use-package which-key :demand t :diminish
   :config (which-key-mode 1))
 
 ;; -- Indentation --------------------------------------------------------------
@@ -194,6 +196,9 @@
 (when (display-graphic-p)
   (toggle-frame-maximized))
 
+(when (boundp 'x-gtk-use-system-tooltips)
+  (setq x-gtk-use-system-tooltips nil))
+
 (use-package darkokai-theme
   :config (progn
             (load-theme 'darkokai t)
@@ -212,10 +217,12 @@
             (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
             (add-to-list 'default-frame-alist '(ns-appearance . dark)))))
 
-(use-package fill-column-indicator
-  :hook ((prog-mode . fci-mode))
-  :init (setq fci-rule-column 80
-              fci-rule-color "#303435"))
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode))
+
+;; (use-package fill-column-indicator
+;;   :hook ((prog-mode . fci-mode))
+;;   :init (setq fci-rule-color "#303435"))
 
 (defun set-font-size (wanted-size)
   "Change font size to WANTED-SIZE."
@@ -231,6 +238,12 @@
       mouse-wheel-progressive-speed nil
       scroll-conservatively 101)
 
+(use-package all-the-icons) ;; Run `M-x all-the-icons-install-fonts'
+
+(use-package all-the-icons-dired :diminish
+  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 ;; -- Whitespace ---------------------------------------------------------------
 
 (use-package whitespace :demand t :ensure nil :diminish
@@ -245,6 +258,32 @@
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
 
+;; -- Dashboard ----------------------------------------------------------------
+
+(use-package bookmark :demand t :ensure nil
+  :init (setq bookmark-sort-flag nil
+              bookmark-alist `(("Sources"       (filename . "~/src"))
+                               ("Emacs.d" (filename . "~/src/emacs.d"))
+                               ("Config.d" (filename . "~/src/config.d"))
+                               ("Docker stack" (filename . "~/src/docker-stack"))
+                               ("Fotolia" (filename . "~/src/fotolia-web"))
+                               ("Hello PHP" (filename . "~/src/hellophp-service"))
+                               ("Mass - Castor" (filename . "~/src/mass/beaver-service"))
+                               ("Mass - Dojo" (filename . "~/src/mass/dojo-service"))
+                               ("Mass - Octopus" (filename . "~/src/mass/octopus-service"))
+                               ("Microservice base PHP" (filename . "~/src/microservice-base-php"))
+                               ("Microservice lib PHP" (filename . "~/src/microservice-lib-php"))
+                               ("PR Report" (filename . "~/src/pr-report"))
+                               ("Snitchit" (filename . "~/src/snitchit"))
+                               ("StockWeb" (filename . "~/src/stock-web")))))
+
+(use-package dashboard
+  :init (setq dashboard-items '((bookmarks . (length bookmark-alist)))
+              dashboard-banner-logo-title (format "Emacs %s" emacs-version)
+              dashboard-startup-banner 'logo
+              dashboard-center-content nil)
+  :config (dashboard-setup-startup-hook))
+
 ;; -- File tree ----------------------------------------------------------------
 
 (defun neotree-project-dir ()
@@ -253,8 +292,6 @@
   (let ((project-dir (ffip-project-root)))
     (neotree-dir project-dir)
     (neotree-find (buffer-file-name))))
-
-(use-package all-the-icons) ;; Run `M-x all-the-icons-install-fonts'
 
 (use-package neotree
   :after (:all all-the-icons)
@@ -298,7 +335,6 @@
 (use-package ido-hacks)
 (use-package ido-vertical-mode)
 (use-package ido
-  :after (:all flx-ido ido-hacks ido-vertical-mode)
   :config (progn
             (ido-everywhere 1)
             (flx-ido-mode 1)
@@ -370,7 +406,7 @@
     (list-tags filename)))
 
 (use-package etags-select
-  :init (set-default 'case-fold-search nil)
+  :init (set-default 'case-fold-search t)
   :bind (("C-c t r" . refresh-tags)
          ("C-c t s" . etags-select-find-tag)))
 
@@ -426,7 +462,6 @@
 
 (defun hook-lisp-mode ()
   "Hook for Lisp mode."
-  ;; (global-prettify-symbols-mode 1)
   (slime-mode t)
   (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
     (if (file-exists-p helper-file)
@@ -440,7 +475,6 @@
 (use-package slime-company :defer t)
 
 (use-package slime
-  :after (:all slime-company)
   :mode (("\\.lisp'"    . lisp-mode)
          ("\\.lsp'"     . lisp-mode)
          ("\\.cl'"      . lisp-mode)
@@ -507,15 +541,15 @@
 
 (use-package go-eldoc :defer t)
 
-(use-package go-mode :defer t
-  :after (:all go-eldoc))
+(use-package go-mode :defer t)
+
+(use-package company-go :defer t)
 
 (defun hook-go-mode ()
   "Hook for Go mode."
   (go-eldoc-setup)
   (add-hook 'before-save-hook 'gofmt-before-save)
-  (set (make-local-variable 'company-backends) '(company-go))
-  (setq whitespace-style '(spaces space-mark face)))
+  (set (make-local-variable 'company-backends) '(company-go)))
 
 (add-hook 'go-mode-hook #'hook-go-mode)
 
@@ -535,12 +569,12 @@
 (use-package robe :defer t
   :init (push 'company-robe company-backends))
 
-(use-package rubocop :defer t)
+(use-package rubocop :defer t :diminish
+  :hook (ruby-mode . rubocop-mode))
 
 (use-package ruby-tools :defer t)
 
 (use-package ruby-mode
-  :after (:all inf-ruby robe rubocop ruby-tools)
   :mode (("\\.rb\\'" . ruby-mode)
          ("\\.rake\\'" . ruby-mode)
          ("\\.ru\\'" . ruby-mode)
@@ -577,6 +611,9 @@
 
 (add-hook 'ruby-mode-hook #'hook-ruby-mode)
 
+(use-package yard-mode :diminish
+  :hook (ruby-mode . yard-mode))
+
 ;; -- Python -------------------------------------------------------------------
 
 (add-to-list 'auto-insert-alist
@@ -584,11 +621,13 @@
                "#!/usr/bin/env python\n\n"))
 
 (use-package elpy :defer t
-  :init (with-eval-after-load 'python (elpy-enable))
+  :init (advice-add 'python-mode :before 'elpy-enable)
   :commands elpy-enable
-  :config  (progn (setq python-indent-offset 4)
-                  (when (fboundp 'flycheck-mode)
-                    (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))))
+  :config  (progn
+             (setq python-indent-offset 4)
+             (setq elpy-modules (delq 'elpy-module-yasnippet elpy-modules))
+             (when (fboundp 'flycheck-mode)
+               (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))))
 
 ;; -- HTTP ---------------------------------------------------------------------
 
@@ -609,7 +648,6 @@
 (use-package php-extras :defer t)
 
 (use-package php-mode
-  :after (:all php-extras)
   :mode (("\\.php-dev'" . php-mode)
          ("\\.php-dist'" . php-mode)))
 
@@ -631,16 +669,30 @@
 ;; -- JS ------------------------------------------------------------------------
 
 (use-package js2-refactor :defer t)
+(use-package xref-js2 :defer t) ;; requires installing `ag'
+
+(when (executable-find "tern") ;; `sudo npm install -g tern'
+  (use-package company-tern
+    :config (progn
+              (message "YESSSSS")
+              (add-to-list 'company-backends 'company-tern)
+              ;; Disable completion keybindings, as we use xref-js2 instead
+              (unbind-key "M-." tern-mode-keymap)
+              (unbind-key "M-," tern-mode-keymap))))
 
 (use-package js2-mode
-  :after (:all js2-refactor)
-  :mode "\\.js\\'")
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.jsx\\'" . js2-jsx-mode)))
 
 (defun hook-js2-mode ()
   "Hook for js2 mode."
+  (tern-mode)
+  (js2-imenu-extras-mode)
   (js2-refactor-mode)
+  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
   (js2r-add-keybindings-with-prefix "C-c C-r")
   (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
+  (define-key js-mode-map (kbd "M-.") nil)
   (setq-default js2-show-parse-errors nil)
   (setq-default js2-strict-missing-semi-warning nil)
   (setq-default js2-strict-trailing-comma-warning t))
@@ -686,12 +738,6 @@
 (use-package terraform-mode :defer t)
 
 (use-package json-mode :defer t)
-
-;; (use-package org :defer t :pin "org"
-;;   :init (setq org-hide-leading-stars t
-;;               org-hide-emphasis-markers t
-;;               org-fontify-done-headline t
-;;               org-src-fontify-natively t))
 
 (use-package markdown-mode :defer t)
 
