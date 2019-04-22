@@ -1,6 +1,6 @@
 ;;; init.el --- Init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-04-19 17:02:49>
+;; Time-stamp: <2019-04-22 23:36:17>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -220,10 +220,6 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode))
 
-;; (use-package fill-column-indicator
-;;   :hook ((prog-mode . fci-mode))
-;;   :init (setq fci-rule-color "#303435"))
-
 (defun set-font-size (wanted-size)
   "Change font size to WANTED-SIZE."
   (interactive "nFont size: ")
@@ -301,6 +297,7 @@
   :init (setq neo-smart-open t
               neo-window-fixed-size nil
               neo-theme (if (display-graphic-p) 'icons 'nerd)))
+
 ;; -- Syntax -------------------------------------------------------------------
 
 (use-package flycheck :diminish
@@ -674,7 +671,6 @@
 (when (executable-find "tern") ;; `sudo npm install -g tern'
   (use-package company-tern
     :config (progn
-              (message "YESSSSS")
               (add-to-list 'company-backends 'company-tern)
               ;; Disable completion keybindings, as we use xref-js2 instead
               (unbind-key "M-." tern-mode-keymap)
