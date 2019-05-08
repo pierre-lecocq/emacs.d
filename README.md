@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-03-12 16:02:23>
+- Time-stamp: <2019-04-26 22:10:31>
 
 ## Packages
 
@@ -77,6 +77,7 @@
 |                 | `json-mode`            |                 |              |
 |                 | `yaml-mode`            |                 |              |
 |                 | `markdown-mode`        |                 |              |
+|                 | `flymd`                |                 |              |
 |                 | `dockerfile-mode`      |                 |              |
 |                 | `terraform-mode`       |                 |              |
 |                 | `toml-mode`            |                 |              |
@@ -137,3 +138,9 @@
 | `C-c f t` | `neotree-toggle`             | Toggle show the NeoTree window                         |
 | `C-c f p` | `neotree-project-dir`        | Open NeoTree using the git root of the current project |
 | `C-c f h` | `neotree-hidden-file-toggle` | Toggle show hidden files                               |
+
+### Markdown
+
+| **Key**   | **Function**  | **Description**  |
+|-----------|---------------|------------------|
+| `C-c m p` | `flymd-flyit` | Preview markdown |
