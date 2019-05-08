@@ -1,6 +1,6 @@
 ;;; init.el --- Init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-04-27 14:37:11>
+;; Time-stamp: <2019-05-08 21:16:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -45,26 +45,28 @@
 (when (or (not window-system) (not (eq system-type 'darwin)))
   (menu-bar-mode -1))
 
-(setq user-full-name "Pierre Lecocq"
-      debug-on-error t
-      backup-inhibited t
-      make-backup-files nil
-      auto-save-default nil
+(setq auto-save-default nil
       auto-save-list-file-prefix nil
-      load-prefer-newer t
-      sentence-end-double-space nil
-      frame-title-format "%b (%m) - %F"
-      initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
-      inhibit-startup-message t
-      inhibit-splash-screen t
+      backup-inhibited t
       case-fold-search t
-      require-final-newline t
+      debug-on-error t
+      frame-title-format "%b (%m) - %F"
+      inhibit-splash-screen t
+      inhibit-startup-message t
+      initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
+      load-prefer-newer t
+      make-backup-files nil
       next-line-add-newlines nil
+      require-final-newline t
       select-enable-clipboard t
+      sentence-end-double-space nil
       show-trailing-whitespace t
-      custom-file (concat (file-name-directory load-file-name) ".local/files/my-custom.el")
       uniquify-buffer-name-style 'forward uniquify-separator "/"
-      use-dialog-box nil)
+      use-dialog-box nil
+      user-full-name "Pierre Lecocq")
+
+(setq custom-file (concat (file-name-directory load-file-name) ".local/files/my-custom.el")
+      nsm-settings-file (concat (file-name-directory load-file-name) ".local/files/network-security.data"))
 
 (setq-default fill-column 80)
 
