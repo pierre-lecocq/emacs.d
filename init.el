@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-09 10:08:26>
+;; Time-stamp: <2019-05-09 10:24:12>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -273,9 +273,11 @@
 
 ;; -- Externals ----------------------------------------------------------------
 
-(load-file "programming.el")
-
-;; (when (file-exists-p "host.el")
-;;   (load-file "host.el"))
+(let ((prog-file (concat (file-name-directory load-file-name) "programming.el"))
+      (host-file (concat (file-name-directory load-file-name) "host.el"))) 
+  (when (file-exists-p prog-file)
+    (load-file prog-file))
+  (when (file-exists-p host-file)
+    (load-file host-file)))
 
 ;;; init.el ends here
