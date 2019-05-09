@@ -1,6 +1,6 @@
-;;; init.el --- Init file -*- lexical-binding: t; -*-
+;;; init.el --- Emacs init file -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-08 21:16:28>
+;; Time-stamp: <2019-05-09 10:08:26>
 ;; Copyright (C) 2019 Pierre Lecocq
 ;; Version: <insert your big int here>
 ;; Code name: Yet another rewrite
@@ -8,21 +8,6 @@
 ;;; Commentary:
 
 ;;; Code:
-
-;; -- Config loading optimizations ---------------------------------------------
-
-(defvar -file-name-handler-alist file-name-handler-alist)
-
-(setq gc-cons-threshold 402653184
-      gc-cons-percentage 0.6
-      file-name-handler-alist nil)
-
-(add-hook 'emacs-startup-hook
-          '(lambda () (setq gc-cons-threshold 16777216
-                       gc-cons-percentage 0.1
-                       file-name-handler-alist -file-name-handler-alist)))
-
-;; -- Default configuration ----------------------------------------------------
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -56,8 +41,11 @@
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
       load-prefer-newer t
       make-backup-files nil
+      mouse-wheel-progressive-speed nil
+      mouse-wheel-scroll-amount '(1)
       next-line-add-newlines nil
       require-final-newline t
+      scroll-conservatively 101
       select-enable-clipboard t
       sentence-end-double-space nil
       show-trailing-whitespace t
@@ -72,106 +60,42 @@
 
 ;; -- Indent -------------------------------------------------------------------
 
-(setq-default indent-tabs-mode nil
-              tab-width 4
+(setq-default backward-delete-char-untabify-method 'hungry
               c-basic-offset 4
               c-hanging-comment-ender-p nil
               electric-indent-inhibit t
-              backward-delete-char-untabify-method 'hungry)
-
+              indent-tabs-mode nil
+              tab-width 4)
 
 ;; -- Charset ------------------------------------------------------------------
 
-(setq locale-coding-system      'utf-8)
-(set-language-environment       'utf-8)
-(set-terminal-coding-system     'utf-8)
-(set-default-coding-systems     'utf-8)
-(set-selection-coding-system    'utf-8)
-(prefer-coding-system           'utf-8)
-(set-charset-priority           'unicode)
+(setq locale-coding-system 'utf-8)
+(set-language-environment 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(set-charset-priority 'unicode)
 
 ;; -- Package manager ----------------------------------------------------------
 
 (require 'package)
-
 (setq package-enable-at-startup nil
       package-user-dir (concat (file-name-directory load-file-name) ".local/packages")
-      package-archives '(("melpa"           . "https://melpa.org/packages/")
-                         ("melpa-stable"    . "https://stable.melpa.org/packages/")
-                         ("marmalade"       . "https://marmalade-repo.org/packages/")
-                         ("gnu"             . "https://elpa.gnu.org/packages/"))
-      package-archive-priorities '(("melpa"         . 15)
-                                   ("melpa-stable"  . 12)
-                                   ("marmalade"     . 10)
-                                   ("gnu"           . 5)))
-
+      package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
-
 (when (not package-archive-contents)
   (package-refresh-contents))
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-
 (eval-when-compile
   (require 'use-package))
 
-(setq use-package-always-ensure t)
-
-;; -- Utilities ----------------------------------------------------------------
-
-(use-package bind-key)
-
-(use-package diminish)
-
-(use-package autopair
-  :config (autopair-global-mode t))
-
-(use-package epa-file :ensure nil :demand t
-  :init (setq epa-gpg-program "gpg2")
-  :config (epa-file-enable))
-
-(use-package time-stamp :demand t
-  :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
-  :hook (before-save))
-
-;; -- Bookmarks ----------------------------------------------------------------
-
-(use-package bookmark :demand t :ensure nil
-  :init (setq bookmark-sort-flag nil
-              bookmark-alist `(("Sources" (filename . "~/src"))
-                               ("Emacs.d" (filename . "~/src/emacs.d"))
-                               ("Config.d" (filename . "~/src/config.d"))
-                               ("Docker stack" (filename . "~/src/docker-stack"))
-                               ("Fotolia" (filename . "~/src/fotolia-web"))
-                               ("Hello PHP" (filename . "~/src/hellophp-service"))
-                               ("Mass - Castor" (filename . "~/src/mass/beaver-service"))
-                               ("Mass - Dojo" (filename . "~/src/mass/dojo-service"))
-                               ("Mass - Octopus" (filename . "~/src/mass/octopus-service"))
-                               ("Microservice base PHP" (filename . "~/src/microservice-base-php"))
-                               ("Microservice lib PHP" (filename . "~/src/microservice-lib-php"))
-                               ("PR Report" (filename . "~/src/pr-report"))
-                               ("Snitchit" (filename . "~/src/snitchit"))
-                               ("StockWeb" (filename . "~/src/stock-web")))))
-
-;; -- Dashboard ----------------------------------------------------------------
-
-(use-package dashboard
-  :init (setq dashboard-items '((bookmarks . (length bookmark-alist)))
-              dashboard-banner-logo-title (format "Emacs %s" emacs-version)
-              dashboard-startup-banner 'logo
-              dashboard-center-content t)
-  :config (progn
-            (dashboard-setup-startup-hook)
-            ;; WIP: add numbers to sections to be able to jump and open link with keyboard
-            ;; (require 'dashboard)
-            ;; (defun numbered-dashboard-insert-section (orig-fun &rest args)
-            ;;   ""
-            ;;   (message "numbered-dashboard-insert-section called with args %S" args)
-            ;;   (apply orig-fun args)
-            ;;   )
-            ;; (add-function :around (symbol-function 'dashboard-insert-section) #'numbered-dashboard-insert-section)
-            ))
+(use-package bind-key :demand t :ensure t)
+(use-package diminish :demand t :ensure t)
 
 ;; -- Theme --------------------------------------------------------------------
 
@@ -181,7 +105,23 @@
 (when (boundp 'x-gtk-use-system-tooltips)
   (setq x-gtk-use-system-tooltips nil))
 
-(use-package darkokai-theme
+(defun set-font-size (wanted-size)
+  "Change font size to WANTED-SIZE."
+  (interactive "nFont size: ")
+  (let ((wanted-font "Source Code Pro"))
+    (if (member wanted-font (font-family-list))
+        (set-frame-font (format "%s %d" wanted-font wanted-size) nil t)
+      (warn "Font %s not found" wanted-font))))
+
+(set-font-size 12)
+
+(use-package all-the-icons :ensure t) ;; Run `M-x all-the-icons-install-fonts'
+
+(use-package all-the-icons-dired :ensure t
+  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
+  :hook (dired-mode . all-the-icons-dired-mode))
+
+(use-package darkokai-theme :ensure t
   :config (progn
             (load-theme 'darkokai t)
             (set-face-background hl-line-face "#303435")
@@ -199,35 +139,15 @@
             (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
             (add-to-list 'default-frame-alist '(ns-appearance . dark)))))
 
-(use-package doom-modeline
-  :hook (after-init . doom-modeline-mode)
+(use-package doom-modeline :ensure t
   :config (progn
             (doom-modeline-def-modeline 'my-modeline
-              '(bar matches buffer-info remote-host buffer-position parrot selection-info)
-              '(misc-info major-mode vcs checker))
+                                        '(bar matches buffer-info remote-host buffer-position parrot selection-info)
+                                        '(misc-info major-mode vcs checker))
             (defun setup-custom-doom-modeline ()
               (doom-modeline-set-modeline 'my-modeline 'default))
-            (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline)))
-
-(defun set-font-size (wanted-size)
-  "Change font size to WANTED-SIZE."
-  (interactive "nFont size: ")
-  (let ((wanted-font "Source Code Pro"))
-    (if (member wanted-font (font-family-list))
-        (set-frame-font (format "%s %d" wanted-font wanted-size) nil t)
-      (warn "Font %s not found" wanted-font))))
-
-(set-font-size 12)
-
-(setq mouse-wheel-scroll-amount '(1)
-      mouse-wheel-progressive-speed nil
-      scroll-conservatively 101)
-
-(use-package all-the-icons) ;; Run `M-x all-the-icons-install-fonts'
-
-(use-package all-the-icons-dired
-  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
-  :hook (dired-mode . all-the-icons-dired-mode))
+            (add-hook 'doom-modeline-mode-hook 'setup-custom-doom-modeline))
+  :hook (after-init . doom-modeline-mode))
 
 ;; -- Keybindings --------------------------------------------------------------
 
@@ -258,12 +178,54 @@
 (bind-split-window-and-switch "C-x 2" 'split-window-vertically)
 (bind-split-window-and-switch "C-x 3" 'split-window-horizontally)
 
-(use-package which-key :demand t
+(use-package which-key :demand t :ensure t
   :config (which-key-mode 1))
+
+;; -- Utilities ----------------------------------------------------------------
+
+(use-package anzu :ensure t
+  :config (global-anzu-mode +1)
+  :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
+
+(use-package autoinsert :demand t
+  :init (progn
+          (auto-insert-mode 1)
+          (auto-insert)))
+
+(use-package autopair :ensure t
+  :config (autopair-global-mode t))
+
+(use-package epa-file :ensure nil :demand t
+  :init (setq epa-gpg-program "gpg2")
+  :config (epa-file-enable))
+
+(use-package time-stamp :demand t
+  :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
+  :hook (before-save . time-stamp))
+
+;; -- Navigation ---------------------------------------------------------------
+
+(use-package flx-ido :ensure t)
+(use-package ido-hacks :ensure t)
+(use-package ido-vertical-mode :ensure t)
+
+(use-package ido :ensure t
+  :config (progn
+            (ido-everywhere 1)
+            (flx-ido-mode 1)
+            (ido-mode t)
+            (ido-hacks-mode)
+            (ido-vertical-mode))
+  :init (setq ido-save-directory-list-file (concat (file-name-directory load-file-name) ".local/files/my-ido.el")
+              ido-case-fold t
+              ido-enable-flex-matching t
+              ido-use-filename-at-point 'guess
+              ido-create-new-buffer 'always
+              ido-vertical-show-count t))
 
 ;; -- Completion ---------------------------------------------------------------
 
-(use-package company
+(use-package company :ensure t
   :init (setq company-auto-complete nil
               company-tooltip-flip-when-above t
               company-minimum-prefix-length 2
@@ -278,108 +240,29 @@
                                  (company-abbrev
                                   company-dabbrev
                                   company-dabbrev-code)))
-  :hook (after-init-hook . global-company-mode))
+  :hook (after-init-hook . company-mode))
 
-;; -- Navigation ---------------------------------------------------------------
+;; -- Jump ---------------------------------------------------------------------
 
-(use-package flx-ido)
-
-(use-package ido-hacks)
-
-(use-package ido-vertical-mode)
-
-(use-package ido
-  :config (progn
-            (ido-everywhere 1)
-            (flx-ido-mode 1)
-            (ido-mode t)
-            (ido-hacks-mode)
-            (ido-vertical-mode))
-  :init (setq ido-save-directory-list-file (concat (file-name-directory load-file-name) ".local/files/my-ido.el")
-              ido-case-fold t
-              ido-enable-flex-matching t
-              ido-use-filename-at-point 'guess
-              ido-create-new-buffer 'always
-              ido-vertical-show-count t))
-
-(defvar project-directories-blacklist
-  '(".git" "vendor" "packages" "node_modules" "tmp" "log" "html" "doc"))
-
-(use-package find-file-in-project
-  :bind (("C-S-x C-S-f" . find-file-in-project))
-  :init (setq ffip-prefer-ido-mode t
-              ffip-prune-patterns  (mapc (lambda (d) (format "*/%s/*" d))
-                                         project-directories-blacklist)))
-
-;; -- Search -------------------------------------------------------------------
-
-(use-package anzu
-  :config (global-anzu-mode +1)
-  :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
-
-(use-package grep :demand t
-  :config (progn
-            (mapc (lambda (d)
-                    (add-to-list 'grep-find-ignored-directories d))
-                  project-directories-blacklist)
-            (bind-keys :map occur-mode-map
-                       ("n" . occur-next)
-                       ("p" . occur-prev)
-                       ("o" . occur-mode-display-occurrence)))
-  :bind (("C-c s g" . vc-git-grep)
-         ("C-c s r" . rgrep)
-         ("C-c s o" . occur)))
-
-(use-package dumb-jump
-  :config (dumb-jump-mode)
-  :bind (("C-c q l" . dumb-jump-quick-look)
-         ("C-c q g" . dumb-jump-go)
-         ("C-c q b" . dumb-jump-back)
-         ("C-c q o" . dumb-jump-other-window)
-         ("C-c q p" . dumb-jump-go-prompt)))
-
-(defun refresh-tags ()
-  "Refresh tags table of the current project."
-  (interactive)
-  (let* ((root (locate-dominating-file default-directory ".git"))
-         (cmd (format "ctags -f TAGS %s -e -R ."
-                      (mapconcat (lambda (d)
-                                   (format "--exclude=%s" d))
-                                 project-directories-blacklist
-                                 " ")))
-         (default-directory (if root root ".")))
-    (shell-command cmd)
-    (visit-tags-table "./TAGS")))
-
-(defun list-tags-for-current-file ()
-  "List tags for current file."
-  (interactive)
-  (let* ((rootdir (expand-file-name (ffip-project-root)))
-         (filename (file-relative-name buffer-file-name (expand-file-name rootdir)))
-         (tagfile (concat (file-name-as-directory rootdir) "TAGS")))
-    (visit-tags-table tagfile)
-    (list-tags filename)))
-
-(use-package etags-select
-  :init (set-default 'case-fold-search t)
-  :bind (("C-c t r" . refresh-tags)
-         ("C-c t s" . etags-select-find-tag)))
-
-;; -- Syntax -------------------------------------------------------------------
-
-(use-package flycheck
-  :bind (("<f8>" . flycheck-list-errors)))
+;; (use-package dumb-jump :ensure t
+;;   :config (dumb-jump-mode)
+;;   :bind (("C-c q l" . dumb-jump-quick-look)
+;;          ("C-c q g" . dumb-jump-go)
+;;          ("C-c q b" . dumb-jump-back)
+;;          ("C-c q o" . dumb-jump-other-window)
+;;          ("C-c q p" . dumb-jump-go-prompt)))
 
 ;; -- File tree ----------------------------------------------------------------
 
 (defun neotree-project-dir ()
   "Open NeoTree using the git root of the current project."
   (interactive)
-  (let ((project-dir (ffip-project-root)))
+  ;; (let ((project-dir (ffip-project-root)))
+  (let ((project-dir (projectile-project-root)))
     (neotree-dir project-dir)
     (neotree-find (buffer-file-name))))
 
-(use-package neotree
+(use-package neotree :ensure t
   :after (:all all-the-icons)
   :bind (("C-c f t" . neotree-toggle)
          ("C-c f p" . neotree-project-dir)
@@ -388,413 +271,11 @@
               neo-window-fixed-size nil
               neo-theme (if (display-graphic-p) 'icons 'nerd)))
 
-;; -- Shell --------------------------------------------------------------------
+;; -- Externals ----------------------------------------------------------------
 
-(use-package shell-pop
-  :bind (("<f9>" . shell-pop)))
+(load-file "programming.el")
 
-;; -----------------------------------------------------------------------------
-;; -- Programming --------------------------------------------------------------
-;; -----------------------------------------------------------------------------
-
-(use-package aggressive-indent
-  :config (progn
-            (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-            (add-to-list 'aggressive-indent-excluded-modes 'sql-mode)
-            (add-to-list 'aggressive-indent-excluded-modes 'web-mode)))
-
-(use-package autoinsert :demand t
-  :init (progn
-          (auto-insert-mode 1)
-          (auto-insert)))
-
-(use-package editorconfig)
-
-(use-package idle-highlight-mode)
-
-(use-package rainbow-mode)
-
-(use-package rainbow-delimiters)
-
-(use-package which-func :demand t
-  :config (progn
-            (setq which-func-unknown "?")
-            (set-face-attribute 'which-func nil :foreground "DodgerBlue")))
-
-(use-package whitespace :demand t :ensure nil
-  ;; :config (when (display-graphic-p)
-  ;;           (let ((color (face-attribute 'default :background)))
-  ;;             (set-face-attribute 'whitespace-space nil
-  ;;                                 :background color
-  ;;                                 :foreground color)))
-  :init (setq whitespace-line-column 80
-              whitespace-style '(tabs tab-mark face trailing))
-  :hook ((before-save . whitespace-cleanup)
-         (before-save . delete-trailing-whitespace)))
-
-(use-package git-gutter
-  :config (progn
-            (set-face-background 'git-gutter:added nil)
-            (set-face-foreground 'git-gutter:added "green")
-            (set-face-background 'git-gutter:modified nil)
-            (set-face-foreground 'git-gutter:modified "yellow")
-            (set-face-background 'git-gutter:deleted nil)
-            (set-face-foreground 'git-gutter:deleted "red")))
-
-;; -- Prog mode ----------------------------------------------------------------
-
-(defun hook-prog-mode ()
-  "Hook for prog mode."
-  (editorconfig-mode 1)
-  (flycheck-mode)
-  (git-gutter-mode)
-  (global-aggressive-indent-mode)
-  (idle-highlight-mode)
-  (rainbow-delimiters-mode)
-  (rainbow-turn-on)
-  (which-function-mode 1)
-  (whitespace-mode)
-  ;; todo: indentation better setup, completion, vc, search
-  )
-
-(add-hook 'prog-mode-hook #'hook-prog-mode)
-
-;; -- Emacs Lisp ---------------------------------------------------------------
-
-(use-package eros)
-
-(defun hook-emacs-lisp-mode ()
-  "Hook for emacs-lisp mode."
-  (eros-mode)
-  (eldoc-mode)
-  (add-to-list 'auto-insert-alist
-               '((emacs-lisp-mode . "Emacs lisp program") nil
-                 ";;; " (file-name-nondirectory buffer-file-name) " --- " _ " -*- lexical-binding: t; -*-\n\n"
-                 ";; Time-stamp: <>\n"
-                 ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
-                 ";;; Commentary:\n\n"
-                 ";;; Code:\n\n"
-                 ";;; " (file-name-nondirectory buffer-file-name) " ends here\n")))
-
-(add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
-
-;; -- Common Lisp --------------------------------------------------------------
-
-(use-package slime-company :defer t)
-
-(use-package slime
-  :mode (("\\.lisp'"    . lisp-mode)
-         ("\\.lsp'"     . lisp-mode)
-         ("\\.cl'"      . lisp-mode)
-         ("\\.asd'"     . lisp-mode)
-         ("\\.fasl'"    . lisp-mode))
-  :config (slime-setup '(slime-company))
-  :init (setq slime-contribs '(slime-fancy)))
-
-(defun hook-lisp-mode ()
-  "Hook for Lisp mode."
-  (slime-mode t)
-  ;; quicklisp
-  (let ((helper-file (expand-file-name "~/quicklisp/slime-helper.el")))
-    (if (file-exists-p helper-file)
-        (load helper-file)
-      (warn "(ql:quickload \"quicklisp-slime-helper\") must be run in quicklisp before")))
-  ;; interpreter
-  (setq inferior-lisp-program
-        (if (eq system-type 'darwin)
-            "/usr/local/bin/sbcl"
-          "sbcl"))
-  ;; autoinsert
-  (add-to-list 'auto-insert-alist
-               '((lisp-mode . "Lisp program") nil
-                 ";;;; " (file-name-nondirectory buffer-file-name) "\n\n"
-                 ";; Time-stamp: <>\n"
-                 ";; Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n\n")))
-
-(defun hook-inferior-lisp-mode ()
-  "Hook for inferior Lisp  mode."
-  (inferior-slime-mode t))
-
-(add-hook 'lisp-mode-hook #'hook-lisp-mode)
-(add-hook 'inferior-lisp-mode-hook #'hook-inferior-lisp-mode)
-
-;; -- SH -----------------------------------------------------------------------
-
-(defun hook-sh-mode ()
-  "Hook for sh mode."
-  (add-to-list 'auto-insert-alist
-               '((sh-mode . "Shell script") nil
-                 "#!/usr/bin/env bash\n"
-                 "# -*- mode: sh; -*-\n\n"
-                 "# File: " (file-name-nondirectory buffer-file-name) "\n"
-                 "# Time-stamp: <>\n"
-                 "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
-                 "# Description: " _ "\n\n"
-                 "set -o errexit\n\n"
-                 "[ -z $BASH ] && (echo \"Not in a BASH sub process\"; exit 1)\n"
-                 "BASE_DIR=$(cd $(dirname ${BASH_SOURCE[0]}) && pwd)\n\n")))
-
-(add-hook 'sh-mode-hook #'hook-sh-mode)
-
-;; -- Makefile -----------------------------------------------------------------
-
-(defun hook-makefile-mode ()
-  "Hook for Makefile mode."
-  (whitespace-toggle-options '(tabs))
-  (setq indent-tabs-mode t))
-
-(add-hook 'makefile-mode-hook #'hook-makefile-mode)
-
-;; -- C ------------------------------------------------------------------------
-
-(use-package cc-mode
-  :config (setq gdb-many-windows t
-                gdb-show-main t))
-
-(use-package company-c-headers
-  :init (progn
-          (add-to-list 'company-backends 'company-cmake)
-          (add-to-list 'company-backends 'company-c-headers)))
-
-(defun hook-c-mode ()
-  "Hook for C mode."
-  (c-set-offset 'case-label '+)
-  (add-to-list 'auto-insert-alist
-               '((c-mode . "C program") nil
-                 "/*\n"
-                 " * File: " (file-name-nondirectory buffer-file-name) "\n"
-                 " * Time-stamp: <>\n"
-                 " * Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
-                 " * Description: " _ "\n"
-                 " */\n\n")))
-
-(add-hook 'c-mode-common-hook #'hook-c-mode)
-
-;; -- Go -----------------------------------------------------------------------
-
-(use-package exec-path-from-shell
-  :if (memq window-system '(mac ns))
-  :init (progn (exec-path-from-shell-initialize)
-               (exec-path-from-shell-copy-env "GOPATH")))
-
-(use-package go-eldoc :defer t)
-
-(use-package go-mode :defer t)
-
-(use-package company-go :defer t)
-
-(defun hook-go-mode ()
-  "Hook for Go mode."
-  (go-eldoc-setup)
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (set (make-local-variable 'company-backends) '(company-go)))
-
-(add-hook 'go-mode-hook #'hook-go-mode)
-
-;; -- Ruby ---------------------------------------------------------------------
-
-(use-package inf-ruby :defer t)
-
-(use-package robe :defer t
-  :init (push 'company-robe company-backends))
-
-(use-package rubocop :defer t)
-
-(use-package ruby-tools :defer t)
-
-(use-package ruby-mode
-  :mode (("\\.rb\\'" . ruby-mode)
-         ("\\.rake\\'" . ruby-mode)
-         ("\\.ru\\'" . ruby-mode)
-         ("\\.gemspec\\'" . ruby-mode)
-         ("Vagrantfile" . ruby-mode)
-         ("Gemfile" . ruby-mode)
-         ("Puppetfile" . ruby-mode)
-         ("Rakefile" . ruby-mode)))
-
-(use-package yard-mode)
-
-(defun ruby-transform-hash-keys (regexp-string match-string)
-  "Transform hash keys from with REGEXP-STRING and MATCH-STRING."
-  (if (use-region-p)
-      (save-restriction
-        (narrow-to-region (region-beginning) (region-end))
-        (goto-char (point-min))
-        (while (re-search-forward regexp-string nil t)
-          (replace-match match-string)))))
-
-(defun ruby-hash-symbols-to-strings ()
-  "Transform hash keys from symbols to strings in a given region."
-  (interactive)
-  (ruby-transform-hash-keys ":\\([a-zA-Z0-9_-]+\\)" "'\\1'"))
-
-(defun ruby-hash-strings-to-symbols ()
-  "Transform hash keys from strings to symbols in a given region."
-  (interactive)
-  (ruby-transform-hash-keys "'\\([a-zA-Z0-9_-]+\\)'" ":\\1"))
-
-(defun hook-ruby-mode ()
-  "Hook for ruby mode."
-  (robe-mode)
-  (robe-start)
-  (yard-mode)
-  (rubocop-mode)
-  (ruby-tools-mode)
-  (add-to-list 'auto-insert-alist
-               '((ruby-mode . "Ruby program") nil
-                 "#!/usr/bin/env ruby\n"
-                 "# -*- mode: ruby; -*-\n\n"
-                 "# File: " (file-name-nondirectory buffer-file-name) "\n"
-                 "# Time-stamp: <>\n"
-                 "# Copyright (C) " (substring (current-time-string) -4) " " (user-full-name) "\n"
-                 "# Description: " _ "\n\n")))
-
-(add-hook 'ruby-mode-hook #'hook-ruby-mode)
-
-;; -- Python -------------------------------------------------------------------
-
-(use-package elpy :defer t
-  :init (advice-add 'python-mode :before 'elpy-enable)
-  :commands elpy-enable
-  :config  (progn
-             (setq python-indent-offset 4)
-             (setq elpy-modules (delq 'elpy-module-yasnippet elpy-modules))
-             (when (fboundp 'flycheck-mode)
-               (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))))
-
-(defun hook-python-mode ()
-  "Hook for python mode."
-  (add-to-list 'auto-insert-alist
-               '((python-mode . "Python program") nil
-                 "#!/usr/bin/env python\n\n")))
-
-(add-hook 'python-mode-hook #'hook-python-mode)
-
-;; -- PHP ----------------------------------------------------------------------
-
-(use-package php-extras :defer t)
-
-(use-package php-mode
-  :mode (("\\.php-dev'" . php-mode)
-         ("\\.php-dist'" . php-mode)
-         ("\\.php-dev'" . php-mode)))
-
-(defun php-auto-lint ()
-  "Run PHP autolint."
-  (interactive)
-  (message (shell-command-to-string (concat "php -l " buffer-file-name))))
-
-(defun hook-php-mode ()
-  "Hook for PHP mode."
-  (php-enable-default-coding-style)
-  (set (make-local-variable 'company-backends)
-       '((php-extras-company company-dabbrev-code) company-capf company-files))
-  (setq comment-start "// "
-        comment-end "")
-  (add-to-list 'auto-insert-alist
-               '((php-mode . "PHP script") nil
-                 "<?php\n\n")))
-
-(add-hook 'php-mode-hook #'hook-php-mode)
-
-;; -- JS ------------------------------------------------------------------------
-
-(use-package js2-refactor :defer t)
-
-(use-package xref-js2 :defer t) ;; requires installing `ag'
-
-(when (executable-find "tern") ;; `sudo npm install -g tern'
-  (use-package company-tern
-    :config (progn
-              (add-to-list 'company-backends 'company-tern)
-              ;; Disable completion keybindings, as we use xref-js2 instead
-              (unbind-key "M-." tern-mode-keymap)
-              (unbind-key "M-," tern-mode-keymap))))
-
-(use-package js2-mode
-  :mode (("\\.js\\'" . js2-mode)
-         ("\\.jsx\\'" . js2-jsx-mode)))
-
-(defun hook-js2-mode ()
-  "Hook for js2 mode."
-  (tern-mode)
-  (js2-imenu-extras-mode)
-  (js2-refactor-mode)
-  (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
-  (js2r-add-keybindings-with-prefix "C-c C-r")
-  (define-key js2-mode-map (kbd "C-k") #'js2r-kill)
-  (define-key js-mode-map (kbd "M-.") nil)
-  (setq-default js2-show-parse-errors nil)
-  (setq-default js2-strict-missing-semi-warning nil)
-  (setq-default js2-strict-trailing-comma-warning t))
-
-(add-hook 'js2-mode-hook #'hook-js2-mode)
-
-;; -- SQL ----------------------------------------------------------------------
-
-(use-package sqlup-mode :defer t)
-
-(use-package sql-indent :defer t)
-
-(defun hook-sql-mode ()
-  "Hook for SQL mode."
-  (sqlup-mode t)
-  (toggle-truncate-lines t))
-
-(add-hook 'sql-mode-hook #'hook-sql-mode)
-(add-hook 'sql-interactive-mode-hook #'hook-sql-mode) ;; When connected to a server within Emacs
-
-;; -- Web ----------------------------------------------------------------------
-
-(use-package htmlize :defer t)
-
-(use-package scss-mode :defer t)
-
-(use-package web-mode
-  :mode (("\\.html?\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.erubis\\'" . web-mode)))
-
-;; -- HTTP ---------------------------------------------------------------------
-
-(use-package restclient
-  :mode (("\\.http\\'" . restclient-mode)
-         ("\\.rest\\'" . restclient-mode)))
-
-(defun hook-restclient-mode ()
-  "Hook for restclient mode."
-  (add-to-list 'auto-insert-alist
-               '((restclient-mode . "REST client") nil
-                 "# -*- restclient -*-\n\n")))
-
-(add-hook 'restclient-mode-hook #'hook-restclient-mode)
-
-;; -- Text ---------------------------------------------------------------------
-
-(use-package dockerfile-mode :defer t)
-
-(use-package terraform-mode :defer t)
-
-(use-package json-mode :defer t)
-
-(use-package markdown-mode :defer t)
-
-(use-package flymd
-  :defer t
-  :config (setq flymd-output-directory "/tmp"
-                flymd-close-buffer-delete-temp-files t)
-  :bind (("C-c m p" . flymd-flyit)))
-
-(use-package toml-mode :defer t)
-
-(use-package yaml-mode
-  :mode "\\.ya?ml\\'")
-
-(defun hook-text-mode ()
-  "Hook for Text mode."
-  (electric-indent-local-mode -1))
-
-(add-hook 'text-mode-hook #'hook-text-mode)
+;; (when (file-exists-p "host.el")
+;;   (load-file "host.el"))
 
 ;;; init.el ends here
