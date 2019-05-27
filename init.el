@@ -1,4 +1,4 @@
-;;; slim.el --- Slim Emacs config -*- lexical-binding: t; -*-
+;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -22,7 +22,9 @@
         tooltip-mode
         menu-bar-mode))
 
-(setq debug-on-error t
+(setq gc-cons-threshold 50000000 ; 50MB
+      large-file-warning-threshold 100000000 ; 100MB
+      debug-on-error t
       frame-title-format "%b (%m) - %F"
       inhibit-splash-screen t
       inhibit-startup-message t
@@ -56,7 +58,9 @@
 (setq package-enable-at-startup nil
       package-user-dir (expand-file-name ".local/packages" user-emacs-directory)
       package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")))
+                         ("melpa-stable" . "https://stable.melpa.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
 
 (package-initialize)
 
@@ -74,7 +78,7 @@
 
 ;; -- Keybindings --------------------------------------------------------------
 
-(when (and window-system (eq system-type 'darwin))
+(when (memq window-system '(mac ns))
   (setq mac-option-modifier nil
         mac-command-modifier 'meta
         select-enable-clipboard t)
@@ -107,8 +111,13 @@
 (when (display-graphic-p)
   (toggle-frame-maximized))
 
-(set-face-background hl-line-face "#f2f2f2")
-(set-face-background 'vertical-border "#f2f2f2")
+(set-background-color "#1a1a1a")
+(set-foreground-color "#fafafa")
+(set-face-background 'region "DodgerBlue")
+(set-face-foreground 'font-lock-comment-face "#6a6a6a")
+(set-face-foreground 'font-lock-string-face "#ff6666")
+(set-face-background hl-line-face "#2a2a2a")
+(set-face-background 'vertical-border "#4a4a4a")
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
 
 (setq-default left-fringe-width 20
@@ -133,11 +142,20 @@
                                                            web-mode)))
   :hook (prog-mode . global-aggressive-indent-mode))
 
+(use-package anzu :ensure t :diminish
+  :bind (("M-%" . anzu-query-replace)
+         ("C-M-%" . anzu-query-replace-regexp))
+  :config (global-anzu-mode))
+
 (use-package autopair :ensure t :diminish
   :config (autopair-global-mode t))
 
 (use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
+
+(use-package exec-path-from-shell :ensure t
+  :when (memq window-system '(mac ns))
+  :config (exec-path-from-shell-initialize))
 
 (use-package idle-highlight-mode :ensure t :diminish
   :hook (prog-mode . idle-highlight-mode))
@@ -200,7 +218,9 @@
 ;; -- Version control ----------------------------------------------------------
 
 (use-package git-gutter :ensure t :diminish
-  :config (global-git-gutter-mode +1))
+  :config (progn
+            (global-git-gutter-mode +1)
+            (set-face-foreground 'git-gutter:modified "yellow")))
 
 ;; -- Project ------------------------------------------------------------------
 
@@ -217,4 +237,4 @@
     (add-to-list 'load-path (expand-file-name "features/" user-emacs-directory))
     (load-file features-file)))
 
-;;; slim.el ends here
+;;; init.el ends here
