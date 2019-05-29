@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# --
+;;;; `(file-name-nondirectory buffer-file-name)`
+
+;; Time-stamp: <>
+;; Copyright (C) `(substring (current-time-string) -4)` `(user-full-name)`
+
+$0

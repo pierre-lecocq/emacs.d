@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# --
+/**
+ * $1
+ *
+ * @param ${2:array} ${3:var}
+ *
+ * @throws Exception
+ *
+ * @return void
+ */

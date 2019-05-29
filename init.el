@@ -1,4 +1,7 @@
-;; init.el --- Emacs config -*- lexical-binding: t; -*-
+;;; init.el --- Emacs config -*- lexical-binding: t; -*-
+
+;; Time-stamp: <2019-05-29 09:28:00>
+;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
@@ -37,7 +40,11 @@
       next-line-add-newlines nil
       require-final-newline t
       show-trailing-whitespace t
-      select-enable-clipboard t)
+      select-enable-clipboard t
+      user-full-name "Pierre Lecocq")
+
+(setq custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
+      nsm-settings-file (expand-file-name ".local/files/network-security.data" user-emacs-directory))
 
 (setq locale-coding-system 'utf-8)
 (set-language-environment 'utf-8)
@@ -109,7 +116,8 @@
 ;; -- Visual -------------------------------------------------------------------
 
 (when (display-graphic-p)
-  (toggle-frame-maximized))
+  ;; (toggle-frame-maximized)
+  (toggle-frame-fullscreen))
 
 (set-background-color "#1a1a1a")
 (set-foreground-color "#fafafa")
@@ -132,6 +140,12 @@
            (not (version< emacs-version "26.1")))
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+
+(use-package all-the-icons :ensure t) ;; Run `M-x all-the-icons-install-fonts'
+
+(use-package all-the-icons-dired :ensure t
+  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; -- Utils --------------------------------------------------------------------
 
@@ -170,7 +184,8 @@
             (ido-mode t)
             (ido-hacks-mode)
             (ido-vertical-mode))
-  :init (setq ido-case-fold t
+  :init (setq ido-save-directory-list-file (expand-file-name ".local/files/ido.el" user-emacs-directory)
+              ido-case-fold t
               ido-enable-flex-matching t
               ido-use-filename-at-point 'guess
               ido-create-new-buffer 'always
@@ -178,6 +193,10 @@
 
 (use-package rainbow-delimiters :ensure t
   :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package time-stamp :ensure t :demand t
+  :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
+  :hook (before-save . time-stamp))
 
 (use-package which-func :ensure t :demand t
   :config (setq which-func-unknown "?")
@@ -222,13 +241,23 @@
             (global-git-gutter-mode +1)
             (set-face-foreground 'git-gutter:modified "yellow")))
 
+(use-package git-messenger :ensure t :diminish
+  :config (setq git-messenger:show-detail t)
+  :bind (("C-c v m" . git-messenger:popup-message)))
+
 ;; -- Project ------------------------------------------------------------------
 
 (use-package projectile :ensure t
-  :init (setq projectile-project-search-path '("~/src/" "~/src/mass"))
+  :init (setq projectile-project-search-path '("~/src/" "~/src/mass")
+              projectile-known-projects-file (expand-file-name ".local/files/projectile-bookmarks.eld" user-emacs-directory))
   :config (progn
             (projectile-mode +1)
             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+
+;; -- Snippets -----------------------------------------------------------------
+
+(use-package yasnippet :ensure t
+  :config (yas-global-mode 1))
 
 ;; -- Features -----------------------------------------------------------------
 

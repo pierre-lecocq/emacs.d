@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# --
+# -*- restclient -*-
+
+:host = ${1:host}
+
+:token =
+
+:headers = <<
+Authorization: Bearer :token
+Content-Type: application/json
+User-Agent: RestClient/1.0
+#
+
+$0
+
+:value = "test"
+
+POST http://:host/
+:headers
+
+{ "name": ":value" }
