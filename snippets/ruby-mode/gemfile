@@ -7,6 +7,10 @@ gem '$0'
 group :development do
   gem 'rspec'
 
+  # Required by flycheck
+  gem 'rubocop'
+  gem 'ruby-lint'
+
   # Required by robe-mode
   gem 'pry'
   gem 'pry-doc'

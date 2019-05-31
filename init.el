@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-30 14:40:16>
+;; Time-stamp: <2019-05-31 15:40:53>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -159,7 +159,8 @@
 (use-package anzu :ensure t :diminish
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
-  :config (global-anzu-mode))
+  :config (global-anzu-mode)
+  :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
 
 (use-package autopair :ensure t :diminish
   :config (autopair-global-mode t))
@@ -199,7 +200,9 @@
   :hook (before-save . time-stamp))
 
 (use-package which-func :ensure t :demand t
-  :config (setq which-func-unknown "?")
+  :config (progn
+            (setq which-func-unknown "?")
+            (set-face-attribute 'which-func nil :foreground "black"))
   :hook (prog-mode . which-function-mode))
 
 (use-package whitespace :demand t :ensure nil :diminish
