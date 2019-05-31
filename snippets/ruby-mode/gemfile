@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# --
+source 'https://rubygems.org'
+
+gem '$0'
+
+group :development do
+  gem 'rspec'
+
+  # Required by robe-mode
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'method_source'
+end

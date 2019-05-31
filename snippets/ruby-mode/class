@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# --
+# $1 class
+class ${1:Name}
+  def initialize
+    $0
+  end
+end

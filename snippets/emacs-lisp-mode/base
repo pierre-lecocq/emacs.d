@@ -2,7 +2,7 @@
 # --
 ;;; `(file-name-nondirectory buffer-file-name)` --- ${1:description} -*- lexical-binding: t; -*-
 
-;; Time-stamp: <>
+;; Time-stamp: <2019-05-30 15:20:22>
 ;; Copyright (C) `(substring (current-time-string) -4)` `(user-full-name)`
 
 ;;; Commentary:
@@ -10,5 +10,7 @@
 ;;; Code:
 
 $0
+
+(provide '`(file-name-nondirectory (file-name-sans-extension buffer-file-name))`)
 
 ;;; `(file-name-nondirectory buffer-file-name)` ends here
