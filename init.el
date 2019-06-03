@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 12:35:54>
+;; Time-stamp: <2019-06-03 21:59:55>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -172,6 +172,7 @@
 
 (use-package which-func :ensure t :demand t
   :config (setq which-func-unknown "?")
+  :custom-face (which-func ((t (:foreground "DeepSkyBlue"))))
   :hook (prog-mode . which-function-mode))
 
 (use-package whitespace :demand t :ensure nil :diminish

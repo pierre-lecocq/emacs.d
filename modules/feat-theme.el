@@ -1,6 +1,6 @@
 ;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 14:55:39>
+;; Time-stamp: <2019-06-03 22:59:20>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,20 @@
 (set-face-background hl-line-face "#2a2a2a")
 (set-face-background 'vertical-border "#4a4a4a")
 (set-face-foreground 'vertical-border (face-background 'vertical-border))
+
+(set-face-attribute 'mode-line nil
+                    :background "#2a2a2a"
+                    :foreground "#dadada"
+                    :box '(:line-width 3 :color "#2a2a2a")
+                    :overline nil
+                    :underline nil)
+
+(set-face-attribute 'mode-line-inactive nil
+                    :background "#3a3a3a"
+                    :foreground "#7a7a7a"
+                    :box '(:line-width 3 :color "#3a3a3a")
+                    :overline nil
+                    :underline nil)
 
 (setq-default left-fringe-width 20
               right-fringe-width 20)
