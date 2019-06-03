@@ -1,4 +1,4 @@
-;;; module-text.el --- Text feature -*- lexical-binding: t; -*-
+;;; lang-text.el --- Text language support -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -31,6 +31,6 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
-(provide 'module-text)
+(provide 'lang-text)
 
-;;; module-text.el ends here
+;;; lang-text.el ends here

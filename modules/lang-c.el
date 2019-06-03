@@ -1,6 +1,6 @@
-;;; module-c.el --- C feature -*- lexical-binding: t; -*-
+;;; lang-c.el --- C language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:08>
+;; Time-stamp: <2019-06-03 11:46:01>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,6 +22,6 @@
 
 (add-hook 'c-mode-common-hook #'hook-c-mode)
 
-(provide 'module-c)
+(provide 'lang-c)
 
-;;; module-c.el ends here
+;;; lang-c.el ends here

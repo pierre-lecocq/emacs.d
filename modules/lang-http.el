@@ -1,6 +1,6 @@
-;;; module-http.el --- HTTP feature -*- lexical-binding: t; -*-
+;;; lang-http.el --- HTTP language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:24>
+;; Time-stamp: <2019-06-03 11:46:23>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,6 +11,6 @@
   :mode (("\\.http\\'" . restclient-mode)
          ("\\.rest\\'" . restclient-mode)))
 
-(provide 'module-http)
+(provide 'lang-http)
 
-;;; module-http.el ends here
+;;; lang-http.el ends here

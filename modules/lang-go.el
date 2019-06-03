@@ -1,6 +1,6 @@
-;;; module-go.el --- Go feature -*- lexical-binding: t; -*-
+;;; lang-go.el --- Go language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:19>
+;; Time-stamp: <2019-06-03 11:46:14>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,6 +27,6 @@
 
 (add-hook 'go-mode-hook #'hook-go-mode)
 
-(provide 'module-go)
+(provide 'lang-go)
 
-;;; module-go.el ends here
+;;; lang-go.el ends here

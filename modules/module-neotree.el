@@ -1,6 +1,6 @@
-;;; module-neotree.el --- Neotree feature -*- lexical-binding: t; -*-
+;;; module-neotree.el --- Neotree module -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:29>
+;; Time-stamp: <2019-06-03 11:44:35>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:

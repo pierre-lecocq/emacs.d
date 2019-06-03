@@ -1,9 +1,11 @@
-;;; module-js.el --- Javascript feature -*- lexical-binding: t; -*-
+;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:12>
+;; Time-stamp: <2019-06-03 11:49:40>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
+
+;; - sudo npm install -g tern
 
 ;;; Code:
 
@@ -11,7 +13,7 @@
 
 (use-package xref-js2 :ensure t) ;; requires installing `ag'
 
-(when (executable-find "tern") ;; `sudo npm install -g tern'
+(when (executable-find "tern")
   (use-package company-tern :ensure t
     :config (progn
               (add-to-list 'company-backends 'company-tern)
@@ -38,6 +40,6 @@
 
 (add-hook 'js2-mode-hook #'hook-js2-mode)
 
-(provide 'module-js)
+(provide 'lang-js)
 
-;;; module-js.el ends here
+;;; lang-js.el ends here

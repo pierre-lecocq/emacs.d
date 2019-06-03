@@ -1,6 +1,6 @@
-;;; module-lisp.el --- Lisp feature -*- lexical-binding: t; -*-
+;;; lang-lisp.el --- Lisp language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:10>
+;; Time-stamp: <2019-06-03 11:46:40>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -34,6 +34,6 @@
 (add-hook 'lisp-mode-hook #'hook-lisp-mode)
 (add-hook 'inferior-lisp-mode-hook #'hook-inferior-lisp-mode)
 
-(provide 'module-lisp)
+(provide 'lang-lisp)
 
-;;; module-lisp.el ends here
+;;; lang-lisp.el ends here

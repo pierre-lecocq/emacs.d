@@ -1,6 +1,6 @@
-;;; module-python.el --- Pyton feature -*- lexical-binding: t; -*-
+;;; lang-python.el --- Pyton language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:15>
+;; Time-stamp: <2019-06-03 11:47:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,6 @@
             (when (fboundp 'flycheck-mode)
               (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))))
 
-(provide 'module-python)
+(provide 'lang-python)
 
-;;; module-python.el ends here
+;;; lang-python.el ends here

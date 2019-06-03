@@ -1,6 +1,6 @@
-;;; module-php.el --- PHP feature -*- lexical-binding: t; -*-
+;;; lang-php.el --- PHP language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:26>
+;; Time-stamp: <2019-06-03 11:46:51>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,6 +23,6 @@
          ("\\.php-dist'" . php-mode))
   :hook (php-mode . php-enable-default-coding-style))
 
-(provide 'module-php)
+(provide 'lang-php)
 
-;;; module-php.el ends here
+;;; lang-php.el ends here

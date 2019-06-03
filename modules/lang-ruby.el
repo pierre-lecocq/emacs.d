@@ -1,6 +1,6 @@
-;;; module-ruby.el --- Ruby feature -*- lexical-binding: t; -*-
+;;; lang-ruby.el --- Ruby language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:16:05>
+;; Time-stamp: <2019-06-03 11:47:16>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -40,6 +40,6 @@
 (use-package yard-mode :ensure t
   :hook (ruby-mode . yard-mode))
 
-(provide 'module-ruby)
+(provide 'lang-ruby)
 
-;;; module-ruby.el ends here
+;;; lang-ruby.el ends here

@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:35:51>
+;; Time-stamp: <2019-06-03 11:42:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -113,40 +113,6 @@
 (use-package which-key :demand t :ensure t :diminish
   :config (which-key-mode 1))
 
-;; -- Visual -------------------------------------------------------------------
-
-(when (display-graphic-p)
-  ;; (toggle-frame-maximized)
-  (toggle-frame-fullscreen))
-
-(set-background-color "#1a1a1a")
-(set-foreground-color "#fafafa")
-(set-face-background 'region "DodgerBlue")
-(set-face-foreground 'font-lock-comment-face "#6a6a6a")
-(set-face-foreground 'font-lock-string-face "#ff6666")
-(set-face-background hl-line-face "#2a2a2a")
-(set-face-background 'vertical-border "#4a4a4a")
-(set-face-foreground 'vertical-border (face-background 'vertical-border))
-
-(setq-default left-fringe-width 20
-              right-fringe-width 20)
-
-(set-face-attribute 'fringe nil
-                    :foreground (face-foreground 'default)
-                    :background (face-background 'default))
-
-(when (and window-system
-           (eq system-type 'darwin)
-           (not (version< emacs-version "26.1")))
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark)))
-
-(use-package all-the-icons :ensure t) ;; Run `M-x all-the-icons-install-fonts'
-
-(use-package all-the-icons-dired :ensure t
-  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
-  :hook (dired-mode . all-the-icons-dired-mode))
-
 ;; -- Utils --------------------------------------------------------------------
 
 (use-package aggressive-indent :ensure t :diminish
@@ -213,55 +179,6 @@
   :hook ((prog-mode . whitespace-mode)
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
-
-;; -- Completion ---------------------------------------------------------------
-
-(use-package company :ensure t :diminish
-  :init (progn
-          (global-company-mode)
-          (setq company-auto-complete nil
-                company-minimum-prefix-length 2
-                company-tooltip-limit 20
-                company-idle-delay 0.5
-                company-dabbrev-downcase nil
-                company-backends '((company-files
-                                    company-keywords
-                                    company-capf
-                                    company-etags
-                                    company-gtags)
-                                   (company-abbrev
-                                    company-dabbrev
-                                    company-dabbrev-code)))))
-
-;; -- Syntax checking ----------------------------------------------------------
-
-(use-package flycheck :ensure t
-  :bind (("<f11>" . flycheck-list-errors))
-  :hook (prog-mode . flycheck-mode))
-
-;; -- Version control ----------------------------------------------------------
-
-(use-package git-gutter :ensure t :diminish
-  :config (global-git-gutter-mode +1)
-  :custom-face (git-gutter:modified ((t (:foreground "yellow")))))
-
-(use-package git-messenger :ensure t :diminish
-  :init (setq git-messenger:show-detail t)
-  :bind (("C-c v m" . git-messenger:popup-message)))
-
-;; -- Project ------------------------------------------------------------------
-
-(use-package projectile :ensure t
-  :init (setq projectile-project-search-path '("~/src/" "~/src/mass")
-              projectile-known-projects-file (expand-file-name ".local/files/projectile-bookmarks.eld" user-emacs-directory))
-  :config (progn
-            (projectile-mode +1)
-            (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
-
-;; -- Snippets -----------------------------------------------------------------
-
-(use-package yasnippet :ensure t
-  :config (yas-global-mode 1))
 
 ;; -- Modules ------------------------------------------------------------------
 

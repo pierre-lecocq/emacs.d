@@ -1,4 +1,4 @@
-;;; module-makefile.el --- Makefile feature -*- lexical-binding: t; -*-
+;;; lang-makefile.el --- Makefile language support -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -11,6 +11,6 @@
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
 
-(provide 'module-makefile)
+(provide 'lang-makefile)
 
-;;; module-makefile.el ends here
+;;; lang-makefile.el ends here

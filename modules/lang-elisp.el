@@ -1,4 +1,4 @@
-;;; module-elisp.el --- Elisp feature -*- lexical-binding: t; -*-
+;;; lang-elisp.el --- Elisp language support -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -14,6 +14,6 @@
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
-(provide 'module-elisp)
+(provide 'lang-elisp)
 
-;;; module-elisp.el ends here
+;;; lang-elisp.el ends here
