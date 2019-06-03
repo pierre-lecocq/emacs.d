@@ -1,4 +1,4 @@
-;;; feat-makefile.el --- Makefile feature -*- lexical-binding: t; -*-
+;;; module-makefile.el --- Makefile feature -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -11,6 +11,6 @@
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
 
-(provide 'feat-makefile)
+(provide 'module-makefile)
 
-;;; feat-makefile.el ends here
+;;; module-makefile.el ends here

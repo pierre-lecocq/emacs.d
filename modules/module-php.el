@@ -1,6 +1,6 @@
-;;; feat-php.el --- PHP feature -*- lexical-binding: t; -*-
+;;; module-php.el --- PHP feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-31 14:15:31>
+;; Time-stamp: <2019-06-03 11:01:26>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,6 +23,6 @@
          ("\\.php-dist'" . php-mode))
   :hook (php-mode . php-enable-default-coding-style))
 
-(provide 'feat-php)
+(provide 'module-php)
 
-;;; feat-php.el ends here
+;;; module-php.el ends here

@@ -1,6 +1,6 @@
-;;; feat-ruby.el --- Ruby feature -*- lexical-binding: t; -*-
+;;; module-ruby.el --- Ruby feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-30 16:11:02>
+;; Time-stamp: <2019-06-03 11:01:20>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,8 @@
 ;; - Start robe with `M-x robe-start`
 ;;
 ;; - Load a file in the REPL: `C-c C-l` (or, in a Rails project `C-c C-k`)
+;;
+;; Also see https://github.com/rejeep/ruby-tools.el#usage
 
 ;;; Code:
 
@@ -35,6 +37,6 @@
 
 (use-package yard-mode :ensure t)
 
-(provide 'feat-ruby)
+(provide 'module-ruby)
 
-;;; feat-ruby.el ends here
+;;; module-ruby.el ends here

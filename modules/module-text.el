@@ -1,4 +1,4 @@
-;;; feat-text.el --- Text feature -*- lexical-binding: t; -*-
+;;; module-text.el --- Text feature -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -31,6 +31,6 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
-(provide 'feat-text)
+(provide 'module-text)
 
-;;; feat-text.el ends here
+;;; module-text.el ends here

@@ -1,6 +1,6 @@
-;;; feat-js.el --- Javascript feature -*- lexical-binding: t; -*-
+;;; module-js.el --- Javascript feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-30 15:16:44>
+;; Time-stamp: <2019-06-03 11:01:12>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -38,6 +38,6 @@
 
 (add-hook 'js2-mode-hook #'hook-js2-mode)
 
-(provide 'feat-js)
+(provide 'module-js)
 
-;;; feat-js.el ends here
+;;; module-js.el ends here

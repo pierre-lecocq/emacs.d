@@ -1,6 +1,6 @@
-;;; feat-c.el --- C feature -*- lexical-binding: t; -*-
+;;; module-c.el --- C feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-31 11:42:30>
+;; Time-stamp: <2019-06-03 11:01:08>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,6 +22,6 @@
 
 (add-hook 'c-mode-common-hook #'hook-c-mode)
 
-(provide 'feat-c)
+(provide 'module-c)
 
-;;; feat-c.el ends here
+;;; module-c.el ends here

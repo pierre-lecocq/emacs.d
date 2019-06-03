@@ -1,6 +1,6 @@
-;;; feat-http.el --- HTTP feature -*- lexical-binding: t; -*-
+;;; module-http.el --- HTTP feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-30 15:16:13>
+;; Time-stamp: <2019-06-03 11:01:24>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,6 +11,6 @@
   :mode (("\\.http\\'" . restclient-mode)
          ("\\.rest\\'" . restclient-mode)))
 
-(provide 'feat-http)
+(provide 'module-http)
 
-;;; feat-http.el ends here
+;;; module-http.el ends here

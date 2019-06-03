@@ -4,7 +4,13 @@
 # -*- mode: python; -*-
 
 # File: `(file-name-nondirectory buffer-file-name)`
-# Time-stamp: <>
+# Time-stamp: <2019-06-03 10:52:00>
 # Copyright (C) `(substring (current-time-string) -4)` `(user-full-name)
 
-$0
+
+def main():
+    $0
+
+
+if __name__ == "__main__":
+    main()

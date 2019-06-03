@@ -1,4 +1,4 @@
-;;; feat-web.el --- Web feature -*- lexical-binding: t; -*-
+;;; module-web.el --- Web feature -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -13,6 +13,6 @@
          ("\\.erb\\'" . web-mode)
          ("\\.erubis\\'" . web-mode)))
 
-(provide 'feat-web)
+(provide 'module-web)
 
-;;; feat-web.el ends here
+;;; module-web.el ends here

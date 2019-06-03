@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-05-31 15:40:53>
+;; Time-stamp: <2019-06-03 11:01:57>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -245,7 +245,7 @@
             (set-face-foreground 'git-gutter:modified "yellow")))
 
 (use-package git-messenger :ensure t :diminish
-  :config (setq git-messenger:show-detail t)
+  :init (setq git-messenger:show-detail t)
   :bind (("C-c v m" . git-messenger:popup-message)))
 
 ;; -- Project ------------------------------------------------------------------
@@ -262,11 +262,11 @@
 (use-package yasnippet :ensure t
   :config (yas-global-mode 1))
 
-;; -- Features -----------------------------------------------------------------
+;; -- Modules ------------------------------------------------------------------
 
-(let ((features-file (expand-file-name "features.el" user-emacs-directory)))
-  (when (file-exists-p features-file)
-    (add-to-list 'load-path (expand-file-name "features/" user-emacs-directory))
-    (load-file features-file)))
+(let ((modules-file (expand-file-name "modules.el" user-emacs-directory)))
+  (when (file-exists-p modules-file)
+    (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
+    (load-file modules-file)))
 
 ;;; init.el ends here
