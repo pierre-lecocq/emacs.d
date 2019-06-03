@@ -1,6 +1,6 @@
-;;; module-project.el --- Project module -*- lexical-binding: t; -*-
+;;; feat-project.el --- Project feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:41:23>
+;; Time-stamp: <2019-06-03 14:55:44>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,6 +14,6 @@
             (projectile-mode +1)
             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 
-(provide 'module-project)
+(provide 'feat-project)
 
-;;; module-project.el ends here
+;;; feat-project.el ends here

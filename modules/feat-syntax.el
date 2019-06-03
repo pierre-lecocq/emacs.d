@@ -1,6 +1,6 @@
-;;; module-syntax.el --- Syntax module -*- lexical-binding: t; -*-
+;;; feat-syntax.el --- Syntax feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:40:12>
+;; Time-stamp: <2019-06-03 14:55:38>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,6 +11,6 @@
   :bind (("<f11>" . flycheck-list-errors))
   :hook (prog-mode . flycheck-mode))
 
-(provide 'module-syntax)
+(provide 'feat-syntax)
 
-;;; module-syntax.el ends here
+;;; feat-syntax.el ends here

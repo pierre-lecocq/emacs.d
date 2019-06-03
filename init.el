@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:42:09>
+;; Time-stamp: <2019-06-03 12:35:54>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -41,7 +41,8 @@
       require-final-newline t
       show-trailing-whitespace t
       select-enable-clipboard t
-      user-full-name "Pierre Lecocq")
+      user-full-name "Pierre Lecocq"
+      user-mail-address "pierre.lecocq@gmail.com")
 
 (setq custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
       nsm-settings-file (expand-file-name ".local/files/network-security.data" user-emacs-directory))

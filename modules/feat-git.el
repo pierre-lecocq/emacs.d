@@ -1,6 +1,6 @@
-;;; module-git.el --- Git module -*- lexical-binding: t; -*-
+;;; feat-git.el --- Git feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:40:48>
+;; Time-stamp: <2019-06-03 14:55:43>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,6 +15,6 @@
   :init (setq git-messenger:show-detail t)
   :bind (("C-c v m" . git-messenger:popup-message)))
 
-(provide 'module-git)
+(provide 'feat-git)
 
-;;; module-git.el ends here
+;;; feat-git.el ends here

@@ -1,6 +1,6 @@
-;;; module-theme.el --- Theme module -*- lexical-binding: t; -*-
+;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:37:47>
+;; Time-stamp: <2019-06-03 14:55:39>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -39,6 +39,6 @@
   :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
   :hook (dired-mode . all-the-icons-dired-mode))
 
-(provide 'module-theme)
+(provide 'feat-theme)
 
-;;; module-theme.el ends here
+;;; feat-theme.el ends here

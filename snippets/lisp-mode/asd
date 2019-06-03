@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# --
+;;;; `(file-name-nondirectory buffer-file-name)`
+
+;; Time-stamp: <2019-06-03 12:08:54>
+;; Copyright (C) `(substring (current-time-string) -4)` `(user-full-name)`
+
+(asdf:defsystem #:${1:name}
+    :author "`(user-full-name)` <`(user-mail-address)`>"
+    :description "${2:description}"
+    :license "MIT"
+    :serial t
+    :depends-on ($0)
+    :components ((:file "package")
+                 (:file "$1")))

@@ -1,6 +1,6 @@
-;;; module-completion.el --- Completion module -*- lexical-binding: t; -*-
+;;; feat-completion.el --- Completion feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:39:27>
+;; Time-stamp: <2019-06-03 14:55:33>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -24,6 +24,6 @@
                                     company-dabbrev
                                     company-dabbrev-code)))))
 
-(provide 'module-completion)
+(provide 'feat-completion)
 
-;;; module-completion.el ends here
+;;; feat-completion.el ends here
