@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:25:27>
+;; Time-stamp: <2019-06-03 11:35:51>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -242,9 +242,8 @@
 ;; -- Version control ----------------------------------------------------------
 
 (use-package git-gutter :ensure t :diminish
-  :config (progn
-            (global-git-gutter-mode +1)
-            (set-face-foreground 'git-gutter:modified "yellow")))
+  :config (global-git-gutter-mode +1)
+  :custom-face (git-gutter:modified ((t (:foreground "yellow")))))
 
 (use-package git-messenger :ensure t :diminish
   :init (setq git-messenger:show-detail t)
