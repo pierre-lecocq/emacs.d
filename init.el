@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:57>
+;; Time-stamp: <2019-06-03 11:25:27>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -168,6 +168,10 @@
 (use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
 
+(use-package epa-file :ensure nil :demand t
+  :init (setq epa-gpg-program "gpg2")
+  :config (epa-file-enable))
+
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
@@ -200,9 +204,7 @@
   :hook (before-save . time-stamp))
 
 (use-package which-func :ensure t :demand t
-  :config (progn
-            (setq which-func-unknown "?")
-            (set-face-attribute 'which-func nil :foreground "black"))
+  :config (setq which-func-unknown "?")
   :hook (prog-mode . which-function-mode))
 
 (use-package whitespace :demand t :ensure nil :diminish

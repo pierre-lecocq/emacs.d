@@ -1,6 +1,6 @@
 ;;; module-ruby.el --- Ruby feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:01:20>
+;; Time-stamp: <2019-06-03 11:16:05>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,9 +21,11 @@
           '(push 'company-robe company-backends))
   :hook (ruby-mode . robe-mode))
 
-(use-package rubocop :ensure t :defer t)
+(use-package rubocop :ensure t :defer t
+  :hook (ruby-mode . rubocop-mode))
 
-(use-package ruby-tools :ensure t :defer t)
+(use-package ruby-tools :ensure t :defer t
+  :hook (ruby-mode . ruby-tools-mode))
 
 (use-package ruby-mode :ensure t
   :mode (("\\.rb\\'" . ruby-mode)
@@ -35,7 +37,8 @@
          ("Puppetfile" . ruby-mode)
          ("Rakefile" . ruby-mode)))
 
-(use-package yard-mode :ensure t)
+(use-package yard-mode :ensure t
+  :hook (ruby-mode . yard-mode))
 
 (provide 'module-ruby)
 
