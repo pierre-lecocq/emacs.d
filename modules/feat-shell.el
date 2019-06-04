@@ -1,6 +1,6 @@
 ;;; feat-shell.el --- Shell feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-04 09:46:17>
+;; Time-stamp: <2019-06-04 09:51:21>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,8 +21,8 @@
                         "\r?\n\\'" ""
                         (shell-command-to-string "git rev-parse --abbrev-ref HEAD 2> /dev/null"))))
            (when (> (length branch) 0)
-             (format ":%s " (propertize branch
-                                        'face '(:foreground "yellow")))))
+             (propertize (format ":%s " branch)
+                         'face '(:foreground "yellow"))))
          ;; separator
          (if (= (user-uid) 0)
              (propertize "# " 'face '(:foreground "red"))
