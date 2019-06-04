@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-04 23:12:21>
+;; Time-stamp: <2019-06-04 23:43:55>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -14,9 +14,9 @@
         global-auto-revert-mode
         global-font-lock-mode
         global-hl-line-mode
+        global-subword-mode
         line-number-mode
         show-paren-mode
-        subword-mode
         transient-mark-mode))
 
 (mapc (lambda (mode) (when (fboundp mode) (funcall mode -1)))
@@ -43,9 +43,8 @@
       select-enable-clipboard t
       scroll-conservatively 100
       user-full-name "Pierre Lecocq"
-      user-mail-address "pierre.lecocq@gmail.com")
-
-(setq custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
+      user-mail-address "pierre.lecocq@gmail.com"
+      custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
       nsm-settings-file (expand-file-name ".local/files/network-security.data" user-emacs-directory))
 
 (setq locale-coding-system 'utf-8)
@@ -133,7 +132,7 @@
 (use-package autopair :ensure t :diminish
   :config (autopair-global-mode t))
 
-(use-package editorconfig :ensure t
+(use-package editorconfig :ensure t :diminish
   :hook (prog-mode . editorconfig-mode))
 
 (use-package epa-file :ensure nil :demand t
@@ -163,9 +162,6 @@
               ido-use-filename-at-point 'guess
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
-
-(use-package rainbow-delimiters :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
 
 (use-package time-stamp :ensure t :demand t
   :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")

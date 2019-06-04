@@ -9,7 +9,8 @@
 (defun hook-emacs-lisp-mode ()
   "Hook for emacs-lisp mode."
   (eros-mode)
-  (eldoc-mode))
+  (eldoc-mode)
+  (diminish 'eldoc-mode))
 
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
