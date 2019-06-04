@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-06-03 15:12:31>
+- Time-stamp: <2019-06-04 09:48:37>
 
 ## Modules system
 
@@ -17,6 +17,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 (require 'feat-git)
 (require 'feat-neotree)
 (require 'feat-project)
+(require 'feat-shell)
 (require 'feat-snippets)
 (require 'feat-syntax)
 
