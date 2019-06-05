@@ -1,6 +1,6 @@
 ;;; feat-shell.el --- Shell feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-05 09:01:34>
+;; Time-stamp: <2019-06-05 14:52:58>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -20,7 +20,7 @@
         (if (equal (current-buffer) shell-buf)
             (switch-to-buffer (other-buffer))
           (switch-to-buffer shell-buf))
-      (ansi-term "/bin/bash"))))
+      (ansi-term "/bin/bash" "ansi-term"))))
 
 (global-set-key (kbd "<M-return>") 'toggle-shell)
 
