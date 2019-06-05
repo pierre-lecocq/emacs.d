@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-06-05 15:24:24>
+- Time-stamp: <2019-06-05 15:26:22>
 
 ## Modules system
 
@@ -36,7 +36,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 ```
 </details>
 
-## Available modules
+### Available modules
 
 | File                                               | Description          | Packages                                                                                                            |
 |----------------------------------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------|
