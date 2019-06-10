@@ -11,7 +11,8 @@
 (use-package web-mode :ensure t
   :mode (("\\.html?\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
-         ("\\.erubis\\'" . web-mode)))
+         ("\\.erubis\\'" . web-mode)
+         ("\\.ejs\\'" . web-mode)))
 
 (provide 'lang-web)
 
