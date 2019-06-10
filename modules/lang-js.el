@@ -1,20 +1,21 @@
 ;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:49:40>
+;; Time-stamp: <2019-06-10 16:31:20>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
+;; - brew install the_silver_searcher
 ;; - sudo npm install -g tern
 
 ;;; Code:
 
-(use-package js2-refactor :ensure t)
+(use-package js2-refactor :ensure t :diminish)
 
-(use-package xref-js2 :ensure t) ;; requires installing `ag'
+(use-package xref-js2 :ensure t :diminish)
 
 (when (executable-find "tern")
-  (use-package company-tern :ensure t
+  (use-package company-tern :ensure t :diminish
     :config (progn
               (add-to-list 'company-backends 'company-tern)
               ;; Disable completion keybindings, as we use xref-js2 instead
