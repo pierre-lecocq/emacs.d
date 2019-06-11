@@ -1,6 +1,6 @@
 ;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-11 16:33:42>
+;; Time-stamp: <2019-06-11 16:44:59>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -87,6 +87,9 @@
                   (:eval (when vc-mode
                            (all-the-icons-faicon "code-fork" :height 0.9 :v-adjust 0 :face 'modeline-yellow-face)))
                   (:eval vc-mode)
+                  ;; Project
+                  (:eval (when (projectile-project-name)
+                           (format "@%s" (projectile-project-name))))
                   ;; Func
                   "    "
                   (:eval (when (which-function)
