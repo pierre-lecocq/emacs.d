@@ -1,6 +1,6 @@
 ;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-11 12:48:50>
+;; Time-stamp: <2019-06-11 16:33:42>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,49 +46,53 @@
 
 ;; Modeline
 
+(when window-system
+  (defgroup mytheme nil "My theme."
+    :group 'faces)
 
-(defgroup mytheme nil "My theme."
-  :group 'faces)
+  (defface modeline-blue-face
+    '((t :foreground "DodgerBlue"))
+    "Blue face for modeline.")
 
-(defface modeline-blue-face
-  '((t :foreground "DodgerBlue"))
-  "Blue face for modeline.")
+  (defface modeline-yellow-face
+    '((t :foreground "yellow"))
+    "Yellow face for modeline.")
 
-(defface modeline-red-face
-  '((t :foreground "#ff6666"))
-  "Red face for modeline.")
+  (defface modeline-red-face
+    '((t :foreground "#ff6666"))
+    "Red face for modeline.")
 
-(setq-default mode-line-format
-              '(" "
-                ;; Read only
-                (:eval (when buffer-read-only
-                         (all-the-icons-faicon "lock" :height 0.9 :v-adjust 0 :face 'modeline-red-face)))
-                ;; Modified
-                (:eval (when (not buffer-read-only)
-                         (all-the-icons-faicon "file" :height 0.9 :v-adjust 0 :face (if (buffer-modified-p (current-buffer))
-                                                                                        'modeline-red-face
-                                                                                      'modeline-blue-face))))
-                ;; Buffer name
-                " %b"
-                ;; Position
-                "    "
-                (:eval (all-the-icons-faicon "map-marker" :height 0.9 :v-adjust 0 :face 'modeline-blue-face))
-                " (%l,%c)"
-                ;; Mode
-                "    "
-                (:eval (all-the-icons-faicon "code" :height 0.9 :v-adjust 0 :face 'modeline-blue-face))
-                " %m"
-                ;; VC
-                "    "
-                (:eval (when vc-mode
-                         (all-the-icons-faicon "code-fork" :height 0.9 :v-adjust 0 :face 'modeline-blue-face)))
-                (:eval vc-mode)
-                ;; Func
-                "    "
-                (:eval (when (which-function)
-                         (all-the-icons-faicon "dot-circle-o" :height 0.9 :v-adjust 0 :face 'modeline-blue-face)))
-                " "
-                (:eval (which-function))))
+  (setq-default mode-line-format
+                '(" "
+                  ;; Read only
+                  (:eval (when buffer-read-only
+                           (all-the-icons-faicon "lock" :height 0.9 :v-adjust 0 :face 'modeline-red-face)))
+                  ;; Modified
+                  (:eval (when (not buffer-read-only)
+                           (all-the-icons-faicon "file" :height 0.9 :v-adjust 0 :face (if (buffer-modified-p (current-buffer))
+                                                                                          'modeline-red-face
+                                                                                        'modeline-blue-face))))
+                  ;; Buffer name
+                  " %b"
+                  ;; Position
+                  "    "
+                  (:eval (all-the-icons-faicon "map-marker" :height 0.9 :v-adjust 0 :face 'modeline-blue-face))
+                  " (%l,%c)"
+                  ;; Mode
+                  "    "
+                  (:eval (all-the-icons-faicon "code" :height 0.9 :v-adjust 0 :face 'modeline-blue-face))
+                  " %m"
+                  ;; VC
+                  "    "
+                  (:eval (when vc-mode
+                           (all-the-icons-faicon "code-fork" :height 0.9 :v-adjust 0 :face 'modeline-yellow-face)))
+                  (:eval vc-mode)
+                  ;; Func
+                  "    "
+                  (:eval (when (which-function)
+                           (all-the-icons-faicon "dot-circle-o" :height 0.9 :v-adjust 0 :face 'modeline-blue-face)))
+                  " "
+                  (:eval (which-function)))))
 
 (set-face-attribute 'mode-line nil
                     :background "#2a2a2a"
