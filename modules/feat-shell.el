@@ -1,6 +1,6 @@
 ;;; feat-shell.el --- Shell feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-05 14:52:58>
+;; Time-stamp: <2019-06-12 23:34:44>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -22,7 +22,9 @@
           (switch-to-buffer shell-buf))
       (ansi-term "/bin/bash" "ansi-term"))))
 
-(global-set-key (kbd "<M-return>") 'toggle-shell)
+(if (eq system-type 'darwin)
+    (global-set-key (kbd "<M-return>") 'toggle-shell)
+  (global-set-key (kbd "<S-return>") 'toggle-shell))
 
 (provide 'feat-shell)
 

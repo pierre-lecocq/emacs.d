@@ -1,6 +1,6 @@
 ;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-12 08:50:07>
+;; Time-stamp: <2019-06-12 23:34:26>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,10 +9,12 @@
 
 (when window-system
   ;; Default frame size
-  (toggle-frame-fullscreen) ; or (toggle-frame-maximized)
+  (if (eq system-type 'darwin)
+      (toggle-frame-fullscreen)
+    (toggle-frame-maximized))
   ;; Title bar on Mac
-  (when (and(eq system-type 'darwin)
-            (not (version< emacs-version "26.1")))
+  (when (and (eq system-type 'darwin)
+             (not (version< emacs-version "26.1")))
     (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
     (add-to-list 'default-frame-alist '(ns-appearance . dark))))
 
