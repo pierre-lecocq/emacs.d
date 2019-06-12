@@ -1,6 +1,6 @@
 ;;; feat-modeline.el --- Modeline feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-12 09:39:12>
+;; Time-stamp: <2019-06-13 00:47:08>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -23,8 +23,8 @@
                 '(" "
                   ;; File icon or Read only
                   (:eval (if buffer-read-only
-                             (all-the-icons-faicon "lock" :height 0.9 :v-adjust 0 :face 'mymodeline-red-face)
-                           (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name) :v-adjust 0)))
+                             (all-the-icons-faicon "lock" :height 0.8 :v-adjust 0 :face 'mymodeline-red-face)
+                           (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name) :height 0.8 :v-adjust 0)))
                   ;; Buffer name
                   (:eval (propertize " %b" 'face (if (and (not buffer-read-only)
                                                           (buffer-modified-p (current-buffer)))
@@ -32,12 +32,12 @@
                                                    'mymodeline-blue-face)))
                   ;; Position
                   "    "
-                  (:eval (all-the-icons-faicon "map-marker" :height 0.9 :v-adjust 0 :face 'mymodeline-blue-face))
+                  (:eval (all-the-icons-faicon "map-marker" :height 0.8 :v-adjust 0 :face 'mymodeline-blue-face))
                   " (%l,%c)"
                   ;; VC
                   "    "
                   (:eval (when vc-mode
-                           (all-the-icons-faicon "code-fork" :height 0.9 :v-adjust 0 :face 'mymodeline-blue-face)))
+                           (all-the-icons-faicon "code-fork" :height 0.8 :v-adjust 0 :face 'mymodeline-blue-face)))
                   (:eval vc-mode)
                   ;; Project
                   (:eval (when (projectile-project-name)
@@ -45,7 +45,7 @@
                   ;; Func
                   "    "
                   (:eval (when (which-function)
-                           (all-the-icons-faicon "dot-circle-o" :height 0.9 :v-adjust 0 :face 'mymodeline-blue-face)))
+                           (all-the-icons-faicon "dot-circle-o" :height 0.8 :v-adjust 0 :face 'mymodeline-blue-face)))
                   " "
                   (:eval (which-function)))))
 
