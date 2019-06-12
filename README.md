@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-06-05 15:26:22>
+- Time-stamp: <2019-06-12 09:36:11>
 
 ## Modules system
 
@@ -42,6 +42,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 |----------------------------------------------------|----------------------|---------------------------------------------------------------------------------------------------------------------|
 | [feat-completion.el](./modules/feat-completion.el) | Text completion      | `company-mode`                                                                                                      |
 | [feat-git.el](./modules/feat-git.el)               | Git support          | `git-gutter`, `git-messenger`                                                                                       |
+| [feat-modeline.el](./modules/feat-modeline.el)     | Modeline theme       |                                                                                                                     |
 | [feat-neotree.el](./modules/feat-neotree.el)       | File brower          | `neotree`                                                                                                           |
 | [feat-project.el](./modules/feat-project.el)       | Project management   | `projectile`                                                                                                        |
 | [feat-shell.el](./modules/feat-shell.el)           | Shell in Emacs       | `ansi-term`                                                                                                         |
