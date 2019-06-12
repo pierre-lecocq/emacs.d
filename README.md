@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-06-12 09:36:11>
+- Time-stamp: <2019-06-12 23:08:13>
 
 ## Modules system
 
@@ -12,6 +12,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 
 ```
 (require 'feat-theme)
+(require 'feat-modeline)
 
 (require 'feat-completion)
 (require 'feat-git)
