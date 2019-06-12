@@ -1,6 +1,6 @@
 ;;; feat-modeline.el --- Modeline feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-12 09:29:40>
+;; Time-stamp: <2019-06-12 09:32:38>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -25,7 +25,7 @@
                   (:eval (when buffer-read-only
                            (all-the-icons-faicon "lock" :height 0.9 :v-adjust 0 :face 'mymodeline-red-face)))
                   (:eval (when (not buffer-read-only)
-                           (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name) :v-adjust all-the-icons-dired-v-adjust)))
+                           (all-the-icons-icon-for-file (file-name-nondirectory buffer-file-name) :v-adjust 0)))
                   ;; Buffer name
                   (:eval (propertize " %b" 'face (if (and (not buffer-read-only)
                                                           (buffer-modified-p (current-buffer)))
