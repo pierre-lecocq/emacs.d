@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-04 23:43:55>
+;; Time-stamp: <2019-06-17 17:29:52>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:

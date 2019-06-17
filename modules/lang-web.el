@@ -12,7 +12,8 @@
   :mode (("\\.html?\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
          ("\\.erubis\\'" . web-mode)
-         ("\\.ejs\\'" . web-mode)))
+         ("\\.ejs\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)))
 
 (provide 'lang-web)
 
