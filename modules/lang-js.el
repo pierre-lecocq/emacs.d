@@ -1,6 +1,6 @@
 ;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-10 16:31:20>
+;; Time-stamp: <2019-06-18 22:26:14>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -17,7 +17,8 @@
 (when (executable-find "tern")
   (use-package company-tern :ensure t :diminish
     :config (progn
-              (add-to-list 'company-backends 'company-tern)
+              (eval-after-load 'company
+                '(push 'company-tern company-backends))
               ;; Disable completion keybindings, as we use xref-js2 instead
               (unbind-key "M-." tern-mode-keymap)
               (unbind-key "M-," tern-mode-keymap))))
