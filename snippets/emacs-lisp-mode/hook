@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# --
+(defun hook-${1:hook} ()
+  "Hook for $1."
+  $0)
+
+(add-hook '$1-hook #'hook-$1)
