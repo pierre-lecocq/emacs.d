@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# --
+import React from 'react';
+
+class ${1:name} extends React.Component {
+  render () {
+    return (
+      <React.Fragment>
+        $0
+      </React.Fragment>
+    )
+  }
+}
+
+export default $1;
