@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-06-12 23:08:13>
+- Time-stamp: <2019-07-04 20:42:39>
 
 ## Modules system
 
@@ -17,6 +17,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 (require 'feat-completion)
 (require 'feat-git)
 (require 'feat-neotree)
+(require 'feat-news)
 (require 'feat-project)
 (require 'feat-shell)
 (require 'feat-snippets)
@@ -45,6 +46,7 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 | [feat-git.el](./modules/feat-git.el)               | Git support          | `git-gutter`, `git-messenger`                                                                                       |
 | [feat-modeline.el](./modules/feat-modeline.el)     | Modeline theme       |                                                                                                                     |
 | [feat-neotree.el](./modules/feat-neotree.el)       | File brower          | `neotree`                                                                                                           |
+| [feat-news.el](./modules/feat-news.el)             | News reader          | `el-feed`                                                                                                           |
 | [feat-project.el](./modules/feat-project.el)       | Project management   | `projectile`                                                                                                        |
 | [feat-shell.el](./modules/feat-shell.el)           | Shell in Emacs       | `ansi-term`                                                                                                         |
 | [feat-snippets.el](./modules/feat-snippets.el)     | Snippets             | `yasnippet`                                                                                                         |
