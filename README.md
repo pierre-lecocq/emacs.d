@@ -1,16 +1,18 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-07-04 22:47:03>
+- Time-stamp: <2019-07-10 18:39:38>
 
 ## Modules system
 
 Create a `modules.el` file to automatically load available [modules](./modules/).
 
 <details>
-    <summary>Sample content</summary>
+    <summary>Click here to view an example</summary>
 
 ```
+;; File: modules.el
+
 (require 'feat-theme)
 (require 'feat-modeline)
 
