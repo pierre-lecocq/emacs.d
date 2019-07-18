@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-17 17:29:52>
+;; Time-stamp: <2019-07-18 17:26:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -100,6 +100,7 @@
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x b") 'ibuffer)
+(global-set-key (kbd "C-;") 'other-window)
 
 (defun bind-split-window-and-switch (kbd-seq func)
   "Bind KBD-SEQ to split window FUNC and switch to the newly opened."

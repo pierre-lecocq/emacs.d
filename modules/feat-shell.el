@@ -1,6 +1,6 @@
 ;;; feat-shell.el --- Shell feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-12 23:34:44>
+;; Time-stamp: <2019-07-17 11:30:27>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -25,6 +25,12 @@
 (if (eq system-type 'darwin)
     (global-set-key (kbd "<M-return>") 'toggle-shell)
   (global-set-key (kbd "<S-return>") 'toggle-shell))
+
+(defun open-terminal-here (dir)
+  "Open terminal application in DIR."
+  (interactive "DDirectory: ")
+  (let ((cmd (if (eq system-type 'darwin) "open -a iTerm" "rxvt-unicode")))
+    (call-process-shell-command (concat cmd dir) nil 0)))
 
 (provide 'feat-shell)
 

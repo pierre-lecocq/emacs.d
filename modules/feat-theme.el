@@ -1,6 +1,6 @@
 ;;; feat-theme.el --- Theme feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-09 21:29:51>
+;; Time-stamp: <2019-07-18 17:27:06>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,10 +9,9 @@
 
 (when window-system
   ;; Default frame size
-  ;; (if (eq system-type 'darwin)
-  ;;     (toggle-frame-fullscreen)
-  ;;   (toggle-frame-maximized))
-  (toggle-frame-maximized)
+  (if (eq system-type 'darwin)
+      (toggle-frame-fullscreen)
+    (toggle-frame-maximized))
   ;; Title bar on Mac
   (when (and (eq system-type 'darwin)
              (not (version< emacs-version "26.1")))
