@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-18 17:26:28>
+;; Time-stamp: <2019-07-24 13:38:54>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -99,7 +99,7 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-;") 'other-window)
 
 (defun bind-split-window-and-switch (kbd-seq func)
