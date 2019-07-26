@@ -1,6 +1,6 @@
 ;;; lang-php.el --- PHP language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:46:51>
+;; Time-stamp: <2019-07-24 16:08:54>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -18,7 +18,7 @@
           (setq comment-start "// "
                 comment-end "")
           (set (make-local-variable 'company-backends)
-               '((php-extras-company company-dabbrev-code) company-capf company-files)))
+               '((php-extras-company company-dabbrev company-dabbrev-code) company-capf company-files)))
   :mode (("\\.php-dev'" . php-mode)
          ("\\.php-dist'" . php-mode))
   :hook (php-mode . php-enable-default-coding-style))

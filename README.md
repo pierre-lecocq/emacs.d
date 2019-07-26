@@ -1,20 +1,23 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-07-10 18:39:38>
+- Time-stamp: <2019-07-26 09:02:40>
 
 ## Modules system
 
-Create a `modules.el` file to automatically load available [modules](./modules/).
+Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
 
 <details>
-    <summary>Click here to view an example</summary>
+    <summary>Click here to view a full example</summary>
 
 ```
-;; File: modules.el
+;; File: host.el
 
-(require 'feat-theme)
-(require 'feat-modeline)
+(defvar host-frame-type 'fullscreen) ;; default, maximized, fullscreen
+(defvar host-modeline-type 'simple) ;; none, default, simple, full
+
+(require 'look-theme)
+(require 'look-modeline)
 
 (require 'feat-completion)
 (require 'feat-git)
@@ -47,7 +50,6 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 |--------------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
 | [feat-completion.el](./modules/feat-completion.el)     | Text completion       | `company-mode`                                                                                                      |
 | [feat-git.el](./modules/feat-git.el)                   | Git support           | `git-gutter`, `git-messenger`                                                                                       |
-| [feat-modeline.el](./modules/feat-modeline.el)         | Modeline theme        |                                                                                                                     |
 | [feat-multicursors.el](./modules/feat-multicursors.el) | Multi cursors support | `multi-cursors`                                                                                                     |
 | [feat-neotree.el](./modules/feat-neotree.el)           | File brower           | `neotree`                                                                                                           |
 | [feat-news.el](./modules/feat-news.el)                 | News reader           | `el-feed`                                                                                                           |
@@ -55,7 +57,6 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 | [feat-shell.el](./modules/feat-shell.el)               | Shell in Emacs        | `ansi-term`                                                                                                         |
 | [feat-snippets.el](./modules/feat-snippets.el)         | Snippets              | `yasnippet`                                                                                                         |
 | [feat-syntax.el](./modules/feat-syntax.el)             | Syntax checking       | `flycheck`                                                                                                          |
-| [feat-theme.el](./modules/feat-theme.el)               | Theme                 | `all-the-icons`, `all-the-icons-dired`                                                                              |
 | [lang-c.el](./modules/lang-c.el)                       | C language family     | `c-mode`, `cc-mode`, `company-c-headers`                                                                            |
 | [lang-elisp.el](./modules/lang-elisp.el)               | Emacs lisp language   | `emacs-lis-mode`, `eros-mode`, `eldoc-mode`                                                                         |
 | [lang-go.el](./modules/lang-go.el)                     | Go language           | `go-mode`, `go-eldoc`, `company-go`                                                                                 |
@@ -68,3 +69,5 @@ Create a `modules.el` file to automatically load available [modules](./modules/)
 | [lang-ruby.el](./modules/lang-ruby.el)                 | Ruby language         | `ruby-mode`, `inf-ruby`, `robe`, `rubocop`, `ruby-tools`, `yard-mode`                                               |
 | [lang-text.el](./modules/lang-text.el)                 | Text based languages  | `dockerfile-mode`, `dotenv-mode`, `json-mode`, `markdown-mode`, `flymd`, `terraform-mode`, `toml-mode`, `yaml-mode` |
 | [lang-web.el](./modules/lang-web.el)                   | Web languages family  | `htmlize`, `scss-mode`, `web-mode`                                                                                  |
+| [look-modeline.el](./modules/look-modeline.el)         | Modeline theme        |                                                                                                                     |
+| [look-theme.el](./modules/look-theme.el)               | Theme                 | `all-the-icons`, `all-the-icons-dired`                                                                              |

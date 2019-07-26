@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-24 13:38:54>
+;; Time-stamp: <2019-07-26 08:39:07>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -182,9 +182,9 @@
 
 ;; -- Modules ------------------------------------------------------------------
 
-(let ((modules-file (expand-file-name "modules.el" user-emacs-directory)))
-  (when (file-exists-p modules-file)
+(let ((host-file (expand-file-name "host.el" user-emacs-directory)))
+  (when (file-exists-p host-file)
     (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
-    (load-file modules-file)))
+    (load-file host-file)))
 
 ;;; init.el ends here
