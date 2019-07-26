@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-07-26 09:02:40>
+- Time-stamp: <2019-07-26 09:09:10>
 
 ## Modules system
 
@@ -13,8 +13,8 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 ```
 ;; File: host.el
 
-(defvar host-frame-type 'fullscreen) ;; default, maximized, fullscreen
-(defvar host-modeline-type 'simple) ;; none, default, simple, full
+(defvar host-frame-type    'fullscreen) ;; default, maximized, fullscreen
+(defvar host-modeline-type 'full)       ;; none, default, simple, full
 
 (require 'look-theme)
 (require 'look-modeline)
