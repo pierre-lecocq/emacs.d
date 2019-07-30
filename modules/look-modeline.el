@@ -1,6 +1,6 @@
 ;;; look-modeline.el --- Modeline feature -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-26 10:47:16>
+;; Time-stamp: <2019-07-30 12:02:30>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,9 +15,12 @@
 
       ((eq host-modeline-type 'simple)
        (setq-default mode-line-format
-                     '(" %* " (:eval (if (projectile-project-p)
-                                         (concat "@" (projectile-project-name) "/" (replace-regexp-in-string (projectile-project-root) "" buffer-file-name))
-                                       (buffer-file-name))) " [%l:%c %p] %m")))
+                     '(" %* "
+                       (:eval (if (projectile-project-p)
+                                  (concat "@" (projectile-project-name) "/" (replace-regexp-in-string (projectile-project-root) "" buffer-file-name))
+                                (buffer-file-name)))
+                       " [%l:%c %p] %m "
+                       (:eval '(which-function-mode ("" which-func-format ""))))))
 
       ((eq host-modeline-type 'full)
        (defgroup host-modeline nil
