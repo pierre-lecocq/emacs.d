@@ -1,0 +1,3 @@
+# -*- mode: snippet -*-
+# --
+console.log($0);
