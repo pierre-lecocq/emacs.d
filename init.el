@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-30 15:46:34>
+;; Time-stamp: <2019-07-31 22:57:34>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -101,6 +101,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-;") 'other-window)
+(global-set-key [f12] 'toggle-rot13-mode)
 
 (defun bind-split-window-and-switch (kbd-seq func)
   "Bind KBD-SEQ to split window FUNC and switch to the newly opened."
@@ -170,7 +171,7 @@
 
 (use-package which-func :ensure t :demand t
   :config (setq which-func-unknown "?")
-  :custom-face (which-func ((t (:foreground "blue"))))
+  :custom-face (which-func ((t (:inherit mode-line))))
   :hook (prog-mode . which-function-mode))
 
 (use-package whitespace :demand t :ensure nil :diminish
