@@ -1,14 +1,14 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:09:28>
+- Time-stamp: <2019-08-11 15:13:26>
 
 ## Modules system
 
 Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
 
 <details>
-    <summary>Click here to view a full example</summary>
+    <summary>:clipboard: Click here to view a full example</summary>
 
 ```
 ;; File: host.el
