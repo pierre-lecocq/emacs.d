@@ -1,9 +1,9 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:22:22>
+- Time-stamp: <2019-08-11 15:25:32>
 
-## :package: Default packages
+## Default packages
 
 - `use-package`
 
@@ -21,7 +21,7 @@
 - `which-key`
 - `whitespace`
 
-## :electric_plug: Modules system
+## Modules system
 
 Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
 
