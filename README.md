@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-07-30 22:24:04>
+- Time-stamp: <2019-08-11 15:09:28>
 
 ## Modules system
 
@@ -44,7 +44,25 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 ```
 </details>
 
-### Available modules
+### Default packages
+
+- `use-package`
+
+- `aggressive-indent`
+- `anzu`
+- `autopair`
+- `editorconfig`
+- `epa-file`
+- `exec-path-from-shell`
+- `idle-highlight-mode`
+- `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
+- `string-inflection`
+- `time-stamp`
+- `which-func`
+- `which-key`
+- `whitespace`
+
+### Available modules packages
 
 | File                                                   | Description           | Packages                                                                                                            |
 |--------------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|

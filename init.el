@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-07-31 22:57:34>
+;; Time-stamp: <2019-08-11 15:05:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -168,6 +168,9 @@
 (use-package time-stamp :ensure t :demand t
   :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
   :hook (before-save . time-stamp))
+
+(use-package string-inflection :ensure t
+  :bind (("C-c C-u" . string-inflection-all-cycle)))
 
 (use-package which-func :ensure t :demand t
   :config (setq which-func-unknown "?")
