@@ -1,18 +1,22 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 16:12:00>
+- Time-stamp: <2019-08-11 16:13:22>
 
 ## Built-in packages
 
 - `column-number-mode`
+- `epa-file`
 - `global-auto-revert-mode`
 - `global-font-lock-mode`
 - `global-hl-line-mode`
 - `global-subword-mode`
 - `line-number-mode`
 - `show-paren-mode`
+- `time-stamp`
 - `transient-mark-mode`
+- `which-key`
+- `whitespace`
 
 ## Default packages
 
@@ -21,16 +25,12 @@
 - `anzu`
 - `autopair`
 - `editorconfig`
-- `epa-file`
 - `exec-path-from-shell`
 - `fill-column-indicator`
 - `idle-highlight-mode`
 - `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
 - `string-inflection`
-- `time-stamp`
 - `which-func`
-- `which-key`
-- `whitespace`
 
 ## Modules system
 
