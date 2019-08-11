@@ -1,7 +1,18 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:48:20>
+- Time-stamp: <2019-08-11 16:10:08>
+
+## Built-in packages
+
+- `column-number-mode`
+- `global-auto-revert-mode`
+- `global-font-lock-mode`
+- `global-hl-line-mode`
+- `global-subword-mode`
+- `line-number-mode`
+- `show-paren-mode`
+- `transient-mark-mode`
 
 ## Default packages
 
