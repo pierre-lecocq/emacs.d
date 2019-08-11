@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-11 15:47:28>
+;; Time-stamp: <2019-08-11 21:15:49>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -147,7 +147,7 @@
 
 (use-package fill-column-indicator :ensure t :diminish
   :init (setq fci-rule-column 80
-              fci-rule-color "#2a2a2a")
+              fci-rule-color "#1a1a1a")
   :hook (prog-mode . turn-on-fci-mode))
 
 (use-package idle-highlight-mode :ensure t :diminish
