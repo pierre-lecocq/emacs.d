@@ -1,9 +1,27 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:13:26>
+- Time-stamp: <2019-08-11 15:21:22>
 
-## Modules system
+## :package: Default packages
+
+- `use-package`
+
+- `aggressive-indent`
+- `anzu`
+- `autopair`
+- `editorconfig`
+- `epa-file`
+- `exec-path-from-shell`
+- `idle-highlight-mode`
+- `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
+- `string-inflection`
+- `time-stamp`
+- `which-func`
+- `which-key`
+- `whitespace`
+
+## :electric_plug: Modules system
 
 Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
 
@@ -44,25 +62,8 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 ```
 </details>
 
-### Default packages
 
-- `use-package`
-
-- `aggressive-indent`
-- `anzu`
-- `autopair`
-- `editorconfig`
-- `epa-file`
-- `exec-path-from-shell`
-- `idle-highlight-mode`
-- `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
-- `string-inflection`
-- `time-stamp`
-- `which-func`
-- `which-key`
-- `whitespace`
-
-### Available modules packages
+### :electric_plug: :package: Available modules packages
 
 | File                                                   | Description           | Packages                                                                                                            |
 |--------------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
