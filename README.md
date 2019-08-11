@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 16:13:22>
+- Time-stamp: <2019-08-11 21:05:45>
 
 ## Built-in packages
 
@@ -15,7 +15,7 @@
 - `show-paren-mode`
 - `time-stamp`
 - `transient-mark-mode`
-- `which-key`
+- `which-func`
 - `whitespace`
 
 ## Default packages
@@ -30,14 +30,13 @@
 - `idle-highlight-mode`
 - `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
 - `string-inflection`
-- `which-func`
+- `which-key`
 
 ## Modules system
 
 Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
 
-<details>
-    <summary>:clipboard: Click here to view a full example</summary>
+**Full example**:
 
 ```
 ;; File: host.el
@@ -71,7 +70,6 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 (require 'lang-text)
 (require 'lang-web)
 ```
-</details>
 
 
 ### Available modules packages
