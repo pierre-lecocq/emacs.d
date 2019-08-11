@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-11 15:05:22>
+;; Time-stamp: <2019-08-11 15:47:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -144,6 +144,11 @@
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
+
+(use-package fill-column-indicator :ensure t :diminish
+  :init (setq fci-rule-column 80
+              fci-rule-color "#2a2a2a")
+  :hook (prog-mode . turn-on-fci-mode))
 
 (use-package idle-highlight-mode :ensure t :diminish
   :hook (prog-mode . idle-highlight-mode))

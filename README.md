@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:25:32>
+- Time-stamp: <2019-08-11 15:48:20>
 
 ## Default packages
 
@@ -13,6 +13,7 @@
 - `editorconfig`
 - `epa-file`
 - `exec-path-from-shell`
+- `fill-column-indicator`
 - `idle-highlight-mode`
 - `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
 - `string-inflection`
