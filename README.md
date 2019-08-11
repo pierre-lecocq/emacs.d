@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 16:10:08>
+- Time-stamp: <2019-08-11 16:12:00>
 
 ## Built-in packages
 
@@ -17,7 +17,6 @@
 ## Default packages
 
 - `use-package`
-
 - `aggressive-indent`
 - `anzu`
 - `autopair`
