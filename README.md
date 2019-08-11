@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 15:21:22>
+- Time-stamp: <2019-08-11 15:22:22>
 
 ## :package: Default packages
 
@@ -63,7 +63,7 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 </details>
 
 
-### :electric_plug: :package: Available modules packages
+### Available modules packages
 
 | File                                                   | Description           | Packages                                                                                                            |
 |--------------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
