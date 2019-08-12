@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-11 21:05:45>
+- Time-stamp: <2019-08-12 17:30:42>
 
 ## Built-in packages
 
@@ -51,9 +51,7 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 (require 'feat-git)
 (require 'feat-multicursors)
 (require 'feat-neotree)
-(require 'feat-news)
 (require 'feat-project)
-(require 'feat-shell)
 (require 'feat-snippets)
 (require 'feat-syntax)
 
@@ -80,9 +78,7 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 | [feat-git.el](./modules/feat-git.el)                   | Git support           | `git-gutter`, `git-messenger`                                                                                       |
 | [feat-multicursors.el](./modules/feat-multicursors.el) | Multi cursors support | `multi-cursors`                                                                                                     |
 | [feat-neotree.el](./modules/feat-neotree.el)           | File brower           | `neotree`                                                                                                           |
-| [feat-news.el](./modules/feat-news.el)                 | News reader           | `el-feed`                                                                                                           |
 | [feat-project.el](./modules/feat-project.el)           | Project management    | `projectile`                                                                                                        |
-| [feat-shell.el](./modules/feat-shell.el)               | Shell in Emacs        | `ansi-term`                                                                                                         |
 | [feat-snippets.el](./modules/feat-snippets.el)         | Snippets              | `yasnippet`                                                                                                         |
 | [feat-syntax.el](./modules/feat-syntax.el)             | Syntax checking       | `flycheck`                                                                                                          |
 | [lang-c.el](./modules/lang-c.el)                       | C language family     | `c-mode`, `cc-mode`, `company-c-headers`                                                                            |
