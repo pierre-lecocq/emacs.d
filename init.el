@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-11 21:39:58>
+;; Time-stamp: <2019-08-12 18:00:11>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,8 +16,7 @@
         global-hl-line-mode
         global-subword-mode
         line-number-mode
-        show-paren-mode
-        transient-mark-mode))
+        show-paren-mode))
 
 (mapc (lambda (mode) (when (fboundp mode) (funcall mode -1)))
       '(scroll-bar-mode

@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-12 17:30:42>
+- Time-stamp: <2019-08-12 18:00:18>
 
 ## Built-in packages
 
@@ -14,7 +14,6 @@
 - `line-number-mode`
 - `show-paren-mode`
 - `time-stamp`
-- `transient-mark-mode`
 - `which-func`
 - `whitespace`
 
