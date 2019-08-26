@@ -1,5 +1,7 @@
 # Emacs Workflows Cheat Sheet
 
+---
+
 ## Isearch
 
 Use `M-x isearch-forward` (or `C-s`) and `M-x isearch-forward-regexp` (or `C-M-s`) to search for patterns in a buffer.
@@ -27,6 +29,8 @@ Use `M-x isearch-forward` (or `C-s`) and `M-x isearch-forward-regexp` (or `C-M-s
 - https://www.gnu.org/software/emacs/manual/html_node/emacs/Search.html#Search
 - https://bzg.fr/en/tutorial-introduction-searching-emacs.html/
 
+---
+
 ## Replace
 
 Use `M-x anzu-query-replace` (or `M-%`) and `M-x anzu-query-replace-regexp` (or `C-M-%`) to replace patterns in a buffer.
@@ -42,6 +46,8 @@ Use `M-x anzu-query-replace` (or `M-%`) and `M-x anzu-query-replace-regexp` (or 
 ### Outside the replace loop
 
 - Use `C-u C-SPACE` to go back to the position before replacing
+
+---
 
 ## Occur
 
@@ -69,11 +75,15 @@ The results buffer can be edited by hittinh `e` to enter the edit mode.
 - https://www.youtube.com/watch?v=zxS3zXwV0PU
 - https://www.masteringemacs.org/article/searching-buffers-occur-mode
 
+---
+
 ## Grep and find
 
 - Use `M-x vc-git-grep RET <search pattern> RET <file name pattern> RET <root dir>` to search a pattern through a git repository
   - Use `M-x rgrep RET <search pattern> RET <file name pattern> RET <root dir>` to search a pattern from a given directory
 - Use `M-x find-name-dired RET <root dir> RET <file name pattern>` to search files from a given directory. This produces a `dired` buffer, so any `dired` actions are possible
+
+---
 
 ## Dired
 
