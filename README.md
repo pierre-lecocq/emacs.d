@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-26 16:09:15>
+- Time-stamp: <2019-08-26 16:41:57>
 
 ## Modules system
 
@@ -74,9 +74,7 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c p D`        | `projectile-dired`                 |                                                          |
 | `C-c p f`        | `projectile-find-file`             |                                                          |
 | `C-c p s g`      | `projectile-grep`                  |                                                          |
-| `C-c p C-f`      | `projectile-find-regexp`           |                                                          |
 | `C-c p r`        | `projectile-replace`               |                                                          |
-| `C-c p C-r`      | `projectile-replace-regexp`        |                                                          |
 | `C-c p v`        | `projectile-vc`                    | Run `vc-dir` on the project root directory               |
 | `C-c p R`        | `projectile-regenerate-tags`       |                                                          |
 | `C-c p j`        | `projectile-find-tag`              |                                                          |
