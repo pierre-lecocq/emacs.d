@@ -13,6 +13,9 @@
 
 (use-package markdown-mode :ensure t)
 
+(use-package markdown-toc :ensure t
+  :after (markdown-mode))
+
 (use-package terraform-mode :ensure t)
 
 (use-package toml-mode :ensure t :defer t)

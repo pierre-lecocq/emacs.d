@@ -1,5 +1,13 @@
 # Emacs Workflows Cheat Sheet
 
+**Table of Contents**
+
+- [Isearch](#isearch)
+- [Replace](#replace)
+- [Occur](#occur)
+- [Grep and find](#grep-and-find)
+- [Dired](#dired)
+
 ---
 
 ## Isearch
