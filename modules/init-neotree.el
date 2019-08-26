@@ -1,6 +1,6 @@
-;;; feat-neotree.el --- Neotree feature -*- lexical-binding: t; -*-
+;;; init-neotree.el --- Neotree init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 14:55:41>
+;; Time-stamp: <2019-08-22 15:19:20>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -24,6 +24,6 @@
               neo-window-fixed-size nil
               neo-theme (if (display-graphic-p) 'icons 'nerd)))
 
-(provide 'feat-neotree)
+(provide 'init-neotree)
 
-;;; feat-neotree.el ends here
+;;; init-neotree.el ends here

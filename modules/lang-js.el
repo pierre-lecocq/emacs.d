@@ -1,6 +1,6 @@
 ;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-01 14:04:17>
+;; Time-stamp: <2019-08-21 15:18:45>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -10,12 +10,12 @@
 
 ;;; Code:
 
-(use-package js2-refactor :ensure t :diminish)
+(use-package js2-refactor :ensure t)
 
-(use-package xref-js2 :ensure t :diminish)
+(use-package xref-js2 :ensure t)
 
 (when (executable-find "tern")
-  (use-package company-tern :ensure t :diminish
+  (use-package company-tern :ensure t
     :config (progn
               (eval-after-load 'company
                 '(push 'company-tern company-backends))
@@ -33,7 +33,8 @@
   "Hook for js2 mode."
   (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
   (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
-  (tern-mode t)
+  (when (executable-find "tern")
+    (tern-mode t))
   (js2-imenu-extras-mode)
   (js2-refactor-mode)
   (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)

@@ -1,59 +1,31 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-12 18:00:18>
-
-## Built-in packages
-
-- `column-number-mode`
-- `epa-file`
-- `global-auto-revert-mode`
-- `global-font-lock-mode`
-- `global-hl-line-mode`
-- `global-subword-mode`
-- `line-number-mode`
-- `show-paren-mode`
-- `time-stamp`
-- `which-func`
-- `whitespace`
-
-## Default packages
-
-- `use-package`
-- `aggressive-indent`
-- `anzu`
-- `autopair`
-- `editorconfig`
-- `exec-path-from-shell`
-- `fill-column-indicator`
-- `idle-highlight-mode`
-- `ido`, `flx-ido`, `ido-hacks`, `ido-vertical-mode`
-- `string-inflection`
-- `which-key`
+- Time-stamp: <2019-08-26 16:09:15>
 
 ## Modules system
 
-Create a `host.el` file to automatically load available [modules](./modules/) and set custom variables.
+Create a `host.el` file to automatically load available [modules](./modules/) for this specific host.
+This file is intentionally not versioned since it varies on the different machines used.
 
 **Full example**:
 
 ```
 ;; File: host.el
 
-(defvar host-frame-type    'fullscreen) ;; default, maximized, fullscreen
-(defvar host-modeline-type 'simple)     ;; none, default, simple
+;; Look and feel
+(require 'init-theme)
 
-(require 'look-theme)
-(require 'look-modeline)
+;; Features
+(require 'init-completion)
+(require 'init-git)
+(require 'init-multicursors)
+(require 'init-neotree)
+(require 'init-project)
+(require 'init-snippets)
+(require 'init-syntax)
 
-(require 'feat-completion)
-(require 'feat-git)
-(require 'feat-multicursors)
-(require 'feat-neotree)
-(require 'feat-project)
-(require 'feat-snippets)
-(require 'feat-syntax)
-
+;; Programming languages
 (require 'lang-c)
 (require 'lang-elisp)
 (require 'lang-go)
@@ -68,29 +40,54 @@ Create a `host.el` file to automatically load available [modules](./modules/) an
 (require 'lang-web)
 ```
 
+## Cheatsheet
 
-### Available modules packages
+### Keybindings
 
-| File                                                   | Description           | Packages                                                                                                            |
-|--------------------------------------------------------|-----------------------|---------------------------------------------------------------------------------------------------------------------|
-| [feat-completion.el](./modules/feat-completion.el)     | Text completion       | `company-mode`                                                                                                      |
-| [feat-git.el](./modules/feat-git.el)                   | Git support           | `git-gutter`, `git-messenger`                                                                                       |
-| [feat-multicursors.el](./modules/feat-multicursors.el) | Multi cursors support | `multi-cursors`                                                                                                     |
-| [feat-neotree.el](./modules/feat-neotree.el)           | File brower           | `neotree`                                                                                                           |
-| [feat-project.el](./modules/feat-project.el)           | Project management    | `projectile`                                                                                                        |
-| [feat-snippets.el](./modules/feat-snippets.el)         | Snippets              | `yasnippet`                                                                                                         |
-| [feat-syntax.el](./modules/feat-syntax.el)             | Syntax checking       | `flycheck`                                                                                                          |
-| [lang-c.el](./modules/lang-c.el)                       | C language family     | `c-mode`, `cc-mode`, `company-c-headers`                                                                            |
-| [lang-elisp.el](./modules/lang-elisp.el)               | Emacs lisp language   | `emacs-lis-mode`, `eros-mode`, `eldoc-mode`                                                                         |
-| [lang-go.el](./modules/lang-go.el)                     | Go language           | `go-mode`, `go-eldoc`, `company-go`                                                                                 |
-| [lang-http.el](./modules/lang-http.el)                 | HTTP support          | `restclient`                                                                                                        |
-| [lang-js.el](./modules/lang-js.el)                     | Javascript language   | `js2-mode`, `js2-refactor`, `xref-js2`, `company-tern`                                                              |
-| [lang-lisp.el](./modules/lang-lisp.el)                 | Common Lisp language  | `lisp-mode`, `slime`, `slime-company`                                                                               |
-| [lang-makefile.el](./modules/lang-makefile.el)         | Makefile support      | `makefile-mode`                                                                                                     |
-| [lang-php.el](./modules/lang-php.el)                   | PHP language          | `php-mode`, `php-extras`                                                                                            |
-| [lang-python.el](./modules/lang-python.el)             | Python language       | `python-mode`, `elpy`                                                                                               |
-| [lang-ruby.el](./modules/lang-ruby.el)                 | Ruby language         | `ruby-mode`, `inf-ruby`, `robe`, `rubocop`, `ruby-tools`, `yard-mode`                                               |
-| [lang-text.el](./modules/lang-text.el)                 | Text based languages  | `dockerfile-mode`, `dotenv-mode`, `json-mode`, `markdown-mode`, `flymd`, `terraform-mode`, `toml-mode`, `yaml-mode` |
-| [lang-web.el](./modules/lang-web.el)                   | Web languages family  | `htmlize`, `scss-mode`, `web-mode`                                                                                  |
-| [look-modeline.el](./modules/look-modeline.el)         | Modeline theme        |                                                                                                                     |
-| [look-theme.el](./modules/look-theme.el)               | Theme                 | `all-the-icons`, `all-the-icons-dired`                                                                              |
+| Key              | Function                           | Description                                              |
+|------------------|------------------------------------|----------------------------------------------------------|
+| **Defaults**     |                                    |                                                          |
+| `C-S-f`          | `imenu`                            |                                                          |
+| `M-g`            | `goto-line`                        |                                                          |
+| `C-c r`          | `comment-dwim`                     |                                                          |
+| `M-/`            | `hippie-expand`                    |                                                          |
+| `C-c C-b`        | `ibuffer`                          |                                                          |
+| **Windows**      |                                    |                                                          |
+| `C-o`            | `other-window`                     |                                                          |
+| `C-x 2`          | `split-window-and-switch`          | Split window horizontally and switch to the new one      |
+| `C-x 3`          | `split-window-and-switch`          | Split window vertically and switch to the new one        |
+| **Edit**         |                                    |                                                          |
+| `C-c C-u`        | `string-inflection-all-cycle`      | Switch between camel case, snake case, ...               |
+| `C-S-c C-S-c`    | `mc/edit-lines`                    | Multicursors edit                                        |
+| **Search**       |                                    |                                                          |
+| `M-%`            | `anzu-query-replace`               |                                                          |
+| `C-M-%`          | `anzu-query-replace-regexp`        |                                                          |
+| **Git**          |                                    |                                                          |
+| `C-c g m`        | `git-messenger:popup-message`      |                                                          |
+| `C-c g v`        | `git-messenger:popup-show-verbose` |                                                          |
+| **Files**        |                                    |                                                          |
+| `C-c f t`        | `neotree-toggle`                   |                                                          |
+| `C-c f p`        | `neotree-project-dir`              | Move to the project root directory (requires Projectile) |
+| `C-c f h`        | `neotree-hidden-file-toggle`       |                                                          |
+| **Projects**     |                                    |                                                          |
+| `C-c p p`        | `projectile-switch-project`        |                                                          |
+| `C-c p D`        | `projectile-dired`                 |                                                          |
+| `C-c p f`        | `projectile-find-file`             |                                                          |
+| `C-c p s g`      | `projectile-grep`                  |                                                          |
+| `C-c p C-f`      | `projectile-find-regexp`           |                                                          |
+| `C-c p r`        | `projectile-replace`               |                                                          |
+| `C-c p C-r`      | `projectile-replace-regexp`        |                                                          |
+| `C-c p v`        | `projectile-vc`                    | Run `vc-dir` on the project root directory               |
+| `C-c p R`        | `projectile-regenerate-tags`       |                                                          |
+| `C-c p j`        | `projectile-find-tag`              |                                                          |
+| **Visual helps** |                                    |                                                          |
+| `C-c v p`        | `toggle-show-paren-mode-style`     | Switch style from parenthesis to expression              |
+| `C-c v i`        | `toggle-fill-column-indicator`     |                                                          |
+| `C-c v f`        | `toggle-focus-mode`                |                                                          |
+| `C-c v l`        | `toggle-linenum-mode`              |                                                          |
+| `C-c v c`        | `toggle-rainbow-mode`              |                                                          |
+| `C-c v w`        | `toggle-whitespace-mode-style`     | Switch style from minimal to very verbose                |
+
+### Workflows
+
+Some useful features and workflow are described in this dedicated [document](./workflows.md).

@@ -13,11 +13,6 @@
 
 (use-package markdown-mode :ensure t)
 
-(use-package flymd :ensure t
-  :config (setq flymd-output-directory "/tmp"
-                flymd-close-buffer-delete-temp-files t)
-  :bind (("C-c m p" . flymd-flyit)))
-
 (use-package terraform-mode :ensure t)
 
 (use-package toml-mode :ensure t :defer t)

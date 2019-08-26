@@ -1,13 +1,13 @@
-;;; feat-completion.el --- Completion feature -*- lexical-binding: t; -*-
+;;; init-completion.el --- Completion init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 14:55:33>
+;; Time-stamp: <2019-08-22 15:18:37>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(use-package company :ensure t :diminish
+(use-package company :ensure t
   :init (progn
           (global-company-mode)
           (setq company-auto-complete nil
@@ -24,6 +24,6 @@
                                     company-dabbrev
                                     company-dabbrev-code)))))
 
-(provide 'feat-completion)
+(provide 'init-completion)
 
-;;; feat-completion.el ends here
+;;; init-completion.el ends here

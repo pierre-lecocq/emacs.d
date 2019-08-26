@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-12 18:00:11>
+;; Time-stamp: <2019-08-26 16:14:03>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -28,6 +28,7 @@
       large-file-warning-threshold 100000000 ; 100MB
       debug-on-error t
       frame-title-format "%b (%m) - %F"
+      auto-revert-verbose nil
       inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
@@ -81,7 +82,6 @@
   (require 'use-package))
 
 (use-package bind-key :ensure t :demand t)
-(use-package diminish :ensure t :demand t)
 
 ;; -- Keybindings --------------------------------------------------------------
 
@@ -100,7 +100,6 @@
 (global-set-key (kbd "M-/") 'hippie-expand)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-o") 'other-window)
-(global-set-key [f12] 'toggle-rot13-mode)
 
 (defun bind-split-window-and-switch (kbd-seq func)
   "Bind KBD-SEQ to split window FUNC and switch to the newly opened."
@@ -112,28 +111,41 @@
 (bind-split-window-and-switch "C-x 2" 'split-window-vertically)
 (bind-split-window-and-switch "C-x 3" 'split-window-horizontally)
 
-(use-package which-key :demand t :ensure t :diminish
+;; (use-package keyfreq :ensure t
+;;   :config (progn
+;;             (keyfreq-mode 1)
+;;             (keyfreq-autosave-mode 1)))
+
+(use-package which-key :demand t :ensure t
   :config (which-key-mode 1))
 
 ;; -- Utils --------------------------------------------------------------------
 
-(use-package aggressive-indent :ensure t :diminish
+(use-package aggressive-indent :ensure t
   :config (setq aggressive-indent-excluded-modes
                 (append aggressive-indent-excluded-modes '(html-mode
                                                            sql-mode
                                                            web-mode)))
   :hook (prog-mode . global-aggressive-indent-mode))
 
-(use-package anzu :ensure t :diminish
+(use-package anzu :ensure t
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
   :config (global-anzu-mode)
   :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
 
-(use-package autopair :ensure t :diminish
+(use-package autopair :ensure t
   :config (autopair-global-mode t))
 
-(use-package editorconfig :ensure t :diminish
+(use-package dired :ensure nil :demand t
+  :init (setq dired-recursive-copies 'always
+              dired-recursive-deletes 'always
+              delete-by-moving-to-trash t
+              dired-listing-switches "-aFlv"
+              wdired-allow-to-change-permissions t
+              wdired-create-parent-directories t))
+
+(use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
 
 (use-package epa-file :ensure nil :demand t
@@ -144,12 +156,7 @@
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
 
-(use-package fill-column-indicator :ensure t :diminish
-  :init (setq fci-rule-column 80
-              fci-rule-color "#1a1a1a")
-  :hook (prog-mode . turn-on-fci-mode))
-
-(use-package idle-highlight-mode :ensure t :diminish
+(use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
 
 (use-package ido :ensure t
@@ -177,11 +184,11 @@
   :bind (("C-c C-u" . string-inflection-all-cycle)))
 
 (use-package which-func :ensure t :demand t
-  :config (setq which-func-unknown "?")
+  :init (setq which-func-unknown "?")
   :custom-face (which-func ((t (:inherit mode-line))))
   :hook (prog-mode . which-function-mode))
 
-(use-package whitespace :demand t :ensure nil :diminish
+(use-package whitespace :demand t :ensure nil
   :init (setq whitespace-line-column 80
               whitespace-style '(tabs tab-mark face trailing))
   :hook ((prog-mode . whitespace-mode)
