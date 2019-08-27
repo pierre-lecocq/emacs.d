@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-27 09:30:20>
+;; Time-stamp: <2019-08-27 09:32:16>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -161,13 +161,6 @@
               ibuffer-use-other-window nil
               ibuffer-show-empty-filter-groups nil)
   :bind ("C-x C-b" . ibuffer))
-
-(use-package ibuffer-projectile :ensure t
-  :hook (ibuffer-mode . (lambda ()
-                          (ibuffer-auto-mode 1)
-                          (ibuffer-projectile-set-filter-groups)
-                          (unless (eq ibuffer-sorting-mode 'alphabetic)
-                            (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
