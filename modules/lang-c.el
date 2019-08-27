@@ -1,6 +1,6 @@
 ;;; lang-c.el --- C language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:46:01>
+;; Time-stamp: <2019-08-27 19:00:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -18,6 +18,8 @@
 
 (defun hook-c-mode ()
   "Hook for C mode."
+  (setq c-default-style "linux"
+        c-basic-offset 4)
   (c-set-offset 'case-label '+))
 
 (add-hook 'c-mode-common-hook #'hook-c-mode)
