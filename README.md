@@ -1,7 +1,19 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-26 16:41:57>
+- Time-stamp: <2019-08-27 10:01:24>
+
+## Features
+
+- Host specific modules activation
+- Completion with `company-mode`
+- Git integration with `git-gutter` and `git-messenger`
+- Project management with `projectile`
+- Snippets integration with `yasnippet`
+- Syntax verification and linting with `flycheck`
+- File tree with `neotree`
+- Visual helps toggles
+- Supported languages: c, elisp, go, js, lisp, php, python, ruby
 
 ## Modules system
 
@@ -62,6 +74,8 @@ This file is intentionally not versioned since it varies on the different machin
 | **Search**       |                                    |                                                          |
 | `M-%`            | `anzu-query-replace`               |                                                          |
 | `C-M-%`          | `anzu-query-replace-regexp`        |                                                          |
+| **Syntax**       |                                    |                                                          |
+| `C-c s e`        | `flycheck-list-errors`             |                                                          |
 | **Git**          |                                    |                                                          |
 | `C-c g m`        | `git-messenger:popup-message`      |                                                          |
 | `C-c g v`        | `git-messenger:popup-show-verbose` |                                                          |
