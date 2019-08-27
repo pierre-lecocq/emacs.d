@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-26 16:14:03>
+;; Time-stamp: <2019-08-27 09:30:20>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -98,7 +98,6 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-/") 'hippie-expand)
-(global-set-key (kbd "C-x C-b") 'ibuffer)
 (global-set-key (kbd "C-o") 'other-window)
 
 (defun bind-split-window-and-switch (kbd-seq func)
@@ -155,6 +154,20 @@
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
+
+(use-package ibuffer :ensure nil :demand t
+  :init (setq ibuffer-expert t
+              ibuffer-display-summary nil
+              ibuffer-use-other-window nil
+              ibuffer-show-empty-filter-groups nil)
+  :bind ("C-x C-b" . ibuffer))
+
+(use-package ibuffer-projectile :ensure t
+  :hook (ibuffer-mode . (lambda ()
+                          (ibuffer-auto-mode 1)
+                          (ibuffer-projectile-set-filter-groups)
+                          (unless (eq ibuffer-sorting-mode 'alphabetic)
+                            (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
