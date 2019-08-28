@@ -2,12 +2,27 @@
 
 **Table of Contents**
 
+- [Help](#help)
 - [Isearch](#isearch)
 - [Replace](#replace)
 - [Occur](#occur)
 - [Grep and find](#grep-and-find)
 - [Dired](#dired)
 - [Todo list](#todo-list)
+
+---
+
+## Help
+
+Emacs has the most powerful internal help system. Here are a few useful commands:
+
+- `C-h a RET <pattern>` to show all commands matching a pattern
+- `C-h k <key>` to show the command bound to `<key>`
+- `C-h v <variable>` to show the documentation of `<variable>`
+- `C-h f <function>` to show the documentation of `<function>`
+- `C-h m` to show the documentation of the current major mode and all activated minor-modes
+- `C-h b` to show all the key bindings
+- `C-h e` to show the `*Messages*` buffer
 
 ---
 
