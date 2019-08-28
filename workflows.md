@@ -7,6 +7,7 @@
 - [Occur](#occur)
 - [Grep and find](#grep-and-find)
 - [Dired](#dired)
+- [Todo list](#todo-list)
 
 ---
 
@@ -151,3 +152,53 @@ Then
 - https://www.gnu.org/software/emacs/manual/html_node/emacs/Dired.html
 - https://www.youtube.com/watch?v=5dlydii7tAU
 - https://www.youtube.com/watch?v=2lF3z7H8oaI
+
+---
+
+## Todo list
+
+`M-x todo-show` runs mode to manage todo list. Files are saved in the emacs root directory.
+
+To create a new file, run `M-x todo-show` again. One file can contain several categories
+
+### Navigation
+
+- Use `n` or `p` to navigate through items
+- Use `f` or `b` to jump to the first or last item
+- Use `S` to search for items
+
+### Actions on items
+
+- `i` to insert a new item
+- `e` to edit an item
+  - `m` to add multiline comment to the item, and then `C-x C-q` to validate
+- `k` to delete an item
+- `d` to mark an item as done
+  - `v` to toggle display of items marked as done with the todo items
+  - `V` to toggle display of only items marked as done
+- `u` to unmark an item as done
+
+### Actions on multiple items
+
+- `*` to mark one item
+- `C-*` to mark all items
+- `C-u` to unmark items
+
+Then, use `k`, `d`, `m` ... actions on items
+
+### Move items
+
+- `r` or `l` to relocate an item (raise or lower)
+- `#` to relocate an item to a given index
+- `m` to move an item to a category
+
+### Categories
+
+- `j` to jump to another category or create a new one
+- `F c` to list categories with statistics
+- `r` or `l` to relocate a category (raise or lower)
+- `#` to relocate a category to a given index
+
+### References
+
+- https://www.gnu.org/software/emacs/manual/html_mono/todo-mode.html
