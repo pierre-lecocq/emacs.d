@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-08-27 10:01:24>
+- Time-stamp: <2019-08-28 14:40:44>
 
 ## Features
 
@@ -54,8 +54,6 @@ This file is intentionally not versioned since it varies on the different machin
 
 ## Cheatsheet
 
-### Keybindings
-
 | Key              | Function                           | Description                                              |
 |------------------|------------------------------------|----------------------------------------------------------|
 | **Defaults**     |                                    |                                                          |
@@ -99,7 +97,3 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c v l`        | `toggle-linenum-mode`              |                                                          |
 | `C-c v c`        | `toggle-rainbow-mode`              |                                                          |
 | `C-c v w`        | `toggle-whitespace-mode-style`     | Switch style from minimal to very verbose                |
-
-### Workflows
-
-Some useful features and workflow are described in this dedicated [document](./workflows.md).
