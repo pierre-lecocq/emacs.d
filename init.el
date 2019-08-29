@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-27 09:32:16>
+;; Time-stamp: <2019-08-29 09:14:17>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -110,15 +110,10 @@
 (bind-split-window-and-switch "C-x 2" 'split-window-vertically)
 (bind-split-window-and-switch "C-x 3" 'split-window-horizontally)
 
-;; (use-package keyfreq :ensure t
-;;   :config (progn
-;;             (keyfreq-mode 1)
-;;             (keyfreq-autosave-mode 1)))
-
 (use-package which-key :demand t :ensure t
   :config (which-key-mode 1))
 
-;; -- Utils --------------------------------------------------------------------
+;; -- Common -------------------------------------------------------------------
 
 (use-package aggressive-indent :ensure t
   :config (setq aggressive-indent-excluded-modes
