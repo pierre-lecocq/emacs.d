@@ -1,6 +1,6 @@
 ;;; init-completion.el --- Completion init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-22 15:18:37>
+;; Time-stamp: <2019-09-03 15:06:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,21 +8,23 @@
 ;;; Code:
 
 (use-package company :ensure t
-  :init (progn
-          (global-company-mode)
-          (setq company-auto-complete nil
-                company-minimum-prefix-length 2
-                company-tooltip-limit 20
-                company-idle-delay 0.5
-                company-dabbrev-downcase nil
-                company-backends '((company-files
-                                    company-keywords
-                                    company-capf
-                                    company-etags
-                                    company-gtags)
-                                   (company-abbrev
-                                    company-dabbrev
-                                    company-dabbrev-code)))))
+  :config (global-company-mode)
+  :init (setq company-auto-complete nil
+              company-minimum-prefix-length 2
+              company-tooltip-limit 20
+              company-idle-delay 0.25
+              company-dabbrev-downcase nil
+              company-backends '(company-capf
+                                 company-dabbrev
+                                 company-files
+                                 (company-dabbrev-code
+                                  company-etags
+                                  company-gtags
+                                  company-keywords))))
+
+(use-package company-quickhelp :ensure t
+  :after (company)
+  :config (company-quickhelp-mode))
 
 (provide 'init-completion)
 

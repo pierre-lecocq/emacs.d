@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-03 11:23:04>
+;; Time-stamp: <2019-09-03 15:27:44>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,7 +29,7 @@
 (setq-default mode-line-format
               '(" "
                 (:eval (if buffer-read-only
-                           (all-the-icons-faicon "lock" :height 0.8 :v-adjust 0 :face 'all-the-icons-lred)
+                           (all-the-icons-faicon "ban" :height 0.9 :v-adjust -0.1 :face 'all-the-icons-lred)
                          (if (buffer-modified-p (current-buffer))
                              (all-the-icons-faicon "hashtag" :height 0.8 :v-adjust 0 :face 'all-the-icons-lred)
                            (all-the-icons-faicon "hashtag" :height 0.8 :v-adjust 0))))
