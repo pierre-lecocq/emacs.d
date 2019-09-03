@@ -1,6 +1,6 @@
 ;;; init-project.el --- Project init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-27 09:32:55>
+;; Time-stamp: <2019-09-03 11:23:44>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:

@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-29 09:14:17>
+;; Time-stamp: <2019-09-03 11:25:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -125,8 +125,7 @@
 (use-package anzu :ensure t
   :bind (("M-%" . anzu-query-replace)
          ("C-M-%" . anzu-query-replace-regexp))
-  :config (global-anzu-mode)
-  :custom-face (anzu-mode-line ((t (:foreground "yellow")))))
+  :config (global-anzu-mode))
 
 (use-package autopair :ensure t
   :config (autopair-global-mode t))
@@ -137,7 +136,8 @@
               delete-by-moving-to-trash t
               dired-listing-switches "-aFlv"
               wdired-allow-to-change-permissions t
-              wdired-create-parent-directories t))
+              wdired-create-parent-directories t
+              dired-use-ls-dired (if (eq system-type 'darwin) nil t)))
 
 (use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
@@ -177,16 +177,21 @@
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
 
+(use-package string-inflection :ensure t
+  :bind (("C-c C-u" . string-inflection-all-cycle)))
+
 (use-package time-stamp :ensure t :demand t
   :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
   :hook (before-save . time-stamp))
 
-(use-package string-inflection :ensure t
-  :bind (("C-c C-u" . string-inflection-all-cycle)))
+(use-package uniquify :ensure nil :demand t
+  :init (setq uniquify-buffer-name-style 'forward
+              uniquify-separator "/"
+              uniquify-after-kill-buffer-p t
+              uniquify-ignore-buffers-re "^\\*"))
 
 (use-package which-func :ensure t :demand t
   :init (setq which-func-unknown "?")
-  :custom-face (which-func ((t (:inherit mode-line))))
   :hook (prog-mode . which-function-mode))
 
 (use-package whitespace :demand t :ensure nil
@@ -196,11 +201,16 @@
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
 
-;; -- Modules ------------------------------------------------------------------
+;; -- Modules and themes -------------------------------------------------------
 
-(let ((host-file (expand-file-name "host.el" user-emacs-directory)))
+(let ((host-file (expand-file-name "host.el" user-emacs-directory))
+      (modules-dir (expand-file-name "modules/" user-emacs-directory))
+      (themes-dir (expand-file-name "themes/" user-emacs-directory)))
+  (when (file-directory-p modules-dir)
+    (add-to-list 'load-path modules-dir))
+  (when (file-directory-p themes-dir)
+    (add-to-list 'custom-theme-load-path themes-dir))
   (when (file-exists-p host-file)
-    (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
     (load-file host-file)))
 
 ;;; init.el ends here

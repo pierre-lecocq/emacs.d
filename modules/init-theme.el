@@ -1,11 +1,47 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-26 16:08:51>
+;; Time-stamp: <2019-09-03 11:23:04>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+;; Themes
+
+(load-theme 'dark t)
+
+(defvar themes-candidates '(dark light))
+
+(defun switch-theme ()
+  "Switch theme."
+  (interactive)
+  (let* ((cur (pop themes-candidates))
+         (next (car themes-candidates)))
+    (disable-theme cur)
+    (load-theme next t)
+    (setq themes-candidates (append themes-candidates `(,cur)))))
+
+(global-set-key (kbd "C-c v t") 'switch-theme)
+
+;; Modeline
+
+(setq-default mode-line-format
+              '(" "
+                (:eval (if buffer-read-only
+                           (all-the-icons-faicon "lock" :height 0.8 :v-adjust 0 :face 'all-the-icons-lred)
+                         (if (buffer-modified-p (current-buffer))
+                             (all-the-icons-faicon "hashtag" :height 0.8 :v-adjust 0 :face 'all-the-icons-lred)
+                           (all-the-icons-faicon "hashtag" :height 0.8 :v-adjust 0))))
+                " "
+                (:eval (when (projectile-project-p)
+                         (propertize (projectile-project-name) 'face 'bold)))
+                (:eval (when vc-mode
+                         (propertize (string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode)) 'face 'bold)))
+                " %b  (%l:%c)  "
+                (:eval '(which-function-mode ("" which-func-format "")))))
+
+;; Frame
 
 (if (eq system-type 'darwin)
     (toggle-frame-fullscreen)
@@ -17,48 +53,19 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-;; Colors
-
-(set-background-color "#1a1a1a")
-(set-foreground-color "#fafafa")
-(set-face-background 'region "DodgerBlue")
-(set-face-foreground 'font-lock-comment-face "#6a6a6a")
-(set-face-foreground 'font-lock-string-face "#ff6666")
-(set-face-background hl-line-face "#2a2a2a")
-(set-face-background 'vertical-border "#4a4a4a")
-(set-face-foreground 'vertical-border (face-background 'vertical-border))
-
 ;; Fringe
 
 (setq-default left-fringe-width 20
               right-fringe-width 20)
-
-(set-face-attribute 'fringe nil
-                    :foreground (face-foreground 'default)
-                    :background (face-background 'default))
-
-;; Modeline
-
-(set-face-background 'mode-line "#2a2a2a")
-(set-face-foreground 'mode-line "#eaeaea")
-(set-face-background 'mode-line-inactive "#2a2a2a")
-(set-face-foreground 'mode-line-inactive "#8a8a8a")
-(set-face-attribute 'mode-line-inactive nil :box '(:style pressed-button))
-
-(use-package minions :ensure t
-  :init (setq minions-mode-line-lighter "..."
-              minions-direct '(flyspell-mode projectile-mode))
-  :config (minions-mode 1))
 
 ;; Icons
 
 (use-package all-the-icons :ensure t) ;; Run `M-x all-the-icons-install-fonts'
 
 (use-package all-the-icons-dired :ensure t
-  :custom-face (all-the-icons-dired-dir-face ((t (:foreground nil))))
   :hook (dired-mode . all-the-icons-dired-mode))
 
-;; Visual help
+;; Visual help toggles
 
 (defmacro toggle-that-mode (mode)
   "Toggle MODE."

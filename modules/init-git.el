@@ -1,6 +1,6 @@
 ;;; init-git.el --- Git init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-26 16:02:24>
+;; Time-stamp: <2019-09-02 16:53:30>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,8 +8,8 @@
 ;;; Code:
 
 (use-package git-gutter :ensure t
-  :config (global-git-gutter-mode +1)
-  :custom-face (git-gutter:modified ((t (:foreground "yellow")))))
+  :init (setq git-gutter:modified-sign "~")
+  :config (global-git-gutter-mode +1))
 
 (use-package git-messenger :ensure t
   :init (setq git-messenger:show-detail t)
