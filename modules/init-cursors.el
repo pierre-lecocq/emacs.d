@@ -1,6 +1,6 @@
-;;; init-multicursors.el --- Multi cursors init -*- lexical-binding: t; -*-
+;;; init-cursors.el --- Multi cursors init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-08-22 15:19:02>
+;; Time-stamp: <2019-09-09 10:55:12>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,6 +11,6 @@
   :init (setq mc/list-file (expand-file-name ".local/files/mc-lists.el" user-emacs-directory))
   :bind (("C-S-c C-S-c" . mc/edit-lines)))
 
-(provide 'init-multicursors)
+(provide 'init-cursors)
 
-;;; init-multicursors.el ends here
+;;; init-cursors.el ends here

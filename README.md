@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-09-03 11:31:57>
+- Time-stamp: <2019-09-09 10:54:53>
 
 ## Features
 
@@ -30,8 +30,8 @@ This file is intentionally not versioned since it varies on the different machin
 
 ;; Features
 (require 'init-completion)
+(require 'init-cursors)
 (require 'init-git)
-(require 'init-multicursors)
 (require 'init-neotree)
 (require 'init-project)
 (require 'init-snippets)
