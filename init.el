@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-11 11:09:25>
+;; Time-stamp: <2019-09-11 14:54:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -139,7 +139,8 @@
               dired-listing-switches "-aFlv"
               wdired-allow-to-change-permissions t
               wdired-create-parent-directories t
-              dired-use-ls-dired (if (eq system-type 'darwin) nil t)))
+              dired-use-ls-dired (if (eq system-type 'darwin) nil t))
+  :hook (dired-mode . (lambda () (text-scale-adjust 1.5))))
 
 (use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
