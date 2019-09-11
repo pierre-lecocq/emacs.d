@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-11 15:48:33>
+;; Time-stamp: <2019-09-11 17:56:48>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -79,6 +79,12 @@
 
 (setq-default left-fringe-width 20
               right-fringe-width 20)
+
+(defun set-padding (padd)
+  "Add PADD padding to the current frame."
+  (interactive (list (string-to-number (read-from-minibuffer "Padding: "))))
+  (set-frame-parameter (selected-frame) 'internal-border-width (or padd 0))
+  (redraw-display))
 
 ;; Icons
 
