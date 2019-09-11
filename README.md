@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-09-09 10:54:53>
+- Time-stamp: <2019-09-11 15:48:12>
 
 ## Features
 
@@ -95,7 +95,8 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c v i`         | `toggle-fill-column-indicator`     |                                                          |
 | `C-c v f`         | `toggle-focus-mode`                |                                                          |
 | `C-c v l`         | `toggle-linenum-mode`              |                                                          |
-| `C-c v c`         | `toggle-rainbow-mode`              |                                                          |
+| `C-c v b`         | `toggle-rainbow-mode`              |                                                          |
+| `C-c v c`         | `toggle-centered-window-mode`      |                                                          |
 | `C-c v w`         | `toggle-whitespace-mode-style`     | Switch style from minimal to very verbose                |
 | **Visual themes** |                                    |                                                          |
 | `C-c v t`         | `switch-theme`                     | Cycle themes (dark and light)                            |

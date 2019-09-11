@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-09 10:51:48>
+;; Time-stamp: <2019-09-11 15:48:33>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -137,7 +137,16 @@
   (interactive)
   (toggle-that-mode rainbow-mode))
 
-(global-set-key (kbd "C-c v c") 'toggle-rainbow-mode)
+(global-set-key (kbd "C-c v b") 'toggle-rainbow-mode)
+
+(use-package centered-window :ensure t)
+
+(defun toggle-centered-window-mode ()
+  "Toggle `centered-window-mode'."
+  (interactive)
+  (toggle-that-mode centered-window-mode))
+
+(global-set-key (kbd "C-c v c") 'toggle-centered-window-mode)
 
 (defun toggle-whitespace-mode-style ()
   "Toggle `whitespace-mode' style."
