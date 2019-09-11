@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-03 11:25:09>
+;; Time-stamp: <2019-09-11 11:09:25>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -42,6 +42,8 @@
       show-trailing-whitespace t
       select-enable-clipboard t
       scroll-conservatively 100
+      ffap-machine-p-known 'reject
+      ffap-machine-p-unknown 'reject
       user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com"
       custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
