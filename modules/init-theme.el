@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-11 17:56:48>
+;; Time-stamp: <2019-09-12 23:41:55>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,15 +29,7 @@
 (setq-default mode-line-format
               '(" "
                 ;; Buffer status
-                (:eval (when (fboundp 'all-the-icons-faicon)
-                         (all-the-icons-faicon
-                          (if buffer-read-only "ban" "hashtag")
-                          :height 0.9
-                          :v-adjust -0.1
-                          :face (if (or buffer-read-only
-                                        (buffer-modified-p (current-buffer)))
-                                    'all-the-icons-lred
-                                  'mode-line))))
+                "%*"
                 ;; Project
                 (:eval (when (fboundp 'projectile-project-p)
                          (when (projectile-project-p)

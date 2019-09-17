@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-11 14:54:22>
+;; Time-stamp: <2019-09-12 23:48:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -140,7 +140,8 @@
               wdired-allow-to-change-permissions t
               wdired-create-parent-directories t
               dired-use-ls-dired (if (eq system-type 'darwin) nil t))
-  :hook (dired-mode . (lambda () (text-scale-adjust 1.5))))
+  ;; :hook (dired-mode . (lambda () (text-scale-adjust 1.2)))
+  )
 
 (use-package editorconfig :ensure t
   :hook (prog-mode . editorconfig-mode))
