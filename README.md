@@ -1,13 +1,13 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-09-11 15:48:12>
+- Time-stamp: <2019-09-17 09:36:32>
 
 ## Features
 
 - Host specific modules activation
 - Completion with `company-mode`
-- Git integration with `git-gutter` and `git-messenger`
+- Git integration with `git-gutter`, `git-messenger` and `magit`
 - Project management with `projectile`
 - Snippets integration with `yasnippet`
 - Syntax verification and linting with `flycheck`

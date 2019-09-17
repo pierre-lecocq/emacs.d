@@ -1,6 +1,6 @@
 ;;; init-git.el --- Git init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-17 08:28:50>
+;; Time-stamp: <2019-09-17 09:36:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,7 +19,8 @@
 (use-package magit :ensure t
   :init (setq transient-history-file (expand-file-name ".local/files/transient-history.el" user-emacs-directory)
               transient-levels-file (expand-file-name ".local/files/transient-levels.el" user-emacs-directory)
-              transient-values-file (expand-file-name ".local/files/transient-values.el" user-emacs-directory)))
+              transient-values-file (expand-file-name ".local/files/transient-values.el" user-emacs-directory))
+  :bind (("C-c g s" . magit-status)))
 
 (provide 'init-git)
 
