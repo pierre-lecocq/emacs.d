@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-12 23:41:55>
+;; Time-stamp: <2019-09-18 08:37:32>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,10 +31,12 @@
                 ;; Buffer status
                 "%*"
                 ;; Project
-                (:eval (when (fboundp 'projectile-project-p)
-                         (when (projectile-project-p)
-                           (concat "  " (propertize (projectile-project-name)
-                                                    'face 'bold)))))
+                (:eval (when (and (fboundp 'projectile-project-p)
+                                  (projectile-project-p)
+                                  (or (derived-mode-p 'prog-mode)
+                                      (derived-mode-p 'text-mode)))
+                         (concat "  " (propertize (projectile-project-name)
+                                                  'face 'bold))))
                 ;; Git branch
                 (:eval (when vc-mode
                          (propertize (string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
@@ -47,7 +49,7 @@
                 ;; Line, column, position
                 "  (%l:%c %p)  "
                 ;; Which func
-                (:eval (when  (derived-mode-p 'prog-mode)
+                (:eval (when (derived-mode-p 'prog-mode)
                          '(which-func-mode ("" which-func-format ""))))
                 (:eval (propertize " "
                                    'display `((space :align-to (- (+ right right-fringe right-margin)
