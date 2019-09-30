@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-09-17 09:36:32>
+- Time-stamp: <2019-09-30 08:53:05>
 
 ## Features
 
@@ -77,6 +77,7 @@ This file is intentionally not versioned since it varies on the different machin
 | **Git**           |                                    |                                                          |
 | `C-c g m`         | `git-messenger:popup-message`      |                                                          |
 | `C-c g v`         | `git-messenger:popup-show-verbose` |                                                          |
+| `C-c g s`         | `magit-status`                     |                                                          |
 | **Files**         |                                    |                                                          |
 | `C-c f t`         | `neotree-toggle`                   |                                                          |
 | `C-c f p`         | `neotree-project-dir`              | Move to the project root directory (requires Projectile) |
