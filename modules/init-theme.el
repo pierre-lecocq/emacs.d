@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-18 08:37:32>
+;; Time-stamp: <2019-10-01 14:20:27>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -56,6 +56,8 @@
                                                                   ,(+ 2 (string-width mode-name)))))))
                 ;; Major mode
                 (:eval (propertize "%m" 'face 'bold))))
+
+(advice-add 'c-update-modeline :around #'ignore) ;; This prevents options and minor modes hints to be appended to major mode name (i.e c-toggle-comment-style)
 
 ;; Frame
 
