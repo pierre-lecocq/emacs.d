@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-12 23:48:15>
+;; Time-stamp: <2019-10-01 14:42:26>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -84,6 +84,7 @@
   (require 'use-package))
 
 (use-package bind-key :ensure t :demand t)
+(use-package diminish :ensure t :demand t)
 
 ;; -- Keybindings --------------------------------------------------------------
 
@@ -96,7 +97,6 @@
     (global-set-key (kbd "M-h") 'ns-do-hide-emacs)))
 
 (global-set-key [delete] 'delete-char)
-(global-set-key (kbd "C-S-f") 'imenu)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-/") 'hippie-expand)

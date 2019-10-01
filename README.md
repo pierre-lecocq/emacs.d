@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-09-30 08:53:05>
+- Time-stamp: <2019-10-01 14:50:45>
 
 ## Features
 
@@ -12,6 +12,7 @@
 - Snippets integration with `yasnippet`
 - Syntax verification and linting with `flycheck`
 - File tree with `neotree`
+- Buffer navigation with `imenu` and `imenu-list`
 - Visual helps toggles
 - Supported languages: c, elisp, go, js, lisp, php, python, ruby
 
@@ -32,6 +33,7 @@ This file is intentionally not versioned since it varies on the different machin
 (require 'init-completion)
 (require 'init-cursors)
 (require 'init-git)
+(require 'init-imenu)
 (require 'init-neotree)
 (require 'init-project)
 (require 'init-snippets)
@@ -57,7 +59,6 @@ This file is intentionally not versioned since it varies on the different machin
 | Key               | Function                           | Description                                              |
 |-------------------|------------------------------------|----------------------------------------------------------|
 | **Defaults**      |                                    |                                                          |
-| `C-S-f`           | `imenu`                            |                                                          |
 | `M-g`             | `goto-line`                        |                                                          |
 | `C-c r`           | `comment-dwim`                     |                                                          |
 | `M-/`             | `hippie-expand`                    |                                                          |
@@ -82,6 +83,9 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c f t`         | `neotree-toggle`                   |                                                          |
 | `C-c f p`         | `neotree-project-dir`              | Move to the project root directory (requires Projectile) |
 | `C-c f h`         | `neotree-hidden-file-toggle`       |                                                          |
+| **Imenu**         |                                    |                                                          |
+| `C-c i m`         | `imenu`                            |                                                          |
+| `C-c i l`         | `imenu-list`                       |                                                          |
 | **Projects**      |                                    |                                                          |
 | `C-c p p`         | `projectile-switch-project`        |                                                          |
 | `C-c p D`         | `projectile-dired`                 |                                                          |
