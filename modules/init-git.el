@@ -1,6 +1,6 @@
 ;;; init-git.el --- Git init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-17 09:36:09>
+;; Time-stamp: <2019-10-09 08:28:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,6 +21,12 @@
               transient-levels-file (expand-file-name ".local/files/transient-levels.el" user-emacs-directory)
               transient-values-file (expand-file-name ".local/files/transient-values.el" user-emacs-directory))
   :bind (("C-c g s" . magit-status)))
+
+(use-package dired-git-info :ensure t
+  :config (progn
+            (setq dgi-commit-message-format "%h %s\t%cr\t%an")
+            (with-eval-after-load 'dired
+              (define-key dired-mode-map "?" 'dired-git-info-mode))))
 
 (provide 'init-git)
 

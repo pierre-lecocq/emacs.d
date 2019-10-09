@@ -1,13 +1,13 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-10-01 14:50:45>
+- Time-stamp: <2019-10-09 08:27:02>
 
 ## Features
 
 - Host specific modules activation
 - Completion with `company-mode`
-- Git integration with `git-gutter`, `git-messenger` and `magit`
+- Git integration with `git-gutter`, `git-messenger`, `dired-git-info` and `magit`
 - Project management with `projectile`
 - Snippets integration with `yasnippet`
 - Syntax verification and linting with `flycheck`
@@ -79,6 +79,7 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c g m`         | `git-messenger:popup-message`      |                                                          |
 | `C-c g v`         | `git-messenger:popup-show-verbose` |                                                          |
 | `C-c g s`         | `magit-status`                     |                                                          |
+| `?`               | `dired-git-info-mode`              | in `dired` buffers                                       |
 | **Files**         |                                    |                                                          |
 | `C-c f t`         | `neotree-toggle`                   |                                                          |
 | `C-c f p`         | `neotree-project-dir`              | Move to the project root directory (requires Projectile) |
