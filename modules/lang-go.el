@@ -1,11 +1,13 @@
 ;;; lang-go.el --- Go language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:46:14>
+;; Time-stamp: <2019-10-11 10:30:25>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;; - go get -u golang.org/x/lint/golint
+;; - go get -u github.com/nsf/gocode
+;; - go get -u github.com/rogpeppe/godef
 
 ;;; Code:
 
