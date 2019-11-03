@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-11-03 18:00:17>
+;; Time-stamp: <2019-11-03 18:13:44>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -31,7 +31,8 @@
       auto-revert-verbose nil
       inhibit-splash-screen t
       inhibit-startup-message t
-      initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
+      initial-major-mode 'markdown-mode
+      initial-scratch-message (format "# Scratch - Started on %s\n\n" (current-time-string))
       load-prefer-newer t
       auto-save-default nil
       auto-save-list-file-prefix nil
