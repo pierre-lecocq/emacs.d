@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-10-01 14:42:26>
+;; Time-stamp: <2019-11-03 18:00:17>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -180,6 +180,9 @@
               ido-use-filename-at-point 'guess
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
+
+(use-package persistent-scratch :ensure t
+  :config (persistent-scratch-setup-default))
 
 (use-package string-inflection :ensure t
   :bind (("C-c C-u" . string-inflection-all-cycle)))
