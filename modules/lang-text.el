@@ -29,6 +29,12 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
+(defun markdown-insert-timestamp-header (arg)
+  "Insert timstamp ARG level header in a mardown document."
+  (interactive "P")
+  (let ((arg (if arg arg 1)))
+    (insert (format "%s %s\n" (make-string arg ?#) (current-time-string)))))
+
 (provide 'lang-text)
 
 ;;; lang-text.el ends here
