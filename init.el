@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-11-03 18:13:44>
+;; Time-stamp: <2019-11-19 11:34:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -183,6 +183,7 @@
               ido-vertical-show-count t))
 
 (use-package persistent-scratch :ensure t
+  :init (setq persistent-scratch-save-file (expand-file-name ".local/files/scratch" user-emacs-directory))
   :config (persistent-scratch-setup-default))
 
 (use-package string-inflection :ensure t
