@@ -11,7 +11,8 @@
 
 (use-package json-mode :ensure t)
 
-(use-package markdown-mode :ensure t)
+(use-package markdown-mode :ensure t
+  :bind (("C-c C-t d" . markdown-insert-header-date)))
 
 (use-package markdown-toc :ensure t
   :after (markdown-mode))
@@ -29,7 +30,7 @@
 
 (add-hook 'text-mode-hook #'hook-text-mode)
 
-(defun markdown-insert-timestamp-header (arg)
+(defun markdown-insert-header-date (arg)
   "Insert timstamp ARG level header in a mardown document."
   (interactive "P")
   (let ((arg (if arg arg 1)))
