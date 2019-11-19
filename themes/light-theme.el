@@ -1,6 +1,6 @@
 ;;; light-theme.el --- Light theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-03 11:22:09>
+;; Time-stamp: <2019-11-19 10:55:58>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,6 +15,7 @@
       (region-bg                "#87CEFF") ;; SkyBlue1
       (comment-fg               "#6A6A6A")
       (hl-line-bg               "#F2F2F2")
+      (hl-indent-line-bg        "#E2E2E2")
       (string-fg                "#DD6666")
       (mode-line-bg             "#F2F2F2")
       (mode-line-fg             "#4A4A4A")
@@ -43,7 +44,9 @@
    `(git-gutter:added ((,class (:foreground ,git-gutter-added-fg))))
    `(git-gutter:modified ((,class (:foreground ,git-gutter-modified-fg))))
    `(git-gutter:deleted ((,class (:foreground ,git-gutter-deleted-fg))))
-   `(all-the-icons-dired-dir-face ((,class (:foreground nil))))))
+   `(all-the-icons-dired-dir-face ((,class (:foreground nil))))
+   `(highlight-indentation-face ((,class (:background ,hl-indent-line-bg))))
+   `(highlight-indentation-current-column-face ((,class (:background ,hl-indent-line-bg))))))
 
 ;;;###autoload
 (when load-file-name

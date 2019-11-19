@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-11-03 18:05:35>
+- Time-stamp: <2019-11-19 10:30:37>
 
 ## Features
 
@@ -100,6 +100,7 @@ This file is intentionally not versioned since it varies on the different machin
 | **Visual helps**  |                                    |                                                          |
 | `C-c v p`         | `toggle-show-paren-mode-style`     | Switch style from parenthesis to expression              |
 | `C-c v i`         | `toggle-fill-column-indicator`     |                                                          |
+| `C-c v h`         | `toggle-highlight-indentation`     |                                                          |
 | `C-c v f`         | `toggle-focus-mode`                |                                                          |
 | `C-c v l`         | `toggle-linenum-mode`              |                                                          |
 | `C-c v b`         | `toggle-rainbow-mode`              |                                                          |

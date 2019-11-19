@@ -1,6 +1,6 @@
 ;;; dark-theme.el --- Darky theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-03 09:46:34>
+;; Time-stamp: <2019-11-19 10:54:12>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,6 +15,7 @@
       (region-bg                "#1E90FF") ;; DodgerBlue
       (comment-fg               "#6A6A6A")
       (hl-line-bg               "#2A2A2A")
+      (hl-indent-line-bg        "#3A3A3A")
       (string-fg                "#FF6666")
       (mode-line-bg             "#2A2A2A")
       (mode-line-fg             "#EAEAEA")
@@ -39,7 +40,9 @@
    `(ido-subdir ((t (:inherit (dired-directory)))))
    `(ido-only-match ((t (:foreground ,default-fg :weight bold))))
    `(git-gutter:modified ((,class (:foreground ,git-gutter-modified-fg))))
-   `(all-the-icons-dired-dir-face ((,class (:foreground nil))))))
+   `(all-the-icons-dired-dir-face ((,class (:foreground nil))))
+   `(highlight-indentation-face ((,class (:background ,hl-indent-line-bg))))
+   `(highlight-indentation-current-column-face ((,class (:background ,hl-indent-line-bg))))))
 
 ;;;###autoload
 (when load-file-name

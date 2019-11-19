@@ -1,6 +1,6 @@
 ;;; init-theme.el --- Theme init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-10-01 14:20:27>
+;; Time-stamp: <2019-11-19 10:45:34>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -61,9 +61,11 @@
 
 ;; Frame
 
-(if (eq system-type 'darwin)
-    (toggle-frame-fullscreen)
-  (toggle-frame-maximized))
+;; (if (eq system-type 'darwin)
+;;     (toggle-frame-fullscreen)
+;;   (toggle-frame-maximized))
+
+(toggle-frame-maximized)
 
 (when (and window-system
            (eq system-type 'darwin)
@@ -115,6 +117,13 @@
   (toggle-that-mode fci-mode))
 
 (global-set-key (kbd "C-c v i") 'toggle-fill-column-indicator)
+
+(defun toggle-highlight-indentation ()
+  "Toggle `highlight-indentation'."
+  (interactive)
+  (toggle-that-mode highlight-indentation-mode))
+
+(global-set-key (kbd "C-c v h") 'toggle-highlight-indentation)
 
 (use-package focus :ensure t)
 
