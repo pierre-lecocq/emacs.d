@@ -1,6 +1,6 @@
 ;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-11-12 10:50:49>
+;; Time-stamp: <2019-11-28 10:08:55>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -32,6 +32,7 @@
 (defun hook-js2-mode ()
   "Hook for js2 mode."
   (setq-default tab-width 2)
+  (setq js-indent-level 2)
 
   (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
   (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
