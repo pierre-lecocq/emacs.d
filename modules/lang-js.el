@@ -1,12 +1,13 @@
 ;;; lang-js.el --- Javascript language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-11-28 10:08:55>
+;; Time-stamp: <2019-12-02 10:35:40>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;; - brew install the_silver_searcher
-;; - sudo npm install -g tern
+;; - npm i -g javascript-typescript-langserver
+;; - npm i -g tern
 
 ;;; Code:
 
