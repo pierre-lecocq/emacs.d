@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-11-19 10:30:37>
+- Time-stamp: <2019-12-02 08:44:17>
 
 ## Features
 
@@ -66,8 +66,8 @@ This file is intentionally not versioned since it varies on the different machin
 | `C-c C-b`         | `ibuffer`                          |                                                          |
 | **Windows**       |                                    |                                                          |
 | `C-o`             | `other-window`                     |                                                          |
-| `C-x 2`           | `split-window-and-switch`          | Split window horizontally and switch to the new one      |
-| `C-x 3`           | `split-window-and-switch`          | Split window vertically and switch to the new one        |
+| `C-x 2`           | `split-window-below`               | Adviced to switch to the new window                      |
+| `C-x 3`           | `split-window-right`               | Adviced to switch to the new window                      |
 | **Edit**          |                                    |                                                          |
 | `C-c C-u`         | `string-inflection-all-cycle`      | Switch between camel case, snake case, ...               |
 | `C-S-c C-S-c`     | `mc/edit-lines`                    | Multicursors edit                                        |
