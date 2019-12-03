@@ -1,9 +1,12 @@
 ;;; init-lsp.el --- LSP support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-02 13:50:55>
+;; Time-stamp: <2019-12-02 14:30:07>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
+
+;; Ruby:   gem install solargraph
+;; JS:     npm i -g javascript-typescript-langserver
 
 ;;; Code:
 

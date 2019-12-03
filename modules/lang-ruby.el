@@ -1,10 +1,12 @@
 ;;; lang-ruby.el --- Ruby language support -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-06-03 11:47:16>
+;; Time-stamp: <2019-12-02 14:29:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
+;; gem install solargraph
+;;
 ;; - Start inf with `M-x inf-ruby-console-auto`
 ;; - Start robe with `M-x robe-start`
 ;;
