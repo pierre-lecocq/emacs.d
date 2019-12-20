@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs config -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-02 08:37:32>
+;; Time-stamp: <2019-12-18 23:19:34>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -47,8 +47,8 @@
       ffap-machine-p-unknown 'reject
       user-full-name "Pierre Lecocq"
       user-mail-address "pierre.lecocq@gmail.com"
-      custom-file (expand-file-name ".local/files/custom.el" user-emacs-directory)
-      nsm-settings-file (expand-file-name ".local/files/network-security.data" user-emacs-directory))
+      custom-file (expand-file-name ".cache/custom.el" user-emacs-directory)
+      nsm-settings-file (expand-file-name ".cache/network-security.data" user-emacs-directory))
 
 (setq locale-coding-system 'utf-8)
 (set-language-environment 'utf-8)
@@ -67,7 +67,7 @@
 (require 'package)
 
 (setq package-enable-at-startup nil
-      package-user-dir (expand-file-name ".local/packages" user-emacs-directory)
+      package-user-dir (expand-file-name ".cache/packages" user-emacs-directory)
       package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
@@ -168,7 +168,7 @@
             (ido-mode t)
             (ido-hacks-mode)
             (ido-vertical-mode))
-  :init (setq ido-save-directory-list-file (expand-file-name ".local/files/ido.el" user-emacs-directory)
+  :init (setq ido-save-directory-list-file (expand-file-name ".cache/ido.el" user-emacs-directory)
               ido-case-fold t
               ido-enable-flex-matching t
               ido-use-filename-at-point 'guess
@@ -176,7 +176,7 @@
               ido-vertical-show-count t))
 
 (use-package persistent-scratch :ensure t
-  :init (setq persistent-scratch-save-file (expand-file-name ".local/files/scratch" user-emacs-directory))
+  :init (setq persistent-scratch-save-file (expand-file-name ".cache/scratch" user-emacs-directory))
   :config (persistent-scratch-setup-default))
 
 (use-package string-inflection :ensure t

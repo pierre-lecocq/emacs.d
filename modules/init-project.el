@@ -1,6 +1,6 @@
 ;;; init-project.el --- Project init -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-09-03 11:23:44>
+;; Time-stamp: <2019-12-03 10:19:04>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 
 (use-package projectile :ensure t
   :init (setq projectile-project-search-path '("~/src/")
-              projectile-known-projects-file (expand-file-name ".local/files/projectile-bookmarks.eld" user-emacs-directory))
+              projectile-known-projects-file (expand-file-name ".cache/projectile-bookmarks.eld" user-emacs-directory))
   :config (progn
             (projectile-mode +1)
             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
