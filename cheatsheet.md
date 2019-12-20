@@ -10,6 +10,7 @@
 - [Grep and find](#grep-and-find)
 - [Dired](#dired)
 - [Todo list](#todo-list)
+- [Ruby development](#ruby-development)
 
 ---
 
@@ -28,12 +29,52 @@ brew linkapps emacs-plus
 ### Dependencies
 
 ```sh
-brew install composer node ctags the_silver_searcher aspell gnutls
-npm i -g tern javascript-typescript-langserver intelephense
+brew install ctags the_silver_searcher aspell gnutls
+```
+
+For Lisp
+
+```sh
+brew install sbcl
+
+curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
+sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
+     --eval '(quicklisp-quickstart:install :path "~/.quicklisp")' \
+     --eval '(ql:add-to-init-file)' \
+     --quit
+
+sbcl --eval '(ql:quickload :quicklisp-slime-helper)' --quit
+```
+
+For Ruby
+
+```sh
 gem install solargraph pry pry-doc
+```
+
+For Go
+
+```sh
+go get -u golang.org/x/lint/golint
+go get -u github.com/nsf/gocode
+go get -u github.com/rogpeppe/godef
+```
+
+For PHP
+
+```sh
+brew install composer node
+npm i -g intelephense
 composer global require "squizlabs/php_codesniffer=*"
 ln -s ~/.composer/vendor/bin/phpcs ~/bin/phpcs
 ln -s ~/.composer/vendor/bin/phpcbf ~/bin/phpcbf
+```
+
+For Javascript
+
+```
+brew install node
+npm i -g tern javascript-typescript-langserver
 ```
 
 ---
@@ -243,3 +284,45 @@ Then, use `k`, `d`, `m` ... actions on items
 ### References
 
 - https://www.gnu.org/software/emacs/manual/html_mono/todo-mode.html
+
+---
+
+## Ruby Development
+
+### Gemfile
+
+In `Genfile`, make sure to have
+
+```
+group :development do
+  # Required by flycheck
+  gem 'rubocop'
+  gem 'ruby-lint'
+
+  # Required by robe-mode
+  gem 'method_source'
+  gem 'pry'
+  gem 'pry-doc'
+end
+```
+
+### Pry
+
+In `~/.pryrc`, make sure to have
+
+```
+if ENV['INSIDE_EMACS']
+  Pry.config.correct_indent = false
+  Pry.config.pager = false
+end
+
+Pry.config.editor = ENV['VISUAL']
+```
+
+### Lanch the REPL
+
+Run `inf-ruby-console-auto`
+
+### References
+
+- https://dev.to/thiagoa/ruby-and-emacs-tip-advanced-pry-integration-33bk
