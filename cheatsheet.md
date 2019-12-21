@@ -18,6 +18,24 @@
 
 ### Emacs
 
+#### GNU/Linux
+
+```
+sudo apt-get build-dep -y emacs25
+
+sudo apt-get install -y \
+     aspell \
+     aspell-en \
+     aspell-fr \
+     fonts-inconsolata \
+     mailutils
+
+git clone --depth=1 git://git.savannah.gnu.org/emacs.git $HOME/emacs.src
+cd $HOME/emacs.src && ./autogen.sh && ./configure && make && sudo make install
+```
+
+When launching Emacs the first time (at the packages install), if an error regarding the packages signatures is encontered, follow the instructions on the [elpa page](https://elpa.gnu.org/packages/gnu-elpa-keyring-update.html).
+
 #### Mac OS X
 
 ```sh
@@ -29,13 +47,13 @@ brew linkapps emacs-plus
 ### Dependencies
 
 ```sh
-brew install ctags the_silver_searcher aspell gnutls
+[apt-get | brew] install ctags the_silver_searcher aspell gnutls
 ```
 
 For Lisp
 
 ```sh
-brew install sbcl
+[apt-get | brew] install sbcl
 
 curl -o /tmp/ql.lisp http://beta.quicklisp.org/quicklisp.lisp
 sbcl --no-sysinit --no-userinit --load /tmp/ql.lisp \
@@ -63,7 +81,7 @@ go get -u github.com/rogpeppe/godef
 For PHP
 
 ```sh
-brew install composer node
+[apt-get | brew] install composer node
 npm i -g intelephense
 composer global require "squizlabs/php_codesniffer=*"
 ln -s ~/.composer/vendor/bin/phpcs ~/bin/phpcs
@@ -73,7 +91,7 @@ ln -s ~/.composer/vendor/bin/phpcbf ~/bin/phpcbf
 For Javascript
 
 ```
-brew install node
+[apt-get | brew] install node
 npm i -g tern javascript-typescript-langserver
 ```
 
