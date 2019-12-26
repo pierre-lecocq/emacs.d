@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-26 22:30:28>
+;; Time-stamp: <2019-12-26 22:55:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -282,6 +282,12 @@
   :config (progn
             (projectile-mode +1)
             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+
+(use-package ibuffer-projectile :ensure t
+  :after projectile
+  :hook (ibuffer-mode . (lambda ()
+                          (ibuffer-auto-mode 1)
+                          (ibuffer-projectile-set-filter-groups))))
 
 ;; -- Snippets -----------------------------------------------------------------
 
