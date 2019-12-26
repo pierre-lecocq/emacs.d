@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-26 22:15:31>
+;; Time-stamp: <2019-12-26 22:30:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -161,6 +161,13 @@
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
+
+(use-package ibuffer :ensure nil :demand t
+  :init (setq ibuffer-expert t
+              ibuffer-display-summary nil
+              ibuffer-use-other-window nil
+              ibuffer-show-empty-filter-groups nil)
+  :bind ("C-x C-b" . ibuffer))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
