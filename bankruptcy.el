@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-20 11:01:24>
+;; Time-stamp: <2019-12-26 22:15:31>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -118,8 +118,13 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(use-package darkokai-theme :ensure t
-  :config (load-theme 'darkokai t))
+(use-package modus-operandi-theme :ensure t
+  :config (progn
+            (load-theme 'modus-operandi t)
+            (global-hl-line-mode -1)))
+
+;; (use-package darkokai-theme :ensure t
+;;   :config (load-theme 'darkokai t))
 
 (use-package minions :ensure t
   :init (setq minions-mode-line-lighter "..."
