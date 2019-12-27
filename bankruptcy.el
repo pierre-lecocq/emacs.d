@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-20 11:01:24>
+;; Time-stamp: <2019-12-26 22:55:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -118,8 +118,13 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(use-package darkokai-theme :ensure t
-  :config (load-theme 'darkokai t))
+(use-package modus-operandi-theme :ensure t
+  :config (progn
+            (load-theme 'modus-operandi t)
+            (global-hl-line-mode -1)))
+
+;; (use-package darkokai-theme :ensure t
+;;   :config (load-theme 'darkokai t))
 
 (use-package minions :ensure t
   :init (setq minions-mode-line-lighter "..."
@@ -156,6 +161,13 @@
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
   :config (exec-path-from-shell-initialize))
+
+(use-package ibuffer :ensure nil :demand t
+  :init (setq ibuffer-expert t
+              ibuffer-display-summary nil
+              ibuffer-use-other-window nil
+              ibuffer-show-empty-filter-groups nil)
+  :bind ("C-x C-b" . ibuffer))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
@@ -270,6 +282,12 @@
   :config (progn
             (projectile-mode +1)
             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+
+(use-package ibuffer-projectile :ensure t
+  :after projectile
+  :hook (ibuffer-mode . (lambda ()
+                          (ibuffer-auto-mode 1)
+                          (ibuffer-projectile-set-filter-groups))))
 
 ;; -- Snippets -----------------------------------------------------------------
 
