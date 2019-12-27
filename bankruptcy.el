@@ -1,11 +1,14 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-26 22:55:09>
+;; Time-stamp: <2019-12-27 18:34:31>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
+
+(add-hook 'emacs-startup-hook (lambda ()
+                                (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
