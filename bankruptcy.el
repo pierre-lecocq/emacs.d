@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-28 22:04:07>
+;; Time-stamp: <2019-12-28 22:20:16>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -319,7 +319,7 @@
   :after company
   :config (progn
             (yas-global-mode 1)
-            (add-to-list 'company-backends 'company-robe)))
+            (add-to-list 'company-backends 'company-yasnippet)))
 
 (use-package yasnippet-snippets :ensure t
   :after yasnippet)
