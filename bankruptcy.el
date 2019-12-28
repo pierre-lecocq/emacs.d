@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-28 22:20:16>
+;; Time-stamp: <2019-12-28 22:32:25>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,7 +13,7 @@
       '(column-number-mode
         global-auto-revert-mode
         global-font-lock-mode
-        global-hl-line-mode
+        ;; global-hl-line-mode
         global-subword-mode
         line-number-mode
         show-paren-mode))
@@ -117,13 +117,23 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(use-package modus-operandi-theme :ensure t
-  :config (progn
-            (load-theme 'modus-operandi t)
-            (global-hl-line-mode -1)))
+(defvar themes-candidates '(darkokai modus-operandi))
 
-;; (use-package darkokai-theme :ensure t
-;;   :config (load-theme 'darkokai t))
+(defun switch-theme ()
+  "Switch theme."
+  (interactive)
+  (let* ((cur (pop themes-candidates))
+         (next (car themes-candidates)))
+    (disable-theme cur)
+    (load-theme next t)
+    (setq themes-candidates (append themes-candidates `(,cur)))))
+
+(global-set-key (kbd "C-c v t") 'switch-theme)
+
+(use-package darkokai-theme :ensure t
+  :config (load-theme 'darkokai t))
+
+(use-package modus-operandi-theme :ensure t)
 
 (use-package minions :ensure t
   :init (setq minions-mode-line-lighter "..."
