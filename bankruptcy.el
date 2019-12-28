@@ -1,15 +1,11 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-28 17:25:09>
+;; Time-stamp: <2019-12-28 22:04:07>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -172,6 +168,10 @@
               ibuffer-show-empty-filter-groups nil)
   :bind ("C-x C-b" . ibuffer))
 
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
+
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
 
@@ -283,9 +283,9 @@
 
 (use-package git-gutter :ensure t
   :config (global-git-gutter-mode +1)
-  :custom (git-gutter:added-sign " ")
-  (git-gutter:modified-sign " ")
-  (git-gutter:deleted-sign " "))
+  :custom ((git-gutter:added-sign " ")
+           (git-gutter:modified-sign " ")
+           (git-gutter:deleted-sign " ")))
 
 (use-package git-messenger :ensure t
   :init (setq git-messenger:show-detail t)
