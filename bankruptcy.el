@@ -1,14 +1,15 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-27 18:34:31>
+;; Time-stamp: <2019-12-28 17:25:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(add-hook 'emacs-startup-hook (lambda ()
-                                (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -34,8 +35,7 @@
       auto-revert-verbose nil
       inhibit-splash-screen t
       inhibit-startup-message t
-      initial-major-mode 'markdown-mode
-      initial-scratch-message (format "# Scratch - Started on %s\n\n" (current-time-string))
+      initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
       load-prefer-newer t
       auto-save-default nil
       auto-save-list-file-prefix nil
@@ -215,6 +215,27 @@
   :hook ((prog-mode . whitespace-mode)
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
+
+;; -- Persistent notes ---------------------------------------------------------
+
+(defun open-persistent-notes-buffer ()
+  "Open persistent notes buffer."
+  (interactive)
+  (let ((buf (get-buffer-create "*notes*")))
+    (switch-to-buffer buf)
+    (markdown-mode)
+    (ignore-errors
+      (persistent-scratch-restore))))
+
+(defun persistent-notes-buffer-p ()
+  "Return non-nil if the current buffer's name is *notes*."
+  (string= (buffer-name) "*notes*"))
+
+(use-package persistent-scratch :ensure t
+  :custom ((persistent-scratch-save-file (expand-file-name ".cache/persistent-notes" user-emacs-directory))
+           (persistent-scratch-scratch-buffer-p-function #'persistent-notes-buffer-p))
+  :config (add-hook 'kill-emacs-hook #'persistent-scratch-save)
+  :bind ("C-c n" . open-persistent-notes-buffer))
 
 ;; -- Multicursors -------------------------------------------------------------
 
