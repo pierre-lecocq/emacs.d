@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-28 22:37:15>
+;; Time-stamp: <2019-12-29 13:55:39>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -201,6 +201,9 @@
               ido-use-filename-at-point 'guess
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
+
+(use-package string-inflection :ensure t
+  :bind (("C-c C-u" . string-inflection-all-cycle)))
 
 (use-package time-stamp :ensure t :demand t
   :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
