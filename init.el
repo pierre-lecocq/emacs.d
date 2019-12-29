@@ -1,6 +1,6 @@
-;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
+;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-29 13:59:40>
+;; Time-stamp: <2019-12-29 14:16:08>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -670,4 +670,4 @@
 
 (global-set-key (kbd "C-c v w") 'toggle-whitespace-mode-style)
 
-;;; full-bankrupcy.el ends here
+;;; init.el ends here
