@@ -1,110 +1,66 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-12-02 08:44:17>
+- Time-stamp: <2019-12-29 13:59:48>
 
 ## Features
 
-- Host specific modules activation
-- Completion with `company-mode`
-- Git integration with `git-gutter`, `git-messenger`, `dired-git-info` and `magit`
-- Project management with `projectile`
-- Snippets integration with `yasnippet`
-- Syntax verification and linting with `flycheck`
-- File tree with `neotree`
-- Buffer navigation with `imenu` and `imenu-list`
-- Persistent scratch buffer with `persistent-scratch`
+- Language server protocol support (`lsp-mode`)
+- Completion (`company-mode`)
+- Git integration (`magit`, `git-gutter`, `git-messenger`)
+- Project management (`projectile`)
+- Files tree (`treemacs`)
+- Snippets (`yasnippet`)
+- Syntax checking (`flycheck`)
+- Buffer navigation (`imenu`, `imenu-list`)
+- Persistent buffer (`persistent-scratch`)
 - Visual helps toggles
 - Supported languages: c, elisp, go, js, lisp, php, python, ruby
 
-## Modules system
-
-Create a `host.el` file to automatically load available [modules](./modules/) for this specific host.
-This file is intentionally not versioned since it varies on the different machines used.
-
-**Full example**:
-
-```
-;; File: host.el
-
-;; Look and feel
-(require 'init-theme)
-
-;; Features
-(require 'init-completion)
-(require 'init-cursors)
-(require 'init-git)
-(require 'init-imenu)
-(require 'init-neotree)
-(require 'init-project)
-(require 'init-snippets)
-(require 'init-syntax)
-
-;; Programming languages
-(require 'lang-c)
-(require 'lang-elisp)
-(require 'lang-go)
-(require 'lang-http)
-(require 'lang-js)
-(require 'lang-lisp)
-(require 'lang-makefile)
-(require 'lang-php)
-(require 'lang-python)
-(require 'lang-ruby)
-(require 'lang-text)
-(require 'lang-web)
-```
-
 ## Cheatsheet
 
-| Key               | Function                           | Description                                              |
-|-------------------|------------------------------------|----------------------------------------------------------|
-| **Defaults**      |                                    |                                                          |
-| `M-g`             | `goto-line`                        |                                                          |
-| `C-c r`           | `comment-dwim`                     |                                                          |
-| `M-/`             | `hippie-expand`                    |                                                          |
-| `C-c C-b`         | `ibuffer`                          |                                                          |
-| **Windows**       |                                    |                                                          |
-| `C-o`             | `other-window`                     |                                                          |
-| `C-x 2`           | `split-window-below`               | Adviced to switch to the new window                      |
-| `C-x 3`           | `split-window-right`               | Adviced to switch to the new window                      |
-| **Edit**          |                                    |                                                          |
-| `C-c C-u`         | `string-inflection-all-cycle`      | Switch between camel case, snake case, ...               |
-| `C-S-c C-S-c`     | `mc/edit-lines`                    | Multicursors edit                                        |
-| **Search**        |                                    |                                                          |
-| `M-%`             | `anzu-query-replace`               |                                                          |
-| `C-M-%`           | `anzu-query-replace-regexp`        |                                                          |
-| **Syntax**        |                                    |                                                          |
-| `C-c s e`         | `flycheck-list-errors`             |                                                          |
-| **Git**           |                                    |                                                          |
-| `C-c g m`         | `git-messenger:popup-message`      |                                                          |
-| `C-c g v`         | `git-messenger:popup-show-verbose` |                                                          |
-| `C-c g s`         | `magit-status`                     |                                                          |
-| `?`               | `dired-git-info-mode`              | in `dired` buffers                                       |
-| **Files**         |                                    |                                                          |
-| `C-c f t`         | `neotree-toggle`                   |                                                          |
-| `C-c f p`         | `neotree-project-dir`              | Move to the project root directory (requires Projectile) |
-| `C-c f h`         | `neotree-hidden-file-toggle`       |                                                          |
-| **Imenu**         |                                    |                                                          |
-| `C-c i m`         | `imenu`                            |                                                          |
-| `C-c i l`         | `imenu-list`                       |                                                          |
-| **Projects**      |                                    |                                                          |
-| `C-c p p`         | `projectile-switch-project`        |                                                          |
-| `C-c p D`         | `projectile-dired`                 |                                                          |
-| `C-c p f`         | `projectile-find-file`             |                                                          |
-| `C-c p s g`       | `projectile-grep`                  |                                                          |
-| `C-c p r`         | `projectile-replace`               |                                                          |
-| `C-c p v`         | `projectile-vc`                    | Run `vc-dir` on the project root directory               |
-| `C-c p R`         | `projectile-regenerate-tags`       |                                                          |
-| `C-c p j`         | `projectile-find-tag`              |                                                          |
-| **Visual helps**  |                                    |                                                          |
-| `C-c v p`         | `toggle-show-paren-mode-style`     | Switch style from parenthesis to expression              |
-| `C-c v i`         | `toggle-fill-column-indicator`     |                                                          |
-| `C-c v h`         | `toggle-highlight-indentation`     |                                                          |
-| `C-c v f`         | `toggle-focus-mode`                |                                                          |
-| `C-c v l`         | `toggle-linenum-mode`              |                                                          |
-| `C-c v b`         | `toggle-rainbow-mode`              |                                                          |
-| `C-c v c`         | `toggle-centered-window-mode`      |                                                          |
-| `C-c v w`         | `toggle-whitespace-mode-style`     | Switch style from minimal to very verbose                |
-| **Visual themes** |                                    |                                                          |
-| `C-c v t`         | `switch-theme`                     | Cycle themes (dark and light)                            |
+| Key               | Function                           | Description                                 |
+|-------------------|------------------------------------|---------------------------------------------|
+| **Defaults**      |                                    |                                             |
+| `M-g`             | `goto-line`                        |                                             |
+| `C-c r`           | `comment-dwim`                     |                                             |
+| `M-/`             | `hippie-expand`                    |                                             |
+| `C-c C-b`         | `ibuffer`                          |                                             |
+| **Windows**       |                                    |                                             |
+| `C-o`             | `other-window`                     |                                             |
+| `C-x 2`           |                                    | Adviced to switch to the new window         |
+| `C-x 3`           |                                    | Adviced to switch to the new window         |
+| **Edit**          |                                    |                                             |
+| `C-c C-u`         | `string-inflection-all-cycle`      | Switch between camel case, snake case, ...  |
+| `C-S-c C-S-c`     | `mc/edit-lines`                    | Multicursors edit                           |
+| **Search**        |                                    |                                             |
+| `M-%`             | `anzu-query-replace`               |                                             |
+| `C-M-%`           | `anzu-query-replace-regexp`        |                                             |
+| **Syntax**        |                                    |                                             |
+| `C-c s e`         | `flycheck-list-errors`             |                                             |
+| **Files tree**    |                                    |                                             |
+| `C-c f t`         | `treemacs`                         |                                             |
+| **Git**           |                                    |                                             |
+| `C-c g m`         | `git-messenger:popup-message`      |                                             |
+| `C-c g v`         | `git-messenger:popup-show-verbose` |                                             |
+| `C-c g s`         | `magit-status`                     |                                             |
+| **Imenu**         |                                    |                                             |
+| `C-c i m`         | `imenu`                            |                                             |
+| `C-c i l`         | `imenu-list`                       |                                             |
+| **Projects**      |                                    |                                             |
+| `C-c p p`         | `projectile-switch-project`        |                                             |
+| `C-c p D`         | `projectile-dired`                 |                                             |
+| `C-c p f`         | `projectile-find-file`             |                                             |
+| `C-c p s g`       | `projectile-grep`                  |                                             |
+| `C-c p r`         | `projectile-replace`               |                                             |
+| `C-c p v`         | `projectile-vc`                    | Run `vc-dir` on the project root directory  |
+| `C-c p R`         | `projectile-regenerate-tags`       |                                             |
+| `C-c p j`         | `projectile-find-tag`              |                                             |
+| **Visual helps**  |                                    |                                             |
+| `C-c v p`         | `toggle-show-paren-mode-style`     | Switch style from parenthesis to expression |
+| `C-c v i`         | `toggle-fill-column-indicator`     |                                             |
+| `C-c v h`         | `toggle-highlight-indentation`     |                                             |
+| `C-c v l`         | `toggle-linenum-mode`              |                                             |
+| `C-c v w`         | `toggle-whitespace-mode-style`     | Switch style from minimal to very verbose   |
+| **Visual themes** |                                    |                                             |
+| `C-c v t`         | `switch-theme`                     | Cycle themes (`darkokai`, `modus-operandi`) |
