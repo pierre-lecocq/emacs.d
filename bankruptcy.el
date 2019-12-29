@@ -1,6 +1,6 @@
 ;;; full-bankruptcy.el --- Declare bankruptcy -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-29 13:55:39>
+;; Time-stamp: <2019-12-29 13:59:40>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -228,6 +228,23 @@
   :hook ((prog-mode . whitespace-mode)
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
+
+;; -- File tree ----------------------------------------------------------------
+
+(use-package treemacs :ensure t :defer t
+  :config (progn
+            (treemacs-follow-mode t)
+            (treemacs-filewatch-mode t)
+            (treemacs-fringe-indicator-mode t)
+            (treemacs-git-mode 'deferred)
+            (treemacs-resize-icons 16))
+  :bind (("C-c f t" . treemacs)))
+
+(use-package treemacs-projectile :ensure t
+  :after treemacs projectile)
+
+(use-package treemacs-magit :ensure t
+  :after treemacs magit)
 
 ;; -- Persistent notes ---------------------------------------------------------
 
