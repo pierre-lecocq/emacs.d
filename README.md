@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-12-29 13:59:48>
+- Time-stamp: <2019-12-29 14:03:51>
 
 ## Features
 
@@ -17,7 +17,7 @@
 - Visual helps toggles
 - Supported languages: c, elisp, go, js, lisp, php, python, ruby
 
-## Cheatsheet
+## Keybindings
 
 | Key               | Function                           | Description                                 |
 |-------------------|------------------------------------|---------------------------------------------|

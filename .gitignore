@@ -1,3 +1,2 @@
-.persistent-scratch
-host.el
+elpa/
 .cache/
