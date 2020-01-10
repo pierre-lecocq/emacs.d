@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2019-12-29 14:03:51>
+- Time-stamp: <2020-01-10 23:05:24>
 
 ## Features
 
@@ -9,7 +9,6 @@
 - Completion (`company-mode`)
 - Git integration (`magit`, `git-gutter`, `git-messenger`)
 - Project management (`projectile`)
-- Files tree (`treemacs`)
 - Snippets (`yasnippet`)
 - Syntax checking (`flycheck`)
 - Buffer navigation (`imenu`, `imenu-list`)
@@ -38,8 +37,6 @@
 | `C-M-%`           | `anzu-query-replace-regexp`        |                                             |
 | **Syntax**        |                                    |                                             |
 | `C-c s e`         | `flycheck-list-errors`             |                                             |
-| **Files tree**    |                                    |                                             |
-| `C-c f t`         | `treemacs`                         |                                             |
 | **Git**           |                                    |                                             |
 | `C-c g m`         | `git-messenger:popup-message`      |                                             |
 | `C-c g v`         | `git-messenger:popup-show-verbose` |                                             |

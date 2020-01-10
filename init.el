@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2019-12-29 14:16:08>
+;; Time-stamp: <2020-01-10 23:05:55>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -229,23 +229,6 @@
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
 
-;; -- File tree ----------------------------------------------------------------
-
-(use-package treemacs :ensure t :defer t
-  :config (progn
-            (treemacs-follow-mode t)
-            (treemacs-filewatch-mode t)
-            (treemacs-fringe-indicator-mode t)
-            (treemacs-git-mode 'deferred)
-            (treemacs-resize-icons 16))
-  :bind (("C-c f t" . treemacs)))
-
-(use-package treemacs-projectile :ensure t
-  :after treemacs projectile)
-
-(use-package treemacs-magit :ensure t
-  :after treemacs magit)
-
 ;; -- Persistent notes ---------------------------------------------------------
 
 (defun open-persistent-notes-buffer ()
@@ -390,7 +373,6 @@
   (setq indent-tabs-mode t))
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
-
 
 ;; -- Lang: C ------------------------------------------------------------------
 
