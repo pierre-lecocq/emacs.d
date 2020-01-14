@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-01-10 23:05:55>
+;; Time-stamp: <2020-01-14 08:50:19>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -178,9 +178,9 @@
               ibuffer-show-empty-filter-groups nil)
   :bind ("C-x C-b" . ibuffer))
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
+;; (add-hook 'emacs-startup-hook
+;;           (lambda ()
+;;             (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
@@ -497,7 +497,8 @@
   :config (progn
             (setq python-indent-offset 4)
             (when (fboundp 'flycheck-mode)
-              (setq elpy-modules (delq 'elpy-module-flymake elpy-modules)))))
+              (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+              (add-hook 'elpy-mode-hook 'flycheck-mode))))
 
 ;; -- Lang: JavaScript ---------------------------------------------------------
 
