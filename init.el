@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-01-25 21:06:54>
+;; Time-stamp: <2020-01-25 21:07:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -358,6 +358,7 @@
                 lsp-ui-peek-list-width 60
                 lsp-ui-peek-peek-height 25
                 lsp-ui-sideline-enable nil)
+  :custom (persistent-scratch-save-file (expand-file-name ".cache/lsp-cache" user-emacs-directory))
   :hook (lsp-mode . lsp-ui-mode))
 
 (use-package company-lsp :ensure t
