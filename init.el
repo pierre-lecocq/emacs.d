@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-01-14 08:50:19>
+;; Time-stamp: <2020-01-25 21:06:54>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -87,7 +87,6 @@
 (setq package-enable-at-startup nil
       package-user-dir (expand-file-name ".cache/packages" user-emacs-directory)
       package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("melpa-stable" . "https://stable.melpa.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
 
