@@ -2,3 +2,4 @@ init.elc
 elpa/
 .cache/
 elpy/
+request/
