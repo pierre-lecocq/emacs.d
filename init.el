@@ -139,6 +139,18 @@
               minions-mode-line-delimiters '("" . ""))
   :config (minions-mode 1))
 
+;; -- Windows ------------------------------------------------------------------
+
+(use-package window :no-require t
+  :init (setq display-buffer-alist
+              '(("\\*e?shell.*"
+                 (display-buffer-in-side-window)
+                 (window-height . 0.25)
+                 (side . bottom)
+                 (slot . 0))
+                ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
+                 (display-buffer-pop-up-frame)))))
+
 ;; -- Utils --------------------------------------------------------------------
 
 (use-package anzu :ensure t
