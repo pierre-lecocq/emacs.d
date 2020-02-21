@@ -417,26 +417,6 @@
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
-;; -- Lang: c ------------------------------------------------------------------
-
-(use-package cc-mode :ensure t
-  :config (setq gdb-many-windows t
-                gdb-show-main t))
-
-(use-package company-c-headers :ensure t
-  :after company
-  :init (progn
-          (add-to-list 'company-backends 'company-cmake)
-          (add-to-list 'company-backends 'company-c-headers)))
-
-(defun hook-c-mode ()
-  "Hook for C mode."
-  (setq c-default-style "linux"
-        c-basic-offset 4)
-  (c-set-offset 'case-label '+))
-
-(add-hook 'c-mode-common-hook #'hook-c-mode)
-
 ;; -- Lang: Common Lisp --------------------------------------------------------
 
 (use-package slime-company :ensure t :defer t
