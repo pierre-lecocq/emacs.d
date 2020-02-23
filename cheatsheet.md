@@ -4,6 +4,7 @@
 
 - [Install](#install)
 - [Help](#help)
+- [Movement](#movement)
 - [Isearch](#isearch)
 - [Replace](#replace)
 - [Occur](#occur)
@@ -108,6 +109,22 @@ Emacs has the most powerful internal help system. Here are a few useful commands
 - `C-h m` to show the documentation of the current major mode and all activated minor-modes
 - `C-h b` to show all the key bindings
 - `C-h e` to show the `*Messages*` buffer
+
+---
+
+## Movement
+
+- `C-f`/`C-b` to move a character forward/backward (can be `C-u` prefixed)
+- `M-f`/`M-b` to move a word forward/backward (can be `C-u` prefixed)
+
+- `C-n`/`C-p` to move a line forward/backward (can be `C-u` prefixed)
+
+- `C-a`/`C-e` to move to the begining/end of the line
+
+- `C-v`/`M-v` to jump one screen forward/backward
+- `C-l` to center the screen at point
+
+- `M-<`/`M->` to jump to the begining/end of the file
 
 ---
 
