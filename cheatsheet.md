@@ -121,6 +121,8 @@ Emacs has the most powerful internal help system. Here are a few useful commands
 
 - `C-a`/`C-e` to move to the begining/end of the line
 
+- `M-a`/`M-e` to move to the begining/end of the paragraph
+
 - `C-v`/`M-v` to jump one screen forward/backward
 - `C-l` to center the screen at point
 
