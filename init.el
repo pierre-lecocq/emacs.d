@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-01-25 21:07:22>
+;; Time-stamp: <2020-03-17 22:50:37>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -109,8 +109,8 @@
 (toggle-frame-maximized)
 
 (when (and window-system
-           (eq system-type 'darwin)
-           (not (version< emacs-version "26.1")))
+           (eq system-type 'darwin))
+  (menu-bar-mode 1)
   (setq frame-title-format nil
         ns-use-proxy-icon nil)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
@@ -149,7 +149,7 @@
                  (side . bottom)
                  (slot . 0))
                 ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
-                 (display-buffer-pop-up-frame)))))
+                 (display-buffer-in-side-window)))))
 
 ;; -- Utils --------------------------------------------------------------------
 
@@ -188,10 +188,6 @@
               ibuffer-use-other-window nil
               ibuffer-show-empty-filter-groups nil)
   :bind ("C-x C-b" . ibuffer))
-
-;; (add-hook 'emacs-startup-hook
-;;           (lambda ()
-;;             (setq ibuffer-idle-timer (run-with-idle-timer 120 t 'ibuffer))))
 
 (use-package idle-highlight-mode :ensure t
   :hook (prog-mode . idle-highlight-mode))
@@ -261,12 +257,6 @@
   :config (add-hook 'kill-emacs-hook #'persistent-scratch-save)
   :bind ("C-c n" . open-persistent-notes-buffer))
 
-;; -- Multicursors -------------------------------------------------------------
-
-(use-package multiple-cursors :ensure t
-  :init (setq mc/list-file (expand-file-name ".cache/mc-lists.el" user-emacs-directory))
-  :bind (("C-S-c C-S-c" . mc/edit-lines)))
-
 ;; -- Imenu --------------------------------------------------------------------
 
 (use-package imenu :ensure t
@@ -281,21 +271,16 @@
 (use-package company :ensure t
   :config (global-company-mode)
   :init (setq company-auto-complete nil
-              company-minimum-prefix-length 2
+              company-minimum-prefix-length 1
               company-tooltip-limit 20
               company-idle-delay 0.25
               company-dabbrev-downcase nil
-              ;; company-backends
-              ;; '((company-dabbrev-code company-gtags company-etags company-keywords)
-              ;;   company-files company-capf company-dabbrev)
+              ;; company-backends '((company-dabbrev-code company-gtags company-etags company-keywords)
+              ;;                    company-files company-capf company-dabbrev)
               ))
 
 (use-package company-quickhelp :ensure t
-  :after company
   :config (company-quickhelp-mode))
-
-(use-package company-shell :ensure t
-  :after company)
 
 ;; -- Syntax -------------------------------------------------------------------
 
@@ -341,43 +326,29 @@
 
 (use-package yasnippet :ensure t
   :after company
-  :config (progn
-            (yas-global-mode 1)
-            (add-to-list 'company-backends 'company-yasnippet)))
+  :config (yas-global-mode 1))
 
 (use-package yasnippet-snippets :ensure t
   :after yasnippet)
 
-;; -- LSP ----------------------------------------------------------------------
+;; -- File tree ----------------------------------------------------------------
 
-(use-package lsp-mode :ensure t
-  ;; :hook ((js2-mode . lsp)
-  ;;        (php-mode . lsp))
-  :commands lsp
-  :config (setq lsp-prefer-flymake nil
-                lsp-session-file (expand-file-name ".cache/lsp-session.el" user-emacs-directory)))
+(use-package treemacs :ensure t :defer t
+  :config (progn
+            (treemacs-follow-mode t)
+            (treemacs-filewatch-mode t)
+            (treemacs-fringe-indicator-mode t)
+            (treemacs-git-mode 'deferred)
+            (treemacs-resize-icons 16))
+  :bind (("C-c f t" . treemacs)))
 
-(use-package lsp-ui :ensure t
-  :requires lsp-mode flycheck
-  :config (setq lsp-ui-flycheck-enable t
-                lsp-ui-flycheck-list-position 'right
-                lsp-ui-flycheck-live-reporting t
-                lsp-ui-doc-enable t
-                lsp-ui-doc-use-childframe t
-                lsp-ui-doc-position 'top
-                lsp-ui-doc-include-signature t
-                lsp-ui-peek-enable t
-                lsp-ui-peek-list-width 60
-                lsp-ui-peek-peek-height 25
-                lsp-ui-sideline-enable nil)
-  :custom (persistent-scratch-save-file (expand-file-name ".cache/lsp-cache" user-emacs-directory))
-  :hook (lsp-mode . lsp-ui-mode))
+(use-package treemacs-projectile :ensure t
+  :after (treemacs projectile))
 
-(use-package company-lsp :ensure t
-  :after (company lsp)
-  :config (add-to-list 'company-backends 'company-lsp))
+(use-package treemacs-magit :ensure t
+  :after (treemacs magit))
 
-;; -- Lang: Makefile -----------------------------------------------------------
+;; -- Makefile -----------------------------------------------------------------
 
 (defun hook-makefile-mode ()
   "Hook for Makefile mode."
@@ -386,7 +357,7 @@
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
 
-;; -- Lang: C ------------------------------------------------------------------
+;; -- C ------------------------------------------------------------------------
 
 (use-package cc-mode :ensure t
   :config (setq gdb-many-windows t
@@ -405,7 +376,7 @@
 
 (add-hook 'c-mode-common-hook #'hook-c-mode)
 
-;; -- Lang: elisp --------------------------------------------------------------
+;; -- Emacs lisp ---------------------------------------------------------------
 
 (use-package eros :ensure t)
 
@@ -417,7 +388,7 @@
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
-;; -- Lang: Common Lisp --------------------------------------------------------
+;; -- Common Lisp --------------------------------------------------------------
 
 (use-package slime-company :ensure t :defer t
   :after company)
@@ -447,7 +418,7 @@
 (add-hook 'lisp-mode-hook #'hook-lisp-mode)
 (add-hook 'inferior-lisp-mode-hook #'hook-inferior-lisp-mode)
 
-;; -- Lang: Ruby ---------------------------------------------------------------
+;; -- Ruby ---------------------------------------------------------------------
 
 (use-package inf-ruby :ensure t :defer t
   :hook (ruby-mode . inf-ruby-minor-mode))
@@ -481,7 +452,7 @@
 (use-package yard-mode :ensure t
   :hook (ruby-mode . yard-mode))
 
-;; Lang: Python ----------------------------------------------------------------
+;; -- Python -------------------------------------------------------------------
 
 (use-package elpy :ensure t :defer t
   :init (advice-add 'python-mode :before 'elpy-enable)
@@ -492,70 +463,7 @@
               (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
               (add-hook 'elpy-mode-hook 'flycheck-mode))))
 
-;; -- Lang: JavaScript ---------------------------------------------------------
-
-(use-package js2-mode :ensure t
-  :requires (rjsx-mode company-mode company-tern)
-  :mode (("\\.js\\'" . js2-mode))
-  :hook (js2-mode . (lambda ()
-                      (setq-default tab-width 2)
-                      (setq js-indent-level 2)
-                      (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-                      (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
-                      (js2-imenu-extras-mode)
-                      (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
-                      (define-key js-mode-map (kbd "M-.") nil)
-                      (setq-default js2-show-parse-errors nil)
-                      (setq-default js2-strict-missing-semi-warning nil)
-                      (setq-default js2-strict-trailing-comma-warning t)
-                      (tern-mode t))))
-
-(use-package rjsx-mode :ensure t
-  :mode (("components\\/.*\\.js\\'" . rjsx-mode)))
-
-(use-package company-tern :ensure t
-  :after company
-  :config (progn
-            (add-to-list 'company-backends 'company-tern)
-            ;; Disable completion keybindings, as we use xref-js2 instead
-            (unbind-key "M-." tern-mode-keymap)
-            (unbind-key "M-," tern-mode-keymap)))
-
-;; -- Lang: PHP ----------------------------------------------------------------
-
-(use-package php-extras :ensure t)
-
-(use-package php-mode :ensure t
-  :init (setq comment-start "// "
-              comment-end "")
-  :mode (("\\.php-dev'" . php-mode)
-         ("\\.php-dist'" . php-mode))
-  :hook (php-mode . (lambda ()
-                      (php-enable-default-coding-style)
-                      (set (make-local-variable 'company-backends)
-                           '((php-extras-company company-dabbrev-code)
-                             company-capf company-files)))))
-
-;; -- Lang: web ----------------------------------------------------------------
-
-(use-package restclient :ensure t
-  :mode (("\\.http\\'" . restclient-mode)
-         ("\\.rest\\'" . restclient-mode)))
-
-(use-package company-restclient :ensure t
-  :after (company restclient)
-  :config (add-to-list 'company-backends 'company-restclient))
-
-(use-package scss-mode :ensure t)
-
-(use-package web-mode :ensure t
-  :mode (("\\.html?\\'" . web-mode)
-         ("\\.erb\\'" . web-mode)
-         ("\\.erubis\\'" . web-mode)
-         ("\\.ejs\\'" . web-mode)
-         ("\\.vue\\'" . web-mode)))
-
-;; -- Lang: Go -----------------------------------------------------------------
+;; -- Go -----------------------------------------------------------------------
 
 (eval-after-load 'exec-path-from-shell
   (exec-path-from-shell-copy-env "GOPATH"))
@@ -575,7 +483,74 @@
 
 (add-hook 'go-mode-hook #'hook-go-mode)
 
-;; -- Lang: text files ---------------------------------------------------------
+;; -- PHP ----------------------------------------------------------------------
+
+(use-package php-extras :ensure t)
+
+(use-package php-mode :ensure t
+  :init (setq comment-start "// "
+              comment-end "")
+  :mode (("\\.php-dev'" . php-mode)
+         ("\\.php-dist'" . php-mode))
+  :hook (php-mode . (lambda ()
+                      (php-enable-default-coding-style)
+                      (set (make-local-variable 'company-backends)
+                           '((php-extras-company company-dabbrev-code)
+                             company-capf company-files)))))
+
+;; -- JavaScript ---------------------------------------------------------------
+
+(use-package js2-mode :ensure t
+  :mode (("\\.js$" . js2-mode))
+  :hook (js2-mode . (lambda ()
+                      (setq-default tab-width 2)
+                      (setq js-indent-level 2
+                            js2-basic-offset 2)
+                      (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
+                      (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
+                      (js2-imenu-extras-mode)
+                      (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
+                      (define-key js-mode-map (kbd "M-.") nil)
+                      (setq-default js2-show-parse-errors nil)
+                      (setq-default js2-strict-missing-semi-warning nil)
+                      (setq-default js2-strict-trailing-comma-warning t))))
+
+(use-package js2-refactor :ensure t
+  :config (js2r-add-keybindings-with-prefix "C-c C-f")
+  :hook (js2-mode . js2-refactor-mode))
+
+(use-package rjsx-mode :ensure t
+  :after js2-mode
+  :mode (("components\\/.*\\.js\\'" . rjsx-mode)))
+
+(use-package nodejs-repl :ensure t
+  :bind ("C-c j r" . nodejs-repl))
+
+(use-package tern :ensure t
+  :hook (js2-mode . tern-mode))
+
+(use-package company-tern :ensure t
+  :after (js2-mode company tern)
+  :config (progn
+            (add-to-list 'company-backends 'company-tern)
+            ;; Disable completion keybindings, as we use xref-js2 instead
+            (unbind-key "M-." tern-mode-keymap)
+            (unbind-key "M-," tern-mode-keymap)))
+
+;; -- Web ----------------------------------------------------------------------
+
+(use-package restclient :ensure t
+  :mode (("\\.http\\'" . restclient-mode)
+         ("\\.rest\\'" . restclient-mode)))
+
+(use-package web-mode :ensure t
+  :mode (("\\.html?\\'" . web-mode)
+         ("\\.erb\\'" . web-mode)
+         ("\\.erubis\\'" . web-mode)
+         ("\\.ejs\\'" . web-mode)
+         ("\\.vue\\'" . web-mode)))
+
+;; -- Text ---------------------------------------------------------------------
 
 (use-package dockerfile-mode :ensure t)
 
