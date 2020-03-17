@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-03-17 22:50:37>
+;; Time-stamp: <2020-03-18 00:03:06>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -560,7 +560,17 @@
 (use-package json-mode :ensure t)
 
 (use-package markdown-mode :ensure t
-  :bind (("C-c C-t d" . markdown-insert-header-date)))
+  :mode (("README\\.md\\'" . gfm-mode))
+  :init (setq markdown-enable-wiki-links t
+              markdown-italic-underscore t
+              markdown-asymmetric-header t
+              markdown-make-gfm-checkboxes-buttons t
+              markdown-gfm-uppercase-checkbox t
+              markdown-fontify-code-blocks-natively t)
+  :bind ("C-c m p" . (lambda ()
+                       (interactive)
+                       (xwidget-webkit-browse-url
+                        (concat "file://" (markdown-export))))))
 
 (use-package yaml-mode :ensure t
   :mode "\\.ya?ml\\'")

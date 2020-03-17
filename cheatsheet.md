@@ -48,7 +48,7 @@ brew linkapps emacs-plus
 ### Dependencies
 
 ```sh
-[apt-get | brew] install ctags the_silver_searcher aspell gnutls
+[apt-get | brew] install ctags the_silver_searcher aspell gnutls markdown
 ```
 
 For Lisp
