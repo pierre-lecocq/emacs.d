@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-03-18 00:03:06>
+;; Time-stamp: <2020-03-18 11:44:40>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -356,6 +356,7 @@
   (setq indent-tabs-mode t))
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
+(add-to-list 'auto-mode-alist '("Makefile.*\\'" . makefile-mode))
 
 ;; -- C ------------------------------------------------------------------------
 
