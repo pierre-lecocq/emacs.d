@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# --
+--
+Project: $1
+Tags: $2
+Time-stamp: <2020-04-07 16:55:18>
+File: `(file-name-nondirectory buffer-file-name)`
+Author: `(user-full-name)`
+--
+
+- $0
