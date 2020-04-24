@@ -209,6 +209,11 @@
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
 
+(use-package isearch :ensure nil :demand t
+  :config (defadvice isearch-update (before my-isearch-reposite activate)
+            "Update an isearch session by recentering the buffer to the found location."
+            (recenter)))
+
 (use-package string-inflection :ensure t
   :bind (("C-c C-u" . string-inflection-all-cycle)))
 
