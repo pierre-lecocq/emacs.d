@@ -3,3 +3,4 @@ elpa/
 .cache/
 elpy/
 request/
+.extension/

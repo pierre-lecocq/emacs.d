@@ -93,7 +93,7 @@ For Javascript
 
 ```
 [apt-get | brew] install node
-npm i -g eslint tern javascript-typescript-langserver
+npm i -g eslint eslint-plugin-react tern javascript-typescript-langserver
 ```
 
 ---

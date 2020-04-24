@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-03-18 11:44:40>
+;; Time-stamp: <2020-04-24 09:11:42>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -148,7 +148,7 @@
                  (window-height . 0.25)
                  (side . bottom)
                  (slot . 0))
-                ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\)\\*"
+                ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Flycheck errors\\)\\*"
                  (display-buffer-in-side-window)))))
 
 ;; -- Utils --------------------------------------------------------------------
@@ -290,7 +290,6 @@
 ;; -- Syntax -------------------------------------------------------------------
 
 (use-package flycheck :ensure t
-  :bind (("C-c s e" . flycheck-list-errors))
   :hook (prog-mode . flycheck-mode))
 
 ;; -- Git ----------------------------------------------------------------------
@@ -517,9 +516,17 @@
                       (js2-imenu-extras-mode)
                       (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
                       (define-key js-mode-map (kbd "M-.") nil)
-                      (setq-default js2-show-parse-errors nil)
-                      (setq-default js2-strict-missing-semi-warning nil)
-                      (setq-default js2-strict-trailing-comma-warning t))))
+                      ;; (setq-default js2-show-parse-errors nil
+                      ;;               js2-strict-missing-semi-warning nil
+                      ;;               js2-strict-trailing-comma-warning t)
+                      (flycheck-select-checker 'javascript-eslint)
+                      (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+                      (setq-default flycheck-temp-prefix ".flycheck"
+                                    flycheck-disabled-checkers (append flycheck-disabled-checkers
+                                                                       '(javascript-jshint json-jsonlist)))
+                      )
+                  )
+  )
 
 (use-package js2-refactor :ensure t
   :config (js2r-add-keybindings-with-prefix "C-c C-f")
@@ -554,7 +561,11 @@
          ("\\.erb\\'" . web-mode)
          ("\\.erubis\\'" . web-mode)
          ("\\.ejs\\'" . web-mode)
-         ("\\.vue\\'" . web-mode)))
+         ("\\.vue\\'" . web-mode))
+  :config (flycheck-add-mode 'javascript-eslint 'web-mode)
+  :init (setq web-mode-markup-indent-offset 2
+              web-mode-css-indent-offset 2
+              web-mode-code-indent-offset 2))
 
 ;; -- Text ---------------------------------------------------------------------
 
