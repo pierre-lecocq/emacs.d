@@ -328,7 +328,7 @@ Then, use `k`, `d`, `m` ... actions on items
 
 ### Gemfile
 
-In `Genfile`, make sure to have
+In `Gemfile`, make sure to have
 
 ```
 group :development do
@@ -356,7 +356,7 @@ end
 Pry.config.editor = ENV['VISUAL']
 ```
 
-### Lanch the REPL
+### Launch the REPL
 
 Run `inf-ruby-console-auto`
 
