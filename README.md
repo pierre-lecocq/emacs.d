@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2020-03-17 22:27:43>
+- Time-stamp: <2020-06-19 11:55:39>
 
 ## Features
 
@@ -10,6 +10,7 @@
 - Project management (`projectile`)
 - Files tree (`treemacs`)
 - Snippets (`yasnippet`)
+- Shell (`vterm`)
 - Syntax checking (`flycheck`)
 - Buffer navigation (`imenu`, `imenu-list`)
 - Persistent buffer (`persistent-scratch`)
