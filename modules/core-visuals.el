@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-01 09:54:49>
+;; Time-stamp: <2020-06-19 11:50:08>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,6 +16,39 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
 (setq mode-line-format (list " %* %b %l:%c"))
+
+;; Modeline
+
+(setq-default mode-line-format
+              '(
+                ;; Buffer status
+                " %*"
+                ;; Project
+                (:eval (when (and (fboundp 'projectile-project-p)
+                                  (projectile-project-p)
+                                  (or (derived-mode-p 'prog-mode)
+                                      (derived-mode-p 'text-mode)))
+                         (concat "  " (propertize (projectile-project-name)
+                                                  'face 'bold))))
+                ;; Git branch
+                (:eval (when vc-mode
+                         (propertize (string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
+                                     'face 'bold)))
+                ;; Buffer name, line, column, position
+                " %b (%l:%c %p)  "
+                ;; Which func
+                (:eval (when (derived-mode-p 'prog-mode)
+                         '(which-func-mode ("" which-func-format ""))))
+                ;; Spacing
+                (:eval (propertize " "
+                                   'display `((space :align-to (- (+ right right-fringe right-margin)
+                                                                  ,(+ 2 (string-width mode-name)))))))
+                ;; Major mode
+                (:eval (propertize "%m" 'face 'bold))
+                )
+              )
+
+;; Theme
 
 (defvar themes-candidates '(darkokai modus-operandi))
 
@@ -39,10 +72,12 @@
 
 (use-package modus-operandi-theme :ensure t)
 
-(use-package minions :ensure t
-  :init (setq minions-mode-line-lighter "..."
-              minions-mode-line-delimiters '("" . ""))
-  :config (minions-mode 1))
+;; Others
+
+;; (use-package minions :ensure t
+;;   :init (setq minions-mode-line-lighter "..."
+;;               minions-mode-line-delimiters '("" . ""))
+;;   :config (minions-mode 1))
 
 (use-package window :no-require t
   :init (setq display-buffer-alist
@@ -53,6 +88,8 @@
                  (slot . 0))
                 ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Flycheck errors\\)\\*"
                  (display-buffer-in-side-window)))))
+
+;; Toggles
 
 (defun toggle-show-paren-mode-style ()
   "Toggle 'show-paren-mode' style."
