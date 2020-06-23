@@ -1,6 +1,6 @@
 ;;; core-shell.el --- Shell -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-18 18:37:44>
+;; Time-stamp: <2020-06-23 16:06:06>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,7 +8,7 @@
 ;;; Code:
 
 (use-package vterm :ensure t
-  :bind ("M-RET" . (lambda ()
+  :bind ("C-RET" . (lambda ()
                      (interactive)
                      (let ((bname "vterm"))
                        (if (string= (buffer-name) bname)
