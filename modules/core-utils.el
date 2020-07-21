@@ -1,16 +1,11 @@
 ;;; core-utils.el --- Utils -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-08 12:29:10>
+;; Time-stamp: <2020-07-21 14:00:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
-
-(use-package anzu :ensure t
-  :bind (("M-%" . anzu-query-replace)
-         ("C-M-%" . anzu-query-replace-regexp))
-  :config (global-anzu-mode))
 
 (use-package autopair :ensure t
   :config (autopair-global-mode t))
@@ -61,11 +56,6 @@
               ido-use-filename-at-point 'guess
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
-
-(use-package isearch :ensure nil :demand t
-  :config (defadvice isearch-update (before my-isearch-reposite activate)
-            "Update an isearch session by recentering the buffer to the found location."
-            (recenter)))
 
 (use-package string-inflection :ensure t
   :bind (("C-c C-u" . string-inflection-all-cycle)))

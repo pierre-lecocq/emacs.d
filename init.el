@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-18 18:35:46>
+;; Time-stamp: <2020-07-21 15:19:45>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -19,6 +19,7 @@
 (require 'core-visuals)
 (require 'core-utils)
 (require 'core-scratch)
+(require 'core-search)
 (require 'core-shell)
 
 (require 'dev-completion)
