@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-19 11:50:08>
+;; Time-stamp: <2020-06-29 16:18:36>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -15,38 +15,36 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(setq mode-line-format (list " %* %b %l:%c"))
-
 ;; Modeline
 
 (setq-default mode-line-format
               '(
                 ;; Buffer status
-                " %*"
+                " %* "
                 ;; Project
                 (:eval (when (and (fboundp 'projectile-project-p)
                                   (projectile-project-p)
                                   (or (derived-mode-p 'prog-mode)
                                       (derived-mode-p 'text-mode)))
-                         (concat "  " (propertize (projectile-project-name)
-                                                  'face 'bold))))
-                ;; Git branch
-                (:eval (when vc-mode
-                         (propertize (string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
-                                     'face 'bold)))
+                         (concat (propertize (projectile-project-name)
+                                             'face 'bold)
+                                 "/")))
                 ;; Buffer name, line, column, position
-                " %b (%l:%c %p)  "
+                "%b (%l:%c %p) "
                 ;; Which func
                 (:eval (when (derived-mode-p 'prog-mode)
                          '(which-func-mode ("" which-func-format ""))))
+                ;; Git branch
+                (:eval (when vc-mode
+                         (propertize vc-mode
+                                     ;;(string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
+                                     'face 'bold)))
                 ;; Spacing
                 (:eval (propertize " "
                                    'display `((space :align-to (- (+ right right-fringe right-margin)
                                                                   ,(+ 2 (string-width mode-name)))))))
                 ;; Major mode
-                (:eval (propertize "%m" 'face 'bold))
-                )
-              )
+                (:eval (propertize "%m" 'face 'bold))))
 
 ;; Theme
 
