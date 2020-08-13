@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-08-13 21:58:26>
+;; Time-stamp: <2020-08-13 22:26:30>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -18,34 +18,36 @@
 
 ;; Modeline
 
-(setq-default mode-line-format
-              '(
-                ;; Buffer status
-                " %* "
-                ;; Project
-                (:eval (when (and (fboundp 'projectile-project-p)
-                                  (projectile-project-p)
-                                  (or (derived-mode-p 'prog-mode)
-                                      (derived-mode-p 'text-mode)))
-                         (concat (propertize (projectile-project-name)
-                                             'face 'bold)
-                                 "/")))
-                ;; Buffer name, line, column, position
-                "%b (%l:%c %p) "
-                ;; Which func
-                (:eval (when (derived-mode-p 'prog-mode)
-                         '(which-func-mode ("" which-func-format ""))))
-                ;; Git branch
-                (:eval (when vc-mode
-                         (propertize vc-mode
-                                     ;;(string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
-                                     'face 'bold)))
-                ;; Spacing
-                (:eval (propertize " "
-                                   'display `((space :align-to (- (+ right right-fringe right-margin)
-                                                                  ,(+ 2 (string-width mode-name)))))))
-                ;; Major mode
-                (:eval (propertize "%m" 'face 'bold))))
+(defvar my-mode-line-format
+  '(
+    ;; Buffer status
+    " %* "
+    ;; Project
+    (:eval (when (and (fboundp 'projectile-project-p)
+                      (projectile-project-p)
+                      (or (derived-mode-p 'prog-mode)
+                          (derived-mode-p 'text-mode)))
+             (concat (propertize (projectile-project-name)
+                                 'face 'bold)
+                     "/")))
+    ;; Buffer name, line, column, position
+    "%b (%l:%c %p) "
+    ;; Which func
+    (:eval (when (derived-mode-p 'prog-mode)
+             '(which-func-mode ("" which-func-format ""))))
+    ;; Git branch
+    (:eval (when vc-mode
+             (propertize vc-mode
+                         ;;(string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
+                         'face 'bold)))
+    ;; Spacing
+    (:eval (propertize " "
+                       'display `((space :align-to (- (+ right right-fringe right-margin)
+                                                      ,(+ 2 (string-width mode-name)))))))
+    ;; Major mode
+    (:eval (propertize "%m" 'face 'bold))))
+
+(setq-default mode-line-format my-mode-line-format)
 
 ;; Theme
 
@@ -136,6 +138,16 @@
   (whitespace-turn-on))
 
 (global-set-key (kbd "C-c v w") 'toggle-whitespace-mode-style)
+
+(defun toggle-modeline ()
+  "Toggle the modeline."
+  (interactive)
+  (setq-default mode-line-format
+                (if mode-line-format
+                    nil
+                  my-mode-line-format)))
+
+(global-set-key (kbd "C-c v m") 'toggle-modeline)
 
 (provide 'core-visuals)
 
