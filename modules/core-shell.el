@@ -1,6 +1,6 @@
 ;;; core-shell.el --- Shell -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-08-11 21:30:52>
+;; Time-stamp: <2020-08-13 21:21:03>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -8,6 +8,7 @@
 ;;; Code:
 
 (use-package vterm :ensure t
+  :init (setq confirm-kill-processes nil)
   :bind ("<C-return>" . (lambda ()
                           (interactive)
                           (let ((bname "vterm"))
