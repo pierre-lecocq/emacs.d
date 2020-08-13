@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-29 16:18:36>
+;; Time-stamp: <2020-08-13 21:58:26>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -11,7 +11,8 @@
 
 (when (and window-system (eq system-type 'darwin))
   (setq frame-title-format nil
-        ns-use-proxy-icon nil)
+        ns-use-proxy-icon nil
+        frame-resize-pixelwise t)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
