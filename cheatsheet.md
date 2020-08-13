@@ -22,17 +22,34 @@
 #### GNU/Linux
 
 ```
-sudo apt-get build-dep -y emacs25
-
 sudo apt-get install -y \
-     aspell \
-     aspell-en \
-     aspell-fr \
+     autoconf \
+     automake \
+     build-essential \
+     cmake \
      fonts-inconsolata \
-     mailutils
+     libgif-dev \
+     libglib2.0-dev-bin \
+     libgnutls28-dev \
+     libgtk2.0-dev \
+     libjansson-dev \
+     libjpeg-dev \
+     libncurses-dev \
+     libtiff-dev \
+     libvterm-bin \
+     libvterm-dev \
+     libxpm-dev \
+     mailutils \
+     texinfo
 
 git clone --depth=1 git://git.savannah.gnu.org/emacs.git $HOME/emacs.src
-cd $HOME/emacs.src && ./autogen.sh && ./configure && make && sudo make install
+cd $HOME/emacs.src
+
+./autogen.sh
+./configure --with-json
+
+make
+sudo make install
 ```
 
 When launching Emacs the first time (at the packages install), if an error regarding the packages signatures is encontered, follow the instructions on the [elpa page](https://elpa.gnu.org/packages/gnu-elpa-keyring-update.html).
