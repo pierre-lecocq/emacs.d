@@ -5,6 +5,7 @@
 - [Install](#install)
 - [Help](#help)
 - [Movement](#movement)
+- [Registers](#registers)
 - [Isearch](#isearch)
 - [Replace](#replace)
 - [Occur](#occur)
@@ -144,6 +145,26 @@ Emacs has the most powerful internal help system. Here are a few useful commands
 - `C-l` to center the screen at point
 
 - `M-<`/`M->` to jump to the begining/end of the file
+
+---
+
+## Registers
+
+Emacs has registers where anything can be saved and reused afterwards: text, position, window configurations, files, numbers, ... and even macros.
+
+- `M-x list-registers` to list what is stored in the registers
+
+- `C-x r s <letter>` to save the current region or killed text in the register `<letter>`
+- `C-x r i <letter>` to insert the region or text from the register `<letter>`
+
+- `C-x r SPACE <letter>` to store the current position in the register `<letter>`
+- `C-x r j <letter>` to jump to the position in the register `<letter>`
+
+### References
+
+- https://tech.toryanderson.com/2020/07/03/emacs-tip-registers/
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Registers.html
+- https://www.gnu.org/software/emacs/manual/html_node/emacs/Keyboard-Macro-Registers.html#Keyboard-Macro-Registers
 
 ---
 
