@@ -2,9 +2,8 @@
 # --
 # -*- restclient -*-
 
-:host = ${1:host}
-
-:token =
+:host = http://${1:localhost}
+:token = $2
 
 :headers = <<
 Authorization: Bearer :token
@@ -14,9 +13,14 @@ User-Agent: RestClient/1.0
 
 $0
 
+# GET request
+GET :host/
+Authorization: Bearer :token
+
+# POST request
 :value = "test"
 
-POST http://:host/
+POST :host/
 :headers
 
 { "name": ":value" }
