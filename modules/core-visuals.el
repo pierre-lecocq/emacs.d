@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-08-13 22:26:30>
+;; Time-stamp: <2020-09-02 12:46:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -82,13 +82,13 @@
 
 (use-package window :no-require t
   :init (setq display-buffer-alist
-              '(("\\*e?shell.*"
+              '(("\\*\\(e?shell\\|vterm\\).*"
+                 (display-buffer-in-child-frame))
+                ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Flycheck errors\\)\\*"
                  (display-buffer-in-side-window)
                  (window-height . 0.25)
                  (side . bottom)
-                 (slot . 0))
-                ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Flycheck errors\\)\\*"
-                 (display-buffer-in-side-window)))))
+                 (slot . 0)))))
 
 ;; Toggles
 
