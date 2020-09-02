@@ -1,6 +1,6 @@
 ;;; lang-makefile.el --- Lang-Makefile -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-05-15 14:27:48>
+;; Time-stamp: <2020-09-02 16:50:42>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,7 +9,7 @@
 
 (defun hook-makefile-mode ()
   "Hook for Makefile mode."
-  (whitespace-toggle-options '(tabs))
+  (whitespace-toggle-options '(tabs tab-mark))
   (setq indent-tabs-mode t))
 
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)

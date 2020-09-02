@@ -1,6 +1,6 @@
 ;;; lang-go.el --- Lang-Go -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-06-08 12:28:22>
+;; Time-stamp: <2020-09-02 16:50:27>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,6 +21,8 @@
 (defun hook-go-mode ()
   "Hook for Go mode."
   (go-eldoc-setup)
+  (whitespace-toggle-options '(tabs tab-mark))
+  (setq indent-tabs-mode t)
   (add-hook 'before-save-hook 'gofmt-before-save))
 
 (add-hook 'go-mode-hook #'hook-go-mode)
