@@ -39,7 +39,7 @@
 (require 'lang-javascript)
 ;; (require 'lang-lisp)
 (require 'lang-php)
-;; (require 'lang-python)
+(require 'lang-python)
 (require 'lang-ruby)
 (require 'lang-web)
 
