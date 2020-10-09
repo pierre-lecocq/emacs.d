@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-09-02 12:46:15>
+;; Time-stamp: <2020-10-09 09:06:49>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -18,19 +18,8 @@
 
 ;; Theme
 
-(defvar themes-candidates '(darkokai modus-operandi))
 (use-package all-the-icons :ensure t) ;; M-x all-the-icons-install-fonts
 
-(defun switch-theme ()
-  "Switch theme."
-  (interactive)
-  (let* ((cur (pop themes-candidates))
-         (next (car themes-candidates)))
-    (disable-theme cur)
-    (load-theme next t)
-    (setq themes-candidates (append themes-candidates `(,cur)))))
-
-(global-set-key (kbd "C-c v t") 'switch-theme)
 (use-package doom-modeline :ensure t
   :init (setq doom-modeline-height 15)
   :custom-face (mode-line ((t (:height 1.0))))
@@ -43,14 +32,7 @@
   :custom-face (default ((t (:background "#191919"))))
   (fringe ((t (:background "#191919")))))
 
-(use-package modus-operandi-theme :ensure t)
-
 ;; Others
-
-;; (use-package minions :ensure t
-;;   :init (setq minions-mode-line-lighter "..."
-;;               minions-mode-line-delimiters '("" . ""))
-;;   :config (minions-mode 1))
 
 (use-package window :no-require t
   :init (setq display-buffer-alist
