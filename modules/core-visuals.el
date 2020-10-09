@@ -120,12 +120,12 @@
 
 (global-set-key (kbd "C-c v h") 'toggle-highlight-indentation)
 
-(defun toggle-linenum-mode ()
-  "Toggle 'linum-mode'."
+(defun toggle-line-numbers-mode ()
+  "Toggle 'line-numbers-mode'."
   (interactive)
-  (global-linum-mode (if (bound-and-true-p global-linum-mode) -1 1)))
+  (global-display-line-numbers-mode (if (bound-and-true-p global-display-line-numbers-mode) -1 1)))
 
-(global-set-key (kbd "C-c v l") 'toggle-linenum-mode)
+(global-set-key (kbd "C-c v l") 'toggle-line-numbers-mode)
 
 (defun toggle-whitespace-mode-style ()
   "Toggle 'whitespace-mode' style."
