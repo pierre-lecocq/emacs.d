@@ -16,42 +16,10 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-;; Modeline
-
-(defvar my-mode-line-format
-  '(
-    ;; Buffer status
-    " %* "
-    ;; Project
-    (:eval (when (and (fboundp 'projectile-project-p)
-                      (projectile-project-p)
-                      (or (derived-mode-p 'prog-mode)
-                          (derived-mode-p 'text-mode)))
-             (concat (propertize (projectile-project-name)
-                                 'face 'bold)
-                     "/")))
-    ;; Buffer name, line, column, position
-    "%b (%l:%c %p) "
-    ;; Which func
-    (:eval (when (derived-mode-p 'prog-mode)
-             '(which-func-mode ("" which-func-format ""))))
-    ;; Git branch
-    (:eval (when vc-mode
-             (propertize vc-mode
-                         ;;(string-trim (replace-regexp-in-string "Git\.?" ":" vc-mode))
-                         'face 'bold)))
-    ;; Spacing
-    (:eval (propertize " "
-                       'display `((space :align-to (- (+ right right-fringe right-margin)
-                                                      ,(+ 2 (string-width mode-name)))))))
-    ;; Major mode
-    (:eval (propertize "%m" 'face 'bold))))
-
-(setq-default mode-line-format my-mode-line-format)
-
 ;; Theme
 
 (defvar themes-candidates '(darkokai modus-operandi))
+(use-package all-the-icons :ensure t) ;; M-x all-the-icons-install-fonts
 
 (defun switch-theme ()
   "Switch theme."
@@ -63,6 +31,10 @@
     (setq themes-candidates (append themes-candidates `(,cur)))))
 
 (global-set-key (kbd "C-c v t") 'switch-theme)
+(use-package doom-modeline :ensure t
+  :init (setq doom-modeline-height 15)
+  :custom-face (mode-line ((t (:height 1.0))))
+  :hook (after-init . doom-modeline-mode))
 
 (use-package darkokai-theme :ensure t
   :config (load-theme 'darkokai t)
@@ -138,16 +110,6 @@
   (whitespace-turn-on))
 
 (global-set-key (kbd "C-c v w") 'toggle-whitespace-mode-style)
-
-(defun toggle-modeline ()
-  "Toggle the modeline."
-  (interactive)
-  (setq-default mode-line-format
-                (if mode-line-format
-                    nil
-                  my-mode-line-format)))
-
-(global-set-key (kbd "C-c v m") 'toggle-modeline)
 
 (provide 'core-visuals)
 
