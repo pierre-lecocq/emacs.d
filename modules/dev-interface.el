@@ -1,6 +1,6 @@
 ;;; dev-interface.el --- Interface -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-05-20 17:08:57>
+;; Time-stamp: <2020-12-18 11:01:52>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -13,6 +13,8 @@
 (use-package imenu-list :ensure t
   :config (imenu-list-minor-mode)
   :bind ("C-c i l" . imenu-list))
+
+(use-package all-the-icons :ensure t) ;; M-x all-the-icons-install-fonts
 
 (use-package treemacs :ensure t :defer t
   :config (progn
