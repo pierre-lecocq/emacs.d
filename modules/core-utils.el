@@ -1,6 +1,6 @@
 ;;; core-utils.el --- Utils -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-07-21 14:00:22>
+;; Time-stamp: <2020-12-15 10:54:15>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -75,6 +75,11 @@
   :hook (prog-mode . which-function-mode))
 
 (use-package which-key :demand t :ensure t
+  :init (setq which-key-popup-type 'side-window
+              which-key-side-window-location 'bottom
+              which-key-side-window-max-height 0.5
+              which-key-max-description-length 200
+              which-key-add-column-padding 2)
   :config (which-key-mode 1))
 
 (use-package whitespace :demand t :ensure nil
