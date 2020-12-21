@@ -1,6 +1,6 @@
 ;;; lightish-theme.el --- Lightish theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-21 09:47:30>
+;; Time-stamp: <2020-12-21 12:57:58>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -34,7 +34,7 @@
    `(vertical-border ((,class (:foreground ,bg2))))
    `(minibuffer-prompt ((,class (:bold t :foreground ,blue1))))
    `(default-italic ((,class (:italic t))))
-   `(link ((,class (:underline t))))
+   `(link ((,class (:foreground ,blue1 :underline t))))
    `(hl-line ((,class (:background  ,bg2))))
    `(show-paren-match-face ((,class (:background ,blue1))))
 
@@ -99,6 +99,13 @@
    `(treemacs-directory-face ((,class (:foreground ,blue1))))
    `(treemacs-directory-collapsed-face ((,class (:foreground ,blue1))))
    `(treemacs-root-face ((,class (:foreground ,blue1 :height 1.1 :underline nil))))
+
+   `(markdown-blockquote-face ((,class :background ,bg2 :extend t)))
+   `(markdown-code-face ((,class :background ,bg2 :extend t)))
+   `(markdown-inline-code-face ((,class :background ,bg2)))
+   `(markdown-pre-face ((,class :background ,bg2 :extend t)))
+   `(markdown-hr-face ((,class :foreground ,bg2)))
+   `(markdown-link-face ((,class :foreground ,blue1 :underline t)))
 
    `(fill-column-indicator ((,class :foreground ,bg2)))
 
