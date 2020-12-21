@@ -1,6 +1,6 @@
 ;;; darquiche-theme.el --- Darquiche theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-21 13:48:18>
+;; Time-stamp: <2020-12-21 14:00:35>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -115,6 +115,10 @@
    `(imenu-list-entry-subalist-face-1 ((,class :foreground ,fg0 :underline t :bold t)))
    `(imenu-list-entry-subalist-face-2 ((,class :foreground ,fg1 :underline t :bold t)))
    `(imenu-list-entry-subalist-face-3 ((,class :foreground ,fg2 :underline t :bold t)))
+
+   `(elfeed-search-date-face ((,class :foreground ,blue1)))
+   `(elfeed-search-feed-face ((,class :foreground ,fg1)))
+   `(elfeed-search-tag-face ((,class :foreground ,fg2)))
 
    `(fill-column-indicator ((,class :foreground ,bg2)))
 
