@@ -107,6 +107,15 @@
    `(markdown-hr-face ((,class :foreground ,bg2)))
    `(markdown-link-face ((,class :foreground ,blue1 :underline t)))
 
+   `(imenu-list-entry-face-0 ((,class :foreground ,fg0)))
+   `(imenu-list-entry-face-1 ((,class :foreground ,fg1)))
+   `(imenu-list-entry-face-2 ((,class :foreground ,fg2)))
+   `(imenu-list-entry-face-3 ((,class :foreground ,fg3)))
+   `(imenu-list-entry-subalist-face-0 ((,class :foreground ,blue1 :underline t :bold t)))
+   `(imenu-list-entry-subalist-face-1 ((,class :foreground ,fg0 :underline t :bold t)))
+   `(imenu-list-entry-subalist-face-2 ((,class :foreground ,fg1 :underline t :bold t)))
+   `(imenu-list-entry-subalist-face-3 ((,class :foreground ,fg2 :underline t :bold t)))
+
    `(fill-column-indicator ((,class :foreground ,bg2)))
 
    `(ag-hit-face ((,class :foreground ,blue1)))
