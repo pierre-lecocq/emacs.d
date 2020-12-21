@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-21 09:43:27>
+;; Time-stamp: <2020-12-21 13:02:04>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -21,7 +21,7 @@
 (load-file (expand-file-name "themes/darquiche-theme.el" user-emacs-directory))
 (load-file (expand-file-name "themes/lightish-theme.el" user-emacs-directory))
 
-(load-theme 'darquiche t)
+(load-theme 'darquiche t t)
 
 (use-package cycle-themes :ensure t
   :init (setq cycle-themes-theme-list '(darquiche lightish))
