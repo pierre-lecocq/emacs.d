@@ -1,6 +1,6 @@
 ;;; lightish-theme.el --- Lightish theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-21 13:07:51>
+;; Time-stamp: <2020-12-21 13:48:58>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -117,6 +117,8 @@
    `(imenu-list-entry-subalist-face-3 ((,class :foreground ,fg2 :underline t :bold t)))
 
    `(fill-column-indicator ((,class :foreground ,bg2)))
+
+   `(bm-face ((,class :background ,orange1 :extend t)))
 
    `(ag-hit-face ((,class :foreground ,blue1)))
 

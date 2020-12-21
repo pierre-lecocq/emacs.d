@@ -1,7 +1,7 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2020-06-19 11:55:39>
+- Time-stamp: <2020-12-21 13:49:55>
 
 ## Features
 
@@ -14,5 +14,6 @@
 - Syntax checking (`flycheck`)
 - Buffer navigation (`imenu`, `imenu-list`)
 - Persistent buffer (`persistent-scratch`)
+- Buffer bookmarks (`bm`)
 - Visual helps toggles
 - Supported languages: c, elisp, go, js, lisp, php, python, ruby

@@ -1,6 +1,6 @@
 ;;; core-utils.el --- Utils -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-15 10:54:15>
+;; Time-stamp: <2020-12-21 13:45:10>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -9,6 +9,15 @@
 
 (use-package autopair :ensure t
   :config (autopair-global-mode t))
+
+(use-package bm :ensure t
+  :config (setq bm-repository-file (expand-file-name ".cache/bm-repository" user-emacs-directory))
+  :bind (("C-c b t" . bm-toggle)
+         ("C-c b n" . bm-next)
+         ("C-c b p" . bm-previous)
+         ("C-c b s" . bm-show-all)
+         ("C-c b r" . bm-remove-all-current-buffer)
+         ("C-c b R" . bm-remove-all-all-buffers)))
 
 (use-package dired :ensure nil :demand t
   :init (setq dired-recursive-copies 'always
