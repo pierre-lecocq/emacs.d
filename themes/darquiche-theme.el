@@ -1,6 +1,6 @@
 ;;; darquiche-theme.el --- Darquiche theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-18 08:50:19>
+;; Time-stamp: <2020-12-21 09:47:47>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -99,6 +99,8 @@
    `(treemacs-directory-face ((,class (:foreground ,blue1))))
    `(treemacs-directory-collapsed-face ((,class (:foreground ,blue1))))
    `(treemacs-root-face ((,class (:foreground ,blue1 :height 1.1 :underline nil))))
+
+   `(fill-column-indicator ((,class :foreground ,bg2)))
 
    `(whitespace-trailing ((,class :foreground nil :background ,red1)))))
 

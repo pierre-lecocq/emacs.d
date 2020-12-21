@@ -1,6 +1,6 @@
 ;;; lightish-theme.el --- Lightish theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-18 14:30:19>
+;; Time-stamp: <2020-12-21 09:47:30>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -99,6 +99,8 @@
    `(treemacs-directory-face ((,class (:foreground ,blue1))))
    `(treemacs-directory-collapsed-face ((,class (:foreground ,blue1))))
    `(treemacs-root-face ((,class (:foreground ,blue1 :height 1.1 :underline nil))))
+
+   `(fill-column-indicator ((,class :foreground ,bg2)))
 
    `(whitespace-trailing ((,class :foreground nil :background ,red1)))))
 

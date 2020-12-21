@@ -1,6 +1,6 @@
 ;;; core-visuals.el --- Visuals -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-18 14:31:38>
+;; Time-stamp: <2020-12-21 09:43:27>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -84,12 +84,10 @@
 
 (global-set-key (kbd "C-c v p") 'toggle-show-paren-mode-style)
 
-(use-package fill-column-indicator :ensure t)
-
 (defun toggle-fill-column-indicator ()
-  "Toggle 'fill-column-indicator'."
+  "Toggle 'display-fill-column-indicator'."
   (interactive)
-  (fci-mode (if (bound-and-true-p fci-mode) -1 1)))
+  (global-display-fill-column-indicator-mode (if (bound-and-true-p global-display-fill-column-indicator-mode) -1 1)))
 
 (global-set-key (kbd "C-c v i") 'toggle-fill-column-indicator)
 
