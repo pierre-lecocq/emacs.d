@@ -1,33 +1,36 @@
-;;; darquiche-theme.el --- Darquiche theme -*- lexical-binding: t; -*-
+;;; lightish-colorized-theme.el --- Lightish-Colorized theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-22 15:48:06>
+;; Time-stamp: <2020-12-22 15:52:15>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(deftheme darquiche "Darquiche theme.")
+(deftheme lightish-colorized "Lightish colorized theme.")
 
 (let ((class '((class color) (min-colors 89)))
-      (fg0 "#ffffff")
-      (fg1 "#d4d4d4")
+      (fg0 "#1a1a1a")
+      (fg1 "#2a2a2a")
       (fg2 "#808080")
       (fg3 "#565656")
-      (bg1 "#1a1a1a")
-      (bg2 "#2a2a2a")
-      (bg3 "#3a3a3a")
+      (bg1 "#fafafa")
+      (bg2 "#eaeaea")
+      (bg3 "#dadada")
       (blue1 "#1e90ff")
       (blue2 "#275ea2")
       (orange1 "#ffa500")
-      (red1 "#cc0000"))
+      (red1 "#cc0000")
+      (red1 "#cc0000")
+      (pink1 "#e0115f")
+      (yellow1 "#f9a602"))
 
   (custom-theme-set-faces
-   'darquiche
+   'lightish-colorized
 
    `(default ((,class (:background ,bg1 :foreground ,fg1))))
 
-   `(region ((,class (:background ,blue2))))
+   `(region ((,class (:background ,blue2 :foreground ,bg1))))
    `(fringe ((,class (:background ,bg1 :foreground ,fg2))))
    `(cursor ((,class (:background ,fg1))))
    `(warning ((,class (:foreground ,orange1))))
@@ -39,17 +42,17 @@
    `(show-paren-match-face ((,class (:background ,blue1))))
 
    `(font-lock-builtin-face ((,class (:foreground ,fg1))))
-   `(font-lock-comment-face ((,class (:foreground ,fg3))))
-   `(font-lock-doc-face ((,class (:foreground ,fg2))))
    `(font-lock-negation-char-face ((,class (:foreground ,fg1))))
    `(font-lock-reference-face ((,class (:foreground ,fg1))))
    `(font-lock-constant-face ((,class (:foreground ,fg1))))
-   `(font-lock-function-name-face ((,class (:foreground ,fg0))))
+   `(font-lock-function-name-face ((,class (:foreground ,blue1))))
    `(font-lock-keyword-face ((,class (:bold ,class :foreground ,fg1)))) ;; bold?
-   `(font-lock-string-face ((,class (:foreground ,fg0))))
+   `(font-lock-string-face ((,class (:foreground ,yellow1))))
    `(font-lock-type-face ((,class (:foreground ,fg1))))
-   `(font-lock-variable-name-face ((,class (:foreground ,fg1))))
+   `(font-lock-variable-name-face ((,class (:foreground ,pink1))))
    `(font-lock-warning-face ((,class (:foreground ,fg0 :bold t))))
+   `(font-lock-comment-face ((,class (:foreground ,fg3))))
+   `(font-lock-doc-face ((,class (:foreground ,fg2))))
 
    `(js2-object-property ((,class (:foreground ,fg1))))
    `(js2-function-call ((,class (:inherit font-lock-function-name-face))))
@@ -126,7 +129,7 @@
 
    `(fill-column-indicator ((,class :foreground ,bg2)))
 
-   `(bm-face ((,class :foreground ,bg2 :background ,orange1 :extend t)))
+   `(bm-face ((,class :background ,orange1 :extend t)))
 
    `(ag-hit-face ((,class :foreground ,blue1)))
 
@@ -137,6 +140,6 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'darquiche)
+(provide-theme 'lightish-colorized)
 
-;;; darquiche-theme.el ends here
+;;; lightish-colorized-theme.el ends here

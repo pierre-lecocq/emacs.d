@@ -1,13 +1,13 @@
 ;;; darquiche-theme.el --- Darquiche theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-22 15:48:06>
+;; Time-stamp: <2020-12-22 15:46:57>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
 
 ;;; Code:
 
-(deftheme darquiche "Darquiche theme.")
+(deftheme darquiche-colorized "Darquiche colorized theme.")
 
 (let ((class '((class color) (min-colors 89)))
       (fg0 "#ffffff")
@@ -20,10 +20,12 @@
       (blue1 "#1e90ff")
       (blue2 "#275ea2")
       (orange1 "#ffa500")
-      (red1 "#cc0000"))
+      (red1 "#cc0000")
+      (pink1 "#e0115f")
+      (yellow1 "#fada5e"))
 
   (custom-theme-set-faces
-   'darquiche
+   'darquiche-colorized
 
    `(default ((,class (:background ,bg1 :foreground ,fg1))))
 
@@ -39,17 +41,17 @@
    `(show-paren-match-face ((,class (:background ,blue1))))
 
    `(font-lock-builtin-face ((,class (:foreground ,fg1))))
-   `(font-lock-comment-face ((,class (:foreground ,fg3))))
-   `(font-lock-doc-face ((,class (:foreground ,fg2))))
    `(font-lock-negation-char-face ((,class (:foreground ,fg1))))
    `(font-lock-reference-face ((,class (:foreground ,fg1))))
    `(font-lock-constant-face ((,class (:foreground ,fg1))))
-   `(font-lock-function-name-face ((,class (:foreground ,fg0))))
-   `(font-lock-keyword-face ((,class (:bold ,class :foreground ,fg1)))) ;; bold?
-   `(font-lock-string-face ((,class (:foreground ,fg0))))
+   `(font-lock-function-name-face ((,class (:foreground ,blue1))))
+   `(font-lock-keyword-face ((,class (:bold t :foreground ,fg1)))) ;; bold?
+   `(font-lock-string-face ((,class (:foreground ,yellow1))))
    `(font-lock-type-face ((,class (:foreground ,fg1))))
-   `(font-lock-variable-name-face ((,class (:foreground ,fg1))))
+   `(font-lock-variable-name-face ((,class (:foreground ,pink1))))
    `(font-lock-warning-face ((,class (:foreground ,fg0 :bold t))))
+   `(font-lock-comment-face ((,class (:foreground ,fg3))))
+   `(font-lock-doc-face ((,class (:foreground ,fg2))))
 
    `(js2-object-property ((,class (:foreground ,fg1))))
    `(js2-function-call ((,class (:inherit font-lock-function-name-face))))
@@ -137,6 +139,6 @@
   (add-to-list 'custom-theme-load-path
                (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'darquiche)
+(provide-theme 'darquiche-colorized)
 
-;;; darquiche-theme.el ends here
+;;; darquiche-colorized-theme.el ends here

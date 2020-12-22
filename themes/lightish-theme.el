@@ -1,6 +1,6 @@
 ;;; lightish-theme.el --- Lightish theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-21 14:40:43>
+;; Time-stamp: <2020-12-22 15:48:37>
 ;; Copyright (C) 2020 Pierre Lecocq
 
 ;;; Commentary:
@@ -51,6 +51,14 @@
    `(font-lock-variable-name-face ((,class (:foreground ,fg1))))
    `(font-lock-warning-face ((,class (:foreground ,fg0 :bold t))))
 
+   `(js2-object-property ((,class (:foreground ,fg1))))
+   `(js2-function-call ((,class (:inherit font-lock-function-name-face))))
+   `(js2-function-param ((,class (:foreground ,fg1))))
+   `(js2-external-variable ((,class (:inherit font-lock-variable-name-face))))
+   `(js2-jsdoc-tag ((,class (:inherit font-lock-doc-face))))
+   `(js2-jsdoc-type ((,class (:inherit font-lock-doc-face))))
+   `(js2-jsdoc-value ((,class (:inherit font-lock-doc-face))))
+
    `(ido-first-match ((,class (:foreground ,fg1 :bold t))))
    `(ido-only-match ((,class (:foreground ,fg1 :bold t))))
    `(ido-subdir ((,class (:foreground ,fg1 :bold t))))
@@ -89,12 +97,6 @@
    `(dired-set-id ((,class (:foreground ,fg1))))
    `(dired-special ((,class (:foreground ,fg1))))
    `(dired-symlink ((,class (:foreground ,fg1))))
-
-   `(js2-jsdoc-tag ((,class (:foreground ,fg2))))
-   `(js2-jsdoc-type ((,class (:foreground ,fg2))))
-   `(js2-jsdoc-value ((,class (:foreground ,fg2))))
-   `(js2-function-param ((,class (:foreground ,fg1))))
-   `(js2-external-variable ((,class (:foreground ,fg1))))
 
    `(treemacs-directory-face ((,class (:foreground ,blue1))))
    `(treemacs-directory-collapsed-face ((,class (:foreground ,blue1))))
