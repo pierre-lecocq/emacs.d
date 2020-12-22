@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-22 11:37:12>
+;; Time-stamp: <2020-12-22 15:11:13>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -46,6 +46,6 @@
 
 (require 'xtra-elfeed)
 
-(require 'core-menu)
+;; (require 'core-menu)
 
 ;;; init.el ends here

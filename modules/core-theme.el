@@ -1,6 +1,6 @@
 ;;; core-theme.el --- Theme -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2020-12-22 11:38:01>
+;; Time-stamp: <2020-12-22 15:19:45>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -16,14 +16,52 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
+;; Themes
+
+(defvar current-internal-theme nil)
+
+(defun load-internal-theme (theme)
+  "Load internal THEME."
+  (interactive)
+  (when current-internal-theme
+    (disable-theme current-internal-theme))
+  (load-theme theme t)
+  (setq current-internal-theme theme)
+  (message "Internal theme `%s' loaded successfully." theme))
+
+(defun load-theme-darquiche ()
+  "Load theme darquiche."
+  (interactive)
+  (load-internal-theme 'darquiche))
+
+(defun load-theme-darquiche-colorized ()
+  "Load theme darquiche-colorized."
+  (interactive)
+  (load-internal-theme 'darquiche-colorized))
+
+(defun load-theme-lightish ()
+  "Load theme lightish."
+  (interactive)
+  (load-internal-theme 'lightish))
+
+(defun load-theme-lightish-colorized ()
+  "Load theme lightish-colorized."
+  (interactive)
+  (load-internal-theme 'lightish-colorized))
+
 (load-file (expand-file-name "themes/darquiche-theme.el" user-emacs-directory))
-(load-file (expand-file-name "themes/lightish-theme.el" user-emacs-directory))
+(load-internal-theme 'darquiche)
 
-(load-theme 'darquiche t t)
+(progn
+  (define-prefix-command 'themes-keymap)
+  (define-key themes-keymap (kbd "<f1>") 'load-theme-darquiche)
+  (define-key themes-keymap (kbd "<f2>") 'load-theme-darquiche-colorized)
+  (define-key themes-keymap (kbd "<f3>") 'load-theme-lightish)
+  (define-key themes-keymap (kbd "<f4>") 'load-theme-lightish-colorized))
 
-;; (use-package cycle-themes :ensure t
-;;   :init (setq cycle-themes-theme-list '(darquiche lightish))
-;;   :config (cycle-themes-mode))
+(global-set-key (kbd "<f12>") themes-keymap)
+
+;; Modeline
 
 (setq-default mode-line-format
               '(" "
