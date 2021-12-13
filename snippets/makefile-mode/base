@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# --
-.PHONY = build
-
-all: build
-
-build:
-$0

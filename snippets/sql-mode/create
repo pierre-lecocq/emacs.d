@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# --
-CREATE TABLE $1 (
-  $1_id SERIAL NOT NULL,
-  state integer NOT NULL DEFAULT 0,
-  created_at timestamp without time zone DEFAULT now() NOT NULL
-);
-
-CREATE INDEX $1__state__idx ON $1 USING btree (state);

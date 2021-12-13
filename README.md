@@ -1,19 +1,15 @@
 # Emacs configuration
 
 - Version: _insert your big int here_
-- Time-stamp: <2020-12-21 13:49:55>
+- Time-stamp: <2021-12-13 10:36:35>
 
 ## Features
 
 - Completion (`company-mode`)
-- Git integration (`magit`, `git-gutter`, `git-messenger`)
+- Git integration (`magit`)
 - Project management (`projectile`)
+- Language Server Protocole support (`lsp`)
 - Files tree (`treemacs`)
-- Snippets (`yasnippet`)
-- Shell (`vterm`)
 - Syntax checking (`flycheck`)
 - Buffer navigation (`imenu`, `imenu-list`)
-- Persistent buffer (`persistent-scratch`)
-- Buffer bookmarks (`bm`)
-- Visual helps toggles
-- Supported languages: c, elisp, go, js, lisp, php, python, ruby
+- Shell (`vterm`)

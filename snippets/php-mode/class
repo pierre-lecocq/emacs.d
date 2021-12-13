@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# --
-class $1
-{
-    function __construct()
-    {
-        $0
-    }
-}

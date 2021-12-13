@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# --
-/*
- * File: `(file-name-nondirectory buffer-file-name)`
- * Time-stamp: <2019-06-12 10:37:56>
- * Copyright (C) `(substring (current-time-string) -4)` `(user-full-name)`
- */
-
-$0
