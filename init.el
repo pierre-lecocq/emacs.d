@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2021-10-19 16:33:37>
+;; Time-stamp: <2022-03-28 22:47:28>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -115,10 +115,16 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(use-package modus-themes :ensure t
-  :init (modus-themes-load-themes)
-  :config (modus-themes-load-operandi)
-  :bind ("<f5>" . modus-themes-toggle))
+;; (use-package modus-themes :ensure t
+;;   :init (modus-themes-load-themes)
+;;   :config (modus-themes-load-vivendi)
+;;   :bind ("<f5>" . modus-themes-toggle))
+
+(use-package nord-theme :ensure t
+  :config (load-theme 'nord t))
+
+(use-package rainbow-delimiters :ensure t
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package simple-modeline :ensure t
   :hook (after-init . simple-modeline-mode)
@@ -293,6 +299,43 @@
 (use-package company-quickhelp :ensure t
   :config (company-quickhelp-mode))
 
+;; -- LSP ----------------------------------------------------------
+
+(use-package lsp-mode :ensure t :defer t
+  :hook (((js2-mode rjsx-mode) . lsp-deferred))
+  :commands lsp
+  :config (setq lsp-log-io nil
+                lsp-auto-configure t
+                lsp-auto-guess-root t
+                lsp-eldoc-hook nil
+                lsp-modeline-diagnostics-enable t
+                lsp-modeline-diagnostics-scope :file)
+  (lsp-enable-which-key-integration))
+
+(use-package lsp-ui :ensure t :defer t
+  :commands lsp-ui-mode
+  :config (setq lsp-ui-sideline-enable nil
+                ;; lsp-ui-sideline-enable t
+                ;; lsp-ui-sideline-show-symbol t
+                ;; lsp-ui-sideline-show-hover t
+                ;; lsp-ui-sideline-show-code-actions t
+                ;; lsp-ui-sideline-delay 0.05
+                lsp-ui-peek-enable t
+                lsp-ui-imenu-enable t
+                lsp-ui-imenu-auto-refresh t
+                lsp-ui-doc-enable nil
+                lsp-ui-doc-header t
+                lsp-ui-doc-include-signature t
+                lsp-ui-doc-border (face-foreground 'default)))
+
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; (use-package dap-mode :ensure t :defer t
+;;   :custom (lsp-enable-dap-auto-configure nil)
+;;   :config (progn
+;;             (dap-ui-mode 1)
+;;             (dap-auto-configure-features '(sessions locals tooltip))))
+
 ;; -- LANG: elisp --------------------------------------------------------------
 
 (use-package eros :ensure t)
@@ -363,6 +406,9 @@
 
 (use-package js2-mode :ensure t
   :mode (("\\.js$" . js2-mode))
+  ;; :config (progn
+  ;;           (require 'dap-node)
+  ;;           (dap-node-setup))
   :hook (js2-mode . (lambda ()
                       (setq-default tab-width 2)
                       (setq js-indent-level 2
@@ -396,33 +442,5 @@
                       (set (make-local-variable 'company-backends)
                            '((php-extras-company company-dabbrev-code)
                              company-capf company-files)))))
-
-;; -- LSP ----------------------------------------------------------
-
-(use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode) . lsp))
-  :commands lsp
-  :config (setq lsp-log-io nil
-                lsp-auto-configure t
-                lsp-auto-guess-root t
-                lsp-eldoc-hook nil
-                lsp-modeline-diagnostics-enable t
-                lsp-modeline-diagnostics-scope :file)
-  (lsp-enable-which-key-integration))
-
-(use-package lsp-ui :ensure t :defer t
-  :commands lsp-ui-mode
-  :config (setq lsp-ui-sideline-enable t
-                lsp-ui-sideline-show-symbol t
-                lsp-ui-sideline-show-hover t
-                lsp-ui-sideline-show-code-actions nil
-                lsp-ui-peek-enable t
-                lsp-ui-imenu-enable t
-                lsp-ui-imenu-auto-refresh t
-                lsp-ui-doc-enable t))
-
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; (use-package dap-mode :ensure t :defer t)
 
 ;;; init.el ends here
