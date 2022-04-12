@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-03-28 22:47:28>
+;; Time-stamp: <2022-04-11 11:02:09>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -299,17 +299,25 @@
 (use-package company-quickhelp :ensure t
   :config (company-quickhelp-mode))
 
+(use-package yasnippet :ensure t
+  :after company)
+
+(use-package yasnippet-snippets :ensure t
+  :after yasnippet)
+
 ;; -- LSP ----------------------------------------------------------
 
 (use-package lsp-mode :ensure t :defer t
   :hook (((js2-mode rjsx-mode) . lsp-deferred))
   :commands lsp
-  :config (setq lsp-log-io nil
-                lsp-auto-configure t
-                lsp-auto-guess-root t
-                lsp-eldoc-hook nil
-                lsp-modeline-diagnostics-enable t
-                lsp-modeline-diagnostics-scope :file)
+  :config (progn
+            (setq lsp-log-io nil
+                  lsp-auto-configure t
+                  lsp-auto-guess-root t
+                  lsp-eldoc-hook nil
+                  lsp-modeline-diagnostics-enable t
+                  lsp-modeline-diagnostics-scope :file)
+            (yas-minor-mode t))
   (lsp-enable-which-key-integration))
 
 (use-package lsp-ui :ensure t :defer t
@@ -442,5 +450,40 @@
                       (set (make-local-variable 'company-backends)
                            '((php-extras-company company-dabbrev-code)
                              company-capf company-files)))))
+
+;; -- Functions ----------------------------------------------------------------
+
+(defun emacs-lisp-mode-header ()
+  "Insert header for `emacs-lisp-mode'."
+  (insert (file-name-nondirectory buffer-file-name) " --- [insert description] -*- lexical-binding: t; -*-\n\n"))
+
+(defun emacs-lisp-mode-footer ()
+  "Insert footer for `emacs-lisp-mode'."
+  (insert "\n;;; " (file-name-nondirectory buffer-file-name) " ends here\n"))
+
+(defun sh-mode-header ()
+  "Insert header for `sh-mode'."
+  (insert "#!/usr/bin/env sh\n\n"))
+
+(defun php-mode-header ()
+  "Insert header for `php-mode'."
+  (insert "<?php\n\n"))
+
+(defun insert-header ()
+  "Insert header in current file."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (let ((mode-header-func (intern (concat (symbol-name major-mode) "-header"))))
+      (if (fboundp mode-header-func)
+          (funcall mode-header-func)))
+    (insert "File: " (file-name-nondirectory buffer-file-name) "\n" )
+    (insert "Time-stamp: <>\n")
+    (insert "Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+    (comment-region (point-min) (point))
+    (let ((mode-footer-func (intern (concat (symbol-name major-mode) "-footer"))))
+      (if (fboundp mode-footer-func)
+          (goto-char (point-max))
+        (funcall mode-footer-func)))))
 
 ;;; init.el ends here
