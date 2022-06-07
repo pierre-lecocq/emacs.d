@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-04-11 11:02:09>
+;; Time-stamp: <2022-05-30 15:08:53>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -122,6 +122,12 @@
 
 (use-package nord-theme :ensure t
   :config (load-theme 'nord t))
+
+(use-package pulsar :ensure t
+  :config (pulsar-global-mode 1)
+  :init (setq pulsar-pulse-on-window-change t
+              pulsar-pulse t
+              pulsar-face 'pulsar-yellow))
 
 (use-package rainbow-delimiters :ensure t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
@@ -308,7 +314,7 @@
 ;; -- LSP ----------------------------------------------------------
 
 (use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode) . lsp-deferred))
+  :hook (((js2-mode rjsx-mode typescript-mode) . lsp-deferred))
   :commands lsp
   :config (progn
             (setq lsp-log-io nil
@@ -435,6 +441,8 @@
 (use-package rjsx-mode :ensure t
   :after js2-mode
   :mode (("components\\/.*\\.js\\'" . rjsx-mode)))
+
+(use-package typescript-mode :ensure t)
 
 ;; -- LANG: PHP ----------------------------------------------------------------
 
