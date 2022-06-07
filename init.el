@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-05-30 15:08:53>
+;; Time-stamp: <2022-06-03 16:06:36>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -491,7 +491,8 @@
     (comment-region (point-min) (point))
     (let ((mode-footer-func (intern (concat (symbol-name major-mode) "-footer"))))
       (if (fboundp mode-footer-func)
-          (goto-char (point-max))
-        (funcall mode-footer-func)))))
+          (progn
+            (goto-char (point-max))
+            (funcall mode-footer-func))))))
 
 ;;; init.el ends here
