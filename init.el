@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-06-03 16:06:36>
+;; Time-stamp: <2022-06-13 15:02:32>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -415,6 +415,8 @@
   :init (setq web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2))
+
+(use-package emmet-mode :ensure t)
 
 ;; -- LANG: JS -----------------------------------------------------------------
 
