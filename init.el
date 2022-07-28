@@ -443,6 +443,8 @@
   :after js2-mode
   :mode (("components\\/.*\\.js\\'" . rjsx-mode)))
 
+(use-package typescript-mode :ensure t)
+
 ;; -- LANG: PHP ----------------------------------------------------------------
 
 ;; (use-package php-extras :ensure t)
