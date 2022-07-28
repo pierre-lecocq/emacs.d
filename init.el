@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-06-03 16:06:36>
+;; Time-stamp: <2022-07-28 14:02:05>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -308,7 +308,7 @@
 ;; -- LSP ----------------------------------------------------------
 
 (use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode) . lsp-deferred))
+  :hook (((js2-mode rjsx-mode go-mode-hook) . lsp-deferred))
   :commands lsp
   :config (progn
             (setq lsp-log-io nil
@@ -409,6 +409,13 @@
   :init (setq web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2))
+
+;; -- LANG: Go -----------------------------------------------------------------
+
+(use-package go-mode :ensure t
+  :config (add-hook 'before-save-hook 'gofmt-before-save)
+  :init (setq whitespace-style '(face trailing)))
+
 
 ;; -- LANG: JS -----------------------------------------------------------------
 
