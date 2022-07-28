@@ -123,6 +123,12 @@
 (use-package nord-theme :ensure t
   :config (load-theme 'nord t))
 
+(use-package pulsar :ensure t
+  :config (pulsar-global-mode 1)
+  :init (setq pulsar-pulse-on-window-change t
+              pulsar-pulse t
+              pulsar-face 'pulsar-yellow))
+
 (use-package rainbow-delimiters :ensure t
   :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
@@ -308,7 +314,7 @@
 ;; -- LSP ----------------------------------------------------------
 
 (use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode go-mode-hook) . lsp-deferred))
+  :hook (((js2-mode rjsx-mode typescript-mode go-mode-hook) . lsp-deferred))
   :commands lsp
   :config (progn
             (setq lsp-log-io nil
@@ -410,12 +416,13 @@
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2))
 
+(use-package emmet-mode :ensure t)
+
 ;; -- LANG: Go -----------------------------------------------------------------
 
 (use-package go-mode :ensure t
   :config (add-hook 'before-save-hook 'gofmt-before-save)
   :init (setq whitespace-style '(face trailing)))
-
 
 ;; -- LANG: JS -----------------------------------------------------------------
 
