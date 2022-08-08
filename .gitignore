@@ -5,3 +5,4 @@ elpy/
 request/
 .extension/
 transient/
+.lsp-session*
