@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-07-28 14:02:05>
+;; Time-stamp: <2022-08-10 11:13:22>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -27,8 +27,9 @@
 (when (and window-system (not (eq system-type 'darwin)))
   (menu-bar-mode -1))
 
-(setq gc-cons-threshold 50000000 ; 50MB
-      large-file-warning-threshold 100000000 ; 100MB
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024)
+      large-file-warning-threshold (* 500 1024 1024)
       debug-on-error t
       frame-title-format "%b (%m) - %F"
       auto-revert-verbose nil
@@ -314,7 +315,7 @@
 ;; -- LSP ----------------------------------------------------------
 
 (use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode typescript-mode go-mode-hook) . lsp-deferred))
+  :hook (((js2-mode rjsx-mode typescript-mode go-mode-hook php-mode-hook) . lsp-deferred))
   :commands lsp
   :config (progn
             (setq lsp-log-io nil
