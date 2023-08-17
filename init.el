@@ -1,15 +1,13 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2022-08-10 11:13:22>
+;; Time-stamp: <2023-08-17 17:09:37>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
 
-;;; Code:
+;; Please refer to the cheatsheet.md file to install dependencies
 
-(let ((dir (expand-file-name ".cache" user-emacs-directory)))
-  (unless (file-exists-p dir)
-    (make-directory dir t)))
+;;; Code:
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -32,10 +30,10 @@
       large-file-warning-threshold (* 500 1024 1024)
       debug-on-error t
       frame-title-format "%b (%m) - %F"
-      auto-revert-verbose nil
       inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
+      auto-revert-verbose nil
       load-prefer-newer t
       auto-save-default nil
       auto-save-list-file-prefix nil
@@ -46,8 +44,7 @@
       show-trailing-whitespace t
       select-enable-clipboard t
       scroll-conservatively 100
-      user-full-name "Pierre Lecocq"
-      user-mail-address "pierre.lecocq@gmail.com"
+      startup-redirect-eln-cache (expand-file-name ".cache/eln-cache" user-emacs-directory)
       custom-file (expand-file-name ".cache/custom.el" user-emacs-directory)
       nsm-settings-file (expand-file-name ".cache/network-security.data" user-emacs-directory))
 
@@ -63,32 +60,6 @@
               tab-width 4
               fill-column 80)
 
-;; -- Packages -----------------------------------------------------------------
-
-(require 'package)
-
-(setq package-enable-at-startup nil
-      package-user-dir (expand-file-name ".cache/packages" user-emacs-directory)
-      package-archives '(("melpa" . "https://melpa.org/packages/")
-                         ("marmalade" . "https://marmalade-repo.org/packages/")
-                         ("gnu" . "https://elpa.gnu.org/packages/")))
-
-(package-initialize)
-
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(eval-when-compile
-  (require 'use-package))
-
-(use-package bind-key :ensure t :demand t)
-(use-package diminish :ensure t :demand t)
-
-;; -- Keybindings --------------------------------------------------------------
-
 (when (memq window-system '(mac ns))
   (setq mac-option-modifier nil
         mac-command-modifier 'meta
@@ -101,11 +72,32 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "C-o") 'other-window)
+(global-set-key (kbd "<f11>") 'global-display-line-numbers-mode)
 
 (advice-add 'split-window-right :after #'(lambda (&rest _) (other-window 1)))
 (advice-add 'split-window-below :after #'(lambda (&rest _) (other-window 1)))
 
-;; -- Look & feel --------------------------------------------------------------
+;;; Packages
+
+(require 'package)
+
+(setq package-enable-at-startup nil
+      package-user-dir (expand-file-name ".cache/packages" user-emacs-directory)
+      package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("gnu" . "https://elpa.gnu.org/packages/")))
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+;;; Theme
 
 (toggle-frame-maximized)
 
@@ -116,25 +108,13 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-;; (use-package modus-themes :ensure t
-;;   :init (modus-themes-load-themes)
-;;   :config (modus-themes-load-vivendi)
-;;   :bind ("<f5>" . modus-themes-toggle))
-
-(use-package nord-theme :ensure t
-  :config (load-theme 'nord t))
-
-(use-package pulsar :ensure t
-  :config (pulsar-global-mode 1)
-  :init (setq pulsar-pulse-on-window-change t
-              pulsar-pulse t
-              pulsar-face 'pulsar-yellow))
-
-(use-package rainbow-delimiters :ensure t
-  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+(use-package ef-themes :ensure t
+  :init (setq ef-themes-to-toggle '(ef-light ef-maris-dark))
+  :config (load-theme 'ef-light t)
+  :bind ("<f9>" . 'ef-themes-toggle))
 
 (use-package simple-modeline :ensure t
-  :hook (after-init . simple-modeline-mode)
+  :config (simple-modeline-mode)
   :custom (simple-modeline-segments
            '((simple-modeline-segment-modified
               simple-modeline-segment-buffer-name
@@ -144,10 +124,12 @@
               simple-modeline-segment-misc-info
               simple-modeline-segment-major-mode))))
 
-;; -- Utils --------------------------------------------------------------------
+(add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'text-mode-hook #'hl-line-mode)
 
-(use-package ag :ensure t
-  :init (setq ag-highlight-search t))
+;; -----------------------------------------------------------------------------
+
+;;; IDE
 
 (use-package dired :ensure nil :demand t
   :init (setq dired-recursive-copies 'always
@@ -158,9 +140,8 @@
               wdired-create-parent-directories t
               dired-use-ls-dired (if (eq system-type 'darwin) nil t)))
 
-(use-package epa-file :ensure nil :demand t
-  ;; :config (epa-file-enable)
-  :init (setq epa-gpg-program "gpg2"))
+(use-package editorconfig :ensure t
+  :hook (prog-mode . editorconfig-mode))
 
 (use-package exec-path-from-shell :ensure t
   :when (memq window-system '(mac ns))
@@ -172,6 +153,9 @@
               ibuffer-use-other-window nil
               ibuffer-show-empty-filter-groups nil)
   :bind ("C-x C-b" . ibuffer))
+
+(use-package idle-highlight-mode :ensure t
+  :hook (prog-mode . idle-highlight-mode))
 
 (use-package ido :ensure t
   :config (progn
@@ -190,15 +174,23 @@
               ido-create-new-buffer 'always
               ido-vertical-show-count t))
 
+(use-package imenu :ensure t)
+
+(use-package imenu-list :ensure t
+  :init (setq imenu-list-size 0.15)
+  :bind ("<f12>" . 'imenu-list-smart-toggle))
+
+(use-package string-inflection :ensure t
+  :bind ("C-c C-u" . string-inflection-all-cycle))
+
 (use-package time-stamp :ensure t :demand t
   :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
   :hook (before-save . time-stamp))
 
-(use-package uniquify :ensure nil :demand t
-  :init (setq uniquify-buffer-name-style 'forward
-              uniquify-separator "/"
-              uniquify-after-kill-buffer-p t
-              uniquify-ignore-buffers-re "^\\*"))
+(use-package which-func :ensure t :demand t
+  :init (setq which-func-unknown ""
+              which-func-format '(:propertize which-func-current face which-func))
+  :hook (prog-mode . which-function-mode))
 
 (use-package which-key :demand t :ensure t
   :init (setq which-key-popup-type 'side-window
@@ -208,28 +200,6 @@
               which-key-add-column-padding 2)
   :config (which-key-mode 1))
 
-;; -- IDE ----------------------------------------------------------------------
-
-(use-package editorconfig :ensure t
-  :hook (prog-mode . editorconfig-mode))
-
-(use-package idle-highlight-mode :ensure t
-  :hook (prog-mode . idle-highlight-mode))
-
-(use-package imenu :ensure t
-  :bind ("C-c i m" . imenu))
-
-(use-package imenu-list :ensure t
-  :config (imenu-list-minor-mode)
-  :bind ("C-c i l" . imenu-list))
-
-(use-package string-inflection :ensure t
-  :bind (("C-c C-u" . string-inflection-all-cycle)))
-
-(use-package which-func :ensure t :demand t
-  :init (setq which-func-unknown "?")
-  :hook (prog-mode . which-function-mode))
-
 (use-package whitespace :demand t :ensure nil
   :init (setq whitespace-line-column 80
               whitespace-style '(tabs tab-mark face trailing))
@@ -237,32 +207,22 @@
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
 
-(use-package isearch :ensure nil :demand t
-  :config (setq search-highlight t
-                search-whitespace-regexp ".*?"
-                isearch-lax-whitespace t
-                isearch-regexp-lax-whitespace nil
-                isearch-lazy-highlight t
-                isearch-lazy-count t
-                lazy-count-prefix-format nil
-                lazy-count-suffix-format " (%s/%s)")
-  (defadvice isearch-update (before my-isearch-reposite activate)
-    "Update an isearch session by recentering the buffer to the found location."
-    (recenter)))
-
-(use-package vterm :ensure t
-  :init (setq confirm-kill-processes nil)
-  :bind ("<C-return>" . (lambda ()
-                          (interactive)
-                          (let ((bname "vterm"))
-                            (if (string= (buffer-name) bname)
-                                (switch-to-buffer (other-buffer))
-                              (if (get-buffer bname)
-                                  (switch-to-buffer bname)
-                                (vterm)))))))
+(use-package git-gutter+ :ensure t
+  :hook (prog-mode . global-git-gutter+-mode)
+  :bind (("C-c g n" . git-gutter+-next-hunk)
+         ("C-c g p" . git-gutter+-previous-hunk)
+         ("C-c g s" . git-gutter+-show-hunk))
+  :config (setq git-gutter+-modified-sign "~ "
+                git-gutter+-added-sign "+ "
+                git-gutter+-deleted-sign "- "
+                transient-history-file (expand-file-name ".cache/transient-history.el" user-emacs-directory)
+                transient-levels-file (expand-file-name ".cache/transient-levels.el" user-emacs-directory)
+                transient-values-file (expand-file-name ".cache/transient-values.el" user-emacs-directory))
+  :custom-face
+  (git-gutter+-modified ((t (:foreground "orange")))))
 
 (use-package projectile :ensure t
-  :init (setq projectile-project-search-path '("~/src/")
+  :init (setq ;; projectile-project-search-path '("~/src/")
               projectile-cache-file (expand-file-name ".cache/projectile.cache" user-emacs-directory)
               projectile-known-projects-file (expand-file-name ".cache/projectile-bookmarks.eld" user-emacs-directory))
   :config (progn
@@ -275,83 +235,72 @@
                           (ibuffer-auto-mode 1)
                           (ibuffer-projectile-set-filter-groups))))
 
-(use-package flycheck :ensure t
-  :hook (prog-mode . flycheck-mode))
+(use-package isearch :ensure nil :demand t
+  :config (setq search-highlight t
+                search-whitespace-regexp ".*?"
+                isearch-lax-whitespace t
+                isearch-regexp-lax-whitespace nil
+                isearch-lazy-highlight t
+                isearch-lazy-count t
+                lazy-count-prefix-format nil
+                lazy-count-suffix-format " (%s/%s)")
+  (advice-add 'isearch-update :before 'recenter))
 
-(use-package all-the-icons :ensure t) ;; M-x all-the-icons-install-fonts
-
-(use-package treemacs :ensure t :defer t
-  :config (progn
-            (treemacs-follow-mode t)
-            (treemacs-filewatch-mode t)
-            (treemacs-fringe-indicator-mode t)
-            (treemacs-git-mode 'deferred)
-            (treemacs-resize-icons 16))
-  :bind ("C-c f t" . treemacs-display-current-project-exclusively))
-
-(use-package treemacs-projectile :ensure t
-  :after (treemacs projectile))
-
-(use-package treemacs-magit :ensure t
-  :after (treemacs magit))
+;;; Complete
 
 (use-package company :ensure t
   :config (global-company-mode)
   :init (setq company-auto-complete nil
               company-minimum-prefix-length 1
               company-tooltip-limit 20
-              company-idle-delay 0.25
+              company-idle-delay 0.0
               company-dabbrev-downcase nil))
 
 (use-package company-quickhelp :ensure t
   :config (company-quickhelp-mode))
 
-(use-package yasnippet :ensure t
-  :after company)
+;;; Correct
 
-(use-package yasnippet-snippets :ensure t
-  :after yasnippet)
+(use-package flycheck :ensure t
+  :hook (prog-mode . flycheck-mode))
 
-;; -- LSP ----------------------------------------------------------
+;;; Terminal
 
-(use-package lsp-mode :ensure t :defer t
-  :hook (((js2-mode rjsx-mode typescript-mode go-mode-hook php-mode-hook) . lsp-deferred))
-  :commands lsp
+(defvar terminal-buffer-name "vterm")
+
+(defun toggle-terminal ()
+  "Toggle terminal."
+  (interactive)
+  (if (string= (buffer-name) terminal-buffer-name)
+      (switch-to-buffer (other-buffer))
+    (if (get-buffer terminal-buffer-name)
+        (switch-to-buffer terminal-buffer-name)
+      (vterm terminal-buffer-name))))
+
+(use-package vterm :ensure t
+  :init (setq confirm-kill-processes nil)
+  :bind ("<C-return>" . toggle-terminal))
+
+;;; LSP
+
+(use-package eglot :ensure t
   :config (progn
-            (setq lsp-log-io nil
-                  lsp-auto-configure t
-                  lsp-auto-guess-root t
-                  lsp-eldoc-hook nil
-                  lsp-modeline-diagnostics-enable t
-                  lsp-modeline-diagnostics-scope :file)
-            (yas-minor-mode t))
-  (lsp-enable-which-key-integration))
+            (add-to-list 'eglot-server-programs '(js2-mode . ("/usr/local/bin/typescript-language-server" "--stdio")))
+            (add-to-list 'eglot-server-programs '(php-mode . ("/usr/local/bin/intelephense" "--stdio"))))
+  :hook ((js2-mode . eglot-ensure)
+         (php-mode . eglot-ensure)))
 
-(use-package lsp-ui :ensure t :defer t
-  :commands lsp-ui-mode
-  :config (setq lsp-ui-sideline-enable nil
-                ;; lsp-ui-sideline-enable t
-                ;; lsp-ui-sideline-show-symbol t
-                ;; lsp-ui-sideline-show-hover t
-                ;; lsp-ui-sideline-show-code-actions t
-                ;; lsp-ui-sideline-delay 0.05
-                lsp-ui-peek-enable t
-                lsp-ui-imenu-enable t
-                lsp-ui-imenu-auto-refresh t
-                lsp-ui-doc-enable nil
-                lsp-ui-doc-header t
-                lsp-ui-doc-include-signature t
-                lsp-ui-doc-border (face-foreground 'default)))
+;;; Autoinsert
 
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+(use-package autoinsert
+  :init (progn
+          (setq auto-insert-query nil)
+          (add-hook 'find-file-hook 'auto-insert)
+          (auto-insert-mode 1)))
 
-;; (use-package dap-mode :ensure t :defer t
-;;   :custom (lsp-enable-dap-auto-configure nil)
-;;   :config (progn
-;;             (dap-ui-mode 1)
-;;             (dap-auto-configure-features '(sessions locals tooltip))))
+;; -----------------------------------------------------------------------------
 
-;; -- LANG: elisp --------------------------------------------------------------
+;;; Elisp
 
 (use-package eros :ensure t)
 
@@ -363,7 +312,21 @@
 (add-hook 'emacs-lisp-mode-hook #'hook-emacs-lisp-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'eldoc-mode)
 
-;; -- LANG: Makefile -----------------------------------------------------------
+(define-auto-insert "\\.el$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name))
+          (description (read-string "Enter description: ")))
+      (insert ";;; " filename " --- " description " -*- lexical-binding: t; -*-\n\n"
+              ";; File: " filename "\n"
+              ";; Creation: " (current-time-string) "\n"
+              ";; Time-stamp: <>\n"
+              ";; Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
+              ";;; Commentary:\n\n"
+              ";;; Code:\n\n\n\n"
+              ";;; " filename " ends here.\n")
+      (forward-line -3))))
+
+;;; Makefile
 
 (defun hook-makefile-mode ()
   "Hook for Makefile mode."
@@ -373,9 +336,11 @@
 (add-hook 'makefile-mode-hook #'hook-makefile-mode)
 (add-to-list 'auto-mode-alist '("Makefile.*\\'" . makefile-mode))
 
-;; -- LANG: Text ---------------------------------------------------------------
+;;; Text
 
 (use-package dockerfile-mode :ensure t)
+
+(use-package terraform-mode :ensure t)
 
 (use-package dotenv-mode :ensure t
   :mode "\\.env\\..*\\'")
@@ -383,13 +348,19 @@
 (use-package json-mode :ensure t)
 
 (use-package markdown-mode :ensure t
-  :mode (("README\\.md\\'" . gfm-mode))
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :bind ("C-c C-e" . markdown-export-and-preview)
   :init (setq markdown-enable-wiki-links t
               markdown-italic-underscore t
               markdown-asymmetric-header t
               markdown-make-gfm-checkboxes-buttons t
               markdown-gfm-uppercase-checkbox t
               markdown-fontify-code-blocks-natively t))
+
+(use-package markdown-toc :ensure t
+  :after markdown)
 
 (use-package yaml-mode :ensure t
   :mode "\\.ya?ml\\'")
@@ -398,9 +369,9 @@
   "Hook for Text mode."
   (electric-indent-local-mode -1))
 
-(add-hook 'text-mode-hook #'hook-text-mode)
+(use-package xit-mode :ensure t)
 
-;; -- LANG: Web ----------------------------------------------------------------
+;;; Web
 
 (use-package restclient :ensure t
   :mode (("\\.http\\'" . restclient-mode)
@@ -417,21 +388,59 @@
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2))
 
-(use-package emmet-mode :ensure t)
+(use-package emmet-mode :ensure t
+  :bind (:map php-mode-map
+              ("M-." . xref-find-definitions)
+              ("M-?" . xref-find-references)))
 
-;; -- LANG: Go -----------------------------------------------------------------
+(add-hook 'text-mode-hook #'hook-text-mode)
+
+;;; Python
+
+(use-package python-mode :ensure t)
+
+(define-auto-insert "\\.py$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name)))
+      (insert "#!/usr/bin/env python3\n\n"
+              "# File: " filename "\n"
+              "# Creation: " (current-time-string) "\n"
+              "# Time-stamp: <>\n"
+              "# Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+      (goto-char (point-max)))))
+
+;;; Golang
 
 (use-package go-mode :ensure t
   :config (add-hook 'before-save-hook 'gofmt-before-save)
   :init (setq whitespace-style '(face trailing)))
 
-;; -- LANG: JS -----------------------------------------------------------------
+(define-auto-insert "\\.go$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name)))
+      (insert "// File: " filename "\n"
+              "// Creation: " (current-time-string) "\n"
+              "// Time-stamp: <>\n"
+              "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+      (goto-char (point-max)))))
+
+;;; PHP
+
+(use-package php-mode :ensure t)
+
+(define-auto-insert "\\.php$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name)))
+      (insert "// File: " filename "\n"
+              "// Creation: " (current-time-string) "\n"
+              "// Time-stamp: <>\n"
+              "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+      (goto-char (point-max)))))
+
+;;; JS
 
 (use-package js2-mode :ensure t
   :mode (("\\.js$" . js2-mode))
-  ;; :config (progn
-  ;;           (require 'dap-node)
-  ;;           (dap-node-setup))
   :hook (js2-mode . (lambda ()
                       (setq-default tab-width 2)
                       (setq js-indent-level 2
@@ -440,68 +449,27 @@
                       (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
                       (js2-imenu-extras-mode)
                       (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
-                      (define-key js-mode-map (kbd "M-.") nil)
                       (flycheck-select-checker 'javascript-eslint)
                       (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
                       (setq-default flycheck-temp-prefix ".flycheck"
                                     flycheck-disabled-checkers (append flycheck-disabled-checkers
-                                                                       '(javascript-jshint json-jsonlist))))))
+                                                                       '(javascript-jshint json-jsonlist)))))
+  :bind ((:map js2-mode-map
+               ("M-." . xref-find-definitions)
+               ("M-?" . xref-find-references))))
 
 (use-package rjsx-mode :ensure t
-  :after js2-mode
-  :mode (("components\\/.*\\.js\\'" . rjsx-mode)))
+  :after js2-mode)
 
 (use-package typescript-mode :ensure t)
 
-;; -- LANG: PHP ----------------------------------------------------------------
-
-;; (use-package php-extras :ensure t)
-
-(use-package php-mode :ensure t
-  :init (setq comment-start "// "
-              comment-end "")
-  :mode (("\\.php-dev'" . php-mode)
-         ("\\.php-dist'" . php-mode))
-  :hook (php-mode . (lambda ()
-                      (php-enable-default-coding-style)
-                      (set (make-local-variable 'company-backends)
-                           '((php-extras-company company-dabbrev-code)
-                             company-capf company-files)))))
-
-;; -- Functions ----------------------------------------------------------------
-
-(defun emacs-lisp-mode-header ()
-  "Insert header for `emacs-lisp-mode'."
-  (insert (file-name-nondirectory buffer-file-name) " --- [insert description] -*- lexical-binding: t; -*-\n\n"))
-
-(defun emacs-lisp-mode-footer ()
-  "Insert footer for `emacs-lisp-mode'."
-  (insert "\n;;; " (file-name-nondirectory buffer-file-name) " ends here\n"))
-
-(defun sh-mode-header ()
-  "Insert header for `sh-mode'."
-  (insert "#!/usr/bin/env sh\n\n"))
-
-(defun php-mode-header ()
-  "Insert header for `php-mode'."
-  (insert "<?php\n\n"))
-
-(defun insert-header ()
-  "Insert header in current file."
-  (interactive)
-  (save-excursion
-    (goto-char (point-min))
-    (let ((mode-header-func (intern (concat (symbol-name major-mode) "-header"))))
-      (if (fboundp mode-header-func)
-          (funcall mode-header-func)))
-    (insert "File: " (file-name-nondirectory buffer-file-name) "\n" )
-    (insert "Time-stamp: <>\n")
-    (insert "Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
-    (comment-region (point-min) (point))
-    (let ((mode-footer-func (intern (concat (symbol-name major-mode) "-footer"))))
-      (if (fboundp mode-footer-func)
-          (progn
-            (goto-char (point-max))
-            (funcall mode-footer-func))))))
+(define-auto-insert "\\.[j|t]sx?$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name)))
+      (insert "// File: " filename "\n"
+              "// Creation: " (current-time-string) "\n"
+              "// Time-stamp: <>\n"
+              "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+      (goto-char (point-max)))))
 
 ;;; init.el ends here

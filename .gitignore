@@ -1,8 +1,6 @@
-init.elc
-elpa/
-.cache/
-elpy/
-request/
-.extension/
-transient/
-.lsp-session*
+*
+
+!.gitignore
+!init.el
+!README.md
+!cheatsheet.md
