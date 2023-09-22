@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-;; Time-stamp: <2023-08-17 17:09:37>
+;; Time-stamp: <2023-09-07 08:40:41>
 ;; Copyright (C) 2019 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,6 +29,7 @@
       read-process-output-max (* 1024 1024)
       large-file-warning-threshold (* 500 1024 1024)
       debug-on-error t
+      help-at-pt-display-when-idle t
       frame-title-format "%b (%m) - %F"
       inhibit-splash-screen t
       inhibit-startup-message t
@@ -246,6 +247,14 @@
                 lazy-count-suffix-format " (%s/%s)")
   (advice-add 'isearch-update :before 'recenter))
 
+;;; Multiple cursors
+
+(use-package multiple-cursors :ensure t
+  :bind (("C-S-c C-S-c" . mc/edit-lines)
+         ("C->" . mc/mark-next-like-this)
+         ("C-<" . mc/mark-previous-like-this)
+         ("C-c C-<" . mc/mark-all-like-this)))
+
 ;;; Complete
 
 (use-package company :ensure t
@@ -297,6 +306,54 @@
           (setq auto-insert-query nil)
           (add-hook 'find-file-hook 'auto-insert)
           (auto-insert-mode 1)))
+
+;;; ChatGPT
+
+;; in ~/.authinfo.gpg, add a line with: machine api.openai.com password OPENAPI_KEY_HERE
+(use-package chatgpt-shell :ensure t
+  :init (setq chatgpt-shell-openai-key
+              (auth-source-pick-first-password :host "api.openai.com"))
+  :bind ("C-c C-g" . chatgpt-shell))
+
+;;; Elfeed
+
+(use-package elfeed :ensure t
+  :init (progn
+          (setq-default elfeed-search-filter "@1-week-ago +unread")
+          (setq elfeed-feeds
+                '(("https://www.youtube.com/feeds/videos.xml?channel_id=UCraiFqWi0qSIxXxXN4IHFBQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCZgt6AzoyjslHTC9dz0UoTw" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC9Yp2yz6-pwhQuPlIDV_mjA" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCnBemNcYRBCZI6BsHlhrIVg" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCX2U8kCH2EzKSeaTIJBtkkQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtxCXg-UvSnTKPOzLH4wJaQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCCfqyGl3nq_V0bo64CjZh8g" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCEqYjPJdmEcUVfHmQwJVM9A" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsBjURrPoezykLs9EqgamOA" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCnUYZLuoy1rq1aVMwx4aTzw" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCs_tLP3AiwYKwdUHpltJPuA" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_ML5xP23TOWKUcc-oAE_Eg" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCWlbj3trSoIU3SHrJCSiAuA" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC-4nsAH5j9AIhv5tHoQSP9g" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC6wpjLSLn2dhlaDjn6_V0rw" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCmtyQOKKmrMVaKuRXz02jbQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3azLjQuz9s5qk76KEXaTvA" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC5_QAB65IbajYkL6hzoY-gg" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCvjgXvBlbQiydffZU7m1_aw" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCUyeluBRhGPCW4rPe_UvBZQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCCLTbu1USKT91jZ6Td5XCKQ" youtube)
+                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC29ju8bIPH5as8OGnQzwJyA" youtube)
+                  ("https://reddit.com/r/emacs.rss" reddit)
+                  ("https://reddit.com/r/programming.rss" reddit)
+                  ("https://reddit.com/r/linux.rss" reddit)
+                  ("https://reddit.com/r/node.rss" reddit)
+                  ("https://reddit.com/r/netsec.rss" reddit)
+                  ("https://reddit.com/r/postgresql.rss" reddit)
+                  ("https://reddit.com/r/ruby.rss" reddit)
+                  ("https://reddit.com/r/lisp.rss" reddit))))
+  :bind ("C-c C-n" . elfeed))
 
 ;; -----------------------------------------------------------------------------
 
@@ -377,13 +434,23 @@
   :mode (("\\.http\\'" . restclient-mode)
          ("\\.rest\\'" . restclient-mode)))
 
+(define-auto-insert "\\.http$"
+  (lambda ()
+    (let ((filename (file-name-nondirectory buffer-file-name)))
+      (insert "# -*- restclient -*-\n#\n"
+              "# File: " filename "\n"
+              "# Creation: " (current-time-string) "\n"
+              "# Time-stamp: <>\n"
+              "# Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+      (goto-char (point-max)))))
+
 (use-package web-mode :ensure t
   :mode (("\\.html?\\'" . web-mode)
          ("\\.erb\\'" . web-mode)
          ("\\.erubis\\'" . web-mode)
          ("\\.ejs\\'" . web-mode)
          ("\\.vue\\'" . web-mode))
-  :config (flycheck-add-mode 'javascript-eslint 'web-mode)
+ :config (flycheck-add-mode 'javascript-eslint 'web-mode)
   :init (setq web-mode-markup-indent-offset 2
               web-mode-css-indent-offset 2
               web-mode-code-indent-offset 2))
@@ -431,7 +498,8 @@
 (define-auto-insert "\\.php$"
   (lambda ()
     (let ((filename (file-name-nondirectory buffer-file-name)))
-      (insert "// File: " filename "\n"
+      (insert "<?php\n\n"
+              "// File: " filename "\n"
               "// Creation: " (current-time-string) "\n"
               "// Time-stamp: <>\n"
               "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")

@@ -10,8 +10,10 @@
 - Syntax checker (with `flycheck`)
 - Git modification markers (with `git-gutter+`)
 - Terminal integration (with `vterm`)
+- ChatGPT prompts (with `chatgpt-shell`)
 - Themes cycle (with `ef-themes`)
 - Simplified modeline (with `simple-modeline`)
+- RSS feeds (with `elfeed`)
 
 ## Added keybindings
 
@@ -32,3 +34,5 @@
 | <kbd>C-c C-e</kbd> | `markdown-export-and-preview`      |
 | <kbd>M-.</kbd>     | `xref-find-definitions`            |
 | <kbd>M-?</kbd>     | `xref-find-references`             |
+| <kbd>C-c C-g</kbd> | `chatgpt-shell`                    |
+| <kbd>C-c C-n</kbd> | `elfeed`                           |
