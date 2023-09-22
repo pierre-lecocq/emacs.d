@@ -12,6 +12,7 @@
 - [Grep and find](#grep-and-find)
 - [Dired](#dired)
 - [Todo list](#todo-list)
+- [SQL](#sql)
 
 ---
 
@@ -302,3 +303,26 @@ Then, use `k`, `d`, `m` ... actions on items
 ### References
 
 - https://www.gnu.org/software/emacs/manual/html_mono/todo-mode.html
+
+---
+
+## SQL
+
+### Connect to a server
+
+`M-x sql-postgres` prompts for database connection details and connects to the server.
+The result is just a prompt like the `psql` client in a terminal, which is convenient but not a big step forward.
+
+### Sending SQL commands
+
+The nice addition to that is that from any other buffer some commands allow to send queries to the open connection:
+
+- `C-c C-b` in SQL mode, or `M-x sql-send-buffer` in other modes
+- `C-c C-r` in SQL mode, or `M-x sql-send-region` in other modes
+- `C-c C-s` in SQL mode, or `M-x sql-send-string` in other modes
+- `C-c C-c` in SQL mode, or `M-x sql-send-paragraph` in other modes
+- `C-c C-n` in SQL mode, or `M-x sql-send-line-and-next` in other modes
+
+### References
+
+- https://arjanvandergaag.nl/blog/using-emacs-as-a-database-client.html
