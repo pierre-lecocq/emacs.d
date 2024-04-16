@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2024-04-03 09:09:43>
+;; Time-stamp: <2024-04-16 11:12:57>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -79,6 +79,7 @@
 
 (advice-add 'split-window-right :after #'(lambda (&rest _) (other-window 1)))
 (advice-add 'split-window-below :after #'(lambda (&rest _) (other-window 1)))
+(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 (defun display-startup-echo-area-message ()
   "Replace the defaut welcome message in the minibuffer."
