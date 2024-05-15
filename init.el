@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2024-04-16 11:12:57>
+;; Time-stamp: <2024-05-15 08:15:52>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -108,6 +108,7 @@
 ;;; Theme
 
 (toggle-frame-maximized)
+(select-frame-set-input-focus (selected-frame))
 
 (when (and window-system (eq system-type 'darwin))
   (setq frame-title-format nil
@@ -296,7 +297,7 @@
                 lazy-count-suffix-format " (%s/%s)")
   (advice-add 'isearch-update :before 'recenter))
 
-(use-package rg :ensure nil :demand t)
+;; (use-package rg :ensure nil :demand t)
 
 ;;; Terminal
 
