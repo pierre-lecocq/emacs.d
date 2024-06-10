@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2024-05-15 08:15:52>
+;; Time-stamp: <2024-06-10 10:44:21>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -122,8 +122,6 @@
 
 (use-package vscode-dark-plus-theme :ensure t
   :config (load-theme 'vscode-dark-plus t))
-
-;; (load-theme 'wombat t)
 
 ;; (use-package ef-themes :ensure t
 ;;   :init (setq ef-themes-to-toggle '(ef-light ef-maris-dark))
@@ -328,40 +326,6 @@
                                        (sideline-flycheck . right)))
   :hook ((flycheck-mode . sideline-flycheck-setup)))
 
-;;; Elfeed
-
-(use-package elfeed :ensure t
-  :init (progn
-          (setq-default elfeed-search-filter "@1-week-ago +unread")
-          (setq elfeed-feeds
-                '(
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCZqq_ow06Husetd9ICEM2gQ" youtube) ;; Simon Dieny - Code Senior
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCUyeluBRhGPCW4rPe_UvBZQ" youtube) ;; ThePrimeTime
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCs_tLP3AiwYKwdUHpltJPuA" youtube) ;; GOTO Conferences
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCEqYjPJdmEcUVfHmQwJVM9A" youtube) ;; Emacs Elements
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCCfqyGl3nq_V0bo64CjZh8g" youtube) ;; Continuous Delivery
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ" youtube) ;; System Crafters
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC8butISFwT-Wl7EV0hUK0BQ" youtube) ;; FreeCodeCamp
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCZgt6AzoyjslHTC9dz0UoTw" youtube) ;; ByteByteGo
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCtxCXg-UvSnTKPOzLH4wJaQ" youtube) ;; CodingTech
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCvjgXvBlbQiydffZU7m1_aw" youtube) ;; TheCodingTrain
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC5_QAB65IbajYkL6hzoY-gg" youtube) ;; SystemDesignFightClub
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCraiFqWi0qSIxXxXN4IHFBQ" youtube) ;; BeABetterDev
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC_ML5xP23TOWKUcc-oAE_Eg" youtube) ;; HusseinNasser
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC29ju8bIPH5as8OGnQzwJyA" youtube) ;; TraversyMedia
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UC-4nsAH5j9AIhv5tHoQSP9g" youtube) ;; InterviewPen
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCdngmbVKX1Tgre699-XLlUA" youtube) ;; TechWorkdWithNana
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCWlbj3trSoIU3SHrJCSiAuA" youtube) ;; IGotAnOfferEngineering
-                  ("https://www.youtube.com/feeds/videos.xml?channel_id=UCaSCt8s_4nfkRglWCvNSDrg" youtube) ;; CodeAesthtic
-
-                  ("https://reddit.com/r/emacs.rss" reddit emacs)
-                  ("https://reddit.com/r/programming.rss" reddit programming)
-                  ("https://reddit.com/r/node.rss" reddit programming language)
-                  ("https://reddit.com/r/php.rss" reddit programming language)
-                  ("https://reddit.com/r/netsec.rss" reddit security)
-                  ("https://reddit.com/r/postgresql.rss" reddit programming sql))
-                )))
-
 ;;; LSP
 
 (defun xref-find-apropos-at-point ()
@@ -372,8 +336,8 @@
 (use-package eglot :ensure t :defer t
   :config (progn
             (setq eglot-events-buffer-size 0)
-            (add-to-list 'eglot-server-programs '(js2-mode . ("/usr/local/bin/typescript-language-server" "--stdio")))
-            (add-to-list 'eglot-server-programs '(php-mode . ("/usr/local/bin/intelephense" "--stdio")))
+            (add-to-list 'eglot-server-programs '(js2-mode . ("typescript-language-server" "--stdio")))
+            (add-to-list 'eglot-server-programs '(php-mode . ("intelephense" "--stdio")))
             ;; python-mode uses python-lsp-server but is set automatically
             (with-eval-after-load "eglot"
               (add-to-list 'eglot-stay-out-of 'flymake)))
@@ -401,13 +365,6 @@
   :init (setq chatgpt-shell-openai-key ;; in ~/.authinfo: machine api.openai.com password OPENAPI_KEY_HERE
               (auth-source-pick-first-password :host "api.openai.com"))
   :bind ("C-c C-g" . chatgpt-shell))
-
-;; (use-package copilot
-;;   :load-path (lambda () (expand-file-name "vendor/copilot.el/copilot.el" user-emacs-directory))
-;;   :init (progn
-;;           (define-key copilot-completion-map (kbd "<tab>") 'copilot-accept-completion)
-;;           (define-key copilot-completion-map (kbd "TAB") 'copilot-accept-completion))
-;;   :hook (prog-mode . copilot-mode))
 
 ;;; Languages
 

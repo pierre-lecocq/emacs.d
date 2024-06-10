@@ -52,7 +52,8 @@
          "// File: " (file-name-nondirectory buffer-file-name) "\n"
          "// Creation: " (current-time-string) "\n"
          "// Time-stamp: <>\n"
-         "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n")
+         "// Copyright (C): " (substring (current-time-string) -4) " " (user-full-name) "\n\n"
+         "package main")
 
         (("\\.py$" . "Python files") nil
          "#!/usr/bin/env python3\n\n"
