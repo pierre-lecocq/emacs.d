@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2024-06-10 10:44:21>
+;; Time-stamp: <2024-07-11 15:20:51>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -110,6 +110,10 @@
 (toggle-frame-maximized)
 (select-frame-set-input-focus (selected-frame))
 
+(set-frame-font (if (>= (display-pixel-width) 2500)
+                    "Menlo 16"
+                  "Menlo 12"))
+
 (when (and window-system (eq system-type 'darwin))
   (setq frame-title-format nil
         ns-use-proxy-icon nil
@@ -117,18 +121,13 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-;; (use-package auto-dark :ensure t
-;;   :config (auto-dark-mode t))
-
 (use-package vscode-dark-plus-theme :ensure t
   :config (load-theme 'vscode-dark-plus t))
 
-;; (use-package ef-themes :ensure t
-;;   :init (setq ef-themes-to-toggle '(ef-light ef-maris-dark))
-;;   :config (load-theme 'ef-maris-dark t)
-;;   :bind ("<f9>" . 'ef-themes-toggle))
-
 (use-package golden-ratio :ensure t
+  :config (setq golden-ratio-exclude-modes '(imenu-list-major-mode)
+                golden-ratio-exclude-buffer-names '("*Ilist*")
+                split-width-threshold nil)
   :hook (after-init . golden-ratio-mode))
 
 (use-package simple-modeline :ensure t
@@ -142,17 +141,17 @@
               simple-modeline-segment-misc-info
               simple-modeline-segment-major-mode))))
 
-;; (add-hook 'prog-mode-hook #'hl-line-mode)
+(add-hook 'prog-mode-hook #'hl-line-mode)
 ;; (add-hook 'text-mode-hook #'hl-line-mode)
 
 ;;; IDE
 
 (use-package autoinsert
-  :init (progn
-          (load-file (expand-file-name "auto-insert-alist.el" user-emacs-directory))
-          (setq auto-insert-query nil)
-          (add-hook 'find-file-hook 'auto-insert)
-          (auto-insert-mode 1)))
+  :config (progn
+            (load-file (expand-file-name "auto-insert-alist.el" user-emacs-directory))
+            (setq auto-insert-query nil)
+            (add-hook 'find-file-hook 'auto-insert)
+            (auto-insert-mode 1)))
 
 (use-package ido :ensure t
   :config (progn
@@ -163,40 +162,40 @@
             (flx-ido-mode 1)
             (ido-mode t)
             (ido-hacks-mode)
-            (ido-vertical-mode))
-  :init (setq ido-save-directory-list-file (expand-file-name ".cache/ido.el" user-emacs-directory)
-              ido-case-fold t
-              ido-enable-flex-matching t
-              ido-use-filename-at-point 'guess
-              ido-create-new-buffer 'always
-              ido-vertical-show-count t))
+            (ido-vertical-mode)
+            (setq ido-save-directory-list-file (expand-file-name ".cache/ido.el" user-emacs-directory)
+                  ido-case-fold t
+                  ido-enable-flex-matching t
+                  ido-use-filename-at-point 'guess
+                  ido-create-new-buffer 'always
+                  ido-vertical-show-count t)))
 
 (use-package dired :ensure nil :demand t
-  :init (setq dired-recursive-copies 'always
-              dired-recursive-deletes 'always
-              delete-by-moving-to-trash t
-              dired-listing-switches "-aFlvh"
-              wdired-allow-to-change-permissions t
-              wdired-create-parent-directories t
-              dired-use-ls-dired (if (eq system-type 'darwin) nil t)))
+  :config (setq dired-recursive-copies 'always
+                dired-recursive-deletes 'always
+                delete-by-moving-to-trash t
+                dired-listing-switches "-aFlvh"
+                wdired-allow-to-change-permissions t
+                wdired-create-parent-directories t
+                dired-use-ls-dired (if (eq system-type 'darwin) nil t)))
 
-    (use-package compile :demand t :ensure nil
-      :init (setq compilation-scroll-output 'first-error)
-      :bind ("<f8>" . (lambda ()
-                        (interactive)
-                        (if (boundp 'compile-commands) ;; A local variable named "compile-commands" (list of strings) must be defined
-                              (let ((cmd (ido-completing-read "Command: " compile-commands)))
-                                (compile cmd))
-                          (call-interactively 'compile)))))
+(use-package compile :demand t :ensure nil
+  :config (setq compilation-scroll-output 'first-error)
+  :bind ("<f8>" . (lambda ()
+                    (interactive)
+                    (if (boundp 'compile-commands) ;; A local variable named "compile-commands" (list of strings) must be defined
+                        (let ((cmd (ido-completing-read "Command: " compile-commands)))
+                          (compile cmd))
+                      (call-interactively 'compile)))))
 
 (use-package nerd-icons-dired :ensure t :demand t ;; required M-x nerd-icons-install-fonts
   :hook (dired-mode . nerd-icons-dired-mode))
 
 ;; (use-package ibuffer :ensure nil :demand t
-;;   :init (setq ibuffer-expert t
-;;               ibuffer-display-summary nil
-;;               ibuffer-use-other-window nil
-;;               ibuffer-show-empty-filter-groups nil)
+;;   :config (setq ibuffer-expert t
+;;                 ibuffer-display-summary nil
+;;                 ibuffer-use-other-window nil
+;;                 ibuffer-show-empty-filter-groups nil)
 ;;   :bind ("C-x C-b" . ibuffer))
 
 (use-package idle-highlight-mode :ensure t
@@ -212,27 +211,29 @@
 (use-package imenu :ensure t)
 
 (use-package imenu-list :ensure t
-  :init (setq imenu-list-size 0.15)
+  :config (setq imenu-list-size 0.10
+                imenu-auto-rescan t
+                imenu-list-focus-after-activation t)
   :bind ("<f12>" . 'imenu-list-smart-toggle))
 
 (use-package string-inflection :ensure t
   :bind ("C-c C-u" . string-inflection-all-cycle))
 
 (use-package time-stamp :ensure t :demand t
-  :init (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
+  :config (setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
   :hook (before-save . time-stamp))
 
 (use-package which-func :ensure t :demand t
-  :init (setq which-func-unknown ""
-              which-func-format '(:propertize which-func-current face which-func))
+  :config (setq which-func-unknown ""
+                which-func-format '(:propertize which-func-current face which-func))
   :hook (prog-mode . which-function-mode))
 
-(use-package which-key :demand t :ensure t
-  :init (setq which-key-popup-type 'side-window
-              which-key-side-window-location 'bottom
-              which-key-side-window-max-height 0.5
-              which-key-max-description-length 200
-              which-key-add-column-padding 2)
+(use-package which-key :demand nil :ensure t ;; included in v30
+  :config (setq which-key-popup-type 'side-window
+                which-key-side-window-location 'bottom
+                which-key-side-window-max-height 0.5
+                which-key-max-description-length 200
+                which-key-add-column-padding 2)
   :config (which-key-mode 1))
 
 ;; (use-package git-gutter+ :ensure t
@@ -250,36 +251,53 @@
 ;;   (git-gutter+-modified ((t (:foreground "orange")))))
 
 ;; (use-package projectile :ensure t
-;;   :init (setq ;; projectile-project-search-path '("~/src/")
-;;               projectile-cache-file (expand-file-name ".cache/projectile.cache" user-emacs-directory)
-;;               projectile-known-projects-file (expand-file-name ".cache/projectile-bookmarks.eld" user-emacs-directory))
 ;;   :config (progn
 ;;             (projectile-mode +1)
+;;             (setq ;; projectile-project-search-path '("~/src/")
+;;              projectile-cache-file (expand-file-name ".cache/projectile.cache" user-emacs-directory)
+;;              projectile-known-projects-file (expand-file-name ".cache/projectile-bookmarks.eld" user-emacs-directory))
 ;;             (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 
-;; (use-package ibuffer-projectile :ensure t
-;;   :after projectile
-;;   :hook (ibuffer-mode . (lambda ()
-;;                           (ibuffer-auto-mode 1)
-;;                           (ibuffer-projectile-set-filter-groups))))
-
 (use-package whitespace :demand t :ensure nil
-  :init (setq whitespace-line-column 80
-              whitespace-style '(tabs tab-mark face trailing))
+  :config (setq whitespace-line-column 80
+                whitespace-style '(tabs tab-mark face trailing))
   :hook ((prog-mode . whitespace-mode)
          (before-save . whitespace-cleanup)
          (before-save . delete-trailing-whitespace)))
 
 (use-package company :ensure t
-  :config (global-company-mode)
-  :init (setq company-auto-complete nil
-              company-minimum-prefix-length 1
-              company-tooltip-limit 20
-              company-idle-delay 0.0
-              company-dabbrev-downcase nil))
+  :after yasnippet
+  :config (progn
+            (global-company-mode)
+            ;; (set-face-attribute 'company-tooltip nil :family "Cascadia Mono")
+            (setq company-auto-complete nil
+                  company-minimum-prefix-length 1
+                  company-tooltip-limit 20
+                  company-idle-delay 0.0
+                  company-dabbrev-downcase nil))
+  :custom-face (company-tooltip ((t (:height 150))))
+  :bind ("C-c >" . company-yasnippet)
+  :hook ((prog-mode . (lambda ()
+                        (setq company-backends '((company-files
+                                                  company-keywords
+                                                  company-capf
+                                                  company-yasnippet)
+                                                 (company-abbrev company-dabbrev)))))
+         (go-mode . (lambda ()
+                      (setq company-backends '((company-go
+                                                company-files
+                                                company-keywords
+                                                company-capf
+                                                company-yasnippet)
+                                               (company-abbrev company-dabbrev)))))))
 
 (use-package company-quickhelp :ensure t
+  :after company
   :config (company-quickhelp-mode))
+
+(use-package company-box :ensure t
+  :after company
+  :hook (company-mode . company-box-mode))
 
 (use-package flycheck :ensure t
   :hook (prog-mode . flycheck-mode))
@@ -297,34 +315,40 @@
 
 ;; (use-package rg :ensure nil :demand t)
 
-;;; Terminal
-
-;; (defvar terminal-buffer-name "vterm")
-
-;; (defun toggle-terminal ()
-;;   "Toggle terminal."
-;;   (interactive)
-;;   (if (string= (buffer-name) terminal-buffer-name)
-;;       (switch-to-buffer (other-buffer))
-;;     (if (get-buffer terminal-buffer-name)
-;;         (switch-to-buffer terminal-buffer-name)
-;;       (vterm terminal-buffer-name))))
-
-;; (use-package vterm :ensure t
-;;   :init (setq confirm-kill-processes nil)
-;;   :bind ("<C-return>" . toggle-terminal))
-
 (use-package sideline-blame :ensure t :demand t)
 (use-package sideline-flycheck :ensure t :demand t)
 
 (use-package sideline :ensure t :demand t
-  :config (global-sideline-mode 1)
-  :init (setq sideline-format-right "   %s"
-              sideline-priority 100
-              sideline-display-backend-name t
-              sideline-backends-right '((sideline-blame . right)
-                                       (sideline-flycheck . right)))
+  :config (progn
+            (global-sideline-mode 1)
+            (setq sideline-format-right "   %s"
+                  sideline-priority 100
+                  sideline-display-backend-name t
+                  sideline-backends-right '((sideline-blame . right)
+                                            (sideline-flycheck . right))))
   :hook ((flycheck-mode . sideline-flycheck-setup)))
+
+(use-package yasnippet :demand t :ensure t
+  :config (progn
+            (yas-reload-all)
+            (add-hook 'prog-mode-hook #'yas-minor-mode)))
+
+;;; Terminal
+
+(defvar terminal-buffer-name "vterm")
+
+(defun toggle-terminal ()
+  "Toggle terminal."
+  (interactive)
+  (if (string= (buffer-name) terminal-buffer-name)
+      (switch-to-buffer (other-buffer))
+    (if (get-buffer terminal-buffer-name)
+        (switch-to-buffer terminal-buffer-name)
+      (vterm terminal-buffer-name))))
+
+(use-package vterm :ensure t
+  :config (setq confirm-kill-processes nil)
+  :bind ("<C-return>" . toggle-terminal))
 
 ;;; LSP
 
@@ -334,6 +358,7 @@
   (xref-find-apropos (thing-at-point 'symbol)))
 
 (use-package eglot :ensure t :defer t
+  :after (company yasnippet)
   :config (progn
             (setq eglot-events-buffer-size 0)
             (add-to-list 'eglot-server-programs '(js2-mode . ("typescript-language-server" "--stdio")))
@@ -362,8 +387,8 @@
 ;;; ChatGPT
 
 (use-package chatgpt-shell :ensure t
-  :init (setq chatgpt-shell-openai-key ;; in ~/.authinfo: machine api.openai.com password OPENAPI_KEY_HERE
-              (auth-source-pick-first-password :host "api.openai.com"))
+  :config (setq chatgpt-shell-openai-key ;; in ~/.authinfo: machine api.openai.com password OPENAPI_KEY_HERE
+                (auth-source-pick-first-password :host "api.openai.com"))
   :bind ("C-c C-g" . chatgpt-shell))
 
 ;;; Languages
@@ -404,12 +429,12 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   :bind ("C-c C-e" . markdown-export-and-preview)
-  :init (setq markdown-enable-wiki-links t
-              markdown-italic-underscore t
-              markdown-asymmetric-header t
-              markdown-make-gfm-checkboxes-buttons t
-              markdown-gfm-uppercase-checkbox t
-              markdown-fontify-code-blocks-natively t))
+  :config (setq markdown-enable-wiki-links t
+                markdown-italic-underscore t
+                markdown-asymmetric-header t
+                markdown-make-gfm-checkboxes-buttons t
+                markdown-gfm-uppercase-checkbox t
+                markdown-fontify-code-blocks-natively t))
 
 (use-package yaml-mode :ensure t
   :mode "\\.ya?ml\\'")
@@ -424,10 +449,11 @@
          ("\\.erubis\\'" . web-mode)
          ("\\.ejs\\'" . web-mode)
          ("\\.vue\\'" . web-mode))
-  :config (flycheck-add-mode 'javascript-eslint 'web-mode)
-  :init (setq web-mode-markup-indent-offset 2
-              web-mode-css-indent-offset 2
-              web-mode-code-indent-offset 2))
+  :config (progn
+            (flycheck-add-mode 'javascript-eslint 'web-mode)
+            (setq web-mode-markup-indent-offset 2
+                  web-mode-css-indent-offset 2
+                  web-mode-code-indent-offset 2)))
 
 (use-package php-mode :ensure t)
 
@@ -456,7 +482,10 @@
 (use-package typescript-mode :ensure t)
 
 (use-package go-mode :ensure t
-  :config (add-hook 'before-save-hook 'gofmt-before-save)
-  :init (setq whitespace-style '(face trailing)))
+  :config (progn
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq whitespace-style '(face trailing))))
+
+(use-package company-go :ensure t)
 
 ;;; init.el ends here.
