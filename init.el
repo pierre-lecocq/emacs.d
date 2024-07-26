@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2024-07-11 15:20:51>
+;; Time-stamp: <2024-07-26 21:37:45>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -68,7 +68,8 @@
         select-enable-clipboard t)
   (when (display-graphic-p)
     (global-unset-key (kbd "C-z"))
-    (global-set-key (kbd "M-h") 'ns-do-hide-emacs)))
+    (global-set-key (kbd "M-h") 'ns-do-hide-emacs)
+    (global-set-key (kbd "C-c :") 'ns-do-show-character-palette)))
 
 (global-set-key [delete] 'delete-char)
 (global-set-key (kbd "M-g") 'goto-line)
