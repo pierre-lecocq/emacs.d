@@ -110,6 +110,12 @@
         (package-refresh-contents))
       (package-install package))))
 
+;;; Treesitter
+
+(my/install-package 'tree-sitter 'tree-sitter-langs)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
 ;;; Theme
 
 (toggle-frame-maximized)
@@ -278,7 +284,10 @@
   (my/install-package 'flycheck-eglot)
   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
   (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio"))
-  (add-to-list 'eglot-server-programs '(go-mode "gopls")))
+  (add-to-list 'eglot-server-programs '(go-mode "gopls"))
+  (add-hook 'php-mode-hook 'eglot-ensure)
+  (add-hook 'js2-mode-hook 'eglot-ensure)
+  (add-hook 'go-mode-hook 'eglot-ensure))
 
   ;; (("C-c e d" . eldoc)
   ;;  ("C-c e f" . eglot-format)
@@ -295,7 +304,8 @@
 (my/install-package 'dockerfile-mode
                     'terraform-mode
                     'json-mode
-                    'yaml-mode)
+                    'yaml-mode
+                    'php-mode)
 
 (add-hook 'makefile-mode-hook #'(lambda()
                                   (whitespace-toggle-options '(tabs tab-mark))
@@ -325,7 +335,6 @@
                                  (setq-default tab-width 2)))
 
 (my/install-package 'php-mode)
-(add-hook 'php-mode-hook 'eglot-ensure)
 
 (my/install-package 'js2-mode 'rjsx-mode 'typescript-mode)
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
@@ -342,14 +351,12 @@
                             (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
                             (setq-default flycheck-temp-prefix ".flycheck"
                                           flycheck-disabled-checkers (append flycheck-disabled-checkers
-                                                                             '(javascript-jshint json-jsonlist)))
-                            (eglot-ensure)))
+                                                                             '(javascript-jshint json-jsonlist)))))
 
 (my/install-package 'go-mode 'company-go)
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook #'(lambda()
                             (whitespace-toggle-options '(tabs tab-mark))
-                            (setq indent-tabs-mode t)
-                            (eglot-ensure)))
+                            (setq indent-tabs-mode t)))
 
 ;;; init.el ends here.
