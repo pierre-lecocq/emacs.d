@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: func
+# key: func
+# --
+${1:public} function $2($3): ${4:void}
+{
+    $0
+}
