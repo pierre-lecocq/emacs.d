@@ -12,6 +12,9 @@
 (add-to-list 'default-frame-alist '(reverse . t))
 (setq initial-frame-alist default-frame-alist)
 
+(set-face-attribute 'vertical-border nil :foreground "#444444" :background "#444444")
+(set-face-attribute 'fringe nil :foreground "#111111" :background "#111111")
+
 (set-face-attribute 'font-lock-string-face nil :foreground "#ED556A")
 (set-face-attribute 'font-lock-keyword-face nil :foreground "#6395EE")
 (set-face-attribute 'font-lock-constant-face nil :foreground "#63dbee")

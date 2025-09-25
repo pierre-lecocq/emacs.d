@@ -112,9 +112,9 @@
 
 ;;; Treesitter
 
-(my/install-package 'tree-sitter 'tree-sitter-langs)
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+;; (my/install-package 'tree-sitter 'tree-sitter-langs)
+;; (global-tree-sitter-mode)
+;; (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 ;;; Theme
 
@@ -150,7 +150,7 @@
 (global-hl-todo-mode)
 
 (my/install-package 'idle-highlight-mode)
-(idle-highlight-mode)
+(idle-highlight-global-mode)
 
 (require 'dired)
 (setq dired-listing-switches "-alFh")
@@ -177,6 +177,7 @@
 (flx-ido-mode 1)
 (ido-vertical-mode 1)
 (ido-ubiquitous-mode 1)
+(set-face-attribute 'ido-subdir nil :foreground "#6395EE")
 
 ;;; Search
 
@@ -266,7 +267,8 @@
   "Take an existing shell in DIR or create a new one."
   (interactive)
   (let ((buf (get-buffer "*vterm*"))
-        (default-directory (if dir dir (file-name-directory buffer-file-name))))
+        ;; (default-directory (if dir dir (file-name-directory buffer-file-name)))
+        (default-directory (if dir dir default-directory)))
     (if buf
         (switch-to-buffer buf)
       (vterm))))
@@ -282,22 +284,28 @@
 (setq eldoc-documentation-strategy 'eldoc-documentation-compose)
 (with-eval-after-load "eglot"
   (my/install-package 'flycheck-eglot)
+
   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
-  (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio"))
+  (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
+  (add-to-list 'eglot-server-programs '(typescript-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
   (add-to-list 'eglot-server-programs '(go-mode "gopls"))
+
   (add-hook 'php-mode-hook 'eglot-ensure)
   (add-hook 'js2-mode-hook 'eglot-ensure)
-  (add-hook 'go-mode-hook 'eglot-ensure))
+  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  (add-hook 'go-mode-hook 'eglot-ensure)
+  (add-hook 'python-mode-hook 'eglot-ensure)
 
-  ;; (("C-c e d" . eldoc)
-  ;;  ("C-c e f" . eglot-format)
-  ;;  ("C-c e a" . eglot-code-actions)
-  ;;  ("C-c e e" . flycheck-list-errors)
-  ;;  ("C-c x d" . xref-find-definitions)
-  ;;  ("C-c x r" . xref-find-references)
-  ;;  ("C-c x p" . xref-go-back)
-  ;;  ("C-c x n" . xref-go-forward)
-  ;;  ("C-c x a" . xref-find-apropos-at-point))
+  ;; (global-set-key (kbd "C-x l ?") 'eldoc)
+  ;; (global-set-key (kbd "C-x l a") 'eglot-code-actions)
+  ;; (global-set-key (kbd "C-x l e") 'flycheck-list-errors)
+  ;; (global-set-key (kbd "C-x l d") 'xref-find-definitions)
+  ;; (global-set-key (kbd "C-x l r") 'xref-find-references)
+  ;; (global-set-key (kbd "C-x l p") 'xref-go-back)
+  ;; (global-set-key (kbd "C-x l n") 'xref-go-forward)
+
+  ;; (global-set-key (kbd "C-x l a") 'xref-find-apropos-at-point)
+  )
 
 ;;; Languages
 
@@ -337,6 +345,7 @@
 (my/install-package 'php-mode)
 
 (my/install-package 'js2-mode 'rjsx-mode 'typescript-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
 (add-hook 'j2-mode-hook #'(lambda ()
                             (make-local-variable 'js-indent-level)
