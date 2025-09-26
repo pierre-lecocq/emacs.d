@@ -252,6 +252,24 @@
 (my/install-package 'string-inflection)
 (global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
 
+;; Git
+
+(my/install-package 'magit 'git-gutter)
+
+(global-git-gutter-mode t)
+
+(custom-set-variables
+ '(git-gutter:hide-gutter t)
+ '(git-gutter:modified-sign " ")
+ '(git-gutter:added-sign " ")
+ '(git-gutter:deleted-sign " "))
+
+(set-face-background 'git-gutter:modified "purple")
+(set-face-background 'git-gutter:added "green")
+(set-face-background 'git-gutter:deleted "red")
+
+(add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
+
 ;;; Snippets
 
 (my/install-package 'yasnippet)
@@ -335,6 +353,8 @@
 (add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode))
 
 (my/install-package 'restclient 'restclient-jq)
+(with-eval-after-load "restclient"
+  (require 'restclient-jq))
 (add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
 (add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
 
