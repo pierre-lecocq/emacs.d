@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dbg
+# key: dbg
+# --
+fmt.Printf("%+v\n", $0)
