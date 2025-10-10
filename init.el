@@ -127,7 +127,7 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
 
-(load-file "dark-default-theme.el")
+(load-file (expand-file-name "dark-default-theme.el" user-emacs-directory))
 (load-theme 'dark-default t)
 
 (my/install-package 'simple-modeline)
