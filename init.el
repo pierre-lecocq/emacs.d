@@ -110,12 +110,6 @@
         (package-refresh-contents))
       (package-install package))))
 
-;;; Treesitter
-
-;; (my/install-package 'tree-sitter 'tree-sitter-langs)
-;; (global-tree-sitter-mode)
-;; (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
-
 ;;; Theme
 
 (toggle-frame-maximized)
@@ -132,6 +126,9 @@
         frame-resize-pixelwise t)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark)))
+
+(load-file "dark-default-theme.el")
+(load-theme 'dark-default t)
 
 (my/install-package 'simple-modeline)
 (simple-modeline-mode)
