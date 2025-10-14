@@ -82,6 +82,7 @@
 
 (advice-add 'split-window-right :after #'(lambda (&rest _) (other-window 1)))
 (advice-add 'split-window-below :after #'(lambda (&rest _) (other-window 1)))
+
 (add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
 
 (defun display-startup-echo-area-message ()
@@ -142,6 +143,9 @@
                            simple-modeline-segment-major-mode)))
 
 ;;; Look'n'feel
+
+(my/install-package 'move-text)
+(move-text-default-bindings) ;; Set M-<up> and M-<down> to move text up and down
 
 (my/install-package 'hl-todo)
 (global-hl-todo-mode)
