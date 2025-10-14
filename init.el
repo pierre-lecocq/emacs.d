@@ -304,6 +304,8 @@
 (with-eval-after-load "eglot"
   (my/install-package 'flycheck-eglot)
 
+  (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :inlayHintProvider))
+
   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
   (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
   (add-to-list 'eglot-server-programs '(typescript-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
@@ -315,13 +317,13 @@
   (add-hook 'go-mode-hook 'eglot-ensure)
   (add-hook 'python-mode-hook 'eglot-ensure)
 
-  ;; (global-set-key (kbd "C-x l ?") 'eldoc)
-  ;; (global-set-key (kbd "C-x l a") 'eglot-code-actions)
-  ;; (global-set-key (kbd "C-x l e") 'flycheck-list-errors)
-  ;; (global-set-key (kbd "C-x l d") 'xref-find-definitions)
-  ;; (global-set-key (kbd "C-x l r") 'xref-find-references)
-  ;; (global-set-key (kbd "C-x l p") 'xref-go-back)
-  ;; (global-set-key (kbd "C-x l n") 'xref-go-forward)
+  (global-set-key (kbd "C-c l ?") 'eldoc)
+  (global-set-key (kbd "C-c l a") 'eglot-code-actions)
+  (global-set-key (kbd "C-c l e") 'flycheck-list-errors)
+  (global-set-key (kbd "C-c l d") 'xref-find-definitions)
+  (global-set-key (kbd "C-c l r") 'xref-find-references)
+  (global-set-key (kbd "C-c l p") 'xref-go-back)
+  (global-set-key (kbd "C-c l n") 'xref-go-forward)
 
   ;; (global-set-key (kbd "C-x l a") 'xref-find-apropos-at-point)
   )
