@@ -35,12 +35,15 @@
       inhibit-splash-screen t
       inhibit-startup-message t
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
+      inhibit-startup-buffer-menu t
+      initial-major-mode 'fundamental-mode
       auto-revert-verbose nil
       load-prefer-newer t
       auto-save-default nil
       create-lockfiles nil
       auto-save-list-file-prefix nil
       backup-inhibited t
+      mode-line-format nil
       make-backup-files nil
       next-line-add-newlines nil
       require-final-newline t
@@ -93,7 +96,8 @@
 
 (require 'package)
 
-(setq package-enable-at-startup nil
+(setq package-quickstart t
+      package-enable-at-startup nil
       package-user-dir (expand-file-name ".cache/packages" user-emacs-directory)
       package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("gnu" . "https://elpa.gnu.org/packages/")))
