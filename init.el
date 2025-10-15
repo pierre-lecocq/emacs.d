@@ -323,9 +323,10 @@
 
   (global-set-key (kbd "C-c l ?") 'eldoc)
   (global-set-key (kbd "C-c l a") 'eglot-code-actions)
+  (global-set-key (kbd "C-c l r") 'eglot-rename)
   (global-set-key (kbd "C-c l e") 'flycheck-list-errors)
-  (global-set-key (kbd "C-c l d") 'xref-find-definitions)
-  (global-set-key (kbd "C-c l r") 'xref-find-references)
+  (global-set-key (kbd "C-c l f d") 'xref-find-definitions)
+  (global-set-key (kbd "C-c l f r") 'xref-find-references)
   (global-set-key (kbd "C-c l p") 'xref-go-back)
   (global-set-key (kbd "C-c l n") 'xref-go-forward)
 
