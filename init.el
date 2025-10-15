@@ -160,6 +160,15 @@
 (require 'dired)
 (setq dired-listing-switches "-alFh")
 
+;;; Buffers
+
+(setq split-height-threshold 80
+      split-width-threshold 125
+      display-buffer-alist '(("\\*compilation\\*"
+                              (display-buffer-reuse-mode-window display-buffer-below-selected)
+                              (dedicated . t)
+                              (window-height . fit-window-to-buffer))))
+
 ;;; IDO
 
 (require 'ido)
