@@ -37,7 +37,6 @@
       initial-scratch-message (format ";; Scratch - Started on %s\n\n" (current-time-string))
       inhibit-startup-buffer-menu t
       initial-major-mode 'fundamental-mode
-      auto-revert-verbose nil
       load-prefer-newer t
       auto-save-default nil
       create-lockfiles nil
@@ -53,8 +52,11 @@
       use-dialog-box nil
       use-short-answers t
       custom-file (expand-file-name ".cache/custom.el" user-emacs-directory)
-      project-list-file (expand-file-name ".cache/projects" user-emacs-directory)
-      nsm-settings-file (expand-file-name ".cache/network-security.data" user-emacs-directory))
+      project-list-file (expand-file-name ".cache/projects" user-emacs-directory))
+
+;; To avoid "assignment to free variable" warnings
+(setq-default auto-revert-verbose nil
+              nsm-settings-file (expand-file-name ".cache/network-security.data" user-emacs-directory))
 
 (setq locale-coding-system 'utf-8)
 (set-language-environment 'utf-8)
@@ -183,9 +185,11 @@
       ido-use-filename-at-point nil
       ido-use-url-at-point 'never
       ido-create-new-buffer 'always
-      ido-use-faces t
-      ido-vertical-show-count t
-      ido-vertical-define-keys 'C-n-C-p)
+      ido-use-faces t)
+
+(setq-default ido-vertical-show-count t
+              ido-vertical-define-keys 'C-n-C-p)
+
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
@@ -214,17 +218,17 @@
 ;;; Completion
 
 (my/install-package 'company 'company-box)
-(setq company-backends '(company-semantic
-                         company-capf
-                         company-files
-                         (company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet)
-                         company-dabbrev)
-      company-dabbrev-minimum-length 2
-      company-dabbrev-other-buffers t
-      completion-styles '(basic flex)
-      completions-max-height 40
-      completion-ignore-case t
-      company-files-exclusions '(".git/" ".DS_Store"))
+(setq-default company-backends '(company-semantic
+                                 company-capf
+                                 company-files
+                                 (company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet)
+                                 company-dabbrev)
+              company-dabbrev-minimum-length 2
+              company-dabbrev-other-buffers t
+              completion-styles '(basic flex)
+              completions-max-height 40
+              completion-ignore-case t
+              company-files-exclusions '(".git/" ".DS_Store"))
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'company-mode-hook 'company-box-mode)
 
@@ -252,16 +256,16 @@
 (add-hook 'before-save 'time-stamp)
 
 (my/install-package 'which-key)
-(setq which-key-popup-type 'side-window
-      which-key-side-window-location 'bottom
-      which-key-side-window-max-height 0.5
-      which-key-max-description-length 200
-      which-key-add-column-padding 2)
+(setq-default which-key-popup-type 'side-window
+              which-key-side-window-location 'bottom
+              which-key-side-window-max-height 0.5
+              which-key-max-description-length 200
+              which-key-add-column-padding 2)
 (which-key-mode 1)
 
 (my/install-package 'imenu-list)
-(setq imenu-list-focus-after-activation t
-      imenu-list-auto-resize t)
+(setq-default imenu-list-focus-after-activation t
+              imenu-list-auto-resize t)
 
 (my/install-package 'string-inflection)
 (global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
@@ -287,8 +291,8 @@
 ;;; Snippets
 
 (my/install-package 'yasnippet)
-(setq yas-prompt-functions '(yas-ido-prompt)
-      yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
+(setq-default yas-prompt-functions '(yas-ido-prompt)
+              yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
 (yas-global-mode t)
 
 ;;; Shell
@@ -337,10 +341,7 @@
   (global-set-key (kbd "C-c l f d") 'xref-find-definitions)
   (global-set-key (kbd "C-c l f r") 'xref-find-references)
   (global-set-key (kbd "C-c l p") 'xref-go-back)
-  (global-set-key (kbd "C-c l n") 'xref-go-forward)
-
-  ;; (global-set-key (kbd "C-x l a") 'xref-find-apropos-at-point)
-  )
+  (global-set-key (kbd "C-c l n") 'xref-go-forward))
 
 ;;; Languages
 
@@ -356,12 +357,12 @@
 (add-to-list 'auto-mode-alist '("Makefile.*\\'" . makefile-mode))
 
 (my/install-package 'markdown-mode)
-(setq markdown-enable-wiki-links t
-      markdown-italic-underscore t
-      markdown-asymmetric-header t
-      markdown-make-gfm-checkboxes-buttons t
-      markdown-gfm-uppercase-checkbox t
-      markdown-fontify-code-blocks-natively t)
+(setq-default markdown-enable-wiki-links t
+              markdown-italic-underscore t
+              markdown-asymmetric-header t
+              markdown-make-gfm-checkboxes-buttons t
+              markdown-gfm-uppercase-checkbox t
+              markdown-fontify-code-blocks-natively t)
 (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
@@ -386,9 +387,9 @@
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
 (add-hook 'j2-mode-hook #'(lambda ()
                             (make-local-variable 'js-indent-level)
-                            (setq-default tab-width 2)
-                            (setq js-indent-level 2
-                                  js2-basic-offset 2)
+                            (setq-default tab-width 2
+                                          js2-basic-offset 2)
+                            (setq js-indent-level 2)
                             (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
                             (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
                             (js2-imenu-extras-mode)
