@@ -4,3 +4,5 @@ eln-cache/
 elpa/
 recentf
 transient/
+package-quickstart.el*
+.aider*

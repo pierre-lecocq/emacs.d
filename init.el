@@ -106,16 +106,17 @@
 
 (package-initialize)
 
-(defvar my/package-contents-refreshed nil)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(defun my/install-package(&rest packages)
-  "Require PACKAGES and install them if necessary."
-  (dolist (package packages)
-    (when (not (package-installed-p package))
-      (when (not my/package-contents-refreshed)
-        (setq my/package-contents-refreshed t)
-        (package-refresh-contents))
-      (package-install package))))
+(eval-when-compile
+  (require 'use-package))
+
+(setq use-package-always-ensure t
+      use-package-expand-minimally t
+      use-package-compute-statistics t
+      use-package-verbose nil)
 
 ;;; Theme
 
@@ -137,30 +138,33 @@
 (load-file (expand-file-name "dark-default-theme.el" user-emacs-directory))
 (load-theme 'dark-default t)
 
-(my/install-package 'simple-modeline)
-(simple-modeline-mode)
-(customize-set-variable 'simple-modeline-segments
-                        '((simple-modeline-segment-modified
-                           simple-modeline-segment-buffer-name
-                           simple-modeline-segment-position)
-                          (simple-modeline-segment-vc
-                           simple-modeline-segment-process
-                           simple-modeline-segment-misc-info
-                           simple-modeline-segment-major-mode)))
+(use-package simple-modeline
+  :hook (after-init . simple-modeline-mode)
+  :custom
+  (simple-modeline-segments
+   '((simple-modeline-segment-modified
+      simple-modeline-segment-buffer-name
+      simple-modeline-segment-position)
+     (simple-modeline-segment-vc
+      simple-modeline-segment-process
+      simple-modeline-segment-misc-info
+      simple-modeline-segment-major-mode))))
 
 ;;; Look'n'feel
 
-(my/install-package 'move-text)
-(move-text-default-bindings) ;; Set M-<up> and M-<down> to move text up and down
+(use-package move-text :defer t
+  :config
+  (move-text-default-bindings)) ;; Set M-<up> and M-<down> to move text up and down
 
-(my/install-package 'hl-todo)
-(global-hl-todo-mode)
+(use-package hl-todo
+  :hook (prog-mode . hl-todo-mode))
 
-(my/install-package 'idle-highlight-mode)
-(idle-highlight-global-mode)
+(use-package idle-highlight-mode
+  :hook (prog-mode . idle-highlight-mode))
 
-(require 'dired)
-(setq dired-listing-switches "-alFh")
+(use-package dired :ensure nil
+  :custom
+  (dired-listing-switches "-alFh"))
 
 ;;; Buffers
 
@@ -173,237 +177,296 @@
 
 ;;; IDO
 
-(require 'ido)
-(my/install-package 'flx-ido 'ido-vertical-mode 'ido-completing-read+)
-(setq ido-use-faces t
-      ido-enable-flex-matching t
-      ido-auto-merge-work-directories-length -1
-      ido-use-virtual-buffers t
-      ido-save-directory-list-file (expand-file-name ".cache/ido.el" user-emacs-directory)
-      ido-max-prospects 100
-      ido-case-fold t
-      ido-use-filename-at-point nil
-      ido-use-url-at-point 'never
-      ido-create-new-buffer 'always
-      ido-use-faces t)
+(use-package ido :ensure nil :demand t
+  :custom
+  (ido-use-faces t)
+  (ido-enable-flex-matching t)
+  (ido-auto-merge-work-directories-length -1)
+  (ido-use-virtual-buffers t)
+  (ido-save-directory-list-file (expand-file-name ".cache/ido.el" user-emacs-directory))
+  (ido-max-prospects 100)
+  (ido-case-fold t)
+  (ido-use-filename-at-point nil)
+  (ido-use-url-at-point 'never)
+  (ido-create-new-buffer 'always)
+  :config
+  (ido-mode 1)
+  (ido-everywhere 1))
 
-(setq-default ido-vertical-show-count t
-              ido-vertical-define-keys 'C-n-C-p)
+(use-package flx-ido
+  :after ido
+  :config
+  (flx-ido-mode 1))
 
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-(ido-vertical-mode 1)
-(ido-ubiquitous-mode 1)
-(set-face-attribute 'ido-subdir nil :foreground "#6395EE")
+(use-package ido-vertical-mode
+  :after ido
+  :custom
+  (ido-vertical-show-count t)
+  (ido-vertical-define-keys 'C-n-C-p)
+  :config
+  (ido-vertical-mode 1))
+
+(use-package ido-completing-read+
+  :after ido
+  :config
+  (ido-ubiquitous-mode 1))
+
+(with-eval-after-load 'ido
+  (set-face-attribute 'ido-subdir nil :foreground "#6395EE"))
 
 ;;; Search
 
-(require 'isearch)
-(setq search-highlight t
-      search-whitespace-regexp ".*?"
-      isearch-lax-whitespace t
-      isearch-regexp-lax-whitespace nil
-      isearch-lazy-highlight t
-      isearch-lazy-count t
-      lazy-count-prefix-format nil
-      lazy-count-suffix-format " (%s/%s)")
-(advice-add 'isearch-update :before 'recenter)
+(use-package isearch :ensure nil
+  :custom
+  (search-highlight t)
+  (search-whitespace-regexp ".*?")
+  (isearch-lax-whitespace t)
+  (isearch-regexp-lax-whitespace nil)
+  (isearch-lazy-highlight t)
+  (isearch-lazy-count t)
+  (lazy-count-prefix-format nil)
+  (lazy-count-suffix-format " (%s/%s)")
+  :config
+  (advice-add 'isearch-update :before 'recenter))
 
 ;;; Syntax
 
-(my/install-package 'flycheck)
-(global-flycheck-mode)
+(use-package flycheck
+  :hook (after-init . global-flycheck-mode))
 
 ;;; Completion
 
-(my/install-package 'company 'company-box)
-(setq-default company-backends '(company-semantic
-                                 company-capf
-                                 company-files
-                                 (company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet)
-                                 company-dabbrev)
-              company-dabbrev-minimum-length 2
-              company-dabbrev-other-buffers t
-              completion-styles '(basic flex)
-              completions-max-height 40
-              completion-ignore-case t
-              company-files-exclusions '(".git/" ".DS_Store"))
-(add-hook 'after-init-hook 'global-company-mode)
-(add-hook 'company-mode-hook 'company-box-mode)
+(use-package company
+  :hook (after-init . global-company-mode)
+  :custom
+  (company-backends '(company-semantic
+                      company-capf
+                      company-files
+                      (company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet)
+                      company-dabbrev))
+  (company-dabbrev-minimum-length 2)
+  (company-dabbrev-other-buffers t)
+  (completion-styles '(basic flex))
+  (completions-max-height 40)
+  (completion-ignore-case t)
+  (company-files-exclusions '(".git/" ".DS_Store")))
+
+(use-package company-box
+  :hook (company-mode . company-box-mode))
 
 ;;; IDE
 
-(my/install-package 'exec-path-from-shell)
-(exec-path-from-shell-initialize)
+(use-package exec-path-from-shell :demand t
+  :config
+  (exec-path-from-shell-initialize))
 
-(my/install-package 'editorconfig)
-(add-hook 'prog-mode-hook 'editorconfig-mode)
+(use-package editorconfig
+  :hook (prog-mode . editorconfig-mode))
 
-(require 'whitespace)
-(setq whitespace-line-column 80)
-(setq-default whitespace-style '(tabs tab-mark face trailing)
-              whitespace-action '(cleanup auto-cleanup))
-(add-hook 'prog-mode-hook 'whitespace-mode)
+(use-package whitespace :ensure nil
+  :hook (prog-mode . whitespace-mode)
+  :custom
+  (whitespace-line-column 80)
+  (whitespace-style '(tabs tab-mark face trailing))
+  (whitespace-action '(cleanup auto-cleanup)))
 
-(require 'which-func)
-(setq which-func-unknown ""
-      which-func-format '(:propertize which-func-current face which-func))
-(add-hook 'prog-mode-hook 'which-function-mode)
+(use-package which-func :ensure nil
+  :hook (prog-mode . which-function-mode)
+  :custom
+  (which-func-unknown "")
+  (which-func-format '(:propertize which-func-current face which-func)))
 
-(require 'time-stamp)
-(setq time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S")
-(add-hook 'before-save 'time-stamp)
+(use-package time-stamp :ensure nil
+  :hook (before-save . time-stamp)
+  :custom
+  (time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"))
 
-(my/install-package 'which-key)
-(setq-default which-key-popup-type 'side-window
-              which-key-side-window-location 'bottom
-              which-key-side-window-max-height 0.5
-              which-key-max-description-length 200
-              which-key-add-column-padding 2)
-(which-key-mode 1)
+(use-package which-key :defer t
+  :custom
+  (which-key-popup-type 'side-window)
+  (which-key-side-window-location 'bottom)
+  (which-key-side-window-max-height 0.5)
+  (which-key-max-description-length 200)
+  (which-key-add-column-padding 2)
+  :config
+  (which-key-mode 1))
 
-(my/install-package 'imenu-list)
-(setq-default imenu-list-focus-after-activation t
-              imenu-list-auto-resize t)
+(use-package imenu-list :defer t
+  :custom
+  (imenu-list-focus-after-activation t)
+  (imenu-list-auto-resize t))
 
-(my/install-package 'string-inflection)
-(global-set-key (kbd "C-c C-u") 'string-inflection-all-cycle)
+(use-package string-inflection
+  :defer t
+  :bind ("C-c C-u" . string-inflection-all-cycle))
 
 ;; Git
 
-(my/install-package 'magit 'git-gutter)
+(use-package magit :defer t
+  :commands (magit-status magit-dispatch magit-file-dispatch))
 
-(global-git-gutter-mode t)
-
-(custom-set-variables
- '(git-gutter:hide-gutter t)
- '(git-gutter:modified-sign " ")
- '(git-gutter:added-sign " ")
- '(git-gutter:deleted-sign " "))
-
-(set-face-background 'git-gutter:modified "purple")
-(set-face-background 'git-gutter:added "green")
-(set-face-background 'git-gutter:deleted "red")
-
-(add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
+(use-package git-gutter
+  :hook (after-init . global-git-gutter-mode)
+  :custom
+  (git-gutter:hide-gutter t)
+  (git-gutter:modified-sign " ")
+  (git-gutter:added-sign " ")
+  (git-gutter:deleted-sign " ")
+  :config
+  (set-face-background 'git-gutter:modified "purple")
+  (set-face-background 'git-gutter:added "green")
+  (set-face-background 'git-gutter:deleted "red")
+  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows))
 
 ;;; Snippets
 
-(my/install-package 'yasnippet)
-(setq-default yas-prompt-functions '(yas-ido-prompt)
-              yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
-(yas-global-mode t)
+(use-package yasnippet :defer t
+  :custom
+  (yas-prompt-functions '(yas-ido-prompt))
+  (yas-snippet-dir (expand-file-name "snippets" user-emacs-directory))
+  :config
+  (yas-global-mode t))
 
 ;;; Shell
 
-(my/install-package 'vterm)
+(use-package vterm :defer t
+  :commands (vterm vterm-other-window)
+  :init
+  (defun spawn-shell(&optional dir)
+    "Take an existing shell in DIR or create a new one."
+    (interactive)
+    (let ((buf (get-buffer "*vterm*"))
+          ;; (default-directory (if dir dir (file-name-directory buffer-file-name)))
+          (default-directory (if dir dir default-directory)))
+      (if buf
+          (switch-to-buffer buf)
+        (vterm))))
+  :bind
+  (("C-<return>" . spawn-shell)
+   ("C-x p <return>" . (lambda()
+                         (interactive)
+                         (spawn-shell (project-root (project-current t)))))))
 
-(defun spawn-shell(&optional dir)
-  "Take an existing shell in DIR or create a new one."
-  (interactive)
-  (let ((buf (get-buffer "*vterm*"))
-        ;; (default-directory (if dir dir (file-name-directory buffer-file-name)))
-        (default-directory (if dir dir default-directory)))
-    (if buf
-        (switch-to-buffer buf)
-      (vterm))))
+;;; IA
 
-(global-set-key (kbd "C-<return>") 'spawn-shell)
-(global-set-key (kbd "C-x p <return>") #'(lambda()
-                                           (interactive)
-                                           (spawn-shell (project-root (project-current t)))))
+(use-package aider :defer t
+  :custom
+  (aider-args '("--model" "sonnet" "--no-auto-accept-architect --no-auto-commits"))
+  ;; (setenv "ANTHROPIC_API_KEY" anthropic-api-key)
+  :bind
+  ("C-c i a" . aider-transient-menu)) ;; wider screen
+                                       ;; 'aider-transient-menu-1col ;; narrow screen
+                                       ;; 'aider-transient-menu-2cols
 
 ;;; LSP
 
-(require 'eglot)
-(setq eldoc-documentation-strategy 'eldoc-documentation-compose)
-(with-eval-after-load "eglot"
-  (my/install-package 'flycheck-eglot)
-
-  (setq eglot-ignored-server-capabilities '(:documentHighlightProvider :inlayHintProvider))
-
+(use-package eglot :ensure nil :defer t
+  :hook ((php-mode . eglot-ensure)
+         (js2-mode . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (go-mode . eglot-ensure)
+         (python-mode . eglot-ensure))
+  :custom
+  (eldoc-documentation-strategy 'eldoc-documentation-compose)
+  (eglot-ignored-server-capabilities '(:documentHighlightProvider :inlayHintProvider))
+  :config
   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
   (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
   (add-to-list 'eglot-server-programs '(typescript-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
   (add-to-list 'eglot-server-programs '(go-mode "gopls"))
+  :bind
+  (("C-c l ?" . eldoc)
+   ("C-c l a" . eglot-code-actions)
+   ("C-c l r" . eglot-rename)
+   ("C-c l e" . flycheck-list-errors)
+   ("C-c l f d" . xref-find-definitions)
+   ("C-c l f r" . xref-find-references)
+   ("C-c l p" . xref-go-back)
+   ("C-c l n" . xref-go-forward)))
 
-  (add-hook 'php-mode-hook 'eglot-ensure)
-  (add-hook 'js2-mode-hook 'eglot-ensure)
-  (add-hook 'typescript-mode-hook 'eglot-ensure)
-  (add-hook 'go-mode-hook 'eglot-ensure)
-  (add-hook 'python-mode-hook 'eglot-ensure)
-
-  (global-set-key (kbd "C-c l ?") 'eldoc)
-  (global-set-key (kbd "C-c l a") 'eglot-code-actions)
-  (global-set-key (kbd "C-c l r") 'eglot-rename)
-  (global-set-key (kbd "C-c l e") 'flycheck-list-errors)
-  (global-set-key (kbd "C-c l f d") 'xref-find-definitions)
-  (global-set-key (kbd "C-c l f r") 'xref-find-references)
-  (global-set-key (kbd "C-c l p") 'xref-go-back)
-  (global-set-key (kbd "C-c l n") 'xref-go-forward))
+(use-package flycheck-eglot
+  :after (flycheck eglot))
 
 ;;; Languages
 
-(my/install-package 'dockerfile-mode
-                    'terraform-mode
-                    'json-mode
-                    'yaml-mode
-                    'php-mode)
+(use-package dockerfile-mode :defer t
+  :mode "Dockerfile\\'")
 
-(add-hook 'makefile-mode-hook #'(lambda()
-                                  (whitespace-toggle-options '(tabs tab-mark))
-                                  (setq indent-tabs-mode t)))
-(add-to-list 'auto-mode-alist '("Makefile.*\\'" . makefile-mode))
+(use-package terraform-mode :defer t
+  :mode "\\.tf\\'")
 
-(my/install-package 'markdown-mode)
-(setq-default markdown-enable-wiki-links t
-              markdown-italic-underscore t
-              markdown-asymmetric-header t
-              markdown-make-gfm-checkboxes-buttons t
-              markdown-gfm-uppercase-checkbox t
-              markdown-fontify-code-blocks-natively t)
-(add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(use-package json-mode :defer t
+  :mode "\\.json\\'")
 
-(my/install-package 'dotenv-mode)
-(add-to-list 'auto-mode-alist '("\\.env\\..*\\'" . dotenv-mode))
+(use-package yaml-mode :defer t
+  :mode "\\.ya?ml\\'")
 
-(my/install-package 'restclient 'restclient-jq)
-(with-eval-after-load "restclient"
-  (require 'restclient-jq))
-(add-to-list 'auto-mode-alist '("\\.http\\'" . restclient-mode))
-(add-to-list 'auto-mode-alist '("\\.rest\\'" . restclient-mode))
+(use-package php-mode :defer t
+  :mode "\\.php\\'")
 
-(my/install-package 'graphql-mode)
-(add-hook 'graphql-mode-hook #'(lambda ()
-                                 (setq-default tab-width 2)))
+(use-package make-mode :ensure nil
+  :mode ("Makefile.*\\'" . makefile-mode)
+  :hook (makefile-mode . (lambda()
+                           (whitespace-toggle-options '(tabs tab-mark))
+                           (setq indent-tabs-mode t))))
 
-(my/install-package 'php-mode)
+(use-package markdown-mode :defer t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :custom
+  (markdown-enable-wiki-links t)
+  (markdown-italic-underscore t)
+  (markdown-asymmetric-header t)
+  (markdown-make-gfm-checkboxes-buttons t)
+  (markdown-gfm-uppercase-checkbox t)
+  (markdown-fontify-code-blocks-natively t))
 
-(my/install-package 'js2-mode 'rjsx-mode 'typescript-mode)
-(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-mode))
-(add-hook 'j2-mode-hook #'(lambda ()
-                            (make-local-variable 'js-indent-level)
-                            (setq-default tab-width 2
-                                          js2-basic-offset 2)
-                            (setq js-indent-level 2)
-                            (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-                            (add-to-list 'interpreter-mode-alist '("nodejs" . js2-mode))
-                            (js2-imenu-extras-mode)
-                            (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
-                            ;; (flycheck-select-checker 'javascript-eslint)
-                            (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
-                            (setq-default flycheck-temp-prefix ".flycheck"
-                                          flycheck-disabled-checkers (append flycheck-disabled-checkers
-                                                                             '(javascript-jshint json-jsonlist)))))
+(use-package dotenv-mode :defer t
+  :mode "\\.env\\..*\\'")
 
-(my/install-package 'go-mode 'company-go)
-(add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook #'(lambda()
-                            (whitespace-toggle-options '(tabs tab-mark))
-                            (setq indent-tabs-mode t)))
+(use-package restclient :defer t
+  :mode (("\\.http\\'" . restclient-mode)
+         ("\\.rest\\'" . restclient-mode)))
+
+(use-package restclient-jq
+  :after restclient)
+
+(use-package graphql-mode :defer t
+  :hook (graphql-mode . (lambda ()
+                          (setq-default tab-width 2))))
+
+(use-package js2-mode :defer t
+  :mode (("\\.js\\'" . js2-mode)
+         ("\\.jsx\\'" . js2-mode))
+  :interpreter (("node" . js2-mode)
+                ("nodejs" . js2-mode))
+  :hook (js2-mode . (lambda ()
+                      (make-local-variable 'js-indent-level)
+                      (setq-default tab-width 2
+                                    js2-basic-offset 2)
+                      (setq js-indent-level 2)
+                      (js2-imenu-extras-mode)
+                      (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
+                      ;; (flycheck-select-checker 'javascript-eslint)
+                      (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+                      (setq-default flycheck-temp-prefix ".flycheck"
+                                    flycheck-disabled-checkers (append flycheck-disabled-checkers
+                                                                       '(javascript-jshint json-jsonlist))))))
+
+(use-package rjsx-mode :defer t)
+
+(use-package typescript-mode :defer t
+  :mode "\\.ts\\'")
+
+(use-package go-mode :defer t
+  :mode "\\.go\\'"
+  :hook (go-mode . (lambda()
+                     (whitespace-toggle-options '(tabs tab-mark))
+                     (setq indent-tabs-mode t)
+                     (add-hook 'before-save-hook 'gofmt-before-save nil t))))
+
+(use-package company-go
+  :after (company go-mode))
 
 ;;; init.el ends here.
