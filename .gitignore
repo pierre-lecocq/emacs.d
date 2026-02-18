@@ -6,3 +6,4 @@ recentf
 transient/
 package-quickstart.el*
 .aider*
+.env

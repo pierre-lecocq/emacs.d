@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2025-08-26 08:24:20>
+;; Time-stamp: <2026-02-18 10:47:37>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -84,6 +84,10 @@
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-<left>") 'other-window)
 (global-set-key (kbd "M-<right>") 'other-window)
+(global-set-key (kbd "M-<up>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<down>") 'shrink-window-horizontally)
+(global-set-key (kbd "M-S-<up>") 'enlarge-window)
+(global-set-key (kbd "M-S-<down>") 'shrink-window)
 
 (advice-add 'split-window-right :after #'(lambda (&rest _) (other-window 1)))
 (advice-add 'split-window-below :after #'(lambda (&rest _) (other-window 1)))
@@ -164,13 +168,19 @@
 
 (use-package dired :ensure nil
   :custom
-  (dired-listing-switches "-alFh"))
+  (dired-listing-switches "-alFh")
+  (dired-isearch-filenames t)
+  (delete-by-moving-to-trash t))
 
 ;;; Buffers
 
 (setq split-height-threshold 80
       split-width-threshold 125
       display-buffer-alist '(("\\*compilation\\*"
+                              (display-buffer-reuse-mode-window display-buffer-below-selected)
+                              (dedicated . t)
+                              (window-height . fit-window-to-buffer))
+                             ("\\*SQL:.+\\*"
                               (display-buffer-reuse-mode-window display-buffer-below-selected)
                               (dedicated . t)
                               (window-height . fit-window-to-buffer))))
@@ -347,16 +357,9 @@
                          (interactive)
                          (spawn-shell (project-root (project-current t)))))))
 
-;;; IA
+;;; Database
 
-(use-package aider :defer t
-  :custom
-  (aider-args '("--model" "sonnet" "--no-auto-accept-architect --no-auto-commits"))
-  ;; (setenv "ANTHROPIC_API_KEY" anthropic-api-key)
-  :bind
-  ("C-c i a" . aider-transient-menu)) ;; wider screen
-                                       ;; 'aider-transient-menu-1col ;; narrow screen
-                                       ;; 'aider-transient-menu-2cols
+(use-package sqlite3 :defer t)
 
 ;;; LSP
 
@@ -449,12 +452,13 @@
                       (js2-imenu-extras-mode)
                       (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)
                       ;; (flycheck-select-checker 'javascript-eslint)
-                      (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
+                      ;; (flycheck-add-mode 'javascript-eslint 'rjsx-mode)
                       (setq-default flycheck-temp-prefix ".flycheck"
                                     flycheck-disabled-checkers (append flycheck-disabled-checkers
                                                                        '(javascript-jshint json-jsonlist))))))
 
-(use-package rjsx-mode :defer t)
+(use-package rjsx-mode :defer t
+  :mode "\\.tsx\\'")
 
 (use-package typescript-mode :defer t
   :mode "\\.ts\\'")
