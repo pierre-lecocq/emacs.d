@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2026-02-18 10:47:37>
+;; Time-stamp: <2026-02-19 08:56:24>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -29,7 +29,7 @@
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
       large-file-warning-threshold (* 500 1024 1024)
-      debug-on-error t
+      debug-on-error nil
       help-at-pt-display-when-idle t
       frame-title-format "%b (%m) - %F"
       inhibit-splash-screen t
@@ -53,6 +53,9 @@
       use-short-answers t
       custom-file (expand-file-name ".cache/custom.el" user-emacs-directory)
       project-list-file (expand-file-name ".cache/projects" user-emacs-directory))
+
+;; Restore smaller GC value after init to avoid memory bloating
+(run-with-idle-timer 4 nil (lambda () (setq gc-cons-threshold (* 2 1024 1024))))
 
 ;; To avoid "assignment to free variable" warnings
 (setq-default auto-revert-verbose nil
@@ -84,15 +87,15 @@
 (global-set-key (kbd "C-c r") 'comment-dwim)
 (global-set-key (kbd "M-<left>") 'other-window)
 (global-set-key (kbd "M-<right>") 'other-window)
-(global-set-key (kbd "M-<up>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<down>") 'shrink-window-horizontally)
+(global-set-key (kbd "M-S-<right>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-S-<left>") 'shrink-window-horizontally)
 (global-set-key (kbd "M-S-<up>") 'enlarge-window)
 (global-set-key (kbd "M-S-<down>") 'shrink-window)
 
 (advice-add 'split-window-right :after #'(lambda (&rest _) (other-window 1)))
 (advice-add 'split-window-below :after #'(lambda (&rest _) (other-window 1)))
 
-(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'compilation)
+(add-hook 'compilation-finish-functions 'switch-to-buffer-other-window 'append)
 
 (defun display-startup-echo-area-message ()
   "Replace the defaut welcome message in the minibuffer."
@@ -119,13 +122,15 @@
 
 (setq use-package-always-ensure t
       use-package-expand-minimally t
-      use-package-compute-statistics t
+      use-package-compute-statistics nil
       use-package-verbose nil)
 
 ;;; Theme
 
-(toggle-frame-maximized)
-(select-frame-set-input-focus (selected-frame))
+(add-hook 'window-setup-hook
+          (lambda ()
+            (toggle-frame-maximized)
+            (select-frame-set-input-focus (selected-frame))))
 
 (set-frame-font
  (if (>= (display-pixel-width) 2500)
@@ -143,7 +148,7 @@
 (load-theme 'dark-default t)
 
 (use-package simple-modeline
-  :hook (after-init . simple-modeline-mode)
+  :hook (window-setup . simple-modeline-mode)
   :custom
   (simple-modeline-segments
    '((simple-modeline-segment-modified
@@ -157,8 +162,7 @@
 ;;; Look'n'feel
 
 (use-package move-text :defer t
-  :config
-  (move-text-default-bindings)) ;; Set M-<up> and M-<down> to move text up and down
+  :config (move-text-default-bindings)) ;; Set M-<up> and M-<down> to move text up and down
 
 (use-package hl-todo
   :hook (prog-mode . hl-todo-mode))
@@ -187,7 +191,9 @@
 
 ;;; IDO
 
-(use-package ido :ensure nil :demand t
+(use-package ido :ensure nil :defer t
+  :commands (ido-mode)
+  :init (run-with-idle-timer 0.5 nil (lambda () (ido-mode 1)))
   :custom
   (ido-use-faces t)
   (ido-enable-flex-matching t)
@@ -241,19 +247,21 @@
 
 ;;; Syntax
 
-(use-package flycheck
-  :hook (after-init . global-flycheck-mode))
+(use-package flycheck :defer t
+  :commands (global-flycheck-mode)
+  :hook (prog-mode . global-flycheck-mode))
 
 ;;; Completion
 
 (use-package company
   :hook (after-init . global-company-mode)
   :custom
-  (company-backends '(company-semantic
-                      company-capf
+  ;; Fast/light backends first to reduce completion latency
+  (company-backends '(company-capf
+                      company-dabbrev
                       company-files
                       (company-dabbrev-code company-gtags company-etags company-keywords :with company-yasnippet)
-                      company-dabbrev))
+                      company-semantic))
   (company-dabbrev-minimum-length 2)
   (company-dabbrev-other-buffers t)
   (completion-styles '(basic flex))
@@ -292,14 +300,14 @@
   (time-stamp-format "%:y-%02m-%02d %02H:%02M:%02S"))
 
 (use-package which-key :defer t
+  :commands (which-key-mode)
+  :init (run-with-idle-timer 1 nil (lambda () (which-key-mode 1)))
   :custom
   (which-key-popup-type 'side-window)
   (which-key-side-window-location 'bottom)
   (which-key-side-window-max-height 0.5)
   (which-key-max-description-length 200)
-  (which-key-add-column-padding 2)
-  :config
-  (which-key-mode 1))
+  (which-key-add-column-padding 2))
 
 (use-package imenu-list :defer t
   :custom
@@ -315,8 +323,9 @@
 (use-package magit :defer t
   :commands (magit-status magit-dispatch magit-file-dispatch))
 
-(use-package git-gutter
-  :hook (after-init . global-git-gutter-mode)
+(use-package git-gutter :defer t
+  :commands (global-git-gutter-mode)
+  :hook (find-file . global-git-gutter-mode)
   :custom
   (git-gutter:hide-gutter t)
   (git-gutter:modified-sign " ")
@@ -371,7 +380,9 @@
          (python-mode . eglot-ensure))
   :custom
   (eldoc-documentation-strategy 'eldoc-documentation-compose)
-  (eglot-ignored-server-capabilities '(:documentHighlightProvider :inlayHintProvider))
+  (eglot-ignored-server-capabilities '(:documentHighlightProvider
+                                       :inlayHintProvider
+                                       :documentOnTypeFormattingProvider))
   :config
   (add-to-list 'eglot-server-programs '(php-mode "intelephense" "--stdio"))
   (add-to-list 'eglot-server-programs '(js2-mode "typescript-language-server" "--stdio")) ;; npm i -g typescript-language-server typescript
