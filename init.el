@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2026-04-21 11:30:52>
+;; Time-stamp: <2026-07-14 16:10:37>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -52,7 +52,9 @@
       use-dialog-box nil
       use-short-answers t
       custom-file (expand-file-name ".cache/custom.el" user-emacs-directory)
-      project-list-file (expand-file-name ".cache/projects" user-emacs-directory))
+      project-list-file (expand-file-name ".cache/projects" user-emacs-directory)
+      ;; Keep large repos with heavy submodules from blowing past `ido-cr+-max-items', which silently disables ido's completion popup for `project-find-file'
+      project-vc-merge-submodules nil)
 
 ;; Restore smaller GC value after init to avoid memory bloating
 (run-with-idle-timer 4 nil (lambda () (setq gc-cons-threshold (* 2 1024 1024))))
