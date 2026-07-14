@@ -372,6 +372,24 @@
 
 ;;; LSP
 
+(use-package xref :ensure nil
+  :config
+  (defvar my/xref-excluded-directories '(".claude")
+    "Directory names whose contents should be hidden from xref results.")
+
+  (defun my/xref-filter-excluded-directories (xrefs)
+    "Remove XREFS whose file lives under any of `my/xref-excluded-directories'."
+    (seq-remove
+     (lambda (xref)
+       (when-let ((file (xref-location-group (xref-item-location xref))))
+         (seq-some (lambda (dir) (string-match-p (concat "/" (regexp-quote dir) "/") file))
+                    my/xref-excluded-directories)))
+     xrefs))
+
+  (advice-add 'xref-backend-references :filter-return #'my/xref-filter-excluded-directories)
+  (advice-add 'xref-backend-definitions :filter-return #'my/xref-filter-excluded-directories)
+  (advice-add 'xref-backend-apropos :filter-return #'my/xref-filter-excluded-directories))
+
 (use-package eglot :ensure nil :defer t
   :hook ((php-mode . eglot-ensure)
          (js2-mode . eglot-ensure)
