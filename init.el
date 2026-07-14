@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2026-02-19 08:56:24>
+;; Time-stamp: <2026-04-21 11:30:52>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -483,5 +483,8 @@
 
 (use-package company-go
   :after (company go-mode))
+
+(use-package flycheck-golangci-lint :ensure t :defer t
+  :hook (go-mode . flycheck-golangci-lint-setup))
 
 ;;; init.el ends here.
