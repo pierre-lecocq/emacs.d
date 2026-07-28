@@ -2,7 +2,7 @@
 
 ;; File: init.el
 ;; Creation: Thu Oct 19 12:19:54 2023
-;; Time-stamp: <2026-07-14 16:10:37>
+;; Time-stamp: <2026-07-28 12:31:44>
 ;; Copyright (C): 2023 Pierre Lecocq
 
 ;;; Commentary:
@@ -319,6 +319,10 @@
 (use-package string-inflection
   :defer t
   :bind ("C-c C-u" . string-inflection-all-cycle))
+
+;; TODO lists
+
+(use-package xit-mode :ensure t)
 
 ;; Git
 
